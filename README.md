@@ -38,10 +38,13 @@ Usa `.env.example` como base. Para que el CTA real de WhatsApp funcione, se requ
 
 ```bash
 AUM_WHATSAPP_NUMBER=
-NEXT_PUBLIC_SUPABASE_URL=
+SUPABASE_PROJECT_REF=ffxzacgryevyekqagzys
+NEXT_PUBLIC_SUPABASE_URL=https://ffxzacgryevyekqagzys.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=
 SUPABASE_SERVICE_ROLE_KEY=
 ```
+
+El proyecto Supabase oficial de AUM PRODZ es `ffxzacgryevyekqagzys`. Si GitHub muestra un check de Supabase Preview apuntando a otro project ref, hay que desconectar esa integracion y conectar `aumdevs/aumprodz` desde el proyecto correcto.
 
 El redirect de WhatsApp falla con `503` si no puede registrar el clic antes de redirigir.
 
