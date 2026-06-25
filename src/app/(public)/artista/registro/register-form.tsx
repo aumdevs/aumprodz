@@ -1,12 +1,11 @@
 "use client";
 
-import { useActionState, useEffect, useState, type ReactNode } from "react";
+import { useActionState, type ClipboardEvent, type DragEvent, type ReactNode } from "react";
 import {
   CreditCard,
   LoaderCircle,
   LockKeyhole,
   Mail,
-  X,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -17,6 +16,7 @@ import {
   musicGenreOptions,
   phoneCountryCodeOptions,
 } from "@/lib/artist-options";
+import type { AppLocale } from "@/lib/i18n/config";
 import {
   createArtistAccountAction,
   type ArtistSignupState,
@@ -30,7 +30,181 @@ const initialState: ArtistSignupState = {
   },
 };
 
-export function ArtistRegisterForm() {
+const formCopyByLocale: Record<
+  AppLocale,
+  {
+    legalName: string;
+    artistName: string;
+    email: string;
+    emailConfirmation: string;
+    password: string;
+    country: string;
+    phone: string;
+    phonePlaceholder: string;
+    genre: string;
+    bio: string;
+    bioPlaceholder: string;
+    note: string;
+    submit: string;
+    pending: string;
+  }
+> = {
+  ht: {
+    legalName: "Non legal",
+    artistName: "Non atis",
+    email: "Imèl",
+    emailConfirmation: "Konfime imèl",
+    password: "Modpas",
+    country: "Peyi",
+    phone: "Telefòn",
+    phonePlaceholder: "Egzanp: 3721 0000",
+    genre: "Stil mizik",
+    bio: "Pwofil / biyografi",
+    bioPlaceholder:
+      "Di nou rapidman kiyès ou ye, vil ou ak direksyon mizik ou.",
+    note:
+      "Imèl ou rete aksè prensipal kont lan. Lè ou kontinye, n ap mennen w sou peman sekirize Stripe pou aktive aksè ou.",
+    submit: "Kreye kont epi peye $99",
+    pending: "Ap prepare peman...",
+  },
+  es: {
+    legalName: "Nombre real",
+    artistName: "Nombre de artista",
+    email: "Correo",
+    emailConfirmation: "Confirmar correo",
+    password: "Contraseña",
+    country: "País",
+    phone: "Teléfono",
+    phonePlaceholder: "Ejemplo: 3721 0000",
+    genre: "Género musical",
+    bio: "Perfil / biografía",
+    bioPlaceholder:
+      "Cuéntanos brevemente quién eres, tu ciudad y tu enfoque musical.",
+    note:
+      "Tu correo queda como acceso principal de la cuenta. Al continuar, te llevaremos al pago seguro de Stripe para activar tu acceso.",
+    submit: "Crear cuenta y pagar $99",
+    pending: "Preparando pago...",
+  },
+  en: {
+    legalName: "Legal name",
+    artistName: "Artist name",
+    email: "Email",
+    emailConfirmation: "Confirm email",
+    password: "Password",
+    country: "Country",
+    phone: "Phone",
+    phonePlaceholder: "Example: 3721 0000",
+    genre: "Music genre",
+    bio: "Profile / bio",
+    bioPlaceholder:
+      "Briefly tell us who you are, your city and your musical direction.",
+    note:
+      "Your email is the main access for the account. When you continue, we will take you to secure Stripe payment to activate your access.",
+    submit: "Create account and pay $99",
+    pending: "Preparing payment...",
+  },
+  fr: {
+    legalName: "Nom légal",
+    artistName: "Nom d'artiste",
+    email: "Email",
+    emailConfirmation: "Confirmer l'email",
+    password: "Mot de passe",
+    country: "Pays",
+    phone: "Téléphone",
+    phonePlaceholder: "Exemple: 3721 0000",
+    genre: "Genre musical",
+    bio: "Profil / biographie",
+    bioPlaceholder:
+      "Dites-nous brièvement qui vous êtes, votre ville et votre direction musicale.",
+    note:
+      "Votre email reste l'accès principal du compte. En continuant, nous vous envoyons vers le paiement sécurisé Stripe pour activer votre accès.",
+    submit: "Créer un compte et payer $99",
+    pending: "Préparation du paiement...",
+  },
+  pt: {
+    legalName: "Nome legal",
+    artistName: "Nome artístico",
+    email: "Email",
+    emailConfirmation: "Confirmar email",
+    password: "Senha",
+    country: "País",
+    phone: "Telefone",
+    phonePlaceholder: "Exemplo: 3721 0000",
+    genre: "Gênero musical",
+    bio: "Perfil / biografia",
+    bioPlaceholder:
+      "Conte rapidamente quem você é, sua cidade e sua direção musical.",
+    note:
+      "Seu email fica como acesso principal da conta. Ao continuar, levaremos você ao pagamento seguro da Stripe para ativar seu acesso.",
+    submit: "Criar conta e pagar $99",
+    pending: "Preparando pagamento...",
+  },
+};
+
+const countryLabels: Record<AppLocale, Record<string, string>> = {
+  ht: {
+    Haití: "Ayiti",
+    "Estados Unidos": "Etazini",
+    "República Dominicana": "Repiblik Dominikèn",
+    Canadá: "Kanada",
+    Chile: "Chili",
+    Brasil: "Brezil",
+    Francia: "Lafrans",
+    Bahamas: "Bahamas",
+    México: "Meksik",
+    "Turks and Caicos": "Turks and Caicos",
+    "Guayana Francesa": "Giyàn franse",
+    Otro: "Lòt",
+  },
+  es: {},
+  en: {
+    Haití: "Haiti",
+    "Estados Unidos": "United States",
+    "República Dominicana": "Dominican Republic",
+    Canadá: "Canada",
+    Chile: "Chile",
+    Brasil: "Brazil",
+    Francia: "France",
+    México: "Mexico",
+    "Guayana Francesa": "French Guiana",
+    Otro: "Other",
+  },
+  fr: {
+    Haití: "Haïti",
+    "Estados Unidos": "États-Unis",
+    "República Dominicana": "République dominicaine",
+    Canadá: "Canada",
+    Chile: "Chili",
+    Brasil: "Brésil",
+    Francia: "France",
+    México: "Mexique",
+    "Guayana Francesa": "Guyane française",
+    Otro: "Autre",
+  },
+  pt: {
+    Haití: "Haiti",
+    "Estados Unidos": "Estados Unidos",
+    "República Dominicana": "República Dominicana",
+    Canadá: "Canadá",
+    Chile: "Chile",
+    Brasil: "Brasil",
+    Francia: "França",
+    México: "México",
+    "Guayana Francesa": "Guiana Francesa",
+    Otro: "Outro",
+  },
+};
+
+const genreLabels: Record<AppLocale, Record<string, string>> = {
+  ht: { Otro: "Lòt" },
+  es: {},
+  en: { Otro: "Other" },
+  fr: { Otro: "Autre" },
+  pt: { Otro: "Outro" },
+};
+
+export function ArtistRegisterForm({ locale }: { locale: AppLocale }) {
+  const copy = formCopyByLocale[locale] ?? formCopyByLocale.ht;
   const [state, formAction, pending] = useActionState(
     createArtistAccountAction,
     initialState,
@@ -40,6 +214,7 @@ export function ArtistRegisterForm() {
   return (
     <>
       <form action={formAction} className="grid gap-5">
+        <input type="hidden" name="locale" value={locale} />
         {state.error ? (
           <div className="rounded-md border border-destructive/30 bg-destructive/10 p-3 text-sm text-destructive">
             {state.error}
@@ -48,42 +223,45 @@ export function ArtistRegisterForm() {
 
         <div className="grid gap-4 md:grid-cols-2">
           <Field
-            label="Nombre real"
+            label={copy.legalName}
             name="legal_name"
             defaultValue={values.legal_name}
             error={state.fieldErrors?.legal_name}
           />
           <Field
-            label="Nombre de artista"
+            label={copy.artistName}
             name="artist_name"
             defaultValue={values.artist_name}
             error={state.fieldErrors?.artist_name}
           />
           <Field
-            label="Correo"
+            label={copy.email}
             name="email"
             type="email"
+            autoComplete="email"
             defaultValue={values.email}
             error={state.fieldErrors?.email}
             icon={<Mail className="size-4" />}
           />
           <Field
-            label="Confirmar correo"
+            label={copy.emailConfirmation}
             name="email_confirmation"
             type="email"
+            autoComplete="off"
+            preventPaste
             defaultValue={values.email_confirmation}
             error={state.fieldErrors?.email_confirmation}
             icon={<Mail className="size-4" />}
           />
           <Field
-            label="Contraseña"
+            label={copy.password}
             name="password"
             type="password"
             autoComplete="new-password"
             error={state.fieldErrors?.password}
           />
           <label className="grid gap-2 text-sm font-medium">
-            País
+            {copy.country}
             <select
               name="country"
               defaultValue={values.country ?? "Haití"}
@@ -91,13 +269,13 @@ export function ArtistRegisterForm() {
             >
               {haitianDiasporaCountryOptions.map((country) => (
                 <option key={country} value={country}>
-                  {country}
+                  {getCountryLabel(locale, country)}
                 </option>
               ))}
             </select>
           </label>
           <label className="grid gap-2 text-sm font-medium md:col-span-2">
-            Teléfono
+            {copy.phone}
             <div className="grid gap-2 sm:grid-cols-[170px_1fr]">
               <select
                 name="phone_country_code"
@@ -109,7 +287,7 @@ export function ArtistRegisterForm() {
                     key={`${option.country}-${option.code}`}
                     value={option.code}
                   >
-                    {option.code} {option.country}
+                    {option.code} {getCountryLabel(locale, option.country)}
                   </option>
                 ))}
               </select>
@@ -117,7 +295,7 @@ export function ArtistRegisterForm() {
                 name="phone_number"
                 defaultValue={values.phone_number ?? ""}
                 inputMode="tel"
-                placeholder="Ejemplo: 3721 0000"
+                placeholder={copy.phonePlaceholder}
                 className={cn(
                   "h-12 text-base",
                   state.fieldErrors?.phone_number ? "border-destructive" : "",
@@ -131,7 +309,7 @@ export function ArtistRegisterForm() {
             ) : null}
           </label>
           <label className="grid gap-2 text-sm font-medium md:col-span-2">
-            Género musical
+            {copy.genre}
             <select
               name="genre"
               defaultValue={values.genre ?? "Rap"}
@@ -139,7 +317,7 @@ export function ArtistRegisterForm() {
             >
               {musicGenreOptions.map((genre) => (
                 <option key={genre} value={genre}>
-                  {genre}
+                  {getGenreLabel(locale, genre)}
                 </option>
               ))}
             </select>
@@ -147,11 +325,11 @@ export function ArtistRegisterForm() {
         </div>
 
         <label className="grid gap-2 text-sm font-medium">
-          Perfil / biografía
+          {copy.bio}
           <textarea
             name="bio"
             defaultValue={values.bio ?? ""}
-            placeholder="Cuéntanos brevemente quién eres, tu ciudad y tu enfoque musical."
+            placeholder={copy.bioPlaceholder}
             className="min-h-28 rounded-md border border-border bg-background px-3 py-2 text-sm"
           />
         </label>
@@ -159,10 +337,7 @@ export function ArtistRegisterForm() {
         <div className="rounded-md border border-border bg-muted p-4 text-sm leading-6 text-muted-foreground">
           <div className="flex items-start gap-3">
             <LockKeyhole className="mt-0.5 size-4 shrink-0 text-primary" />
-            <p>
-              Tu correo queda como acceso principal de la cuenta. Al continuar,
-              el pago seguro se abrirá aquí mismo dentro de la plataforma.
-            </p>
+            <p>{copy.note}</p>
           </div>
         </div>
 
@@ -172,14 +347,19 @@ export function ArtistRegisterForm() {
           ) : (
             <CreditCard className="size-5" />
           )}
-          {pending ? "Preparando pago..." : "Crear cuenta y pagar $99"}
+          {pending ? copy.pending : copy.submit}
         </Button>
       </form>
-      {state.checkoutClientSecret ? (
-        <EmbeddedAnnualCheckout clientSecret={state.checkoutClientSecret} />
-      ) : null}
     </>
   );
+}
+
+function getCountryLabel(locale: AppLocale, country: string) {
+  return countryLabels[locale]?.[country] ?? country;
+}
+
+function getGenreLabel(locale: AppLocale, genre: string) {
+  return genreLabels[locale]?.[genre] ?? genre;
 }
 
 function Field({
@@ -190,6 +370,7 @@ function Field({
   error,
   autoComplete,
   icon,
+  preventPaste = false,
 }: {
   label: string;
   name: string;
@@ -198,7 +379,16 @@ function Field({
   error?: string;
   autoComplete?: string;
   icon?: ReactNode;
+  preventPaste?: boolean;
 }) {
+  const blockPaste = (
+    event: ClipboardEvent<HTMLInputElement> | DragEvent<HTMLInputElement>,
+  ) => {
+    if (preventPaste) {
+      event.preventDefault();
+    }
+  };
+
   return (
     <label className="grid gap-2 text-sm font-medium">
       {label}
@@ -213,6 +403,8 @@ function Field({
           type={type}
           defaultValue={defaultValue ?? ""}
           autoComplete={autoComplete}
+          onDrop={blockPaste}
+          onPaste={blockPaste}
           className={cn(
             "h-12 text-base",
             icon ? "pl-10" : "",
@@ -225,133 +417,4 @@ function Field({
       ) : null}
     </label>
   );
-}
-
-type StripeEmbeddedCheckout = {
-  mount: (selector: string) => void;
-  destroy: () => void;
-};
-
-type StripeClient = {
-  initEmbeddedCheckout: (input: {
-    clientSecret: string;
-  }) => Promise<StripeEmbeddedCheckout>;
-};
-
-declare global {
-  interface Window {
-    Stripe?: (publishableKey: string) => StripeClient | null;
-  }
-}
-
-let stripeScriptPromise: Promise<void> | null = null;
-
-function EmbeddedAnnualCheckout({ clientSecret }: { clientSecret: string }) {
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    let checkout: StripeEmbeddedCheckout | null = null;
-    let disposed = false;
-
-    async function mountCheckout() {
-      const publishableKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY;
-
-      if (!publishableKey) {
-        setError(
-          "Falta NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY en .env.local para mostrar el pago dentro de la plataforma.",
-        );
-        return;
-      }
-
-      await loadStripeScript();
-      const stripe = window.Stripe?.(publishableKey);
-
-      if (!stripe) {
-        setError("Stripe no pudo iniciar. Recarga la página e intenta de nuevo.");
-        return;
-      }
-
-      const embeddedCheckout = await stripe.initEmbeddedCheckout({
-        clientSecret,
-      });
-
-      if (disposed) {
-        embeddedCheckout.destroy();
-        return;
-      }
-
-      checkout = embeddedCheckout;
-      embeddedCheckout.mount("#artist-annual-checkout");
-    }
-
-    void mountCheckout().catch(() => {
-      setError("No se pudo abrir el pago seguro. Revisa Stripe e intenta de nuevo.");
-    });
-
-    return () => {
-      disposed = true;
-      checkout?.destroy();
-    };
-  }, [clientSecret]);
-
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/82 px-4 py-6 backdrop-blur">
-      <div className="relative flex max-h-[92vh] w-full max-w-3xl flex-col overflow-hidden rounded-lg border border-border bg-card shadow-2xl">
-        <div className="flex items-start justify-between gap-4 border-b border-border p-5">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-              Pago seguro
-            </p>
-            <h2 className="mt-1 text-2xl font-black tracking-normal">
-              Activar cuenta artista
-            </h2>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Completa el pago anual y al finalizar entrarás al dashboard.
-            </p>
-          </div>
-          <button
-            type="button"
-            onClick={() => window.location.assign("/artist")}
-            className="inline-flex size-10 items-center justify-center rounded-md border border-border text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-            aria-label="Cerrar pago"
-          >
-            <X className="size-5" />
-          </button>
-        </div>
-        {error ? (
-          <div className="m-5 rounded-md border border-destructive/30 bg-destructive/10 p-4 text-sm text-destructive">
-            {error}
-          </div>
-        ) : null}
-        <div className="min-h-[520px] overflow-y-auto p-5">
-          {!error ? (
-            <div className="mb-4 flex items-center gap-2 text-sm text-muted-foreground">
-              <LoaderCircle className="size-4 animate-spin" />
-              Cargando formulario seguro de pago...
-            </div>
-          ) : null}
-          <div id="artist-annual-checkout" />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function loadStripeScript() {
-  if (window.Stripe) {
-    return Promise.resolve();
-  }
-
-  if (!stripeScriptPromise) {
-    stripeScriptPromise = new Promise((resolve, reject) => {
-      const script = document.createElement("script");
-      script.src = "https://js.stripe.com/v3/";
-      script.async = true;
-      script.onload = () => resolve();
-      script.onerror = () => reject(new Error("Stripe.js failed to load"));
-      document.head.appendChild(script);
-    });
-  }
-
-  return stripeScriptPromise;
 }

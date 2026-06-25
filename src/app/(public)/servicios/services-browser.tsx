@@ -17,6 +17,7 @@ import {
 
 import { buttonVariants } from "@/components/ui/button";
 import type { ServiceCategory, ServiceSlug } from "@/lib/content/services";
+import type { AppLocale } from "@/lib/i18n/config";
 import { cn } from "@/lib/utils";
 
 export type ServiceBrowserItem = {
@@ -62,7 +63,120 @@ const icons: Record<ServiceSlug, LucideIcon> = {
   "cuentas-digitales": KeyRound,
 };
 
-export function ServicesBrowser({ services }: { services: ServiceBrowserItem[] }) {
+const copyByLocale: Record<
+  AppLocale,
+  {
+    empty: string;
+    available: string;
+    title: string;
+    intro: string;
+    priceFrom: string;
+    duration: string;
+    includes: string;
+    process: string;
+    packages: string;
+    requirements: string;
+    faqs: string;
+    ctaTitle: string;
+    ctaText: (serviceTitle: string) => string;
+    ctaButton: string;
+  }
+> = {
+  ht: {
+    empty: "Pa gen sèvis disponib kounye a.",
+    available: "Sèvis disponib",
+    title: "Sèvis Aum ofri",
+    intro: "Chwazi yon sèvis epi gade detay la isit la.",
+    priceFrom: "Pri apati",
+    duration: "Dire",
+    includes: "Sa li gen ladan",
+    process: "Pwosesis",
+    packages: "Pakè disponib",
+    requirements: "Sa mwen bezwen nan men ou",
+    faqs: "Kesyon moun poze souvan",
+    ctaTitle: "Ou vle travay sèvis sa a?",
+    ctaText: (serviceTitle) =>
+      `Louvri WhatsApp ak mesaj la pare pou ${serviceTitle}.`,
+    ctaButton: "Pale ak Aum",
+  },
+  es: {
+    empty: "No hay servicios disponibles ahora.",
+    available: "Servicios disponibles",
+    title: "Servicios que ofrece Aum",
+    intro: "Elige un servicio y mira el detalle aquí mismo.",
+    priceFrom: "Precio desde",
+    duration: "Duración",
+    includes: "Qué incluye",
+    process: "Proceso",
+    packages: "Paquetes disponibles",
+    requirements: "Lo que necesito de ti",
+    faqs: "Preguntas comunes",
+    ctaTitle: "¿Quieres trabajar este servicio?",
+    ctaText: (serviceTitle) =>
+      `Abre WhatsApp con el mensaje preparado para ${serviceTitle}.`,
+    ctaButton: "Hablar con Aum",
+  },
+  en: {
+    empty: "No services are available right now.",
+    available: "Available services",
+    title: "Services Aum offers",
+    intro: "Choose a service and view the details here.",
+    priceFrom: "Starting at",
+    duration: "Duration",
+    includes: "What is included",
+    process: "Process",
+    packages: "Available packages",
+    requirements: "What I need from you",
+    faqs: "Common questions",
+    ctaTitle: "Want to work on this service?",
+    ctaText: (serviceTitle) =>
+      `Open WhatsApp with a prepared message for ${serviceTitle}.`,
+    ctaButton: "Talk to Aum",
+  },
+  fr: {
+    empty: "Aucun service disponible pour le moment.",
+    available: "Services disponibles",
+    title: "Services proposés par Aum",
+    intro: "Choisissez un service et consultez le détail ici.",
+    priceFrom: "À partir de",
+    duration: "Durée",
+    includes: "Ce qui est inclus",
+    process: "Processus",
+    packages: "Forfaits disponibles",
+    requirements: "Ce dont j'ai besoin",
+    faqs: "Questions fréquentes",
+    ctaTitle: "Vous voulez travailler ce service?",
+    ctaText: (serviceTitle) =>
+      `Ouvrez WhatsApp avec un message préparé pour ${serviceTitle}.`,
+    ctaButton: "Parler avec Aum",
+  },
+  pt: {
+    empty: "Nenhum serviço disponível agora.",
+    available: "Serviços disponíveis",
+    title: "Serviços que Aum oferece",
+    intro: "Escolha um serviço e veja os detalhes aqui.",
+    priceFrom: "Preço a partir de",
+    duration: "Duração",
+    includes: "O que inclui",
+    process: "Processo",
+    packages: "Pacotes disponíveis",
+    requirements: "O que preciso de você",
+    faqs: "Perguntas comuns",
+    ctaTitle: "Quer trabalhar este serviço?",
+    ctaText: (serviceTitle) =>
+      `Abra o WhatsApp com a mensagem preparada para ${serviceTitle}.`,
+    ctaButton: "Falar com Aum",
+  },
+};
+
+export function ServicesBrowser({
+  locale,
+  services,
+}: {
+  locale: AppLocale;
+  services: ServiceBrowserItem[];
+}) {
+  const copy = copyByLocale[locale] ?? copyByLocale.ht;
   const [activeSlug, setActiveSlug] = useState<ServiceSlug>(
     services[0]?.slug ?? "youtube-adsense",
   );
@@ -76,7 +190,7 @@ export function ServicesBrowser({ services }: { services: ServiceBrowserItem[] }
   if (!activeService) {
     return (
       <div className="rounded-md border border-border bg-muted p-6 text-sm text-muted-foreground">
-        No hay servicios disponibles ahora.
+        {copy.empty}
       </div>
     );
   }
@@ -88,13 +202,13 @@ export function ServicesBrowser({ services }: { services: ServiceBrowserItem[] }
       <aside className="lg:sticky lg:top-28 lg:self-start">
         <div className="rounded-lg border border-border bg-card p-4">
           <p className="text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">
-            Servicios disponibles
+            {copy.available}
           </p>
           <h2 className="mt-2 text-2xl font-black tracking-normal">
-            Servicios que ofrece Aum
+            {copy.title}
           </h2>
           <p className="mt-3 text-sm leading-6 text-muted-foreground">
-            Elige un servicio y mira el detalle aquí mismo.
+            {copy.intro}
           </p>
 
           <div className="mt-5 grid gap-2">
@@ -170,7 +284,7 @@ export function ServicesBrowser({ services }: { services: ServiceBrowserItem[] }
 
             <div className="grid gap-3">
               <div className="rounded-md border border-border bg-background p-4">
-                <p className="text-sm text-muted-foreground">Precio desde</p>
+                <p className="text-sm text-muted-foreground">{copy.priceFrom}</p>
                 <p className="mt-1 text-2xl font-black">
                   {activeService.priceFrom}
                 </p>
@@ -178,7 +292,7 @@ export function ServicesBrowser({ services }: { services: ServiceBrowserItem[] }
               <div className="rounded-md border border-border bg-background p-4">
                 <p className="flex items-center gap-2 text-sm text-muted-foreground">
                   <Clock3 className="size-4" />
-                  Duración
+                  {copy.duration}
                 </p>
                 <p className="mt-1 font-bold">{activeService.duration}</p>
               </div>
@@ -199,12 +313,12 @@ export function ServicesBrowser({ services }: { services: ServiceBrowserItem[] }
 
           <div className="grid gap-5 lg:grid-cols-2">
             <DetailList
-              title="Qué incluye"
+              title={copy.includes}
               items={activeService.deliverables}
               numbered={false}
             />
             <DetailList
-              title="Proceso"
+              title={copy.process}
               items={activeService.modules}
               numbered
             />
@@ -212,7 +326,7 @@ export function ServicesBrowser({ services }: { services: ServiceBrowserItem[] }
 
           {activeService.packages.length > 0 ? (
             <div className="rounded-md border border-border bg-background p-5">
-              <h3 className="text-xl font-bold">Paquetes disponibles</h3>
+              <h3 className="text-xl font-bold">{copy.packages}</h3>
               <div className="mt-4 grid gap-4 md:grid-cols-2">
                 {activeService.packages.map((item) => (
                   <div
@@ -273,12 +387,12 @@ export function ServicesBrowser({ services }: { services: ServiceBrowserItem[] }
 
           <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
             <DetailList
-              title="Lo que necesito de ti"
+              title={copy.requirements}
               items={activeService.requirements}
               numbered={false}
             />
             <div className="rounded-md border border-border bg-background p-5">
-              <h3 className="text-xl font-bold">Preguntas comunes</h3>
+              <h3 className="text-xl font-bold">{copy.faqs}</h3>
               <div className="mt-4 grid gap-4">
                 {activeService.faqs.map((faq) => (
                   <div
@@ -297,9 +411,9 @@ export function ServicesBrowser({ services }: { services: ServiceBrowserItem[] }
 
           <div className="flex flex-col gap-4 rounded-lg border border-primary/20 bg-primary/10 p-5 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="text-lg font-black">¿Quieres trabajar este servicio?</p>
+              <p className="text-lg font-black">{copy.ctaTitle}</p>
               <p className="mt-1 text-sm leading-6 text-muted-foreground">
-                Abre WhatsApp con el mensaje preparado para {activeService.title}.
+                {copy.ctaText(activeService.title)}
               </p>
             </div>
             <Link
@@ -307,7 +421,7 @@ export function ServicesBrowser({ services }: { services: ServiceBrowserItem[] }
               className={cn(buttonVariants({ size: "lg" }), "shrink-0")}
             >
               <MessageCircle className="size-5" />
-              Hablar con Aum
+              {copy.ctaButton}
               <ArrowRight className="size-5" />
             </Link>
           </div>

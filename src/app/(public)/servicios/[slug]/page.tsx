@@ -11,6 +11,7 @@ import {
   getPublicServiceBySlug,
   localServices,
 } from "@/lib/content/services";
+import type { AppLocale } from "@/lib/i18n/config";
 import { getCurrentLocale } from "@/lib/i18n/server";
 import { cn } from "@/lib/utils";
 
@@ -19,6 +20,94 @@ export const dynamic = "force-dynamic";
 export function generateStaticParams() {
   return localServices.map((service) => ({ slug: service.slug }));
 }
+
+const detailCopyByLocale: Record<
+  AppLocale,
+  {
+    result: string;
+    includes: string;
+    process: string;
+    requirements: string;
+    faqs: string;
+    summary: string;
+    priceFrom: string;
+    duration: string;
+    whatsapp: string;
+    trackingNote: string;
+    allServices: string;
+  }
+> = {
+  ht: {
+    result: "Rezilta",
+    includes: "Sa li gen ladan",
+    process: "Pwosesis",
+    requirements: "Sa mwen bezwen",
+    faqs: "Kesyon moun poze souvan",
+    summary: "Rezime",
+    priceFrom: "Pri apati",
+    duration: "Dire",
+    whatsapp: "Mande sou WhatsApp",
+    trackingNote:
+      "Klik la anrejistre anvan nan AUM PRODZ Platform epi apre sa li ouvri WhatsApp ak yon mesaj pare pou sèvis sa a.",
+    allServices: "Gade tout sèvis yo",
+  },
+  es: {
+    result: "Resultado",
+    includes: "Qué incluye",
+    process: "Proceso",
+    requirements: "Requisitos",
+    faqs: "Preguntas frecuentes",
+    summary: "Resumen",
+    priceFrom: "Precio desde",
+    duration: "Duración",
+    whatsapp: "Consultar por WhatsApp",
+    trackingNote:
+      "El clic se registra primero en AUM PRODZ Platform y luego abre WhatsApp con un mensaje preparado para este servicio.",
+    allServices: "Ver todos los servicios",
+  },
+  en: {
+    result: "Result",
+    includes: "What is included",
+    process: "Process",
+    requirements: "Requirements",
+    faqs: "Frequently asked questions",
+    summary: "Summary",
+    priceFrom: "Starting at",
+    duration: "Duration",
+    whatsapp: "Ask on WhatsApp",
+    trackingNote:
+      "The click is recorded first in AUM PRODZ Platform and then opens WhatsApp with a prepared message for this service.",
+    allServices: "View all services",
+  },
+  fr: {
+    result: "Résultat",
+    includes: "Ce qui est inclus",
+    process: "Processus",
+    requirements: "Conditions",
+    faqs: "Questions fréquentes",
+    summary: "Résumé",
+    priceFrom: "À partir de",
+    duration: "Durée",
+    whatsapp: "Demander sur WhatsApp",
+    trackingNote:
+      "Le clic est d'abord enregistré dans AUM PRODZ Platform, puis WhatsApp s'ouvre avec un message préparé pour ce service.",
+    allServices: "Voir tous les services",
+  },
+  pt: {
+    result: "Resultado",
+    includes: "O que inclui",
+    process: "Processo",
+    requirements: "Requisitos",
+    faqs: "Perguntas frequentes",
+    summary: "Resumo",
+    priceFrom: "Preço a partir de",
+    duration: "Duração",
+    whatsapp: "Consultar pelo WhatsApp",
+    trackingNote:
+      "O clique é registrado primeiro na AUM PRODZ Platform e depois abre o WhatsApp com uma mensagem preparada para este serviço.",
+    allServices: "Ver todos os serviços",
+  },
+};
 
 export async function generateMetadata({
   params,
@@ -41,12 +130,14 @@ export default async function ServiceDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const service = await getPublicServiceBySlug(slug);
+  const locale = await getCurrentLocale();
+  const service = await getPublicServiceBySlug(slug, locale);
 
   if (!service) {
     notFound();
   }
 
+  const copy = detailCopyByLocale[locale] ?? detailCopyByLocale.ht;
   const Icon = service.icon;
   const pagePath = `/servicios/${service.slug}`;
 
@@ -82,7 +173,7 @@ export default async function ServiceDetailPage({
               <Card key={outcome}>
                 <CardHeader>
                   <Sparkles className="size-5 text-primary" />
-                  <CardTitle className="text-base">Resultado</CardTitle>
+                  <CardTitle className="text-base">{copy.result}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm leading-6 text-muted-foreground">
@@ -96,7 +187,7 @@ export default async function ServiceDetailPage({
           <section className="grid gap-5 md:grid-cols-2">
             <Card>
               <CardHeader>
-                <CardTitle>Qué incluye</CardTitle>
+                <CardTitle>{copy.includes}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 {service.deliverables.map((deliverable) => (
@@ -109,7 +200,7 @@ export default async function ServiceDetailPage({
             </Card>
             <Card>
               <CardHeader>
-                <CardTitle>Proceso</CardTitle>
+                <CardTitle>{copy.process}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 {service.modules.map((module, index) => (
@@ -128,7 +219,7 @@ export default async function ServiceDetailPage({
             <Card>
               <CardHeader>
                 <ClipboardCheck className="size-6 text-primary" />
-                <CardTitle>Requisitos</CardTitle>
+                <CardTitle>{copy.requirements}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 {service.requirements.map((requirement) => (
@@ -139,7 +230,7 @@ export default async function ServiceDetailPage({
               </CardContent>
             </Card>
             <div className="rounded-lg border border-border bg-card p-6">
-              <h2 className="text-2xl font-bold">Preguntas frecuentes</h2>
+              <h2 className="text-2xl font-bold">{copy.faqs}</h2>
               <div className="mt-5 grid gap-4">
                 {service.faqs.map((faq) => (
                   <div key={faq.question} className="border-t border-border pt-4 first:border-t-0 first:pt-0">
@@ -157,16 +248,16 @@ export default async function ServiceDetailPage({
         <aside className="lg:sticky lg:top-32 lg:self-start">
           <Card>
             <CardHeader>
-              <CardTitle>Resumen</CardTitle>
+              <CardTitle>{copy.summary}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-5">
               <div className="grid grid-cols-2 gap-3 text-sm">
                 <div className="rounded-md border border-border bg-background p-3">
-                  <p className="text-muted-foreground">Precio desde</p>
+                  <p className="text-muted-foreground">{copy.priceFrom}</p>
                   <p className="mt-1 font-bold">{service.priceFrom}</p>
                 </div>
                 <div className="rounded-md border border-border bg-background p-3">
-                  <p className="text-muted-foreground">Duración</p>
+                  <p className="text-muted-foreground">{copy.duration}</p>
                   <p className="mt-1 font-bold">{service.duration}</p>
                 </div>
               </div>
@@ -175,13 +266,12 @@ export default async function ServiceDetailPage({
                 source="service_detail"
                 placement="summary_cta"
                 page={pagePath}
-                label="Consultar por WhatsApp"
+                label={copy.whatsapp}
                 size="lg"
                 className="w-full"
               />
               <p className="text-xs leading-5 text-muted-foreground">
-                El clic se registra primero en AUM PRODZ Platform y luego abre
-                WhatsApp con un mensaje preparado para este servicio.
+                {copy.trackingNote}
               </p>
               <Link
                 href="/servicios"
@@ -190,7 +280,7 @@ export default async function ServiceDetailPage({
                   "w-full justify-center",
                 )}
               >
-                Ver todos los servicios
+                {copy.allServices}
                 <ArrowRight className="size-4" />
               </Link>
             </CardContent>

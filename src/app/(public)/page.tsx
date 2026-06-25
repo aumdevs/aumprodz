@@ -15,14 +15,63 @@ import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getPublicServices } from "@/lib/content/services";
 import { getPublicYoutubeVideos } from "@/lib/content/youtube";
+import type { AppLocale } from "@/lib/i18n/config";
 import { t } from "@/lib/i18n/dictionaries";
 import { getCurrentLocale } from "@/lib/i18n/server";
 import { cn } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
+const homeVisualCopyByLocale: Record<
+  AppLocale,
+  {
+    previewTitle: string;
+    previewText: string;
+    previewCategories: string[];
+    previewTags: string[];
+    viewAll: string;
+  }
+> = {
+  ht: {
+    previewTitle: "Sèvis, mizik ak kontni reyèl",
+    previewText: "Yon mak ki fèt pou kreye, vann epi konekte.",
+    previewCategories: ["YouTube", "Web", "Imaj", "Atis"],
+    previewTags: ["Miniati", "Sit entènèt", "AdSense", "Lansman"],
+    viewAll: "Gade tout",
+  },
+  es: {
+    previewTitle: "Servicios, música y contenido real",
+    previewText: "Una marca hecha para crear, vender y conectar.",
+    previewCategories: ["YouTube", "Web", "Imagen", "Artistas"],
+    previewTags: ["Miniaturas", "Páginas web", "AdSense", "Lanzamientos"],
+    viewAll: "Ver todo",
+  },
+  en: {
+    previewTitle: "Services, music and real content",
+    previewText: "A brand built to create, sell and connect.",
+    previewCategories: ["YouTube", "Web", "Image", "Artists"],
+    previewTags: ["Thumbnails", "Websites", "AdSense", "Releases"],
+    viewAll: "View all",
+  },
+  fr: {
+    previewTitle: "Services, musique et contenu réel",
+    previewText: "Une marque faite pour créer, vendre et connecter.",
+    previewCategories: ["YouTube", "Web", "Image", "Artistes"],
+    previewTags: ["Miniatures", "Sites web", "AdSense", "Sorties"],
+    viewAll: "Voir tout",
+  },
+  pt: {
+    previewTitle: "Serviços, música e conteúdo real",
+    previewText: "Uma marca feita para criar, vender e conectar.",
+    previewCategories: ["YouTube", "Web", "Imagem", "Artistas"],
+    previewTags: ["Miniaturas", "Sites", "AdSense", "Lançamentos"],
+    viewAll: "Ver tudo",
+  },
+};
+
 export default async function HomePage() {
   const locale = await getCurrentLocale();
+  const visualCopy = homeVisualCopyByLocale[locale] ?? homeVisualCopyByLocale.ht;
   const [services, youtubeVideos] = await Promise.all([
     getPublicServices({ locale }),
     getPublicYoutubeVideos(3),
@@ -108,15 +157,15 @@ export default async function HomePage() {
                     </div>
                     <div className="absolute inset-x-4 bottom-4">
                       <p className="text-xl font-black">
-                        Servicios, música y contenido real
+                        {visualCopy.previewTitle}
                       </p>
                       <p className="mt-1 text-sm text-white/68">
-                        Una marca hecha para crear, vender y conectar.
+                        {visualCopy.previewText}
                       </p>
                     </div>
                   </div>
                   <div className="grid content-between gap-3">
-                    {["YouTube", "Web", "Imagen", "Artistas"].map((item) => (
+                    {visualCopy.previewCategories.map((item) => (
                       <div
                         key={item}
                         className="flex items-center justify-between rounded-md border border-white/10 bg-white/8 px-3 py-3"
@@ -129,18 +178,11 @@ export default async function HomePage() {
                 </div>
                 <div className="border-t border-white/10 px-5 py-4">
                   <div className="flex flex-wrap gap-2 text-xs font-semibold text-white/76">
-                    <span className="rounded-md bg-white/10 px-3 py-2">
-                      Miniaturas
-                    </span>
-                    <span className="rounded-md bg-white/10 px-3 py-2">
-                      Páginas web
-                    </span>
-                    <span className="rounded-md bg-white/10 px-3 py-2">
-                      AdSense
-                    </span>
-                    <span className="rounded-md bg-white/10 px-3 py-2">
-                      Lanzamientos
-                    </span>
+                    {visualCopy.previewTags.map((item) => (
+                      <span key={item} className="rounded-md bg-white/10 px-3 py-2">
+                        {item}
+                      </span>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -167,7 +209,7 @@ export default async function HomePage() {
             href="/servicios"
             className={cn(buttonVariants({ variant: "secondary" }))}
           >
-            Ver todo
+            {visualCopy.viewAll}
             <ArrowRight className="size-4" />
           </Link>
         </div>

@@ -23,7 +23,7 @@ export default async function ServicesPage() {
         page="/servicios"
         source="services"
       />
-      <ServicesBrowser services={services.map(serializeService)} />
+      <ServicesBrowser locale={locale} services={services.map(serializeService)} />
     </section>
   );
 }
