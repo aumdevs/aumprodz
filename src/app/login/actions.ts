@@ -124,7 +124,7 @@ export async function sendPasswordResetAction(
     };
   }
 
-  const redirectTo = `${getAppBaseUrl()}/auth/callback?next=/reset-password`;
+  const redirectTo = `${getAppBaseUrl()}/reset-password`;
   const { error } = await supabase.auth.resetPasswordForEmail(email, {
     redirectTo,
   });

@@ -9,6 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { RecoverySessionHandler } from "./recovery-session-handler";
 import { ResetPasswordForm } from "./reset-password-form";
 
 export const metadata = {
@@ -42,6 +43,7 @@ export default function ResetPasswordPage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
+            <RecoverySessionHandler />
             <ResetPasswordForm />
           </CardContent>
         </Card>
