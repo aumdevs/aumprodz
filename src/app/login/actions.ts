@@ -130,9 +130,15 @@ export async function sendPasswordResetAction(
   });
 
   if (error) {
+    console.error("Supabase password reset failed", {
+      status: error.status ?? null,
+      code: error.code ?? null,
+      message: error.message ?? null,
+      redirectTo,
+    });
+
     return {
-      error:
-        "No se pudo enviar el enlace. Revisa el correo e intenta de nuevo.",
+      error: getPasswordResetErrorMessage(error),
       values: { email },
     };
   }
@@ -150,6 +156,33 @@ function getAuthErrorMessage(error: { message?: string; status?: number }) {
   }
 
   return "Usuario no encontrado o contrasena incorrecta.";
+}
+
+function getPasswordResetErrorMessage(error: {
+  code?: string;
+  message?: string;
+  status?: number;
+}) {
+  const message = error.message?.toLowerCase() ?? "";
+
+  if (
+    error.status === 429 ||
+    message.includes("rate limit") ||
+    message.includes("security purposes") ||
+    message.includes("too many")
+  ) {
+    return "Supabase limito los correos por seguridad. Espera 1 minuto y vuelve a pedir el enlace.";
+  }
+
+  if (
+    message.includes("redirect") ||
+    message.includes("not allowed") ||
+    message.includes("url")
+  ) {
+    return "La URL de recuperacion no esta autorizada en Supabase. Revisa las Redirect URLs y vuelve a intentar.";
+  }
+
+  return "No se pudo enviar el enlace. Revisa la configuracion de correo de Supabase e intenta de nuevo.";
 }
 
 async function getPostLoginDestination({

@@ -10,11 +10,12 @@ export function hasEnv(...names: string[]) {
 }
 
 export function getAppBaseUrl() {
-  return (
+  const appBaseUrl =
     getEnv("APP_BASE_URL") ??
     getEnv("NEXT_PUBLIC_APP_BASE_URL") ??
-    "http://localhost:3000"
-  );
+    "http://localhost:3000";
+
+  return appBaseUrl.replace(/\/+$/, "");
 }
 
 export function isSupabaseConfigured() {
