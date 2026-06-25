@@ -309,114 +309,136 @@ alter table public.visitor_events enable row level security;
 alter table public.artist_profiles enable row level security;
 alter table public.artist_subscriptions enable row level security;
 
+drop policy if exists "profiles_select_own_or_admin" on public.profiles;
 create policy "profiles_select_own_or_admin"
 on public.profiles for select
 to authenticated
 using (id = auth.uid() or public.has_permission('profiles.read'));
 
+drop policy if exists "profiles_update_own" on public.profiles;
 create policy "profiles_update_own"
 on public.profiles for update
 to authenticated
 using (id = auth.uid())
 with check (id = auth.uid());
 
+drop policy if exists "roles_select_authenticated" on public.roles;
 create policy "roles_select_authenticated"
 on public.roles for select
 to authenticated
 using (true);
 
+drop policy if exists "permissions_select_authenticated" on public.permissions;
 create policy "permissions_select_authenticated"
 on public.permissions for select
 to authenticated
 using (true);
 
+drop policy if exists "user_roles_select_own_or_admin" on public.user_roles;
 create policy "user_roles_select_own_or_admin"
 on public.user_roles for select
 to authenticated
 using (user_id = auth.uid() or public.has_permission('admins.create'));
 
+drop policy if exists "role_permissions_select_authenticated" on public.role_permissions;
 create policy "role_permissions_select_authenticated"
 on public.role_permissions for select
 to authenticated
 using (true);
 
+drop policy if exists "audit_logs_select_admin" on public.audit_logs;
 create policy "audit_logs_select_admin"
 on public.audit_logs for select
 to authenticated
 using (public.has_permission('audit_logs.read'));
 
+drop policy if exists "webhook_logs_select_admin" on public.webhook_logs;
 create policy "webhook_logs_select_admin"
 on public.webhook_logs for select
 to authenticated
 using (public.has_permission('webhooks.read'));
 
+drop policy if exists "service_categories_public_read" on public.service_categories;
 create policy "service_categories_public_read"
 on public.service_categories for select
 to anon, authenticated
 using (true);
 
+drop policy if exists "services_public_read_active" on public.services;
 create policy "services_public_read_active"
 on public.services for select
 to anon, authenticated
 using (is_active = true or public.has_permission('content.manage'));
 
+drop policy if exists "services_admin_manage" on public.services;
 create policy "services_admin_manage"
 on public.services for all
 to authenticated
 using (public.has_permission('content.manage'))
 with check (public.has_permission('content.manage'));
 
+drop policy if exists "visitor_sessions_insert_anyone" on public.visitor_sessions;
 create policy "visitor_sessions_insert_anyone"
 on public.visitor_sessions for insert
 to anon, authenticated
 with check (true);
 
+drop policy if exists "visitor_sessions_select_admin" on public.visitor_sessions;
 create policy "visitor_sessions_select_admin"
 on public.visitor_sessions for select
 to authenticated
 using (public.has_permission('analytics.read'));
 
+drop policy if exists "page_views_insert_anyone" on public.page_views;
 create policy "page_views_insert_anyone"
 on public.page_views for insert
 to anon, authenticated
 with check (true);
 
+drop policy if exists "page_views_select_admin" on public.page_views;
 create policy "page_views_select_admin"
 on public.page_views for select
 to authenticated
 using (public.has_permission('analytics.read'));
 
+drop policy if exists "cta_clicks_insert_anyone" on public.cta_clicks;
 create policy "cta_clicks_insert_anyone"
 on public.cta_clicks for insert
 to anon, authenticated
 with check (true);
 
+drop policy if exists "cta_clicks_select_admin" on public.cta_clicks;
 create policy "cta_clicks_select_admin"
 on public.cta_clicks for select
 to authenticated
 using (public.has_permission('analytics.read'));
 
+drop policy if exists "visitor_events_insert_anyone" on public.visitor_events;
 create policy "visitor_events_insert_anyone"
 on public.visitor_events for insert
 to anon, authenticated
 with check (true);
 
+drop policy if exists "visitor_events_select_admin" on public.visitor_events;
 create policy "visitor_events_select_admin"
 on public.visitor_events for select
 to authenticated
 using (public.has_permission('analytics.read'));
 
+drop policy if exists "artist_profiles_select_own_or_admin" on public.artist_profiles;
 create policy "artist_profiles_select_own_or_admin"
 on public.artist_profiles for select
 to authenticated
 using (user_id = auth.uid() or public.has_permission('artists.read'));
 
+drop policy if exists "artist_profiles_update_own" on public.artist_profiles;
 create policy "artist_profiles_update_own"
 on public.artist_profiles for update
 to authenticated
 using (user_id = auth.uid())
 with check (user_id = auth.uid());
 
+drop policy if exists "artist_subscriptions_select_own_or_finance" on public.artist_subscriptions;
 create policy "artist_subscriptions_select_own_or_finance"
 on public.artist_subscriptions for select
 to authenticated
