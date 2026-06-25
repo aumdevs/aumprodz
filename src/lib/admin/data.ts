@@ -1,4 +1,9 @@
 import type { AdminMetricsChartPoint } from "@/components/admin/admin-metrics-chart";
+import {
+  adminNotificationSections,
+  getAdminNotificationSectionPath,
+  type AdminNotificationSectionPath,
+} from "@/lib/admin/notification-sections";
 import { canonicalServiceSlugs } from "@/lib/content/services";
 import { getEnv } from "@/lib/env";
 import {
@@ -43,25 +48,6 @@ type RowsQueryResult = {
 };
 
 export type AdminNavBadgeCounts = Record<string, number>;
-
-const adminNotificationSections = [
-  "/admin/leads",
-  "/admin/sendpulse",
-  "/admin/tickets",
-  "/admin/reports",
-  "/admin/alerts",
-  "/admin/artists",
-  "/admin/verifications",
-  "/admin/releases",
-  "/admin/files",
-  "/admin/payments",
-  "/admin/contracts",
-  "/admin/artist-reports",
-  "/admin/webhooks",
-  "/admin/audit",
-] as const;
-
-type AdminNotificationSectionPath = (typeof adminNotificationSections)[number];
 
 export type AdminServiceRecord = {
   id: string;
@@ -2241,12 +2227,6 @@ function applyUnreadSince(
   const lastSeenAt = lastSeenByPath.get(sectionPath);
 
   return lastSeenAt ? query.gt(column, lastSeenAt) : query;
-}
-
-function getAdminNotificationSectionPath(pathname: string) {
-  return adminNotificationSections.find(
-    (section) => pathname === section || pathname.startsWith(`${section}/`),
-  );
 }
 
 function removeEmptyCounts(counts: AdminNavBadgeCounts) {
