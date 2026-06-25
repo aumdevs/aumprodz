@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f7f5ef;
+  --foreground: #161614;
+  --card: #fffdf8;
+  --card-foreground: #161614;
+  --muted: #ece7dc;
+  --muted-foreground: #686156;
+  --border: #d8d0c0;
+  --primary: #0c6b5c;
+  --primary-foreground: #f8fff8;
+  --accent: #c49a41;
+  --accent-foreground: #1f1708;
+  --destructive: #b42318;
+  --destructive-foreground: #fff7f7;
+  --radius: 0.5rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #11100d;
+    --foreground: #f7f2e8;
+    --card: #191713;
+    --card-foreground: #f7f2e8;
+    --muted: #242019;
+    --muted-foreground: #b8ad9c;
+    --border: #383126;
+    --primary: #2fc7a8;
+    --primary-foreground: #061d18;
+    --accent: #e2b956;
+    --accent-foreground: #211703;
+  }
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--primary) 22%, transparent);
+}

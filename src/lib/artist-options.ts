@@ -1,0 +1,47 @@
+export const musicGenreOptions = [
+  "Rap",
+  "Hip-hop",
+  "Dancehall",
+  "Konpa / Compas",
+  "Afrobeat",
+  "Reggaeton",
+  "R&B",
+  "Gospel",
+  "Trap",
+  "Pop",
+  "Zouk",
+  "Racine",
+  "Raboday",
+  "Reggae",
+  "Otro",
+] as const;
+
+export const haitianDiasporaCountryOptions = [
+  "Haití",
+  "Estados Unidos",
+  "República Dominicana",
+  "Canadá",
+  "Chile",
+  "Brasil",
+  "Francia",
+  "Bahamas",
+  "México",
+  "Turks and Caicos",
+  "Guayana Francesa",
+  "Otro",
+] as const;
+
+export const phoneCountryCodeOptions = [
+  { country: "Haití", code: "+509" },
+  { country: "Estados Unidos", code: "+1" },
+  { country: "Canadá", code: "+1" },
+  { country: "República Dominicana", code: "+1" },
+  { country: "Chile", code: "+56" },
+  { country: "Brasil", code: "+55" },
+  { country: "Francia", code: "+33" },
+  { country: "Bahamas", code: "+1" },
+  { country: "México", code: "+52" },
+  { country: "Turks and Caicos", code: "+1" },
+  { country: "Guayana Francesa", code: "+594" },
+  { country: "Otro", code: "+" },
+] as const;
