@@ -12,7 +12,7 @@ export function PublicFooterSlot({ children }: { children: ReactNode }) {
     return null;
   }
 
-  if (pathname === "/youtube") {
+  if (pathname !== "/") {
     return <div className="hidden sm:block">{children}</div>;
   }
 

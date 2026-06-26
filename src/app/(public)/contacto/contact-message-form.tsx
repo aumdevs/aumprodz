@@ -18,6 +18,7 @@ export type ContactMessageFormCopy = {
   emailLabel: string;
   messageLabel: string;
   messagePlaceholder: string;
+  mobileSubmit: string;
   nameLabel: string;
   namePlaceholder: string;
   submit: string;
@@ -94,7 +95,14 @@ export function ContactMessageForm({
 
       <Button type="submit" size="lg" disabled={pending}>
         <Send className="size-5" />
-        {pending ? copy.submitting : copy.submit}
+        {pending ? (
+          copy.submitting
+        ) : (
+          <>
+            <span className="sm:hidden">{copy.mobileSubmit}</span>
+            <span className="hidden sm:inline">{copy.submit}</span>
+          </>
+        )}
       </Button>
     </form>
   );

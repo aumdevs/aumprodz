@@ -50,6 +50,7 @@ const contactCopyByLocale: Record<AppLocale, ContactCopy> = {
       messageLabel: "Mesaj",
       messagePlaceholder:
         "Ekri mesaj ou isit la. Di m sa ou vle fè, pwoblèm ou genyen oswa sèvis ou bezwen.",
+      mobileSubmit: "Kontakte sou WhatsApp",
       nameLabel: "Non",
       namePlaceholder: "Non ou",
       submit: "Voye",
@@ -75,6 +76,7 @@ const contactCopyByLocale: Record<AppLocale, ContactCopy> = {
       messageLabel: "Mensaje",
       messagePlaceholder:
         "Ingresa tu mensaje aquí. Cuéntame qué quieres hacer, qué problema tienes o qué servicio necesitas.",
+      mobileSubmit: "Contactar vía WhatsApp",
       nameLabel: "Nombre",
       namePlaceholder: "Tu nombre",
       submit: "Enviar",
@@ -100,6 +102,7 @@ const contactCopyByLocale: Record<AppLocale, ContactCopy> = {
       messageLabel: "Message",
       messagePlaceholder:
         "Enter your message here. Tell me what you want to do, what problem you have or what service you need.",
+      mobileSubmit: "Contact via WhatsApp",
       nameLabel: "Name",
       namePlaceholder: "Your name",
       submit: "Send",
@@ -125,6 +128,7 @@ const contactCopyByLocale: Record<AppLocale, ContactCopy> = {
       messageLabel: "Message",
       messagePlaceholder:
         "Entrez votre message ici. Dites-moi ce que vous voulez faire, le problème ou le service nécessaire.",
+      mobileSubmit: "Contacter via WhatsApp",
       nameLabel: "Nom",
       namePlaceholder: "Votre nom",
       submit: "Envoyer",
@@ -150,6 +154,7 @@ const contactCopyByLocale: Record<AppLocale, ContactCopy> = {
       messageLabel: "Mensagem",
       messagePlaceholder:
         "Digite sua mensagem aqui. Conte o que quer fazer, o problema ou o serviço que precisa.",
+      mobileSubmit: "Contactar pelo WhatsApp",
       nameLabel: "Nome",
       namePlaceholder: "Seu nome",
       submit: "Enviar",
@@ -187,12 +192,12 @@ export default async function ContactPage() {
             <h1 className="mammouth-title text-4xl sm:text-6xl">
               {copy.title}
             </h1>
-            <p className="mammouth-subtitle max-w-2xl text-xl">
+            <p className="mammouth-subtitle hidden max-w-2xl text-xl sm:block">
               {copy.message}
             </p>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-2">
+          <div className="hidden gap-3 sm:grid sm:grid-cols-2">
             <a
               href={whatsappHref}
               target="_blank"
