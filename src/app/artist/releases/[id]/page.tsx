@@ -14,7 +14,7 @@ import {
 import { listArtistSongOptions } from "@/lib/artist-song-options";
 import type { AppLocale } from "@/lib/i18n/config";
 import { getCurrentLocale } from "@/lib/i18n/server";
-import { requireArtist } from "@/lib/permissions";
+import { requirePaidArtist } from "@/lib/permissions";
 
 export const dynamic = "force-dynamic";
 
@@ -174,7 +174,7 @@ export default async function ReleaseDetailPage({
     : query.autoSubmit;
   const locale = await getCurrentLocale();
   const copy = detailCopyByLocale[locale] ?? detailCopyByLocale.ht;
-  const { supabase, user } = await requireArtist();
+  const { supabase, user } = await requirePaidArtist();
   const [
     { data: release },
     { data: tracks },

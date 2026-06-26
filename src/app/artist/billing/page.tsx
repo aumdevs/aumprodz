@@ -16,6 +16,8 @@ import { cn, formatCurrency, formatDateTime } from "@/lib/utils";
 export const dynamic = "force-dynamic";
 
 const checkoutMessages: Record<string, string> = {
+  payment_required:
+    "Para entrar al panel de artista necesitas activar la suscripción anual. Si el registro anterior no terminó el pago, no queda acceso activo.",
   ep_release_credit_available:
     "Ya tienes un crédito EP pagado y disponible. Úsalo al enviar un lanzamiento EP.",
   album_release_credit_available:

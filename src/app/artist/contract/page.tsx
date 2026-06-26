@@ -7,7 +7,7 @@ import {
   getContractStatusLabel,
   getLegalStatusTone,
 } from "@/lib/legal";
-import { requireArtist } from "@/lib/permissions";
+import { requirePaidArtist } from "@/lib/permissions";
 import { cn, formatDateTime } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
@@ -27,7 +27,7 @@ type ContractRecord = {
 };
 
 export default async function ArtistContractPage() {
-  const { supabase, user } = await requireArtist();
+  const { supabase, user } = await requirePaidArtist();
   const [{ data: profile }, { data: contracts }] = await Promise.all([
     supabase
       .from("artist_profiles")

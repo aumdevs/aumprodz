@@ -4,10 +4,10 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 import { requestIdentityVerification } from "@/lib/legal";
-import { requireArtist } from "@/lib/permissions";
+import { requirePaidArtist } from "@/lib/permissions";
 
 export async function requestIdentityVerificationAction() {
-  const { user } = await requireArtist();
+  const { user } = await requirePaidArtist();
   let verificationUrl: string | null | undefined;
 
   try {

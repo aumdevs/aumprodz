@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { requireArtist } from "@/lib/permissions";
+import { requirePaidArtist } from "@/lib/permissions";
 import { formatDateTime } from "@/lib/utils";
 import { MfaAuthenticatorPanel } from "./mfa-authenticator-panel";
 import { SecurityPasswordForm } from "./security-password-form";
@@ -24,7 +24,7 @@ type LoginEventRow = {
 };
 
 export default async function ArtistSecurityPage() {
-  const { supabase, user } = await requireArtist();
+  const { supabase, user } = await requirePaidArtist();
   const [
     { data: loginEvents, error: loginEventsError },
     { data: mfaFactors },

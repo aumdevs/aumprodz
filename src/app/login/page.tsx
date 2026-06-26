@@ -28,6 +28,8 @@ const messages: Record<string, string> = {
   invalid_credentials: "Credenciales inválidas o usuario no encontrado.",
   callback: "No se pudo completar el callback de autenticacion.",
   password_updated: "Tu contraseña fue actualizada. Entra con la nueva clave.",
+  artist_signup_paid:
+    "Pago recibido. Si Stripe ya confirmó el pago, te enviaremos un enlace al correo para crear tu contraseña y entrar al dashboard.",
 };
 
 export default async function LoginPage({

@@ -10,7 +10,7 @@ import {
   getRequiredPaymentProductKey,
   normalizeReleaseType,
 } from "@/lib/artist-releases";
-import { requireArtist } from "@/lib/permissions";
+import { requirePaidArtist } from "@/lib/permissions";
 import { createServiceSupabaseClient } from "@/lib/supabase/server";
 
 type TrackInput = {
@@ -25,7 +25,7 @@ type ExternalReleaseFileInput = {
 };
 
 export async function saveReleaseAction(formData: FormData) {
-  const { user } = await requireArtist();
+  const { user } = await requirePaidArtist();
   const supabase = createServiceSupabaseClient();
 
   if (!supabase) {

@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 
 import { createAuditLog } from "@/lib/audit";
-import { requireArtist } from "@/lib/permissions";
+import { requirePaidArtist } from "@/lib/permissions";
 
 export type SecurityPasswordState = {
   error?: string;
@@ -14,7 +14,7 @@ export async function updateArtistPasswordAction(
   _previousState: SecurityPasswordState,
   formData: FormData,
 ): Promise<SecurityPasswordState> {
-  const { supabase, user } = await requireArtist();
+  const { supabase, user } = await requirePaidArtist();
   const currentPassword = String(formData.get("current_password") ?? "");
   const password = String(formData.get("password") ?? "");
   const confirmation = String(formData.get("password_confirmation") ?? "");
@@ -93,7 +93,7 @@ export async function enrollAuthenticatorAction(
   previousState: MfaEnrollmentState,
 ): Promise<MfaEnrollmentState> {
   void previousState;
-  const { supabase, user } = await requireArtist();
+  const { supabase, user } = await requirePaidArtist();
 
   const { data, error } = await supabase.auth.mfa.enroll({
     factorType: "totp",
@@ -131,7 +131,7 @@ export async function verifyAuthenticatorAction(
   _previousState: MfaVerificationState,
   formData: FormData,
 ): Promise<MfaVerificationState> {
-  const { supabase, user } = await requireArtist();
+  const { supabase, user } = await requirePaidArtist();
   const factorId = String(formData.get("factor_id") ?? "");
   const code = String(formData.get("code") ?? "").replace(/\s/g, "");
 

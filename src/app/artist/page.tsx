@@ -19,7 +19,7 @@ import {
 } from "@/lib/artist-releases";
 import type { AppLocale } from "@/lib/i18n/config";
 import { getCurrentLocale } from "@/lib/i18n/server";
-import { requireArtist } from "@/lib/permissions";
+import { requirePaidArtist } from "@/lib/permissions";
 import { formatCurrency, formatDateTime, formatNumber } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
@@ -273,7 +273,7 @@ const dashboardCopyByLocale: Record<
 export default async function ArtistDashboardPage() {
   const locale = await getCurrentLocale();
   const copy = dashboardCopyByLocale[locale] ?? dashboardCopyByLocale.ht;
-  const { supabase, user } = await requireArtist();
+  const { supabase, user } = await requirePaidArtist();
   const [{ data: releases }, { data: files }, reportEntriesResult] =
     await Promise.all([
       supabase

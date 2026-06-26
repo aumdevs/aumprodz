@@ -1,6 +1,10 @@
 import { redirect } from "next/navigation";
 import type { User } from "@supabase/supabase-js";
 
+import {
+  isUsableArtistAnnualSubscription,
+  pickBestArtistAnnualSubscription,
+} from "@/lib/artist-billing";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { sanitizeNextPath } from "@/lib/utils";
 
@@ -116,6 +120,27 @@ export async function requireArtist() {
   }
 
   return { supabase, user, roles };
+}
+
+export async function requirePaidArtist(nextPath = "/artist") {
+  const context = await requireArtist();
+  const { data: subscriptions } = await context.supabase
+    .from("artist_subscriptions")
+    .select("status,current_period_start,current_period_end,created_at")
+    .eq("user_id", context.user.id)
+    .order("created_at", { ascending: false })
+    .limit(20);
+  const subscription = pickBestArtistAnnualSubscription(subscriptions);
+
+  if (!isUsableArtistAnnualSubscription(subscription)) {
+    const billingUrl = new URL("http://localhost/artist/billing");
+    billingUrl.searchParams.set("checkout", "payment_required");
+    billingUrl.searchParams.set("next", nextPath);
+
+    redirect(`${billingUrl.pathname}${billingUrl.search}`);
+  }
+
+  return context;
 }
 
 export async function getUserRoleKeys(userId: User["id"]) {

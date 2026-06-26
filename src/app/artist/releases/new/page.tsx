@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import type { AppLocale } from "@/lib/i18n/config";
 import { getCurrentLocale } from "@/lib/i18n/server";
 import { listArtistSongOptions } from "@/lib/artist-song-options";
-import { requireArtist } from "@/lib/permissions";
+import { requirePaidArtist } from "@/lib/permissions";
 
 export const dynamic = "force-dynamic";
 
@@ -164,7 +164,7 @@ export default async function NewReleasePage({
     : params.checkout;
   const locale = await getCurrentLocale();
   const copy = pageCopyByLocale[locale] ?? pageCopyByLocale.ht;
-  const { supabase, user } = await requireArtist();
+  const { supabase, user } = await requirePaidArtist();
   const [{ data: artistProfile }, { data: availablePayments }, artistSongOptions] =
     await Promise.all([
       supabase

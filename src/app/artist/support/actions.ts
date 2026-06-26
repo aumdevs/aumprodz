@@ -5,11 +5,11 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 import { createAuditLog } from "@/lib/audit";
-import { requireArtist } from "@/lib/permissions";
+import { requirePaidArtist } from "@/lib/permissions";
 import { createServiceSupabaseClient } from "@/lib/supabase/server";
 
 export async function sendArtistSupportMessageAction(formData: FormData) {
-  const { user } = await requireArtist();
+  const { user } = await requirePaidArtist();
   const supabase = createServiceSupabaseClient();
   const message = String(formData.get("message") ?? "").trim();
 

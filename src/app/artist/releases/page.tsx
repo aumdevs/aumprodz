@@ -16,7 +16,7 @@ import {
 } from "@/lib/artist-releases";
 import type { AppLocale } from "@/lib/i18n/config";
 import { getCurrentLocale } from "@/lib/i18n/server";
-import { requireArtist } from "@/lib/permissions";
+import { requirePaidArtist } from "@/lib/permissions";
 import { cn, formatDateTime } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
@@ -187,7 +187,7 @@ export default async function ArtistReleasesPage({
   const status = Array.isArray(params.status) ? params.status[0] : params.status;
   const locale = await getCurrentLocale();
   const copy = pageCopyByLocale[locale] ?? pageCopyByLocale.ht;
-  const { supabase, user } = await requireArtist();
+  const { supabase, user } = await requirePaidArtist();
   const { data: releases } = await supabase
     .from("releases")
     .select("id,release_type,title,primary_artist,status,desired_release_date,external_files_url,submitted_at,created_at")

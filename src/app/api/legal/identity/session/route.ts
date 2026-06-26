@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
 
 import { requestIdentityVerification } from "@/lib/legal";
-import { requireArtist } from "@/lib/permissions";
+import { requirePaidArtist } from "@/lib/permissions";
 
 export const runtime = "nodejs";
 
 export async function POST() {
-  const { user } = await requireArtist();
+  const { user } = await requirePaidArtist();
 
   try {
     const result = await requestIdentityVerification({

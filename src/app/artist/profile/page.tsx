@@ -9,7 +9,7 @@ import {
   musicGenreOptions,
   phoneCountryCodeOptions,
 } from "@/lib/artist-options";
-import { requireArtist } from "@/lib/permissions";
+import { requirePaidArtist } from "@/lib/permissions";
 import { updateArtistProfileAction } from "./actions";
 
 export const dynamic = "force-dynamic";
@@ -28,7 +28,7 @@ export default async function ArtistProfilePage({
 }) {
   const params = await searchParams;
   const status = Array.isArray(params.status) ? params.status[0] : params.status;
-  const { supabase, user } = await requireArtist();
+  const { supabase, user } = await requirePaidArtist();
   const { data: profile } = await supabase
     .from("artist_profiles")
     .select("legal_name,artist_name,country,phone,bio,genre")

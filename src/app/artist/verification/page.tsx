@@ -3,7 +3,7 @@ import { BadgeCheck, FileText } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { requireArtist } from "@/lib/permissions";
+import { requirePaidArtist } from "@/lib/permissions";
 import { formatDateTime } from "@/lib/utils";
 import { requestIdentityVerificationAction } from "./actions";
 
@@ -32,7 +32,7 @@ export default async function ArtistVerificationPage({
     : params.status;
   const statusMessage =
     typeof statusParam === "string" ? statusMessages[statusParam] : null;
-  const { supabase, user } = await requireArtist();
+  const { supabase, user } = await requirePaidArtist();
   const [{ data: profile }, { data: latestVerification }] = await Promise.all([
     supabase
       .from("artist_profiles")

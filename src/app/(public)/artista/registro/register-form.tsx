@@ -37,7 +37,6 @@ const formCopyByLocale: Record<
     artistName: string;
     email: string;
     emailConfirmation: string;
-    password: string;
     country: string;
     phone: string;
     phonePlaceholder: string;
@@ -54,7 +53,6 @@ const formCopyByLocale: Record<
     artistName: "Non atis",
     email: "Imèl",
     emailConfirmation: "Konfime imèl",
-    password: "Modpas",
     country: "Peyi",
     phone: "Telefòn",
     phonePlaceholder: "Egzanp: 3721 0000",
@@ -63,8 +61,8 @@ const formCopyByLocale: Record<
     bioPlaceholder:
       "Di nou rapidman kiyès ou ye, vil ou ak direksyon mizik ou.",
     note:
-      "Imèl ou rete aksè prensipal kont lan. Lè ou kontinye, n ap mennen w sou peman sekirize Stripe pou aktive aksè ou.",
-    submit: "Kreye kont epi peye $99",
+      "Nou pa kreye kont ou avan peman an konfime. Apre Stripe konfime peman an, n ap voye yon lyen sou imèl ou pou w kreye modpas ou epi antre nan dashboard la.",
+    submit: "Kontinye pou peye $99",
     pending: "Ap prepare peman...",
   },
   es: {
@@ -72,7 +70,6 @@ const formCopyByLocale: Record<
     artistName: "Nombre de artista",
     email: "Correo",
     emailConfirmation: "Confirmar correo",
-    password: "Contraseña",
     country: "País",
     phone: "Teléfono",
     phonePlaceholder: "Ejemplo: 3721 0000",
@@ -81,8 +78,8 @@ const formCopyByLocale: Record<
     bioPlaceholder:
       "Cuéntanos brevemente quién eres, tu ciudad y tu enfoque musical.",
     note:
-      "Tu correo queda como acceso principal de la cuenta. Al continuar, te llevaremos al pago seguro de Stripe para activar tu acceso.",
-    submit: "Crear cuenta y pagar $99",
+      "No creamos tu cuenta antes de confirmar el pago. Después de que Stripe confirme el pago, te enviaremos un enlace a tu correo para crear contraseña y entrar al dashboard.",
+    submit: "Continuar para pagar $99",
     pending: "Preparando pago...",
   },
   en: {
@@ -90,7 +87,6 @@ const formCopyByLocale: Record<
     artistName: "Artist name",
     email: "Email",
     emailConfirmation: "Confirm email",
-    password: "Password",
     country: "Country",
     phone: "Phone",
     phonePlaceholder: "Example: 3721 0000",
@@ -99,8 +95,8 @@ const formCopyByLocale: Record<
     bioPlaceholder:
       "Briefly tell us who you are, your city and your musical direction.",
     note:
-      "Your email is the main access for the account. When you continue, we will take you to secure Stripe payment to activate your access.",
-    submit: "Create account and pay $99",
+      "We do not create your account before payment is confirmed. After Stripe confirms payment, we will email you a link to create your password and enter the dashboard.",
+    submit: "Continue to pay $99",
     pending: "Preparing payment...",
   },
   fr: {
@@ -108,7 +104,6 @@ const formCopyByLocale: Record<
     artistName: "Nom d'artiste",
     email: "Email",
     emailConfirmation: "Confirmer l'email",
-    password: "Mot de passe",
     country: "Pays",
     phone: "Téléphone",
     phonePlaceholder: "Exemple: 3721 0000",
@@ -117,8 +112,8 @@ const formCopyByLocale: Record<
     bioPlaceholder:
       "Dites-nous brièvement qui vous êtes, votre ville et votre direction musicale.",
     note:
-      "Votre email reste l'accès principal du compte. En continuant, nous vous envoyons vers le paiement sécurisé Stripe pour activer votre accès.",
-    submit: "Créer un compte et payer $99",
+      "Nous ne créons pas votre compte avant la confirmation du paiement. Après confirmation par Stripe, nous vous enverrons un lien pour créer votre mot de passe et entrer dans le dashboard.",
+    submit: "Continuer pour payer $99",
     pending: "Préparation du paiement...",
   },
   pt: {
@@ -126,7 +121,6 @@ const formCopyByLocale: Record<
     artistName: "Nome artístico",
     email: "Email",
     emailConfirmation: "Confirmar email",
-    password: "Senha",
     country: "País",
     phone: "Telefone",
     phonePlaceholder: "Exemplo: 3721 0000",
@@ -135,8 +129,8 @@ const formCopyByLocale: Record<
     bioPlaceholder:
       "Conte rapidamente quem você é, sua cidade e sua direção musical.",
     note:
-      "Seu email fica como acesso principal da conta. Ao continuar, levaremos você ao pagamento seguro da Stripe para ativar seu acesso.",
-    submit: "Criar conta e pagar $99",
+      "Não criamos sua conta antes da confirmação do pagamento. Depois que a Stripe confirmar o pagamento, enviaremos um link para criar sua senha e entrar no dashboard.",
+    submit: "Continuar para pagar $99",
     pending: "Preparando pagamento...",
   },
 };
@@ -252,13 +246,6 @@ export function ArtistRegisterForm({ locale }: { locale: AppLocale }) {
             defaultValue={values.email_confirmation}
             error={state.fieldErrors?.email_confirmation}
             icon={<Mail className="size-4" />}
-          />
-          <Field
-            label={copy.password}
-            name="password"
-            type="password"
-            autoComplete="new-password"
-            error={state.fieldErrors?.password}
           />
           <label className="grid gap-2 text-sm font-medium">
             {copy.country}

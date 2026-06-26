@@ -1,13 +1,13 @@
 import type { ArtistSupportMessageRecord } from "@/lib/artist-support";
 import { getArtistSupportProviderConversationId } from "@/lib/artist-support";
-import { requireArtist } from "@/lib/permissions";
+import { requirePaidArtist } from "@/lib/permissions";
 import { createServiceSupabaseClient } from "@/lib/supabase/server";
 import { SupportChat } from "./support-chat";
 
 export const dynamic = "force-dynamic";
 
 export default async function ArtistSupportPage() {
-  const { user } = await requireArtist();
+  const { user } = await requirePaidArtist();
   const supabase = createServiceSupabaseClient();
   const providerConversationId = getArtistSupportProviderConversationId(user.id);
   let messages: ArtistSupportMessageRecord[] = [];

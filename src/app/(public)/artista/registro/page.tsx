@@ -33,7 +33,7 @@ const pageCopyByLocale: Record<
     badge: "Kont atis",
     title: "Kreye kont ou epi aktive aksè anyèl ou.",
     description:
-      "Ranpli enfòmasyon ou, kreye aksè prive ou epi kontinye sou peman sekirize Stripe. Lè peman an fini, ou antre nan dashboard la pou voye lansman ou yo.",
+      "Ranpli enfòmasyon ou epi kontinye sou peman sekirize Stripe. Kont lan kreye sèlman apre peman an konfime; apre sa w ap resevwa lyen pou kreye modpas ou.",
     checklist: [
       "Manm anyèl atis: $99 USD.",
       "Yon single enkli pandan kont lan aktif.",
@@ -50,7 +50,7 @@ const pageCopyByLocale: Record<
     badge: "Cuenta artista",
     title: "Crea tu cuenta y activa tu acceso anual.",
     description:
-      "Completa tus datos, crea tu acceso privado y sigue al pago seguro de Stripe. Al terminar el pago entrarás al dashboard para subir tus lanzamientos.",
+      "Completa tus datos y sigue al pago seguro de Stripe. La cuenta se crea solo cuando el pago queda confirmado; después recibirás un enlace para crear tu contraseña.",
     checklist: [
       "Membresía anual artista: $99 USD.",
       "Single incluido mientras la cuenta esté activa.",
@@ -67,7 +67,7 @@ const pageCopyByLocale: Record<
     badge: "Artist account",
     title: "Create your account and activate annual access.",
     description:
-      "Complete your details, create private access and continue to secure Stripe payment. After payment, you will enter the dashboard to submit releases.",
+      "Complete your details and continue to secure Stripe payment. The account is created only after payment is confirmed; then you will receive a link to create your password.",
     checklist: [
       "Annual artist membership: $99 USD.",
       "One single included while the account is active.",
@@ -84,7 +84,7 @@ const pageCopyByLocale: Record<
     badge: "Compte artiste",
     title: "Créez votre compte et activez votre accès annuel.",
     description:
-      "Complétez vos informations, créez votre accès privé et continuez vers le paiement sécurisé Stripe. Après le paiement, vous entrerez dans le dashboard pour envoyer vos sorties.",
+      "Complétez vos informations et continuez vers le paiement sécurisé Stripe. Le compte est créé seulement après confirmation du paiement; vous recevrez ensuite un lien pour créer votre mot de passe.",
     checklist: [
       "Abonnement artiste annuel: $99 USD.",
       "Un single inclus pendant que le compte est actif.",
@@ -101,7 +101,7 @@ const pageCopyByLocale: Record<
     badge: "Conta de artista",
     title: "Crie sua conta e ative seu acesso anual.",
     description:
-      "Preencha seus dados, crie seu acesso privado e siga para o pagamento seguro da Stripe. Ao terminar o pagamento, você entra no dashboard para enviar lançamentos.",
+      "Preencha seus dados e siga para o pagamento seguro da Stripe. A conta só é criada depois da confirmação do pagamento; depois você receberá um link para criar sua senha.",
     checklist: [
       "Assinatura anual de artista: $99 USD.",
       "Um single incluído enquanto a conta estiver ativa.",

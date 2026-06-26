@@ -1,19 +1,24 @@
 import { NextResponse } from "next/server";
 import type Stripe from "stripe";
 
+import { createAuditLog } from "@/lib/audit";
 import {
   ARTIST_ANNUAL_PRODUCT_KEY,
+  ensureArtistAccountForCheckout,
   findArtistPaymentByStripePayment,
   findUserIdByStripePayment,
   findUserIdByStripeSubscription,
   getStripeObjectId,
   getStripeSubscriptionPeriod,
+  isActiveStripeSubscriptionStatus,
   isArtistPaymentProductKey,
   mapCheckoutPaymentStatus,
   syncArtistPaymentFromStripe,
   syncArtistSubscriptionFromStripe,
 } from "@/lib/artist-billing";
+import { getAppBaseUrl } from "@/lib/env";
 import { getStripeClient, getStripeWebhookSecret } from "@/lib/stripe";
+import { createServiceSupabaseClient } from "@/lib/supabase/server";
 import { logWebhookEvent } from "@/lib/webhook-logs";
 
 export const runtime = "nodejs";
@@ -22,6 +27,8 @@ type StripeProcessingResult = {
   status: "received" | "processed" | "failed";
   errorMessage?: string | null;
 };
+
+const publicArtistSignupFlow = "artist_public_signup";
 
 export async function POST(request: Request) {
   const stripe = getStripeClient();
@@ -110,6 +117,7 @@ async function processStripeEvent(
       return handleCheckoutSessionCompleted(
         event.data.object as Stripe.Checkout.Session,
         stripe,
+        event.type,
       );
     case "customer.subscription.created":
     case "customer.subscription.updated":
@@ -137,6 +145,7 @@ async function processStripeEvent(
 async function handleCheckoutSessionCompleted(
   session: Stripe.Checkout.Session,
   stripe: Stripe,
+  eventType: string,
 ): Promise<StripeProcessingResult> {
   if (session.mode === "payment") {
     return handlePaymentCheckoutSession(session);
@@ -152,6 +161,16 @@ async function handleCheckoutSessionCompleted(
     return { status: "received" };
   }
 
+  const isPublicPaidSignup = isPublicArtistSignupMetadata(session.metadata);
+  const paymentConfirmed =
+    eventType === "checkout.session.async_payment_succeeded" ||
+    (eventType === "checkout.session.completed" &&
+      session.payment_status === "paid");
+
+  if (isPublicPaidSignup && !paymentConfirmed) {
+    return { status: "received" };
+  }
+
   const subscriptionId = getStripeObjectId(session.subscription);
   const subscription = subscriptionId
     ? await stripe.subscriptions.retrieve(subscriptionId)
@@ -159,11 +178,24 @@ async function handleCheckoutSessionCompleted(
   const customerId =
     getStripeObjectId(session.customer) ??
     getStripeObjectId(subscription?.customer);
-  const userId =
+  let userId =
     session.metadata?.user_id ??
     subscription?.metadata?.user_id ??
-    session.client_reference_id ??
-    (await findUserIdByStripeSubscription({ customerId, subscriptionId }));
+    (await findUserIdByStripeSubscription({ customerId, subscriptionId })) ??
+    null;
+
+  if (!userId && isPublicPaidSignup) {
+    userId = await ensurePaidPublicArtistSignupAccount({
+      metadata: session.metadata,
+      checkoutSessionId: session.id,
+      customerId,
+      subscriptionId,
+    });
+  }
+
+  if (!userId && !isPublicPaidSignup) {
+    userId = session.client_reference_id ?? null;
+  }
 
   if (!userId) {
     return {
@@ -246,11 +278,28 @@ async function handleSubscriptionEvent(
 ): Promise<StripeProcessingResult> {
   const subscriptionId = subscription.id;
   const customerId = getStripeObjectId(subscription.customer);
-  const userId =
+  const isPublicPaidSignup = isPublicArtistSignupMetadata(subscription.metadata);
+  let userId =
     subscription.metadata?.user_id ??
     (await findUserIdByStripeSubscription({ customerId, subscriptionId }));
 
+  if (
+    !userId &&
+    isPublicPaidSignup &&
+    isActiveStripeSubscriptionStatus(subscription.status)
+  ) {
+    userId = await ensurePaidPublicArtistSignupAccount({
+      metadata: subscription.metadata,
+      customerId,
+      subscriptionId,
+    });
+  }
+
   if (!userId) {
+    if (!subscription.metadata?.product || isPublicPaidSignup) {
+      return { status: "received" };
+    }
+
     return {
       status: "failed",
       errorMessage: "Stripe subscription is missing user mapping",
@@ -273,6 +322,218 @@ async function handleSubscriptionEvent(
   }
 
   return { status: "processed" };
+}
+
+function isPublicArtistSignupMetadata(metadata?: Stripe.Metadata | null) {
+  return (
+    metadata?.product === ARTIST_ANNUAL_PRODUCT_KEY &&
+    metadata.signup_flow === publicArtistSignupFlow &&
+    Boolean(metadata.signup_email)
+  );
+}
+
+async function ensurePaidPublicArtistSignupAccount({
+  metadata,
+  checkoutSessionId,
+  customerId,
+  subscriptionId,
+}: {
+  metadata?: Stripe.Metadata | null;
+  checkoutSessionId?: string | null;
+  customerId?: string | null;
+  subscriptionId?: string | null;
+}) {
+  const email = metadata?.signup_email?.trim().toLowerCase();
+
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    throw new Error("Stripe paid signup is missing a valid email");
+  }
+
+  const supabase = createServiceSupabaseClient();
+
+  if (!supabase) {
+    throw new Error("Supabase service role is not configured");
+  }
+
+  const { data: existingProfile, error: existingProfileError } = await supabase
+    .from("profiles")
+    .select("id,user_type")
+    .eq("email", email)
+    .maybeSingle();
+
+  if (existingProfileError) {
+    throw new Error(`Could not verify paid signup email: ${existingProfileError.message}`);
+  }
+
+  if (existingProfile?.id) {
+    if (existingProfile.user_type !== "artist") {
+      throw new Error("Paid signup email belongs to a non-artist account");
+    }
+
+    return existingProfile.id as string;
+  }
+
+  const legalName = getMetadataText(metadata, "legal_name") ?? email;
+  const artistName = getMetadataText(metadata, "artist_name") ?? legalName;
+  const phone = getMetadataText(metadata, "phone");
+  const country = getMetadataText(metadata, "country");
+  const genre = getMetadataText(metadata, "genre");
+  const bio = getMetadataText(metadata, "bio");
+  const temporaryPassword = createTemporaryPassword();
+
+  const { data: created, error: createError } =
+    await supabase.auth.admin.createUser({
+      email,
+      password: temporaryPassword,
+      email_confirm: true,
+      user_metadata: {
+        full_name: legalName,
+        artist_name: artistName,
+        user_type: "artist",
+        phone,
+        country,
+        password_setup_required: true,
+      },
+    });
+
+  let userId = created.user?.id ?? null;
+
+  if (createError || !userId) {
+    const existingUser = await findAuthUserByEmail(supabase, email);
+
+    if (!existingUser?.id) {
+      throw new Error(createError?.message ?? "Paid signup account could not be created");
+    }
+
+    userId = existingUser.id;
+  }
+
+  const account = await ensureArtistAccountForCheckout({
+    userId,
+    email,
+    fullName: legalName,
+  });
+
+  if (!account.ok) {
+    throw new Error(`Paid signup account could not be prepared: ${account.reason}`);
+  }
+
+  const profilePayload = {
+    id: userId,
+    email,
+    full_name: legalName,
+    user_type: "artist",
+    status: "active",
+  };
+  const artistProfilePayload = {
+    user_id: userId,
+    legal_name: legalName,
+    artist_name: artistName,
+    country,
+    phone,
+    bio,
+    genre,
+    status: "active_pending_verification",
+  };
+
+  const [{ error: profileError }, { error: artistProfileError }] =
+    await Promise.all([
+      supabase.from("profiles").upsert(profilePayload, { onConflict: "id" }),
+      supabase.from("artist_profiles").upsert(artistProfilePayload, {
+        onConflict: "user_id",
+      }),
+    ]);
+
+  if (profileError || artistProfileError) {
+    throw new Error(
+      profileError?.message ??
+        artistProfileError?.message ??
+        "Paid signup profile could not be saved",
+    );
+  }
+
+  const passwordEmailSent = await sendPasswordSetupEmail(supabase, email);
+
+  await createAuditLog({
+    actorId: userId,
+    action: "artist_signup.paid_account_create",
+    entityType: "artist_profiles",
+    entityId: userId,
+    outcome: "success",
+    after: artistProfilePayload,
+    metadata: {
+      source: "stripe_webhook",
+      checkoutSessionId,
+      customerId,
+      subscriptionId,
+      passwordEmailSent,
+    },
+  });
+
+  return userId;
+}
+
+function getMetadataText(metadata: Stripe.Metadata | null | undefined, key: string) {
+  const value = metadata?.[key]?.trim();
+  return value ? value : null;
+}
+
+function createTemporaryPassword() {
+  return `${crypto.randomUUID()}-${crypto.randomUUID()}Aa1!`;
+}
+
+async function findAuthUserByEmail(
+  supabase: NonNullable<ReturnType<typeof createServiceSupabaseClient>>,
+  email: string,
+) {
+  for (let page = 1; page <= 5; page += 1) {
+    const { data, error } = await supabase.auth.admin.listUsers({
+      page,
+      perPage: 1000,
+    });
+
+    if (error) {
+      return null;
+    }
+
+    const match = data.users.find(
+      (user) => user.email?.toLowerCase() === email.toLowerCase(),
+    );
+
+    if (match) {
+      return match;
+    }
+
+    if (data.users.length < 1000) {
+      break;
+    }
+  }
+
+  return null;
+}
+
+async function sendPasswordSetupEmail(
+  supabase: NonNullable<ReturnType<typeof createServiceSupabaseClient>>,
+  email: string,
+) {
+  const redirectTo = `${getAppBaseUrl()}/reset-password`;
+  const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo,
+  });
+
+  if (error) {
+    console.error("Paid artist signup password setup email failed", {
+      email,
+      redirectTo,
+      status: error.status ?? null,
+      code: error.code ?? null,
+      message: error.message ?? null,
+    });
+
+    return false;
+  }
+
+  return true;
 }
 
 async function handlePaymentIntentEvent(
