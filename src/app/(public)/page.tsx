@@ -211,12 +211,16 @@ const modelPills = [
 ] as const;
 
 const mobileModelPills = [
-  { label: "Codex", icon: CodexLogo },
-  { label: "YouTube", icon: YouTubeLogo },
-  { label: "Instagram", icon: InstagramLogo },
-  { label: "TikTok", icon: TikTokLogo },
-  { label: "Spotify", icon: SpotifyLogo },
-  { label: "Tecnología", icon: TechnologyLogo },
+  { label: "Codex", icon: CodexLogo, className: "col-span-3" },
+  { label: "YouTube", icon: YouTubeLogo, className: "col-span-3" },
+  { label: "Instagram", icon: InstagramLogo, className: "col-span-2" },
+  { label: "TikTok", icon: TikTokLogo, className: "col-span-2" },
+  { label: "Spotify", icon: SpotifyLogo, className: "col-span-2" },
+  { label: "Claude", icon: ClaudeLogo, className: "col-span-3" },
+  { label: "Tecnología", icon: TechnologyLogo, className: "col-span-3" },
+  { label: "Gemini", icon: GeminiLogo, className: "col-span-2" },
+  { label: "Kimi", icon: KimiLogo, className: "col-span-2" },
+  { label: "Facebook", icon: FacebookLogo, className: "col-span-2" },
 ] as const;
 
 export default async function HomePage() {
@@ -247,11 +251,14 @@ export default async function HomePage() {
             <p className="text-xl font-semibold text-muted-foreground">
               {copy.modelIntro}
             </p>
-            <div className="mx-auto mt-3 grid max-w-sm grid-cols-3 gap-2">
+            <div className="mx-auto mt-3 grid max-w-[22rem] grid-cols-6 gap-2">
               {mobileModelPills.map((item) => (
                 <span
                   key={item.label}
-                  className="mammouth-pill flex h-[4.4rem] min-w-0 flex-col items-center justify-center gap-1 rounded-2xl px-2 text-[0.68rem] font-black leading-tight text-foreground"
+                  className={cn(
+                    "mammouth-pill flex h-14 min-w-0 items-center justify-center gap-2 rounded-2xl px-2.5 text-[0.76rem] font-black leading-tight text-foreground",
+                    item.className,
+                  )}
                 >
                   <span className="inline-flex size-5 shrink-0 items-center justify-center">
                     <item.icon className="size-5" />
