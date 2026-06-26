@@ -23,7 +23,6 @@ type FooterCopy = {
   navTitle: string;
   platformLabel: string;
   rights: string;
-  small: string;
   startCta: string;
   supportText: string;
   whatsappMessage: string;
@@ -45,7 +44,6 @@ const footerCopyByLocale: Record<AppLocale, FooterCopy> = {
     navTitle: "Eksplore",
     platformLabel: "Platfòm",
     rights: "Tout dwa rezève.",
-    small: "Travay klè, dosye pwòp ak kominikasyon dirèk.",
     startCta: "Kòmanse",
     supportText: "Pou sèvis, kesyon, peman oswa swivi pwojè, pale ak AUM sou WhatsApp.",
     whatsappMessage: "Bonjou AUM, mwen vle pale ak ou sou WhatsApp.",
@@ -65,7 +63,6 @@ const footerCopyByLocale: Record<AppLocale, FooterCopy> = {
     navTitle: "Explorar",
     platformLabel: "Plataforma",
     rights: "Todos los derechos reservados.",
-    small: "Trabajo claro, archivos ordenados y comunicación directa.",
     startCta: "Comenzar",
     supportText: "Para servicios, dudas, pagos o seguimiento, habla con AUM por WhatsApp.",
     whatsappMessage: "Hola AUM, quiero hablar contigo por WhatsApp.",
@@ -85,7 +82,6 @@ const footerCopyByLocale: Record<AppLocale, FooterCopy> = {
     navTitle: "Explore",
     platformLabel: "Platform",
     rights: "All rights reserved.",
-    small: "Clear work, organized files and direct communication.",
     startCta: "Start",
     supportText: "For services, questions, payments or project follow-up, talk to AUM on WhatsApp.",
     whatsappMessage: "Hi AUM, I want to talk to you on WhatsApp.",
@@ -105,7 +101,6 @@ const footerCopyByLocale: Record<AppLocale, FooterCopy> = {
     navTitle: "Explorer",
     platformLabel: "Plateforme",
     rights: "Tous droits réservés.",
-    small: "Travail clair, fichiers organisés et communication directe.",
     startCta: "Commencer",
     supportText: "Pour les services, questions, paiements ou suivis, parlez avec AUM sur WhatsApp.",
     whatsappMessage: "Bonjour AUM, je veux parler avec vous sur WhatsApp.",
@@ -125,7 +120,6 @@ const footerCopyByLocale: Record<AppLocale, FooterCopy> = {
     navTitle: "Explorar",
     platformLabel: "Plataforma",
     rights: "Todos os direitos reservados.",
-    small: "Trabalho claro, arquivos organizados e comunicação direta.",
     startCta: "Começar",
     supportText: "Para serviços, dúvidas, pagamentos ou acompanhamento, fale com AUM pelo WhatsApp.",
     whatsappMessage: "Olá AUM, quero falar com você pelo WhatsApp.",
@@ -201,13 +195,10 @@ export async function PublicFooter() {
             </div>
           </div>
 
-          <div className="mt-7 grid gap-4 border-t border-border pt-5 text-sm text-muted-foreground sm:grid-cols-[1fr_auto] sm:items-center sm:gap-6">
+          <div className="mt-7 border-t border-border pt-5 text-sm text-muted-foreground">
             <p className="leading-6">
               Copyright {year} AUM PRODZ. {copy.rights}
             </p>
-            <div className="flex flex-wrap items-center gap-3 sm:justify-end">
-              <p className="max-w-md leading-6 sm:text-right">{copy.small}</p>
-            </div>
           </div>
         </div>
       </div>
