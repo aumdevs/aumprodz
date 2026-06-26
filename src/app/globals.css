@@ -2,16 +2,16 @@
 
 :root {
   color-scheme: dark;
-  --background: #080a12;
+  --background: #050914;
   --foreground: #f7f8ff;
-  --card: #101522;
+  --card: #0d1422;
   --card-foreground: #f7f8ff;
-  --muted: #171d2b;
-  --muted-foreground: #9fa8bc;
-  --border: #263044;
-  --primary: #22d3ee;
+  --muted: #141b2b;
+  --muted-foreground: #a4adbf;
+  --border: #22324a;
+  --primary: #30d5f4;
   --primary-foreground: #06121a;
-  --accent: #f2c94c;
+  --accent: #f3c96a;
   --accent-foreground: #171004;
   --destructive: #ef4444;
   --destructive-foreground: #fff7f7;
@@ -21,15 +21,26 @@
   --warning-foreground: #1a1000;
   --info: #60a5fa;
   --info-foreground: #07111f;
-  --surface: #0c111d;
-  --surface-strong: #141b2c;
-  --glass: rgba(16, 21, 34, 0.72);
+  --surface: #080f1c;
+  --surface-strong: #111a2a;
+  --glass: rgba(11, 18, 31, 0.76);
   --haiti-red: #e11d48;
   --haiti-blue: #2563eb;
-  --ring: rgba(34, 211, 238, 0.35);
+  --ring: rgba(48, 213, 244, 0.35);
   --shadow-soft: 0 18px 70px rgba(0, 0, 0, 0.42);
-  --shadow-glow: 0 0 48px rgba(34, 211, 238, 0.16);
+  --shadow-glow: 0 0 54px rgba(48, 213, 244, 0.18);
   --radius: 0.5rem;
+  --aum-bg: #050914;
+  --aum-surface: #0d1422;
+  --aum-surface-soft: #141b2b;
+  --aum-border: #22324a;
+  --aum-primary: #30d5f4;
+  --aum-secondary: #f3c96a;
+  --aum-haiti-blue: #2563eb;
+  --aum-haiti-red: #e11d48;
+  --aum-violet: #1d4ed8;
+  --aum-text: #f7f8ff;
+  --aum-muted: #a4adbf;
 }
 
 .light {
@@ -59,6 +70,17 @@
   --ring: rgba(14, 116, 144, 0.32);
   --shadow-soft: 0 18px 60px rgba(15, 23, 42, 0.12);
   --shadow-glow: 0 0 40px rgba(14, 116, 144, 0.12);
+  --aum-bg: #f6f8fc;
+  --aum-surface: #ffffff;
+  --aum-surface-soft: #eef3fb;
+  --aum-border: #d9e1ee;
+  --aum-primary: #0e7490;
+  --aum-secondary: #c99719;
+  --aum-haiti-blue: #2563eb;
+  --aum-haiti-red: #dc2626;
+  --aum-violet: #4f46e5;
+  --aum-text: #111827;
+  --aum-muted: #5d6678;
 }
 
 @theme inline {
@@ -96,6 +118,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 html.dark {
@@ -106,6 +129,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  overflow-x: clip;
   text-rendering: geometricPrecision;
 }
 
@@ -134,6 +158,36 @@ textarea {
     background: var(--glass);
     box-shadow: var(--shadow-soft);
     backdrop-filter: blur(22px);
+  }
+
+  .mission-surface {
+    border: 1px solid color-mix(in srgb, var(--primary) 16%, var(--border));
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--card) 92%, transparent), color-mix(in srgb, var(--surface) 96%, transparent)),
+      radial-gradient(circle at 18% 0%, color-mix(in srgb, var(--primary) 12%, transparent), transparent 38%);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .glow-card {
+    position: relative;
+    border: 1px solid color-mix(in srgb, var(--border) 82%, transparent);
+    background: color-mix(in srgb, var(--card) 92%, transparent);
+    box-shadow: 0 14px 48px rgba(0, 0, 0, 0.22);
+  }
+
+  .glow-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--primary) 16%, transparent), transparent 42%, color-mix(in srgb, var(--accent) 12%, transparent));
+    opacity: 0;
+    transition: opacity 180ms ease;
+  }
+
+  .glow-card:hover::before {
+    opacity: 1;
   }
 
   .text-balance {

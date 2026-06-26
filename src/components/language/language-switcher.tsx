@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
+import { useState } from "react";
 
 import {
   localeLabels,
@@ -21,15 +22,17 @@ export function LanguageSwitcher({
 }: LanguageSwitcherProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const [pendingLocale, setPendingLocale] = useState<AppLocale | null>(null);
+  const activeLocale = pendingLocale ?? currentLocale;
   const currentPath = `${pathname}${searchParams.size ? `?${searchParams.toString()}` : ""}`;
 
   return (
     <div
-      aria-label={currentLocale === "ht" ? "Chanje lang" : "Cambiar idioma"}
+      aria-label={activeLocale === "ht" ? "Chanje lang" : "Cambiar idioma"}
       className="inline-flex rounded-md border border-border bg-card p-1"
     >
       {supportedLocales.map((locale) => {
-        const active = locale === currentLocale;
+        const active = locale === activeLocale;
         const label = compact ? locale.toUpperCase() : localeLabels[locale];
 
         return (
@@ -43,6 +46,7 @@ export function LanguageSwitcher({
             )}
             href={`/api/language?locale=${locale}&next=${encodeURIComponent(currentPath)}`}
             key={locale}
+            onClick={() => setPendingLocale(locale)}
           >
             {label}
           </Link>

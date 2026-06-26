@@ -22,7 +22,7 @@ export default function ResetPasswordPage() {
       className="relative flex min-h-screen items-center justify-center overflow-hidden bg-background px-4 py-10 sm:px-6"
       style={{
         backgroundImage:
-          "linear-gradient(120deg, rgba(250,247,239,0.94), rgba(250,247,239,0.84)), url('/aum-prodz-platform-hero.png')",
+          "linear-gradient(120deg, rgba(5,9,20,0.94), rgba(5,9,20,0.82)), url('/aum-prodz-podcast-hero.png')",
         backgroundPosition: "center",
         backgroundSize: "cover",
       }}

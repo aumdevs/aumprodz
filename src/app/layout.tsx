@@ -16,11 +16,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://aumprodz.com"),
   title: {
-    default: "AUM PRODZ Platform",
+    default: "AUM PRODZ - Digital Mission Control",
     template: "%s | AUM PRODZ",
   },
   description:
-    "Plataforma profesional de AUM PRODZ para servicios digitales, artistas, pagos, operaciones y analítica interna.",
+    "Digital Mission Control for Haitian creators, artists, YouTubers and real businesses: services, web, image, YouTube, Artist OS and digital operations.",
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "32x32" },
@@ -31,15 +31,15 @@ export const metadata: Metadata = {
   },
   manifest: "/site.webmanifest",
   openGraph: {
-    title: "AUM PRODZ Platform",
+    title: "AUM PRODZ - Digital Mission Control",
     description:
-      "Plataforma profesional de AUM PRODZ para servicios digitales, artistas, pagos, operaciones y analítica interna.",
+      "Premium digital platform for Haitian creators, artists, YouTubers and real businesses with international vision.",
     images: [
       {
-        url: "/aum-prodz-logo.png",
-        width: 1254,
-        height: 1254,
-        alt: "AUM PRODZ",
+        url: "/aum-prodz-podcast-hero.png",
+        width: 1672,
+        height: 941,
+        alt: "AUM PRODZ podcast recording studio with microphone and laptop",
       },
     ],
   },

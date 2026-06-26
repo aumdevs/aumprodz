@@ -12,7 +12,23 @@ import {
 
 const initialState: ContactMessageState = {};
 
-export function ContactMessageForm() {
+export type ContactMessageFormCopy = {
+  contextLabel: string;
+  contextPlaceholder: string;
+  emailLabel: string;
+  messageLabel: string;
+  messagePlaceholder: string;
+  nameLabel: string;
+  namePlaceholder: string;
+  submit: string;
+  submitting: string;
+};
+
+export function ContactMessageForm({
+  copy,
+}: {
+  copy: ContactMessageFormCopy;
+}) {
   const [state, formAction, pending] = useActionState(
     submitContactMessageAction,
     initialState,
@@ -34,15 +50,15 @@ export function ContactMessageForm() {
       ) : null}
 
       <Field
-        label="Nombre"
+        label={copy.nameLabel}
         name="name"
         defaultValue={values.name}
         error={state.fieldErrors?.name}
-        placeholder="Tu nombre"
+        placeholder={copy.namePlaceholder}
         autoComplete="name"
       />
       <Field
-        label="Correo electrónico"
+        label={copy.emailLabel}
         name="email"
         type="email"
         defaultValue={values.email}
@@ -51,18 +67,18 @@ export function ContactMessageForm() {
         autoComplete="email"
       />
       <Field
-        label="Contexto"
+        label={copy.contextLabel}
         name="context"
         defaultValue={values.context}
         error={state.fieldErrors?.context}
-        placeholder="YouTube, página web, miniatura, música..."
+        placeholder={copy.contextPlaceholder}
       />
       <label className="grid gap-2 text-sm font-medium">
-        Mensaje
+        {copy.messageLabel}
         <textarea
           name="message"
           defaultValue={values.message ?? ""}
-          placeholder="Ingresa tu mensaje aquí. Cuéntame qué quieres hacer, qué problema tienes o qué servicio necesitas."
+          placeholder={copy.messagePlaceholder}
           className={
             state.fieldErrors?.message
               ? "min-h-40 rounded-md border border-destructive bg-card px-3 py-3 text-sm outline-none transition-colors placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-destructive/20"
@@ -78,7 +94,7 @@ export function ContactMessageForm() {
 
       <Button type="submit" size="lg" disabled={pending}>
         <Send className="size-5" />
-        {pending ? "Enviando..." : "Enviar"}
+        {pending ? copy.submitting : copy.submit}
       </Button>
     </form>
   );
