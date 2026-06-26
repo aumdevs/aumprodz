@@ -231,9 +231,9 @@ export default async function HomePage() {
     <>
       <PublicEventTracker eventName="page_view" page="/" source="home" />
 
-      <section className="flex min-h-[calc(100svh-5.5rem)] items-center pb-16 pt-8 sm:pb-20 sm:pt-10 lg:pb-24 lg:pt-12">
+      <section className="flex min-h-[calc(100svh-5.5rem)] items-start pb-10 pt-10 sm:items-center sm:pb-20 sm:pt-10 lg:pb-24 lg:pt-12">
         <div className="public-shell flex flex-col items-center text-center">
-          <div className="mb-7 flex size-[5.5rem] items-center justify-center overflow-hidden bg-transparent sm:size-24">
+          <div className="mb-4 flex size-20 items-center justify-center overflow-hidden bg-transparent sm:mb-7 sm:size-24">
             <Image
               src="/aum-prodz-logo-transparent.png"
               alt=""
@@ -247,11 +247,11 @@ export default async function HomePage() {
             {copy.heroLineOne} {copy.heroLineTwo}
           </h1>
 
-          <div className="mt-7 w-full sm:hidden">
-            <p className="text-xl font-semibold text-muted-foreground">
+          <div className="mt-5 w-full sm:hidden">
+            <p className="text-lg font-semibold text-muted-foreground">
               {copy.modelIntro}
             </p>
-            <div className="mx-auto mt-3 grid max-w-[22rem] grid-cols-6 gap-2">
+            <div className="mx-auto mt-2 grid max-w-[22rem] grid-cols-6 gap-2">
               {mobileModelPills.map((item) => (
                 <span
                   key={item.label}
@@ -283,10 +283,10 @@ export default async function HomePage() {
               </span>
             ))}
           </div>
-          <p className="mt-7 text-2xl font-medium text-muted-foreground sm:text-4xl">
+          <p className="mt-5 text-[clamp(1.65rem,7vw,2.35rem)] font-medium leading-tight text-muted-foreground sm:mt-7 sm:text-4xl">
             {copy.heroPrice}
           </p>
-          <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row">
+          <div className="mt-6 flex flex-col items-center gap-3 sm:mt-8 sm:flex-row">
             <Link href="#quien-es-aum" className={cn(buttonVariants({ size: "lg" }))}>
               {copy.startCta}
               <ArrowRight className="size-5" />
