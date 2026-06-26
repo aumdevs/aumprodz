@@ -25,7 +25,7 @@ const headerCopyByLocale: Record<
   }
 > = {
   ht: {
-    artistCta: "AUM Artist",
+    artistCta: "Aum Artist",
     close: "Fèmen meni",
     menu: "Louvri meni",
     platformLabel: "Platfòm",
@@ -34,7 +34,7 @@ const headerCopyByLocale: Record<
     whatsappMessage: "Bonjou AUM, mwen vle pale ak ou sou WhatsApp.",
   },
   es: {
-    artistCta: "AUM Artist",
+    artistCta: "Aum Artist",
     close: "Cerrar menú",
     menu: "Abrir menú",
     platformLabel: "Plataforma",
@@ -43,7 +43,7 @@ const headerCopyByLocale: Record<
     whatsappMessage: "Hola AUM, quiero hablar contigo por WhatsApp.",
   },
   en: {
-    artistCta: "AUM Artist",
+    artistCta: "Aum Artist",
     close: "Close menu",
     menu: "Open menu",
     platformLabel: "Platform",
@@ -52,7 +52,7 @@ const headerCopyByLocale: Record<
     whatsappMessage: "Hi AUM, I want to talk to you on WhatsApp.",
   },
   fr: {
-    artistCta: "AUM Artist",
+    artistCta: "Aum Artist",
     close: "Fermer le menu",
     menu: "Ouvrir le menu",
     platformLabel: "Plateforme",
@@ -61,7 +61,7 @@ const headerCopyByLocale: Record<
     whatsappMessage: "Bonjour AUM, je veux parler avec vous sur WhatsApp.",
   },
   pt: {
-    artistCta: "AUM Artist",
+    artistCta: "Aum Artist",
     close: "Fechar menu",
     menu: "Abrir menu",
     platformLabel: "Plataforma",
