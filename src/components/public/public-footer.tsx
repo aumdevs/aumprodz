@@ -23,6 +23,7 @@ type FooterCopy = {
   navTitle: string;
   platformLabel: string;
   rights: string;
+  socialTitle: string;
   startCta: string;
   supportText: string;
   whatsappMessage: string;
@@ -44,6 +45,7 @@ const footerCopyByLocale: Record<AppLocale, FooterCopy> = {
     navTitle: "Eksplore",
     platformLabel: "Platfòm",
     rights: "Tout dwa rezève.",
+    socialTitle: "Rezo AUM PRODZ",
     startCta: "Kòmanse",
     supportText: "Pou sèvis, kesyon, peman oswa swivi pwojè, pale ak AUM sou WhatsApp.",
     whatsappMessage: "Bonjou AUM, mwen vle pale ak ou sou WhatsApp.",
@@ -63,6 +65,7 @@ const footerCopyByLocale: Record<AppLocale, FooterCopy> = {
     navTitle: "Explorar",
     platformLabel: "Plataforma",
     rights: "Todos los derechos reservados.",
+    socialTitle: "Redes de AUM PRODZ",
     startCta: "Comenzar",
     supportText: "Para servicios, dudas, pagos o seguimiento, habla con AUM por WhatsApp.",
     whatsappMessage: "Hola AUM, quiero hablar contigo por WhatsApp.",
@@ -82,6 +85,7 @@ const footerCopyByLocale: Record<AppLocale, FooterCopy> = {
     navTitle: "Explore",
     platformLabel: "Platform",
     rights: "All rights reserved.",
+    socialTitle: "AUM PRODZ socials",
     startCta: "Start",
     supportText: "For services, questions, payments or project follow-up, talk to AUM on WhatsApp.",
     whatsappMessage: "Hi AUM, I want to talk to you on WhatsApp.",
@@ -101,6 +105,7 @@ const footerCopyByLocale: Record<AppLocale, FooterCopy> = {
     navTitle: "Explorer",
     platformLabel: "Plateforme",
     rights: "Tous droits réservés.",
+    socialTitle: "Réseaux AUM PRODZ",
     startCta: "Commencer",
     supportText: "Pour les services, questions, paiements ou suivis, parlez avec AUM sur WhatsApp.",
     whatsappMessage: "Bonjour AUM, je veux parler avec vous sur WhatsApp.",
@@ -120,6 +125,7 @@ const footerCopyByLocale: Record<AppLocale, FooterCopy> = {
     navTitle: "Explorar",
     platformLabel: "Plataforma",
     rights: "Todos os direitos reservados.",
+    socialTitle: "Redes da AUM PRODZ",
     startCta: "Começar",
     supportText: "Para serviços, dúvidas, pagamentos ou acompanhamento, fale com AUM pelo WhatsApp.",
     whatsappMessage: "Olá AUM, quero falar com você pelo WhatsApp.",
@@ -145,6 +151,28 @@ export async function PublicFooter() {
     { href: "/legal/aviso", label: copy.legal.notice },
     { href: "/legal/cookies", label: copy.legal.cookies },
   ];
+  const socialLinks = [
+    {
+      href: "https://www.youtube.com/@aumprodz7298/videos",
+      icon: YouTubeLogo,
+      label: "YouTube",
+    },
+    {
+      href: "https://www.instagram.com/aumprodz/",
+      icon: InstagramLogo,
+      label: "Instagram",
+    },
+    {
+      href: "https://www.tiktok.com/@aumprodz",
+      icon: TikTokLogo,
+      label: "TikTok",
+    },
+    {
+      href: "https://www.facebook.com/aumprodz",
+      icon: FacebookLogo,
+      label: "Facebook",
+    },
+  ];
 
   return (
     <footer className="bg-background">
@@ -163,6 +191,31 @@ export async function PublicFooter() {
                 {copy.startCta}
                 <ArrowRight className="size-4" />
               </Link>
+
+              <div className="space-y-3 pt-2">
+                <p className="text-xs font-black uppercase tracking-[0.2em] text-foreground">
+                  {copy.socialTitle}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {socialLinks.map((social) => {
+                    const Icon = social.icon;
+
+                    return (
+                      <Link
+                        key={social.href}
+                        aria-label={social.label}
+                        className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-2 text-sm font-black text-foreground shadow-sm transition-colors hover:border-primary/35 hover:bg-background"
+                        href={social.href}
+                        rel="noreferrer"
+                        target="_blank"
+                      >
+                        <Icon className="size-4" />
+                        {social.label}
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
 
             <div className="space-y-7">
@@ -240,5 +293,78 @@ function FooterLinkGroup({
         ))}
       </div>
     </nav>
+  );
+}
+
+function YouTubeLogo({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        fill="#ff0033"
+        d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.6 4.6 12 4.6 12 4.6s-5.6 0-7.5.5a3 3 0 0 0-2.1 2.1C2 9.1 2 12 2 12s0 2.9.4 4.8a3 3 0 0 0 2.1 2.1c1.9.5 7.5.5 7.5.5s5.6 0 7.5-.5a3 3 0 0 0 2.1-2.1c.4-1.9.4-4.8.4-4.8s0-2.9-.4-4.8Z"
+      />
+      <path fill="#fff" d="m10 15.5 5.2-3.5L10 8.5v7Z" />
+    </svg>
+  );
+}
+
+function InstagramLogo({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" aria-hidden="true">
+      <defs>
+        <linearGradient id="footer-instagram-gradient" x1="2" x2="22" y1="22" y2="2">
+          <stop stopColor="#feda75" />
+          <stop offset=".35" stopColor="#fa7e1e" />
+          <stop offset=".62" stopColor="#d62976" />
+          <stop offset="1" stopColor="#4f5bd5" />
+        </linearGradient>
+      </defs>
+      <rect
+        width="17"
+        height="17"
+        x="3.5"
+        y="3.5"
+        rx="5"
+        fill="none"
+        stroke="url(#footer-instagram-gradient)"
+        strokeWidth="2"
+      />
+      <circle cx="12" cy="12" r="3.4" fill="none" stroke="url(#footer-instagram-gradient)" strokeWidth="2" />
+      <circle cx="16.9" cy="7.1" r="1.2" fill="#d62976" />
+    </svg>
+  );
+}
+
+function TikTokLogo({ className }: { className?: string }) {
+  return (
+    <svg className={cn("dark-visible-logo", className)} viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        fill="#25f4ee"
+        d="M14.7 3.5c.4 2.3 1.8 3.7 4.2 3.9v3a7 7 0 0 1-4.1-1.3v5.8c0 3-2 5.2-5.1 5.2a4.9 4.9 0 0 1-5-4.9c0-3 2.3-5 5.4-5 .4 0 .7 0 1 .1v3.3a2.4 2.4 0 0 0-1.1-.2 1.8 1.8 0 1 0 1.8 1.8V3.5h2.9Z"
+        opacity=".7"
+      />
+      <path
+        fill="#fe2c55"
+        d="M15.6 3.5c.4 2.3 1.8 3.7 4.2 3.9v3a7 7 0 0 1-4.1-1.3v5.8c0 3-2 5.2-5.1 5.2a4.9 4.9 0 0 1-5-4.9c0-3 2.3-5 5.4-5 .4 0 .7 0 1 .1v3.3a2.4 2.4 0 0 0-1.1-.2 1.8 1.8 0 1 0 1.8 1.8V3.5h2.9Z"
+        opacity=".85"
+      />
+      <path
+        data-dark-visible-fill
+        fill="#111"
+        d="M15.1 3.5c.4 2.3 1.8 3.7 4.2 3.9v3a7 7 0 0 1-4.1-1.3v5.8c0 3-2 5.2-5.1 5.2a4.9 4.9 0 0 1-5-4.9c0-3 2.3-5 5.4-5 .4 0 .7 0 1 .1v3.3a2.4 2.4 0 0 0-1.1-.2 1.8 1.8 0 1 0 1.8 1.8V3.5h2.9Z"
+      />
+    </svg>
+  );
+}
+
+function FacebookLogo({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="10" fill="#1877f2" />
+      <path
+        fill="#fff"
+        d="M14.5 13h-1.8v6h-2.5v-6H8.9v-2.2h1.3V9.4c0-1 .3-1.8.9-2.4.6-.6 1.5-.9 2.6-.9.8 0 1.4.1 1.7.2v2h-1.2c-.5 0-.9.1-1.1.3-.2.2-.3.6-.3 1v1.2h2.4L14.5 13Z"
+      />
+    </svg>
   );
 }
