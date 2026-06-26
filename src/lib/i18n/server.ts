@@ -13,21 +13,27 @@ export async function getRequestPathname() {
 }
 
 export async function getCurrentLocale(): Promise<AppLocale> {
-  const [pathname, cookieStore] = await Promise.all([
+  const [requestHeaders, pathname, cookieStore] = await Promise.all([
+    headers(),
     getRequestPathname(),
     cookies(),
   ]);
 
   return resolveLocaleForPath({
+    acceptLanguage: requestHeaders.get("accept-language"),
     cookieLocale: cookieStore.get(localeCookieName)?.value,
     pathname,
   });
 }
 
 export async function getLocaleForPath(pathname: string): Promise<AppLocale> {
-  const cookieStore = await cookies();
+  const [requestHeaders, cookieStore] = await Promise.all([
+    headers(),
+    cookies(),
+  ]);
 
   return resolveLocaleForPath({
+    acceptLanguage: requestHeaders.get("accept-language"),
     cookieLocale: cookieStore.get(localeCookieName)?.value,
     pathname,
   });

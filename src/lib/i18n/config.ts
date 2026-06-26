@@ -17,6 +17,42 @@ export function normalizeLocale(value: string | null | undefined) {
     : undefined;
 }
 
+export function normalizeLanguageTag(value: string | null | undefined) {
+  const language = value?.trim().toLowerCase().split("-")[0];
+
+  return normalizeLocale(language);
+}
+
+export function getPreferredLocaleFromHeader(
+  acceptLanguage: string | null | undefined,
+) {
+  if (!acceptLanguage) {
+    return undefined;
+  }
+
+  return acceptLanguage
+    .split(",")
+    .map((item) => item.trim())
+    .filter(Boolean)
+    .map((item) => {
+      const [tag = "", ...params] = item.split(";").map((part) => part.trim());
+      const qualityParam = params.find((param) =>
+        param.toLowerCase().startsWith("q="),
+      );
+      const qualityValue = qualityParam?.slice(2);
+      const quality = qualityValue ? Number.parseFloat(qualityValue) : 1;
+
+      return {
+        locale: normalizeLanguageTag(tag),
+        quality: Number.isFinite(quality) ? quality : 0,
+      };
+    })
+    .filter((item): item is { locale: AppLocale; quality: number } =>
+      Boolean(item.locale) && item.quality > 0,
+    )
+    .sort((first, second) => second.quality - first.quality)[0]?.locale;
+}
+
 export function isAdminPath(pathname: string) {
   return pathname === "/admin" || pathname.startsWith("/admin/");
 }
@@ -26,9 +62,11 @@ export function getDefaultLocaleForPath(pathname: string): AppLocale {
 }
 
 export function resolveLocaleForPath({
+  acceptLanguage,
   cookieLocale,
   pathname,
 }: {
+  acceptLanguage?: string | null;
   cookieLocale?: string | null;
   pathname: string;
 }): AppLocale {
@@ -36,5 +74,9 @@ export function resolveLocaleForPath({
     return "es";
   }
 
-  return normalizeLocale(cookieLocale) ?? getDefaultLocaleForPath(pathname);
+  return (
+    normalizeLocale(cookieLocale) ??
+    getPreferredLocaleFromHeader(acceptLanguage) ??
+    getDefaultLocaleForPath(pathname)
+  );
 }
