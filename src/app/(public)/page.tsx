@@ -210,6 +210,15 @@ const modelPills = [
   { label: "Tecnología", icon: TechnologyLogo },
 ] as const;
 
+const mobileModelPills = [
+  { label: "Codex", icon: CodexLogo },
+  { label: "YouTube", icon: YouTubeLogo },
+  { label: "Instagram", icon: InstagramLogo },
+  { label: "TikTok", icon: TikTokLogo },
+  { label: "Spotify", icon: SpotifyLogo },
+  { label: "Tecnología", icon: TechnologyLogo },
+] as const;
+
 export default async function HomePage() {
   const locale = await getCurrentLocale();
   const copy = copyByLocale[locale] ?? copyByLocale.ht;
@@ -233,7 +242,27 @@ export default async function HomePage() {
           <h1 className="mammouth-title max-w-full whitespace-nowrap text-[clamp(1.7rem,5.2vw,4.4rem)]">
             {copy.heroLineOne} {copy.heroLineTwo}
           </h1>
-          <div className="mt-8 flex max-w-5xl flex-wrap items-center justify-center gap-x-3 gap-y-3 text-2xl font-medium text-muted-foreground sm:text-4xl">
+
+          <div className="mt-7 w-full sm:hidden">
+            <p className="text-xl font-semibold text-muted-foreground">
+              {copy.modelIntro}
+            </p>
+            <div className="mx-auto mt-3 grid max-w-sm grid-cols-3 gap-2">
+              {mobileModelPills.map((item) => (
+                <span
+                  key={item.label}
+                  className="mammouth-pill flex h-[4.4rem] min-w-0 flex-col items-center justify-center gap-1 rounded-2xl px-2 text-[0.68rem] font-black leading-tight text-foreground"
+                >
+                  <span className="inline-flex size-5 shrink-0 items-center justify-center">
+                    <item.icon className="size-5" />
+                  </span>
+                  <span className="max-w-full truncate">{item.label}</span>
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-8 hidden max-w-5xl flex-wrap items-center justify-center gap-x-3 gap-y-3 text-2xl font-medium text-muted-foreground sm:flex sm:text-4xl">
             <span>{copy.modelIntro}</span>
             {modelPills.map((item) => (
               <span

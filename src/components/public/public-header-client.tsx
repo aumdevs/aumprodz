@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowRight, Menu, X } from "lucide-react";
@@ -40,13 +41,24 @@ export function PublicHeaderClient({
   return (
     <header className="sticky top-0 z-40 bg-background/82 py-4 backdrop-blur-xl supports-[backdrop-filter]:bg-background/72">
       <div className="public-shell">
-        <div className="grid min-h-14 grid-cols-[auto_1fr_auto] items-center gap-3">
+        <div className="grid min-h-14 grid-cols-[minmax(0,1fr)_auto] items-center gap-3 md:grid-cols-[auto_1fr_auto]">
           <div className="min-w-0 shrink-0">
-            <AumProdzLogo
-              compact
-              className="sm:hidden"
-              platformLabel={copy.platformLabel}
-            />
+            <Link
+              href="/"
+              className="inline-flex min-w-0 items-center gap-2 font-black sm:hidden"
+              aria-label="AUM PRODZ"
+            >
+              <Image
+                src="/aum-prodz-logo-transparent.png"
+                alt=""
+                width={80}
+                height={80}
+                className="size-10 shrink-0 rounded-full object-contain"
+              />
+              <span className="truncate text-sm lowercase tracking-[0.08em] text-foreground">
+                aumprodz
+              </span>
+            </Link>
             <AumProdzLogo
               className="hidden sm:inline-flex"
               platformLabel={copy.platformLabel}
@@ -90,15 +102,28 @@ export function PublicHeaderClient({
             </Link>
           </div>
 
-          <button
-            aria-expanded={mobileOpen}
-            aria-label={mobileOpen ? copy.close : copy.menu}
-            className="inline-flex size-10 shrink-0 items-center justify-center rounded-full border border-border bg-card text-foreground transition-colors hover:bg-muted md:hidden"
-            type="button"
-            onClick={() => setMobileOpen((current) => !current)}
-          >
-            {mobileOpen ? <X className="size-4" /> : <Menu className="size-4" />}
-          </button>
+          <div className="flex min-w-0 items-center justify-end gap-1.5 md:hidden">
+            <LanguageSwitcher compact currentLocale={currentLocale} />
+            <Link
+              href="/login?next=%2Fartist"
+              aria-label={copy.artistCta}
+              className={cn(
+                buttonVariants({ variant: "secondary", size: "sm" }),
+                "h-10 rounded-full px-3 text-xs",
+              )}
+            >
+              Artist
+            </Link>
+            <button
+              aria-expanded={mobileOpen}
+              aria-label={mobileOpen ? copy.close : copy.menu}
+              className="inline-flex size-10 shrink-0 items-center justify-center rounded-full border border-border bg-card text-foreground transition-colors hover:bg-muted"
+              type="button"
+              onClick={() => setMobileOpen((current) => !current)}
+            >
+              {mobileOpen ? <X className="size-4" /> : <Menu className="size-4" />}
+            </button>
+          </div>
         </div>
 
         {mobileOpen ? (
@@ -122,7 +147,9 @@ export function PublicHeaderClient({
 
             <div className="mt-4 grid gap-3 rounded-2xl border border-border bg-background p-3">
               <div className="flex items-center justify-between gap-3">
-                <LanguageSwitcher compact currentLocale={currentLocale} />
+                <span className="text-xs font-black uppercase tracking-[0.18em] text-muted-foreground">
+                  aumprodz
+                </span>
                 <ThemeToggle />
               </div>
               <Link
@@ -131,14 +158,6 @@ export function PublicHeaderClient({
                 onClick={() => setMobileOpen(false)}
               >
                 {copy.projectCta}
-                <ArrowRight className="size-4" />
-              </Link>
-              <Link
-                href="/login?next=%2Fartist"
-                className={cn(buttonVariants({ variant: "secondary" }), "w-full")}
-                onClick={() => setMobileOpen(false)}
-              >
-                {copy.artistCta}
                 <ArrowRight className="size-4" />
               </Link>
             </div>
