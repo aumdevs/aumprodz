@@ -14,6 +14,7 @@ type FooterCopy = {
   description: string;
   language: string;
   legal: {
+    cookies: string;
     notice: string;
     privacy: string;
     refunds: string;
@@ -35,6 +36,7 @@ const footerCopyByLocale: Record<AppLocale, FooterCopy> = {
       "Sèvis dijital, kontni, mizik, web ak zouti pratik pou kominote ayisyèn nan.",
     language: "Lang",
     legal: {
+      cookies: "Cookies",
       notice: "Avi legal",
       privacy: "Konfidansyalite",
       refunds: "Ranbousman",
@@ -54,6 +56,7 @@ const footerCopyByLocale: Record<AppLocale, FooterCopy> = {
       "Servicios digitales, contenido, música, web y herramientas prácticas para la comunidad haitiana.",
     language: "Idioma",
     legal: {
+      cookies: "Cookies",
       notice: "Aviso legal",
       privacy: "Privacidad",
       refunds: "Reembolsos",
@@ -73,6 +76,7 @@ const footerCopyByLocale: Record<AppLocale, FooterCopy> = {
       "Digital services, content, music, web and practical tools for the Haitian community.",
     language: "Language",
     legal: {
+      cookies: "Cookies",
       notice: "Legal notice",
       privacy: "Privacy",
       refunds: "Refunds",
@@ -92,6 +96,7 @@ const footerCopyByLocale: Record<AppLocale, FooterCopy> = {
       "Services digitaux, contenu, musique, web et outils pratiques pour la communauté haïtienne.",
     language: "Langue",
     legal: {
+      cookies: "Cookies",
       notice: "Mentions légales",
       privacy: "Confidentialité",
       refunds: "Remboursements",
@@ -111,6 +116,7 @@ const footerCopyByLocale: Record<AppLocale, FooterCopy> = {
       "Serviços digitais, conteúdo, música, web e ferramentas práticas para a comunidade haitiana.",
     language: "Idioma",
     legal: {
+      cookies: "Cookies",
       notice: "Aviso legal",
       privacy: "Privacidade",
       refunds: "Reembolsos",
@@ -142,6 +148,7 @@ export async function PublicFooter() {
     { href: "/legal/privacidad", label: copy.legal.privacy },
     { href: "/legal/reembolsos", label: copy.legal.refunds },
     { href: "/legal/aviso", label: copy.legal.notice },
+    { href: "/legal/cookies", label: copy.legal.cookies },
   ];
 
   return (
@@ -169,45 +176,43 @@ export async function PublicFooter() {
                 <FooterLinkGroup links={legalLinks} title={copy.legal.title} />
               </div>
 
-              <div className="grid gap-5 rounded-[1.5rem] border border-border bg-background/45 p-5 sm:grid-cols-[1fr_auto] sm:items-end">
-                <div className="space-y-3">
+              <div className="flex flex-col gap-4 rounded-[1.25rem] border border-border bg-background/45 p-4 sm:flex-row sm:items-center sm:justify-between">
+                <div className="space-y-2">
                   <p className="text-sm font-black uppercase tracking-[0.2em] text-foreground">
                     {t(locale, "nav.contact")}
                   </p>
-                  <p className="max-w-md text-sm leading-6 text-muted-foreground">
+                  <p className="max-w-lg text-sm leading-6 text-muted-foreground">
                     {copy.supportText}
                   </p>
                 </div>
 
-                <div className="flex flex-col items-start gap-4 sm:items-end">
-                  <Link
-                    href="/contacto"
-                    className={cn(buttonVariants({ variant: "default", size: "sm" }))}
-                  >
-                    {copy.contactCta}
-                    <ArrowRight className="size-4" />
-                  </Link>
-
-                  <div className="space-y-3 sm:text-right">
-                    <p className="text-sm font-black uppercase tracking-[0.2em] text-foreground">
-                      {copy.language}
-                    </p>
-                    <div className="flex sm:justify-end">
-                      <LanguageSwitcher compact currentLocale={locale} />
-                    </div>
-                  </div>
-                </div>
+                <Link
+                  href="/contacto"
+                  className={cn(
+                    buttonVariants({ variant: "default", size: "sm" }),
+                    "w-fit shrink-0",
+                  )}
+                >
+                  {copy.contactCta}
+                  <ArrowRight className="size-4" />
+                </Link>
               </div>
             </div>
           </div>
 
-          <div className="mt-9 border-t border-border pt-5 text-sm text-muted-foreground sm:flex sm:items-center sm:justify-between sm:gap-6">
-            <p>
+          <div className="mt-7 grid gap-4 border-t border-border pt-5 text-sm text-muted-foreground sm:grid-cols-[1fr_auto] sm:items-center sm:gap-6">
+            <p className="leading-6">
               Copyright {year} AUM PRODZ. {copy.rights}
             </p>
-            <p className="mt-3 max-w-xl leading-6 sm:mt-0 sm:text-right">
-              {copy.small}
-            </p>
+            <div className="flex flex-wrap items-center gap-3 sm:justify-end">
+              <p className="max-w-md leading-6 sm:text-right">{copy.small}</p>
+              <div className="flex items-center gap-2">
+                <span className="text-[0.65rem] font-black uppercase tracking-[0.16em] text-foreground">
+                  {copy.language}
+                </span>
+                <LanguageSwitcher compact currentLocale={locale} />
+              </div>
+            </div>
           </div>
         </div>
       </div>

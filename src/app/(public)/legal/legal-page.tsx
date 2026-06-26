@@ -7,7 +7,12 @@ import type { AppLocale } from "@/lib/i18n/config";
 import { getCurrentLocale } from "@/lib/i18n/server";
 import { cn } from "@/lib/utils";
 
-export type LegalKind = "aviso" | "privacidad" | "reembolsos" | "terminos";
+export type LegalKind =
+  | "aviso"
+  | "cookies"
+  | "privacidad"
+  | "reembolsos"
+  | "terminos";
 
 type LegalCopy = {
   back: string;
@@ -49,6 +54,26 @@ const legalCopyByLocale: Record<AppLocale, LegalCopy> = {
           },
         ],
         title: "Avi legal AUM PRODZ",
+      },
+      cookies: {
+        badge: "Cookies",
+        intro:
+          "Paj sa a esplike kijan AUM PRODZ ka itilize cookies oswa zouti teknik pou fè sit la mache pi byen.",
+        sections: [
+          {
+            title: "Itilizasyon",
+            text: "Cookies ka ede kenbe preferans lang, amelyore eksperyans navigasyon epi konprann kijan paj yo itilize.",
+          },
+          {
+            title: "Kontwòl",
+            text: "Ou ka limite oswa efase cookies nan navigatè ou, men kèk fonksyon ka pa mache menm jan.",
+          },
+          {
+            title: "Mizajou",
+            text: "Nou ka mete règleman sa a ajou lè zouti sit la oswa bezwen operasyon yo chanje.",
+          },
+        ],
+        title: "Politik cookies",
       },
       privacidad: {
         badge: "Konfidansyalite",
@@ -137,6 +162,26 @@ const legalCopyByLocale: Record<AppLocale, LegalCopy> = {
         ],
         title: "Aviso legal de AUM PRODZ",
       },
+      cookies: {
+        badge: "Cookies",
+        intro:
+          "Esta página explica cómo AUM PRODZ puede usar cookies o herramientas técnicas para mejorar el sitio.",
+        sections: [
+          {
+            title: "Uso",
+            text: "Las cookies pueden ayudar a guardar preferencias de idioma, mejorar la navegación y entender cómo se usan las páginas.",
+          },
+          {
+            title: "Control",
+            text: "Puedes limitar o borrar cookies desde tu navegador, aunque algunas funciones pueden comportarse de forma diferente.",
+          },
+          {
+            title: "Actualizaciones",
+            text: "Esta política puede actualizarse cuando cambien las herramientas del sitio o las necesidades operativas.",
+          },
+        ],
+        title: "Política de cookies",
+      },
       privacidad: {
         badge: "Privacidad",
         intro:
@@ -223,6 +268,26 @@ const legalCopyByLocale: Record<AppLocale, LegalCopy> = {
           },
         ],
         title: "AUM PRODZ legal notice",
+      },
+      cookies: {
+        badge: "Cookies",
+        intro:
+          "This page explains how AUM PRODZ may use cookies or technical tools to improve the website.",
+        sections: [
+          {
+            title: "Use",
+            text: "Cookies may help save language preferences, improve navigation and understand how pages are used.",
+          },
+          {
+            title: "Control",
+            text: "You can limit or delete cookies from your browser, although some functions may behave differently.",
+          },
+          {
+            title: "Updates",
+            text: "This policy may be updated when website tools or operational needs change.",
+          },
+        ],
+        title: "Cookie policy",
       },
       privacidad: {
         badge: "Privacy",
@@ -311,6 +376,26 @@ const legalCopyByLocale: Record<AppLocale, LegalCopy> = {
         ],
         title: "Mentions légales AUM PRODZ",
       },
+      cookies: {
+        badge: "Cookies",
+        intro:
+          "Cette page explique comment AUM PRODZ peut utiliser des cookies ou des outils techniques pour améliorer le site.",
+        sections: [
+          {
+            title: "Utilisation",
+            text: "Les cookies peuvent aider à garder les préférences de langue, améliorer la navigation et comprendre l'utilisation des pages.",
+          },
+          {
+            title: "Contrôle",
+            text: "Vous pouvez limiter ou supprimer les cookies depuis votre navigateur, même si certaines fonctions peuvent changer.",
+          },
+          {
+            title: "Mises à jour",
+            text: "Cette politique peut être mise à jour lorsque les outils du site ou les besoins opérationnels évoluent.",
+          },
+        ],
+        title: "Politique de cookies",
+      },
       privacidad: {
         badge: "Confidentialité",
         intro:
@@ -397,6 +482,26 @@ const legalCopyByLocale: Record<AppLocale, LegalCopy> = {
           },
         ],
         title: "Aviso legal da AUM PRODZ",
+      },
+      cookies: {
+        badge: "Cookies",
+        intro:
+          "Esta página explica como a AUM PRODZ pode usar cookies ou ferramentas técnicas para melhorar o site.",
+        sections: [
+          {
+            title: "Uso",
+            text: "Cookies podem ajudar a salvar preferências de idioma, melhorar a navegação e entender como as páginas são usadas.",
+          },
+          {
+            title: "Controle",
+            text: "Você pode limitar ou apagar cookies no navegador, embora algumas funções possam se comportar de forma diferente.",
+          },
+          {
+            title: "Atualizações",
+            text: "Esta política pode ser atualizada quando as ferramentas do site ou necessidades operacionais mudarem.",
+          },
+        ],
+        title: "Política de cookies",
       },
       privacidad: {
         badge: "Privacidade",
