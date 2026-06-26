@@ -216,14 +216,14 @@ export default async function HomePage() {
 
       <section className="flex min-h-[calc(100svh-5.5rem)] items-center py-6 sm:pb-20 sm:pt-10 lg:pb-24 lg:pt-12">
         <div className="public-shell flex flex-col items-center text-center">
-          <div className="mb-4 flex size-20 items-center justify-center overflow-hidden bg-transparent sm:mb-7 sm:size-24">
+          <div className="hero-logo-motion mb-4 flex size-20 items-center justify-center overflow-hidden bg-transparent sm:mb-7 sm:size-24">
             <Image
               src="/aum-prodz-logo-transparent.png"
               alt=""
               width={112}
               height={112}
               priority
-              className="h-full w-full object-contain"
+              className="hero-logo-image h-full w-full object-contain"
             />
           </div>
           <h1 className="mammouth-title max-w-full whitespace-nowrap text-[clamp(1.7rem,5.2vw,4.4rem)]">
