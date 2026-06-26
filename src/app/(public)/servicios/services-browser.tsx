@@ -170,14 +170,14 @@ export function ServicesBrowser({
 
   return (
     <div className="flex h-full min-h-0 w-full flex-1 flex-col gap-2 sm:gap-3">
-      <div className="shrink-0 text-center lg:text-left">
+      <div className="shrink-0 text-center">
         <p className="text-[0.68rem] font-black uppercase tracking-[0.16em] text-primary sm:text-xs">
           {copy.available}
         </p>
         <h1 className="mammouth-title mt-1 text-2xl leading-tight sm:text-4xl">
           {copy.title}
         </h1>
-        <p className="mx-auto mt-1 line-clamp-2 max-w-2xl text-xs leading-5 text-muted-foreground sm:mt-2 sm:text-sm sm:leading-6 lg:mx-0">
+        <p className="mx-auto mt-1 line-clamp-2 max-w-2xl text-xs leading-5 text-muted-foreground sm:mt-2 sm:text-sm sm:leading-6">
           {copy.intro}
         </p>
       </div>
