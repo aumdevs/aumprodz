@@ -194,8 +194,6 @@ export function ServicesBrowser({
                   key={service.slug}
                   type="button"
                   onClick={() => setActiveSlug(service.slug)}
-                  onMouseEnter={() => setActiveSlug(service.slug)}
-                  onFocus={() => setActiveSlug(service.slug)}
                   className={cn(
                     "group flex w-full items-center gap-2 rounded-2xl border px-2 py-2 text-left transition-colors sm:gap-3 sm:px-4 sm:py-3",
                     active
