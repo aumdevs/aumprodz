@@ -180,20 +180,20 @@ export default async function ContactPage() {
   });
 
   return (
-    <section className="public-section-tight">
+    <section className="flex min-h-[calc(100svh-5.5rem)] py-5 lg:h-[calc(100svh-5.5rem)] lg:min-h-0 lg:overflow-hidden lg:py-4">
       <PublicEventTracker eventName="page_view" page="/contacto" source="contact" />
 
-      <div className="public-shell grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-        <div className="space-y-7">
-          <div className="space-y-4">
+      <div className="public-shell grid min-h-0 flex-1 gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+        <div className="space-y-5">
+          <div className="space-y-3">
             <div className="mammouth-pill inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-bold text-primary">
               <MessageCircle className="size-4" />
               {copy.badge}
             </div>
-            <h1 className="mammouth-title text-4xl sm:text-6xl">
+            <h1 className="mammouth-title text-4xl sm:text-5xl">
               {copy.title}
             </h1>
-            <p className="mammouth-subtitle hidden max-w-2xl text-xl sm:block">
+            <p className="mammouth-subtitle hidden max-w-2xl text-lg leading-8 sm:block">
               {copy.message}
             </p>
           </div>
@@ -222,15 +222,15 @@ export default async function ContactPage() {
           </div>
         </div>
 
-        <Card className="mammouth-card">
-          <CardHeader>
+        <Card className="mammouth-card min-h-0 overflow-hidden">
+          <CardHeader className="p-4 sm:p-5">
             <CardTitle>{copy.formTitle}</CardTitle>
             <p className="text-sm leading-6 text-muted-foreground">
               {copy.formDescription}
             </p>
           </CardHeader>
-          <CardContent>
-            <ContactMessageForm copy={copy.form} />
+          <CardContent className="p-4 pt-0 sm:p-5 sm:pt-0">
+            <ContactMessageForm compact copy={copy.form} />
             <a
               href={whatsappHref}
               target="_blank"

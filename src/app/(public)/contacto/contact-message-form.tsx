@@ -5,6 +5,7 @@ import { CheckCircle2, Send } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
 import {
   submitContactMessageAction,
   type ContactMessageState,
@@ -25,8 +26,10 @@ export type ContactMessageFormCopy = {
 };
 
 export function ContactMessageForm({
+  compact = false,
   copy,
 }: {
+  compact?: boolean;
   copy: ContactMessageFormCopy;
 }) {
   const [state, formAction, pending] = useActionState(
@@ -36,7 +39,7 @@ export function ContactMessageForm({
   const values = state.values ?? {};
 
   return (
-    <form action={formAction} className="grid gap-5">
+    <form action={formAction} className={cn("grid gap-5", compact && "gap-3")}>
       {state.error ? (
         <div className="rounded-2xl border border-destructive/30 bg-destructive/10 p-3 text-sm text-destructive">
           {state.error}
@@ -50,6 +53,7 @@ export function ContactMessageForm({
       ) : null}
 
       <Field
+        compact={compact}
         label={copy.nameLabel}
         name="name"
         defaultValue={values.name}
@@ -58,6 +62,7 @@ export function ContactMessageForm({
         autoComplete="name"
       />
       <Field
+        compact={compact}
         label={copy.emailLabel}
         name="email"
         type="email"
@@ -67,13 +72,14 @@ export function ContactMessageForm({
         autoComplete="email"
       />
       <Field
+        compact={compact}
         label={copy.contextLabel}
         name="context"
         defaultValue={values.context}
         error={state.fieldErrors?.context}
         placeholder={copy.contextPlaceholder}
       />
-      <label className="grid gap-2 text-sm font-medium">
+      <label className={cn("grid gap-2 text-sm font-medium", compact && "gap-1.5")}>
         {copy.messageLabel}
         <textarea
           name="message"
@@ -81,8 +87,14 @@ export function ContactMessageForm({
           placeholder={copy.messagePlaceholder}
           className={
             state.fieldErrors?.message
-              ? "min-h-40 rounded-2xl border border-destructive bg-card px-3 py-3 text-sm outline-none transition-colors placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-destructive/20"
-              : "min-h-40 rounded-2xl border border-border bg-card px-3 py-3 text-sm outline-none transition-colors placeholder:text-muted-foreground focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20"
+              ? cn(
+                  "min-h-40 rounded-2xl border border-destructive bg-card px-3 py-3 text-sm outline-none transition-colors placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-destructive/20",
+                  compact && "min-h-28",
+                )
+              : cn(
+                  "min-h-40 rounded-2xl border border-border bg-card px-3 py-3 text-sm outline-none transition-colors placeholder:text-muted-foreground focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20",
+                  compact && "min-h-28",
+                )
           }
         />
         {state.fieldErrors?.message ? (
@@ -101,6 +113,7 @@ export function ContactMessageForm({
 }
 
 function Field({
+  compact = false,
   label,
   name,
   type = "text",
@@ -109,6 +122,7 @@ function Field({
   placeholder,
   autoComplete,
 }: {
+  compact?: boolean;
   label: string;
   name: string;
   type?: string;
@@ -118,7 +132,7 @@ function Field({
   autoComplete?: string;
 }) {
   return (
-    <label className="grid gap-2 text-sm font-medium">
+    <label className={cn("grid gap-2 text-sm font-medium", compact && "gap-1.5")}>
       {label}
       <Input
         name={name}
@@ -126,7 +140,7 @@ function Field({
         defaultValue={defaultValue ?? ""}
         placeholder={placeholder}
         autoComplete={autoComplete}
-        className={error ? "border-destructive" : ""}
+        className={cn(compact && "h-10", error && "border-destructive")}
       />
       {error ? (
         <span className="text-xs font-normal text-destructive">{error}</span>
