@@ -196,9 +196,9 @@ const modelPills = [
 const mobileModelPills = [
   { label: "Codex", icon: CodexLogo, className: "col-span-3" },
   { label: "YouTube", icon: YouTubeLogo, className: "col-span-3" },
-  { label: "Instagram", icon: InstagramLogo, className: "col-span-2" },
-  { label: "TikTok", icon: TikTokLogo, className: "col-span-2" },
-  { label: "Spotify", icon: SpotifyLogo, className: "col-span-2" },
+  { label: "Instagram", icon: InstagramLogo, className: "col-span-3" },
+  { label: "TikTok", icon: TikTokLogo, className: "col-span-3" },
+  { label: "Spotify", icon: SpotifyLogo, className: "col-span-3" },
   { label: "Claude", icon: ClaudeLogo, className: "col-span-3" },
   { label: "Tecnología", icon: TechnologyLogo, className: "col-span-3" },
   { label: "Gemini", icon: GeminiLogo, className: "col-span-2" },
@@ -246,7 +246,7 @@ export default async function HomePage() {
                   <span className="inline-flex size-5 shrink-0 items-center justify-center">
                     <item.icon className="size-5" />
                   </span>
-                  <span className="max-w-full truncate">{item.label}</span>
+                  <span className="min-w-0 whitespace-nowrap">{item.label}</span>
                 </span>
               ))}
             </div>
