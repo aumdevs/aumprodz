@@ -23,6 +23,7 @@ type ContactCopy = {
   emailButton: string;
   formDescription: string;
   formTitle: string;
+  formWhatsappButton: string;
   message: string;
   title: string;
   whatsappButton: string;
@@ -35,8 +36,9 @@ const contactCopyByLocale: Record<AppLocale, ContactCopy> = {
     badge: "Pale ak AUM",
     emailButton: "Pa email",
     formDescription:
-      "Di m sa ou bezwen. Mesaj la ale dirèk nan panèl admin pou swivi.",
-    formTitle: "Mesaj rapid",
+      "Mesaj sa a ale dirèk nan panèl admin. Apre sa, m ap reponn nan imèl ou kite a.",
+    formTitle: "Voye mesaj",
+    formWhatsappButton: "Kontakte sou WhatsApp",
     message:
       "Ekri ak kontèks: chanèl YouTube, sit entènèt, miniati, videyo, mizik oswa nenpòt sèvis ou vle travay ak AUM PRODZ. Plis mesaj la klè, se plis nou ka avanse vit.",
     title: "Di m sa ou bezwen epi m ap ede w mete pwochen etap la an lòd.",
@@ -50,7 +52,6 @@ const contactCopyByLocale: Record<AppLocale, ContactCopy> = {
       messageLabel: "Mesaj",
       messagePlaceholder:
         "Ekri mesaj ou isit la. Di m sa ou vle fè, pwoblèm ou genyen oswa sèvis ou bezwen.",
-      mobileSubmit: "Kontakte sou WhatsApp",
       nameLabel: "Non",
       namePlaceholder: "Non ou",
       submit: "Voye",
@@ -61,8 +62,9 @@ const contactCopyByLocale: Record<AppLocale, ContactCopy> = {
     badge: "Ponte en contacto",
     emailButton: "Vía email",
     formDescription:
-      "Cuéntame qué quieres decir y te ayudo. Este mensaje llega directo al panel admin.",
-    formTitle: "Mensaje rápido",
+      "Este mensaje llega directo al panel admin. Después respondo al correo que dejaste.",
+    formTitle: "Enviar mensaje",
+    formWhatsappButton: "Contactar vía WhatsApp",
     message:
       "Escríbeme con contexto: canal de YouTube, página web, miniatura, video, música o cualquier servicio que quieras trabajar con AUM PRODZ. Mientras más claro sea el mensaje, más rápido podemos avanzar.",
     title: "Cuéntame qué necesitas y te ayudo a ordenar el próximo paso.",
@@ -76,7 +78,6 @@ const contactCopyByLocale: Record<AppLocale, ContactCopy> = {
       messageLabel: "Mensaje",
       messagePlaceholder:
         "Ingresa tu mensaje aquí. Cuéntame qué quieres hacer, qué problema tienes o qué servicio necesitas.",
-      mobileSubmit: "Contactar vía WhatsApp",
       nameLabel: "Nombre",
       namePlaceholder: "Tu nombre",
       submit: "Enviar",
@@ -87,8 +88,9 @@ const contactCopyByLocale: Record<AppLocale, ContactCopy> = {
     badge: "Contact AUM",
     emailButton: "By email",
     formDescription:
-      "Tell me what you need. This message goes directly to the admin panel for follow-up.",
-    formTitle: "Quick message",
+      "This message goes directly to the admin panel. Then I reply to the email you left.",
+    formTitle: "Send message",
+    formWhatsappButton: "Contact via WhatsApp",
     message:
       "Write with context: YouTube channel, website, thumbnail, video, music or any service you want to work on with AUM PRODZ. The clearer the message, the faster we can move.",
     title: "Tell me what you need and I will help organize the next step.",
@@ -102,7 +104,6 @@ const contactCopyByLocale: Record<AppLocale, ContactCopy> = {
       messageLabel: "Message",
       messagePlaceholder:
         "Enter your message here. Tell me what you want to do, what problem you have or what service you need.",
-      mobileSubmit: "Contact via WhatsApp",
       nameLabel: "Name",
       namePlaceholder: "Your name",
       submit: "Send",
@@ -113,8 +114,9 @@ const contactCopyByLocale: Record<AppLocale, ContactCopy> = {
     badge: "Contacter AUM",
     emailButton: "Par email",
     formDescription:
-      "Dites-moi ce dont vous avez besoin. Le message arrive directement au panel admin pour suivi.",
-    formTitle: "Message rapide",
+      "Ce message arrive directement au panel admin. Ensuite, je réponds à l'email que vous avez laissé.",
+    formTitle: "Envoyer un message",
+    formWhatsappButton: "Contacter via WhatsApp",
     message:
       "Écrivez avec contexte: chaîne YouTube, site web, miniature, vidéo, musique ou tout service à travailler avec AUM PRODZ. Plus le message est clair, plus nous avançons vite.",
     title: "Dites-moi ce dont vous avez besoin et je vous aide à organiser la prochaine étape.",
@@ -128,7 +130,6 @@ const contactCopyByLocale: Record<AppLocale, ContactCopy> = {
       messageLabel: "Message",
       messagePlaceholder:
         "Entrez votre message ici. Dites-moi ce que vous voulez faire, le problème ou le service nécessaire.",
-      mobileSubmit: "Contacter via WhatsApp",
       nameLabel: "Nom",
       namePlaceholder: "Votre nom",
       submit: "Envoyer",
@@ -139,8 +140,9 @@ const contactCopyByLocale: Record<AppLocale, ContactCopy> = {
     badge: "Fale com AUM",
     emailButton: "Por email",
     formDescription:
-      "Conte o que você precisa. Esta mensagem chega direto ao painel admin para acompanhamento.",
-    formTitle: "Mensagem rápida",
+      "Esta mensagem chega direto ao painel admin. Depois respondo no email que você deixou.",
+    formTitle: "Enviar mensagem",
+    formWhatsappButton: "Contactar pelo WhatsApp",
     message:
       "Escreva com contexto: canal de YouTube, site, miniatura, vídeo, música ou qualquer serviço que queira trabalhar com AUM PRODZ. Quanto mais clara a mensagem, mais rápido avançamos.",
     title: "Conte o que você precisa e eu ajudo a organizar o próximo passo.",
@@ -154,7 +156,6 @@ const contactCopyByLocale: Record<AppLocale, ContactCopy> = {
       messageLabel: "Mensagem",
       messagePlaceholder:
         "Digite sua mensagem aqui. Conte o que quer fazer, o problema ou o serviço que precisa.",
-      mobileSubmit: "Contactar pelo WhatsApp",
       nameLabel: "Nome",
       namePlaceholder: "Seu nome",
       submit: "Enviar",
@@ -230,6 +231,19 @@ export default async function ContactPage() {
           </CardHeader>
           <CardContent>
             <ContactMessageForm copy={copy.form} />
+            <a
+              href={whatsappHref}
+              target="_blank"
+              rel="noreferrer"
+              className={cn(
+                buttonVariants({ size: "lg" }),
+                "whatsapp-cta-button mt-4 w-full",
+              )}
+              aria-disabled={!whatsappNumber}
+            >
+              <MessageCircle className="size-5" />
+              {copy.formWhatsappButton}
+            </a>
           </CardContent>
         </Card>
       </div>

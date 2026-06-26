@@ -182,7 +182,7 @@ export async function submitContactMessageAction(
   revalidatePath("/admin/leads");
 
   return {
-    success: "Mensaje enviado. Lo veremos en el panel admin.",
+    success: "Mensaje enviado. Te responderé al correo que dejaste.",
     values: {},
   };
 }
