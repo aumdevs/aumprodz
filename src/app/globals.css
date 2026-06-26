@@ -227,6 +227,31 @@ textarea {
     color: var(--foreground);
   }
 
+  .dark .public-site {
+    color-scheme: dark;
+    --background: #120f10;
+    --foreground: #fff8f3;
+    --card: #1b1717;
+    --card-foreground: #fff8f3;
+    --muted: #282222;
+    --muted-foreground: #c9bab3;
+    --border: #3d3330;
+    --primary: #ff1f2d;
+    --primary-foreground: #fff8f3;
+    --accent: #c96753;
+    --accent-foreground: #fff8f3;
+    --surface: #191313;
+    --surface-strong: #241c1b;
+    --glass: rgba(27, 23, 23, 0.84);
+    --ring: rgba(255, 31, 45, 0.32);
+    --shadow-soft: 0 20px 60px rgba(0, 0, 0, 0.38);
+    --shadow-glow: 0 18px 46px rgba(255, 31, 45, 0.16);
+    background:
+      radial-gradient(circle at 50% 5%, rgba(255, 31, 45, 0.08), transparent 24rem),
+      var(--background);
+    color: var(--foreground);
+  }
+
   .public-site .premium-grid {
     background-image: none;
   }

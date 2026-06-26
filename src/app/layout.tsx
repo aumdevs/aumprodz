@@ -55,7 +55,7 @@ export default async function RootLayout({
   return (
     <html
       lang={locale}
-      className={`${geistSans.variable} ${geistMono.variable} dark h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} light h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full bg-background text-foreground">
@@ -64,11 +64,11 @@ export default async function RootLayout({
             __html: `
               try {
                 const stored = localStorage.getItem("aum-theme");
-                const theme = stored === "light" || stored === "dark" ? stored : "dark";
+                const theme = stored === "light" || stored === "dark" ? stored : "light";
                 document.documentElement.classList.toggle("light", theme === "light");
-                document.documentElement.classList.toggle("dark", theme !== "light");
+                document.documentElement.classList.toggle("dark", theme === "dark");
               } catch (_) {
-                document.documentElement.classList.add("dark");
+                document.documentElement.classList.add("light");
               }
             `,
           }}

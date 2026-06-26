@@ -45,7 +45,7 @@ export function PublicHeaderClient({
           <div className="min-w-0 shrink-0">
             <Link
               href="/"
-              className="inline-flex min-w-0 items-center gap-2 font-black sm:hidden"
+              className="inline-flex min-w-0 items-center font-black sm:hidden"
               aria-label="AUM PRODZ"
             >
               <Image
@@ -55,9 +55,6 @@ export function PublicHeaderClient({
                 height={80}
                 className="size-10 shrink-0 rounded-full object-contain"
               />
-              <span className="truncate text-sm lowercase tracking-[0.08em] text-foreground">
-                aumprodz
-              </span>
             </Link>
             <AumProdzLogo
               className="hidden sm:inline-flex"
@@ -104,6 +101,7 @@ export function PublicHeaderClient({
 
           <div className="flex min-w-0 items-center justify-end gap-1.5 md:hidden">
             <LanguageSwitcher compact currentLocale={currentLocale} />
+            <ThemeToggle />
             <Link
               href="/login?next=%2Fartist"
               aria-label={copy.artistCta}
@@ -147,10 +145,13 @@ export function PublicHeaderClient({
 
             <div className="mt-4 grid gap-3 rounded-2xl border border-border bg-background p-3">
               <div className="flex items-center justify-between gap-3">
-                <span className="text-xs font-black uppercase tracking-[0.18em] text-muted-foreground">
-                  aumprodz
-                </span>
-                <ThemeToggle />
+                <Image
+                  src="/aum-prodz-logo-transparent.png"
+                  alt=""
+                  width={64}
+                  height={64}
+                  className="size-10 rounded-full object-contain"
+                />
               </div>
               <Link
                 href="/servicios"

@@ -10,12 +10,12 @@ type ThemeMode = "dark" | "light";
 export function ThemeToggle() {
   const [theme, setTheme] = useState<ThemeMode>(() => {
     if (typeof window === "undefined") {
-      return "dark";
+      return "light";
     }
 
-    return window.localStorage.getItem("aum-theme") === "light"
-      ? "light"
-      : "dark";
+    return window.localStorage.getItem("aum-theme") === "dark"
+      ? "dark"
+      : "light";
   });
 
   const nextTheme = theme === "dark" ? "light" : "dark";
