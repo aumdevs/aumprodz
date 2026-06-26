@@ -71,7 +71,7 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
     aboutEyebrow: "¿Quién es Aum?",
     aboutTitle: "Aum es Bendjy, el creador detrás de Aum Prodz.",
     aboutText:
-      "Creo videos, experiencias digitales y servicios prácticos para ayudar a la comunidad haitiana a entender mejor la tecnología, el contenido, YouTube, la música y los negocios en internet.",
+      "Me especializo en la producción de contenido visual y digital, y en la programación de aplicaciones para Android, iOS y web.",
     artistCta: "Aum Artist",
     artistText:
       "Para artistas, Aum está construyendo un espacio donde perfil, archivos, lanzamientos y promoción tengan más orden.",
@@ -99,7 +99,7 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
     aboutEyebrow: "Who is Aum?",
     aboutTitle: "Aum is Bendjy, the creator behind Aum Prodz.",
     aboutText:
-      "I create videos, digital experiences and practical services to help the Haitian community understand technology, content, YouTube, music and online business with more clarity.",
+      "I specialize in visual and digital content production, and in programming applications for Android, iOS and web.",
     artistCta: "Aum Artist",
     artistText:
       "For artists, Aum is building a space where profiles, files, releases and promotion can stay more organized.",
@@ -127,7 +127,7 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
     aboutEyebrow: "Qui est Aum?",
     aboutTitle: "Aum est Bendjy, le créateur derrière Aum Prodz.",
     aboutText:
-      "Je crée des vidéos, des expériences digitales et des services pratiques pour aider la communauté haïtienne à mieux comprendre la technologie, le contenu, YouTube, la musique et les projets en ligne.",
+      "Je me spécialise dans la production de contenu visuel et digital, ainsi que dans la programmation d'applications pour Android, iOS et le web.",
     artistCta: "Aum Artist",
     artistText:
       "Pour les artistes, Aum construit un espace où profil, fichiers, sorties et promotion peuvent être mieux organisés.",
@@ -155,7 +155,7 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
     aboutEyebrow: "Quem é Aum?",
     aboutTitle: "Aum é Bendjy, o criador por trás da Aum Prodz.",
     aboutText:
-      "Eu crio vídeos, experiências digitais e serviços práticos para ajudar a comunidade haitiana a entender melhor tecnologia, conteúdo, YouTube, música e projetos online.",
+      "Sou especializado na produção de conteúdo visual e digital, e na programação de aplicativos para Android, iOS e web.",
     artistCta: "Aum Artist",
     artistText:
       "Para artistas, Aum está construindo um espaço onde perfil, arquivos, lançamentos e promoção tenham mais organização.",
