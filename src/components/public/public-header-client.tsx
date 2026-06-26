@@ -21,6 +21,7 @@ type PublicHeaderCopy = {
   artistCta: string;
   close: string;
   menu: string;
+  platformLabel: string;
   projectCta: string;
 };
 
@@ -41,8 +42,15 @@ export function PublicHeaderClient({
       <div className="public-shell">
         <div className="grid min-h-14 grid-cols-[auto_1fr_auto] items-center gap-3">
           <div className="min-w-0 shrink-0">
-            <AumProdzLogo compact className="sm:hidden" />
-            <AumProdzLogo className="hidden sm:inline-flex" />
+            <AumProdzLogo
+              compact
+              className="sm:hidden"
+              platformLabel={copy.platformLabel}
+            />
+            <AumProdzLogo
+              className="hidden sm:inline-flex"
+              platformLabel={copy.platformLabel}
+            />
           </div>
 
           <nav

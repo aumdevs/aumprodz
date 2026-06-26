@@ -2,19 +2,31 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
+  BadgeCheck,
+  BadgeDollarSign,
   Brush,
+  ChartNoAxesCombined,
+  CircleDollarSign,
+  FileText,
+  Globe2,
+  Image as ImageIcon,
   KeyRound,
+  Lightbulb,
   MessageCircle,
   MonitorPlay,
+  MousePointerClick,
+  Palette,
+  SearchCheck,
+  Settings,
   ShieldCheck,
-  Zap,
+  Video,
+  type LucideIcon,
 } from "lucide-react";
 
 import { PublicEventTracker } from "@/components/public/public-event-tracker";
 import { WhatsappCtaLink } from "@/components/public/whatsapp-cta-link";
 import { YoutubeVideosSection } from "@/components/public/youtube-videos-section";
 import { buttonVariants } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getPublicServices, type ServiceSlug } from "@/lib/content/services";
 import { getPublicYoutubeVideos } from "@/lib/content/youtube";
 import type { AppLocale } from "@/lib/i18n/config";
@@ -35,13 +47,10 @@ type HomeCopy = {
   heroLineTwo: string;
   heroPrice: string;
   modelIntro: string;
-  processText: string;
-  processTitle: string;
   serviceCta: string;
   serviceText: string;
   serviceTitle: string;
   startCta: string;
-  processCards: { text: string; title: string }[];
   viewAll: string;
 };
 
@@ -57,16 +66,8 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
     finalTitle: "Pare pou mete pwojè dijital ou anba kontwòl?",
     heroLineOne: "Rete ajou",
     heroLineTwo: "ak AUM",
-    heroPrice: "nan yon sèl kote pou sèlman 50 US$/mwa",
+    heroPrice: "pou sèlman 50 US$/mwa",
     modelIntro: "Aprann sou",
-    processText:
-      "Nou pale sou objektif la, nou verifye reyalite a, epi nou mete sèvis la nan etap ki klè.",
-    processTitle: "Kijan travay la fèt.",
-    processCards: [
-      { title: "Ou mande", text: "Ou ekri AUM epi ou eksplike sa ou bezwen pou pwojè a." },
-      { title: "Nou bay priyorite", text: "Nou chwazi sa ki pi enpòtan pou mwa a selon objektif ou." },
-      { title: "Nou egzekite", text: "Nou travay sou sèvis yo epi nou fè suivi ak livrezon klè." },
-    ],
     serviceText:
       "Chak sèvis gen pwòp pri ak pwòp etap li. Chwazi sa ou bezwen epi pale ak AUM pou kòmanse.",
     serviceTitle: "Sèvis disponib",
@@ -85,16 +86,8 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
     finalTitle: "¿Listo para poner tu proyecto digital bajo control?",
     heroLineOne: "Mantente al día",
     heroLineTwo: "con AUM",
-    heroPrice: "en un solo lugar por tan solo 50 US$/mes",
+    heroPrice: "por tan solo 50 US$/mes",
     modelIntro: "Aprende sobre",
-    processText:
-      "Hablamos del objetivo, revisamos la realidad y convertimos el servicio en pasos claros.",
-    processTitle: "Cómo funciona el trabajo.",
-    processCards: [
-      { title: "Pides", text: "Hablas con AUM y explicas qué necesitas para tu proyecto." },
-      { title: "Priorizamos", text: "Ordenamos lo más importante del mes según tu objetivo." },
-      { title: "Ejecutamos", text: "Trabajamos los servicios y damos seguimiento con entregas claras." },
-    ],
     serviceText:
       "Cada servicio mantiene su precio normal y su propio alcance. Elige lo que necesitas y habla con AUM para empezar.",
     serviceTitle: "Servicios disponibles",
@@ -113,16 +106,8 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
     finalTitle: "Ready to put your digital project under control?",
     heroLineOne: "Stay up to date",
     heroLineTwo: "with AUM",
-    heroPrice: "in one place for only 50 US$/month",
+    heroPrice: "for only 50 US$/month",
     modelIntro: "Learn about",
-    processText:
-      "We talk about the goal, review the real situation and turn the service into clear steps.",
-    processTitle: "How the work happens.",
-    processCards: [
-      { title: "Request", text: "You talk to AUM and explain what your project needs." },
-      { title: "Prioritize", text: "We organize the most important work for the month." },
-      { title: "Execute", text: "We work on the services and follow up with clear delivery." },
-    ],
     serviceText:
       "Each service keeps its own price and scope. Choose what you need and talk to AUM to start.",
     serviceTitle: "Available services",
@@ -141,16 +126,8 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
     finalTitle: "Prêt à mettre votre projet digital sous contrôle?",
     heroLineOne: "Restez à jour",
     heroLineTwo: "avec AUM",
-    heroPrice: "au même endroit pour seulement 50 US$/mois",
+    heroPrice: "pour seulement 50 US$/mois",
     modelIntro: "Apprenez sur",
-    processText:
-      "Nous parlons de l'objectif, vérifions la réalité et transformons le service en étapes claires.",
-    processTitle: "Comment le travail se fait.",
-    processCards: [
-      { title: "Demandez", text: "Vous parlez avec AUM et expliquez le besoin du projet." },
-      { title: "Priorisez", text: "Nous organisons le plus important pour le mois." },
-      { title: "Exécutez", text: "Nous travaillons les services avec un suivi clair." },
-    ],
     serviceText:
       "Chaque service garde son propre prix et son propre périmètre. Choisissez ce dont vous avez besoin et parlez avec AUM.",
     serviceTitle: "Services disponibles",
@@ -169,16 +146,8 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
     finalTitle: "Pronto para colocar seu projeto digital sob controle?",
     heroLineOne: "Fique em dia",
     heroLineTwo: "com AUM",
-    heroPrice: "em um só lugar por apenas 50 US$/mes",
+    heroPrice: "por apenas 50 US$/mes",
     modelIntro: "Aprenda sobre",
-    processText:
-      "Falamos sobre o objetivo, revisamos a realidade e transformamos o serviço em passos claros.",
-    processTitle: "Como o trabalho acontece.",
-    processCards: [
-      { title: "Pede", text: "Você fala com AUM e explica o que o projeto precisa." },
-      { title: "Priorizamos", text: "Organizamos o mais importante do mês conforme seu objetivo." },
-      { title: "Executamos", text: "Trabalhamos os serviços com acompanhamento e entregas claras." },
-    ],
     serviceText:
       "Cada serviço mantém seu preço normal e seu próprio escopo. Escolha o que precisa e fale com AUM para começar.",
     serviceTitle: "Serviços disponíveis",
@@ -189,22 +158,20 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
 };
 
 const modelPills = [
-  { label: "Claude", mark: "✳", tone: "text-[#d46d4c]" },
-  { label: "GPT", mark: "◌", tone: "text-[#2f2f2f]" },
-  { label: "Gemini", mark: "✦", tone: "text-[#3d8ef4]" },
-  { label: "Mistral", mark: "M", tone: "text-[#e9572f]" },
-  { label: "Grok", mark: "G", tone: "text-[#111111]" },
-  { label: "DeepSeek", mark: "D", tone: "text-[#4d65ff]" },
-  { label: "Kimi", mark: "K", tone: "text-[#111111]" },
-  { label: "Perplexity", mark: "P", tone: "text-[#10a7b5]" },
-  { label: "YouTube", mark: "▶", tone: "text-[#ff0033]" },
-  { label: "Instagram", mark: "◎", tone: "text-[#d62976]" },
-  { label: "TikTok", mark: "♪", tone: "text-[#111111]" },
-  { label: "Recraft", mark: "R", tone: "text-[#111111]" },
-  { label: "FLUX", mark: "F", tone: "text-[#171717]" },
+  { label: "Claude", icon: ClaudeLogo },
+  { label: "GPT", icon: GptLogo },
+  { label: "Gemini", icon: GeminiLogo },
+  { label: "Mistral", icon: MistralLogo },
+  { label: "Grok", icon: GrokLogo },
+  { label: "DeepSeek", icon: DeepSeekLogo },
+  { label: "Kimi", icon: KimiLogo },
+  { label: "Perplexity", icon: PerplexityLogo },
+  { label: "YouTube", icon: YouTubeLogo },
+  { label: "Instagram", icon: InstagramLogo },
+  { label: "TikTok", icon: TikTokLogo },
+  { label: "Facebook", icon: FacebookLogo },
+  { label: "Tecnología", icon: TechnologyLogo },
 ] as const;
-
-const processIcons = [MessageCircle, ShieldCheck, Zap] as const;
 
 export default async function HomePage() {
   const locale = await getCurrentLocale();
@@ -240,14 +207,12 @@ export default async function HomePage() {
                 key={item.label}
                 className="mammouth-pill inline-flex items-center gap-2 rounded-xl px-4 py-2 text-base font-bold text-foreground"
               >
-                <span className={cn("text-lg font-black", item.tone)}>
-                  {item.mark}
-                </span>
+                <item.icon className="size-5" />
                 {item.label}
               </span>
             ))}
           </div>
-          <p className="mt-7 text-3xl font-medium text-muted-foreground sm:text-5xl">
+          <p className="mt-7 text-2xl font-medium text-muted-foreground sm:text-4xl">
             {copy.heroPrice}
           </p>
           <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row">
@@ -276,60 +241,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="public-section-tight">
-        <div className="public-shell">
-          <SectionHeading title={copy.processTitle} text={copy.processText} />
-          <div className="mx-auto mt-12 grid max-w-5xl gap-5 md:grid-cols-3">
-            {copy.processCards.map(({ text, title }, index) => {
-              const Icon = processIcons[index] ?? Zap;
-
-              return (
-              <Card key={title} className="mammouth-card text-center">
-                <CardHeader>
-                  <span className="mx-auto flex size-16 items-center justify-center rounded-full bg-primary text-primary-foreground">
-                    <Icon className="size-7" />
-                  </span>
-                  <CardTitle className="text-2xl">{title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm leading-6 text-muted-foreground">{text}</p>
-                </CardContent>
-              </Card>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
       <YoutubeVideosSection videos={youtubeVideos} compact />
-
-      <section className="public-section-tight">
-        <div className="public-shell text-center">
-          <h2 className="mammouth-title mx-auto max-w-4xl text-4xl sm:text-6xl">
-            {copy.finalTitle}
-          </h2>
-          <p className="mammouth-subtitle mx-auto mt-5 max-w-2xl text-xl">
-            {copy.finalText}
-          </p>
-          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-            <WhatsappCtaLink
-              service="youtube-adsense"
-              source="home"
-              placement="final_whatsapp"
-              page="/"
-              label={t(locale, "home.whatsapp")}
-              size="lg"
-            />
-            <Link
-              href="/servicios"
-              className={cn(buttonVariants({ size: "lg", variant: "secondary" }))}
-            >
-              {copy.viewAll}
-              <ArrowRight className="size-5" />
-            </Link>
-          </div>
-        </div>
-      </section>
     </>
   );
 }
@@ -340,6 +252,121 @@ function SectionHeading({ text, title }: { text: string; title: string }) {
       <h2 className="mammouth-title text-4xl sm:text-6xl">{title}</h2>
       <p className="mammouth-subtitle mt-4 text-xl sm:text-2xl">{text}</p>
     </div>
+  );
+}
+
+function ClaudeLogo({ className }: { className?: string }) {
+  return <span className={cn("text-xl font-black text-[#d46d4c]", className)}>✳</span>;
+}
+
+function GeminiLogo({ className }: { className?: string }) {
+  return <span className={cn("text-xl font-black text-[#3d8ef4]", className)}>✦</span>;
+}
+
+function MistralLogo({ className }: { className?: string }) {
+  return <span className={cn("text-lg font-black text-[#e9572f]", className)}>M</span>;
+}
+
+function GrokLogo({ className }: { className?: string }) {
+  return <span className={cn("text-lg font-black text-[#111111]", className)}>G</span>;
+}
+
+function DeepSeekLogo({ className }: { className?: string }) {
+  return <span className={cn("text-lg font-black text-[#4d65ff]", className)}>D</span>;
+}
+
+function KimiLogo({ className }: { className?: string }) {
+  return <span className={cn("text-lg font-black text-[#111111]", className)}>K</span>;
+}
+
+function PerplexityLogo({ className }: { className?: string }) {
+  return <span className={cn("text-lg font-black text-[#10a7b5]", className)}>P</span>;
+}
+
+function TechnologyLogo({ className }: { className?: string }) {
+  return <Settings className={cn("text-primary", className)} />;
+}
+
+function FacebookLogo({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        fill="#1877f2"
+        d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.84c0-2.52 1.49-3.91 3.77-3.91 1.09 0 2.23.2 2.23.2v2.46h-1.25c-1.24 0-1.63.78-1.63 1.57v1.9h2.77l-.44 2.91h-2.33V22C18.34 21.24 22 17.08 22 12.06Z"
+      />
+    </svg>
+  );
+}
+
+function YouTubeLogo({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        fill="#ff0033"
+        d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.6 4.6 12 4.6 12 4.6s-5.6 0-7.5.5a3 3 0 0 0-2.1 2.1C2 9.1 2 12 2 12s0 2.9.4 4.8a3 3 0 0 0 2.1 2.1c1.9.5 7.5.5 7.5.5s5.6 0 7.5-.5a3 3 0 0 0 2.1-2.1c.4-1.9.4-4.8.4-4.8s0-2.9-.4-4.8Z"
+      />
+      <path fill="#fff" d="m10 15.5 5.2-3.5L10 8.5v7Z" />
+    </svg>
+  );
+}
+
+function InstagramLogo({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" aria-hidden="true">
+      <defs>
+        <linearGradient id="instagram-gradient" x1="2" x2="22" y1="22" y2="2">
+          <stop stopColor="#feda75" />
+          <stop offset=".35" stopColor="#fa7e1e" />
+          <stop offset=".62" stopColor="#d62976" />
+          <stop offset="1" stopColor="#4f5bd5" />
+        </linearGradient>
+      </defs>
+      <rect
+        width="17"
+        height="17"
+        x="3.5"
+        y="3.5"
+        rx="5"
+        fill="none"
+        stroke="url(#instagram-gradient)"
+        strokeWidth="2"
+      />
+      <circle cx="12" cy="12" r="3.4" fill="none" stroke="url(#instagram-gradient)" strokeWidth="2" />
+      <circle cx="16.9" cy="7.1" r="1.2" fill="#d62976" />
+    </svg>
+  );
+}
+
+function TikTokLogo({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        fill="#25f4ee"
+        d="M14.7 3.5c.4 2.3 1.8 3.7 4.2 3.9v3a7 7 0 0 1-4.1-1.3v5.8c0 3-2 5.2-5.1 5.2a4.9 4.9 0 0 1-5-4.9c0-3 2.3-5 5.4-5 .4 0 .7 0 1 .1v3.3a2.4 2.4 0 0 0-1.1-.2 1.8 1.8 0 1 0 1.8 1.8V3.5h2.9Z"
+        opacity=".7"
+      />
+      <path
+        fill="#fe2c55"
+        d="M15.6 3.5c.4 2.3 1.8 3.7 4.2 3.9v3a7 7 0 0 1-4.1-1.3v5.8c0 3-2 5.2-5.1 5.2a4.9 4.9 0 0 1-5-4.9c0-3 2.3-5 5.4-5 .4 0 .7 0 1 .1v3.3a2.4 2.4 0 0 0-1.1-.2 1.8 1.8 0 1 0 1.8 1.8V3.5h2.9Z"
+        opacity=".85"
+      />
+      <path
+        fill="#111"
+        d="M15.1 3.5c.4 2.3 1.8 3.7 4.2 3.9v3a7 7 0 0 1-4.1-1.3v5.8c0 3-2 5.2-5.1 5.2a4.9 4.9 0 0 1-5-4.9c0-3 2.3-5 5.4-5 .4 0 .7 0 1 .1v3.3a2.4 2.4 0 0 0-1.1-.2 1.8 1.8 0 1 0 1.8 1.8V3.5h2.9Z"
+      />
+    </svg>
+  );
+}
+
+function GptLogo({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" aria-hidden="true">
+      <g fill="none" stroke="#111" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.7">
+        <path d="M12 3.2a3.3 3.3 0 0 1 5 2.8v1.2l1 .6a3.3 3.3 0 0 1 0 5.8l-1 .6v1.2a3.3 3.3 0 0 1-5 2.8l-1-.6-1 .6a3.3 3.3 0 0 1-5-2.8v-1.2l-1-.6a3.3 3.3 0 0 1 0-5.8l1-.6V6a3.3 3.3 0 0 1 5-2.8l1 .6 1-.6Z" />
+        <path d="M8 7.4 12 5l4 2.4v4.7l-4 2.4-4-2.4V7.4Z" />
+        <path d="M8 12.1 4.8 10M16 7.4l3.2 2.1M16 16.6v-4.5M8 16.6v-4.5M12 14.5v4" />
+      </g>
+    </svg>
   );
 }
 
@@ -393,20 +420,24 @@ function ServicesAvailableBoard({
               </h3>
               {service ? (
                 <div className="grid gap-3">
-                  {rows.map((row) => (
-                    <Link
-                      key={`${service.slug}-${row}`}
-                      href={`/servicios/${service.slug}`}
-                      className="group flex min-h-20 items-center gap-4 rounded-3xl bg-card px-4 py-3 text-left shadow-[0_14px_30px_rgba(80,27,24,0.08)] transition-transform hover:-translate-y-0.5"
-                    >
-                      <span className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-background text-primary">
-                        <ColumnIcon className="size-5" />
-                      </span>
-                      <span className="text-base font-black leading-tight text-foreground">
-                        {row}
-                      </span>
-                    </Link>
-                  ))}
+                  {rows.map((row) => {
+                    const RowIcon = getServiceRowIcon(row, ColumnIcon);
+
+                    return (
+                      <Link
+                        key={`${service.slug}-${row}`}
+                        href={`/servicios/${service.slug}`}
+                        className="group flex min-h-20 items-center gap-4 rounded-3xl bg-card px-4 py-3 text-left shadow-[0_14px_30px_rgba(80,27,24,0.08)] transition-transform hover:-translate-y-0.5"
+                      >
+                        <span className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-background text-primary">
+                          <RowIcon className="size-5" />
+                        </span>
+                        <span className="text-base font-black leading-tight text-foreground">
+                          {row}
+                        </span>
+                      </Link>
+                    );
+                  })}
                   <Link
                     href={`/servicios/${service.slug}`}
                     className="mt-1 flex min-h-20 items-center justify-between gap-4 rounded-3xl bg-primary px-5 py-4 text-primary-foreground shadow-glow transition-transform hover:-translate-y-0.5"
@@ -442,4 +473,70 @@ function getServiceRows(
   ].filter(Boolean);
 
   return Array.from(new Set(rows)).slice(0, 5);
+}
+
+function getServiceRowIcon(row: string, fallback: LucideIcon): LucideIcon {
+  const text = row.toLowerCase();
+
+  if (hasAny(text, ["monetiz", "adsense", "dinero", "money", "paiement", "peman"])) {
+    return BadgeDollarSign;
+  }
+
+  if (hasAny(text, ["diagn", "revis", "review", "révision", "revizyon", "estado", "case", "caso"])) {
+    return SearchCheck;
+  }
+
+  if (hasAny(text, ["estrateg", "strategy", "estrateji", "stratég", "plan"])) {
+    return Lightbulb;
+  }
+
+  if (hasAny(text, ["web", "site", "sit ", "landing", "ecommerce", "arquitect", "architecture"])) {
+    return Globe2;
+  }
+
+  if (hasAny(text, ["conversion", "conversión", "conversao", "vender", "sell"])) {
+    return MousePointerClick;
+  }
+
+  if (hasAny(text, ["video", "vídeo", "videyo", "reels"])) {
+    return Video;
+  }
+
+  if (hasAny(text, ["imagen", "image", "imaj", "visual", "miniatura", "flyer"])) {
+    return ImageIcon;
+  }
+
+  if (hasAny(text, ["diseño", "design", "branding", "contenido", "content", "kontni", "conteúdo"])) {
+    return Palette;
+  }
+
+  if (hasAny(text, ["cuenta", "account", "kont", "compte", "acceso", "access", "aksè"])) {
+    return KeyRound;
+  }
+
+  if (hasAny(text, ["seguridad", "security", "sécurité", "proteger", "protect"])) {
+    return ShieldCheck;
+  }
+
+  if (hasAny(text, ["entrega", "delivery", "livraison", "livrezon", "publicar", "publishing"])) {
+    return BadgeCheck;
+  }
+
+  if (hasAny(text, ["archivo", "file", "fichye", "document", "copy", "texto", "text"])) {
+    return FileText;
+  }
+
+  if (hasAny(text, ["objetivo", "analytics", "données", "datos", "data"])) {
+    return ChartNoAxesCombined;
+  }
+
+  if (hasAny(text, ["precio", "price", "costo", "cost"])) {
+    return CircleDollarSign;
+  }
+
+  return fallback;
+}
+
+function hasAny(value: string, terms: string[]) {
+  return terms.some((term) => value.includes(term));
 }

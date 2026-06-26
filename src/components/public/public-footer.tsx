@@ -17,6 +17,7 @@ const footerCopyByLocale: Record<
     cta: string;
     description: string;
     language: string;
+    platformLabel: string;
     privateText: string;
     servicesText: string;
     small: string;
@@ -30,6 +31,7 @@ const footerCopyByLocale: Record<
     description:
       "Digital Mission Control pou kreyatè, atis, YouTuber ak biznis reyèl ki vle plis kontwòl.",
     language: "Lang",
+    platformLabel: "Platfòm",
     privateText: "Aksè pwoteje pou operasyon, admin ak atis.",
     servicesText: "Sèvis, mizik, kontni, web, imaj ak operasyon dijital.",
     small: "Bati ak klète, respè ak vizyon entènasyonal.",
@@ -42,6 +44,7 @@ const footerCopyByLocale: Record<
     description:
       "Digital Mission Control para creadores, artistas, YouTubers y negocios reales que quieren más control.",
     language: "Idioma",
+    platformLabel: "Plataforma",
     privateText: "Accesos protegidos para operación, admin y artistas.",
     servicesText: "Servicios, música, contenido, web, imagen y operación digital.",
     small: "Construido con claridad, respeto y visión internacional.",
@@ -54,6 +57,7 @@ const footerCopyByLocale: Record<
     description:
       "Digital Mission Control for creators, artists, YouTubers and real businesses that want more control.",
     language: "Language",
+    platformLabel: "Platform",
     privateText: "Protected access for operations, admin and artists.",
     servicesText: "Services, music, content, web, image and digital operations.",
     small: "Built with clarity, respect and international vision.",
@@ -66,6 +70,7 @@ const footerCopyByLocale: Record<
     description:
       "Digital Mission Control pour créateurs, artistes, YouTubers et vrais business qui veulent plus de contrôle.",
     language: "Langue",
+    platformLabel: "Plateforme",
     privateText: "Accès protégés pour opération, admin et artistes.",
     servicesText: "Services, musique, contenu, web, image et opérations digitales.",
     small: "Construit avec clarté, respect et vision internationale.",
@@ -78,6 +83,7 @@ const footerCopyByLocale: Record<
     description:
       "Digital Mission Control para criadores, artistas, YouTubers e negócios reais que querem mais controle.",
     language: "Idioma",
+    platformLabel: "Plataforma",
     privateText: "Acessos protegidos para operação, admin e artistas.",
     servicesText: "Serviços, música, conteúdo, web, imagem e operação digital.",
     small: "Construído com clareza, respeito e visão internacional.",
@@ -93,7 +99,7 @@ export async function PublicFooter() {
     <footer className="bg-background">
       <div className="public-shell grid gap-8 border-t border-border py-14 lg:grid-cols-[1.25fr_0.9fr_0.9fr_0.9fr]">
         <div className="space-y-5">
-          <AumProdzLogo />
+          <AumProdzLogo platformLabel={copy.platformLabel} />
           <p className="max-w-sm text-sm leading-6 text-muted-foreground">
             {copy.description}
           </p>

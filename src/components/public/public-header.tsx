@@ -17,6 +17,7 @@ const headerCopyByLocale: Record<
     artistCta: string;
     close: string;
     menu: string;
+    platformLabel: string;
     projectCta: string;
   }
 > = {
@@ -24,30 +25,35 @@ const headerCopyByLocale: Record<
     artistCta: "AUM Artist",
     close: "Fèmen meni",
     menu: "Louvri meni",
+    platformLabel: "Platfòm",
     projectCta: "Kòmanse",
   },
   es: {
     artistCta: "AUM Artist",
     close: "Cerrar menú",
     menu: "Abrir menú",
+    platformLabel: "Plataforma",
     projectCta: "Comenzar",
   },
   en: {
     artistCta: "AUM Artist",
     close: "Close menu",
     menu: "Open menu",
+    platformLabel: "Platform",
     projectCta: "Start",
   },
   fr: {
     artistCta: "AUM Artist",
     close: "Fermer le menu",
     menu: "Ouvrir le menu",
+    platformLabel: "Plateforme",
     projectCta: "Commencer",
   },
   pt: {
     artistCta: "AUM Artist",
     close: "Fechar menu",
     menu: "Abrir menu",
+    platformLabel: "Plataforma",
     projectCta: "Começar",
   },
 };
