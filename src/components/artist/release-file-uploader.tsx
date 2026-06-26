@@ -10,6 +10,7 @@ import {
   releaseFileTypes,
   type ReleaseFileType,
 } from "@/lib/artist-files";
+import type { AppLocale } from "@/lib/i18n/config";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
@@ -20,6 +21,61 @@ type UploadResponse = {
   uploadMethod: "PUT";
 };
 
+const uploaderCopyByLocale: Record<
+  AppLocale,
+  {
+    selectFile: string;
+    removeFile: string;
+    selectOrLink: string;
+    externalLinkWillBeUsed: string;
+    uploadedExternalDisabled: string;
+  }
+> = {
+  ht: {
+    selectFile: "Chwazi fichye",
+    removeFile: "Retire fichye chwazi a",
+    selectOrLink: "Chwazi yon fichye pou chaje otomatikman oswa mete yon lyen.",
+    externalLinkWillBeUsed: "N ap itilize lyen ekstèn nan pou fichye sa a.",
+    uploadedExternalDisabled: "Fichye a chaje. Lyen ekstèn nan dezaktive.",
+  },
+  es: {
+    selectFile: "Seleccionar archivo",
+    removeFile: "Quitar archivo seleccionado",
+    selectOrLink: "Selecciona un archivo para subirlo automáticamente o pega un link.",
+    externalLinkWillBeUsed: "Usaremos el link externo para este archivo.",
+    uploadedExternalDisabled: "Archivo subido. El link externo queda desactivado.",
+  },
+  en: {
+    selectFile: "Select file",
+    removeFile: "Remove selected file",
+    selectOrLink: "Select a file to upload automatically or paste a link.",
+    externalLinkWillBeUsed: "We will use the external link for this file.",
+    uploadedExternalDisabled: "File uploaded. The external link is disabled.",
+  },
+  fr: {
+    selectFile: "Sélectionner un fichier",
+    removeFile: "Retirer le fichier sélectionné",
+    selectOrLink:
+      "Sélectionnez un fichier pour le charger automatiquement ou collez un lien.",
+    externalLinkWillBeUsed: "Nous utiliserons le lien externe pour ce fichier.",
+    uploadedExternalDisabled:
+      "Fichier chargé. Le lien externe est désactivé.",
+  },
+  pt: {
+    selectFile: "Selecionar arquivo",
+    removeFile: "Remover arquivo selecionado",
+    selectOrLink:
+      "Selecione um arquivo para enviar automaticamente ou cole um link.",
+    externalLinkWillBeUsed: "Usaremos o link externo para este arquivo.",
+    uploadedExternalDisabled:
+      "Arquivo enviado. O link externo fica desativado.",
+  },
+};
+
+function getUploaderCopy(locale: AppLocale) {
+  return uploaderCopyByLocale[locale] ?? uploaderCopyByLocale.ht;
+}
+
 export type ReleaseUploadSlot = {
   fileType: ReleaseFileType;
   label: string;
@@ -29,6 +85,7 @@ export type ReleaseUploadSlot = {
 };
 
 export function ReleaseFileUploader({
+  locale = "es",
   releaseId,
   resolveReleaseId,
   onUploaded,
@@ -37,6 +94,7 @@ export function ReleaseFileUploader({
   slots,
   withExternalLinks = false,
 }: {
+  locale?: AppLocale;
   releaseId?: string | null;
   resolveReleaseId?: () => Promise<string | null | undefined>;
   onUploaded?: (fileId: string, releaseId: string) => void;
@@ -57,6 +115,7 @@ export function ReleaseFileUploader({
             onExternalLinkChange={onExternalLinkChange}
             disabled={disabled}
             fixedSlot={slot}
+            locale={locale}
             withExternalLink={withExternalLinks}
           />
         ))}
@@ -71,6 +130,7 @@ export function ReleaseFileUploader({
       onUploaded={onUploaded}
       onExternalLinkChange={onExternalLinkChange}
       disabled={disabled}
+      locale={locale}
       withExternalLink={withExternalLinks}
     />
   );
@@ -83,6 +143,7 @@ function ReleaseUploadSlotControl({
   onExternalLinkChange,
   disabled = false,
   fixedSlot,
+  locale,
   withExternalLink = false,
 }: {
   releaseId?: string | null;
@@ -91,6 +152,7 @@ function ReleaseUploadSlotControl({
   onExternalLinkChange?: (hasExternalLink: boolean) => void;
   disabled?: boolean;
   fixedSlot?: ReleaseUploadSlot;
+  locale: AppLocale;
   withExternalLink?: boolean;
 }) {
   const router = useRouter();
@@ -104,14 +166,14 @@ function ReleaseUploadSlotControl({
   const [status, setStatus] = useState<string | null>(null);
   const [progress, setProgress] = useState(0);
   const [isUploading, setIsUploading] = useState(false);
-  const activeSlot = fixedSlot ?? getDefaultUploadSlot(fileType);
+  const activeSlot = fixedSlot ?? getDefaultUploadSlot(fileType, locale);
   const selectedFileLabel = useMemo(() => {
     if (!file) {
-      return uploadedFileLabel ?? "Seleccionar archivo";
+      return uploadedFileLabel ?? getUploaderCopy(locale).selectFile;
     }
 
     return formatSelectedFileLabel(file);
-  }, [file, uploadedFileLabel]);
+  }, [file, locale, uploadedFileLabel]);
   const hasExternalUrl = externalUrl.trim().length > 0;
   const fileControlsDisabled = disabled || isUploading || hasExternalUrl;
   const externalLinkDisabled = disabled || Boolean(file) || hasUploadedFile;
@@ -277,7 +339,7 @@ function ReleaseUploadSlotControl({
           >
             {releaseFileTypes.map((type) => (
               <option key={type} value={type}>
-                {getReleaseFileTypeLabel(type)}
+                {getReleaseFileTypeLabel(type, locale)}
               </option>
             ))}
           </select>
@@ -344,7 +406,7 @@ function ReleaseUploadSlotControl({
             onClick={resetFileChoice}
             disabled={disabled || isUploading}
             className="inline-flex h-10 items-center justify-center rounded-md border border-border bg-background px-3 text-muted-foreground transition-colors hover:text-foreground disabled:cursor-not-allowed disabled:opacity-50"
-            aria-label="Quitar archivo seleccionado"
+            aria-label={getUploaderCopy(locale).removeFile}
           >
             <X className="size-4" />
           </button>
@@ -354,14 +416,14 @@ function ReleaseUploadSlotControl({
       </div>
       <div className="grid gap-1 text-xs text-muted-foreground md:ml-[160px]">
         {!hasFileChoice && !hasExternalUrl ? (
-          <p>Selecciona un archivo para subirlo automáticamente o pega un link.</p>
+          <p>{getUploaderCopy(locale).selectOrLink}</p>
         ) : null}
         {status ? <p>{status}</p> : null}
         {hasExternalUrl ? (
-          <p>Usaremos el link externo para este archivo.</p>
+          <p>{getUploaderCopy(locale).externalLinkWillBeUsed}</p>
         ) : null}
         {hasUploadedFile ? (
-          <p>Archivo subido. El link externo queda desactivado.</p>
+          <p>{getUploaderCopy(locale).uploadedExternalDisabled}</p>
         ) : null}
         {isUploading || progress > 0 ? (
           <div className="h-2 overflow-hidden rounded-md bg-background">
@@ -376,11 +438,14 @@ function ReleaseUploadSlotControl({
   );
 }
 
-function getDefaultUploadSlot(fileType: ReleaseFileType): ReleaseUploadSlot {
+function getDefaultUploadSlot(
+  fileType: ReleaseFileType,
+  locale: AppLocale = "es",
+): ReleaseUploadSlot {
   return {
     fileType,
-    label: getReleaseFileTypeLabel(fileType),
-    acceptedFormats: getAcceptedFormatText(fileType),
+    label: getReleaseFileTypeLabel(fileType, locale),
+    acceptedFormats: getAcceptedFormatText(fileType, locale),
     accept: getAcceptValue(fileType),
     extensions: getAcceptedExtensions(fileType),
   };
@@ -389,14 +454,16 @@ function getDefaultUploadSlot(fileType: ReleaseFileType): ReleaseUploadSlot {
 export function buildReleaseUploadSlot({
   fileType,
   label,
+  locale = "es",
 }: {
   fileType: ReleaseFileType;
   label: string;
+  locale?: AppLocale;
 }): ReleaseUploadSlot {
   return {
     fileType,
     label,
-    acceptedFormats: getAcceptedFormatText(fileType),
+    acceptedFormats: getAcceptedFormatText(fileType, locale),
     accept: getAcceptValue(fileType),
     extensions: getAcceptedExtensions(fileType),
   };
@@ -414,16 +481,49 @@ function getAcceptedExtensions(fileType: ReleaseFileType) {
   return extensions[fileType];
 }
 
-function getAcceptedFormatText(fileType: ReleaseFileType) {
-  const labels: Record<ReleaseFileType, string> = {
-    audio: "Formatos aceptados: MP3, WAV, AIFF, FLAC, M4A.",
-    artwork: "Formatos aceptados: JPG, PNG, PDF.",
-    video: "Formatos aceptados: MP4, MOV.",
-    lyrics: "Formatos aceptados: TXT, DOCX, PDF.",
-    document: "Formatos aceptados: TXT, DOCX, PDF.",
+function getAcceptedFormatText(
+  fileType: ReleaseFileType,
+  locale: AppLocale = "es",
+) {
+  const labels: Record<AppLocale, Record<ReleaseFileType, string>> = {
+    ht: {
+      audio: "Fòma aksepte: MP3, WAV, AIFF, FLAC, M4A.",
+      artwork: "Fòma aksepte: JPG, PNG, PDF.",
+      video: "Fòma aksepte: MP4, MOV.",
+      lyrics: "Fòma aksepte: TXT, DOCX, PDF.",
+      document: "Fòma aksepte: TXT, DOCX, PDF.",
+    },
+    es: {
+      audio: "Formatos aceptados: MP3, WAV, AIFF, FLAC, M4A.",
+      artwork: "Formatos aceptados: JPG, PNG, PDF.",
+      video: "Formatos aceptados: MP4, MOV.",
+      lyrics: "Formatos aceptados: TXT, DOCX, PDF.",
+      document: "Formatos aceptados: TXT, DOCX, PDF.",
+    },
+    en: {
+      audio: "Accepted formats: MP3, WAV, AIFF, FLAC, M4A.",
+      artwork: "Accepted formats: JPG, PNG, PDF.",
+      video: "Accepted formats: MP4, MOV.",
+      lyrics: "Accepted formats: TXT, DOCX, PDF.",
+      document: "Accepted formats: TXT, DOCX, PDF.",
+    },
+    fr: {
+      audio: "Formats acceptés: MP3, WAV, AIFF, FLAC, M4A.",
+      artwork: "Formats acceptés: JPG, PNG, PDF.",
+      video: "Formats acceptés: MP4, MOV.",
+      lyrics: "Formats acceptés: TXT, DOCX, PDF.",
+      document: "Formats acceptés: TXT, DOCX, PDF.",
+    },
+    pt: {
+      audio: "Formatos aceitos: MP3, WAV, AIFF, FLAC, M4A.",
+      artwork: "Formatos aceitos: JPG, PNG, PDF.",
+      video: "Formatos aceitos: MP4, MOV.",
+      lyrics: "Formatos aceitos: TXT, DOCX, PDF.",
+      document: "Formatos aceitos: TXT, DOCX, PDF.",
+    },
   };
 
-  return labels[fileType];
+  return labels[locale][fileType];
 }
 
 function getAcceptValue(fileType: ReleaseFileType) {

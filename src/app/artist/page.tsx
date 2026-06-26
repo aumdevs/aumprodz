@@ -17,6 +17,8 @@ import {
   getReleaseTypeLabel,
   hiddenReleaseStatuses,
 } from "@/lib/artist-releases";
+import type { AppLocale } from "@/lib/i18n/config";
+import { getCurrentLocale } from "@/lib/i18n/server";
 import { requireArtist } from "@/lib/permissions";
 import { formatCurrency, formatDateTime, formatNumber } from "@/lib/utils";
 
@@ -41,7 +43,236 @@ type ArtistReportEntry = {
   } | null;
 };
 
+const dashboardCopyByLocale: Record<
+  AppLocale,
+  {
+    noData: string;
+    noReportsYet: string;
+    reportedViews: string;
+    adminLoadedData: string;
+    reportedStreams: string;
+    realReportSum: string;
+    latestReport: string;
+    reportsWillAppear: string;
+    reportedRevenue: string;
+    revenueDeclared: string;
+    activeReleases: string;
+    published: (count: string) => string;
+    uploadedFiles: string;
+    uploadedFilesDetail: string;
+    leadingPlatform: string;
+    playsOrViews: (count: string) => string;
+    videosWithViews: string;
+    viewsByAdmin: string;
+    latestUploadedRelease: string;
+    byArtist: (artist: string | null) => string;
+    created: string;
+    noReleases: string;
+    mostListened: string;
+    song: string;
+    video: string;
+    platform: string;
+    streams: (count: string) => string;
+    views: (count: string) => string;
+    total: (count: string) => string;
+    artistReports: string;
+    release: string;
+    period: string;
+    metrics: string;
+    revenue: string;
+    generalReport: string;
+  }
+> = {
+  ht: {
+    noData: "San done",
+    noReportsYet: "Pa gen rapò ankò.",
+    reportedViews: "Vizyalizasyon rapòte",
+    adminLoadedData: "Done administrasyon an chaje.",
+    reportedStreams: "Koute rapòte",
+    realReportSum: "Som rapò reyèl yo resevwa.",
+    latestReport: "Dènye rapò",
+    reportsWillAppear: "Lè admin chaje rapò, yo ap parèt isit la.",
+    reportedRevenue: "Revni rapòte",
+    revenueDeclared: "Revni ki deklare nan rapò yo.",
+    activeReleases: "Lansman aktif",
+    published: (count) => `${count} pibliye.`,
+    uploadedFiles: "Fichye chaje",
+    uploadedFilesDetail: "Audio, videyo, portada, pawòl oswa dokiman.",
+    leadingPlatform: "Platfòm ki pi fò",
+    playsOrViews: (count) => `${count} koute oswa vizyalizasyon.`,
+    videosWithViews: "Videyo ak vizyalizasyon",
+    viewsByAdmin: "Vizyalizasyon administrasyon an rapòte.",
+    latestUploadedRelease: "Dènye lansman ou voye",
+    byArtist: (artist) => `pa ${artist ?? ""}`,
+    created: "Kreye",
+    noReleases: "Ou poko voye okenn lansman.",
+    mostListened: "Pi plis koute",
+    song: "Chante",
+    video: "Videyo",
+    platform: "Platfòm",
+    streams: (count) => `${count} koute`,
+    views: (count) => `${count} vizyalizasyon`,
+    total: (count) => `${count} total`,
+    artistReports: "Rapò atistik",
+    release: "Lansman",
+    period: "Peryòd",
+    metrics: "Metrik",
+    revenue: "Revni",
+    generalReport: "Rapò jeneral",
+  },
+  es: {
+    noData: "Sin datos",
+    noReportsYet: "Sin reportes todavía.",
+    reportedViews: "Vistas reportadas",
+    adminLoadedData: "Datos cargados por administración.",
+    reportedStreams: "Reproducciones reportadas",
+    realReportSum: "Suma de reportes reales recibidos.",
+    latestReport: "Último reporte",
+    reportsWillAppear: "Cuando admin cargue reportes, aparecerán aquí.",
+    reportedRevenue: "Ingresos reportados",
+    revenueDeclared: "Ingresos declarados en reportes.",
+    activeReleases: "Lanzamientos activos",
+    published: (count) => `${count} publicados.`,
+    uploadedFiles: "Archivos subidos",
+    uploadedFilesDetail: "Audio, video, portada, letra o documento.",
+    leadingPlatform: "Plataforma líder",
+    playsOrViews: (count) => `${count} reproducciones o vistas.`,
+    videosWithViews: "Videos con vistas",
+    viewsByAdmin: "Vistas reportadas por administración.",
+    latestUploadedRelease: "Último lanzamiento subido",
+    byArtist: (artist) => `por ${artist ?? ""}`,
+    created: "Creado",
+    noReleases: "Todavía no hay lanzamientos enviados.",
+    mostListened: "Más escuchado",
+    song: "Canción",
+    video: "Video",
+    platform: "Plataforma",
+    streams: (count) => `${count} reproducciones`,
+    views: (count) => `${count} vistas`,
+    total: (count) => `${count} total`,
+    artistReports: "Reportes artísticos",
+    release: "Lanzamiento",
+    period: "Periodo",
+    metrics: "Métricas",
+    revenue: "Ingresos",
+    generalReport: "Reporte general",
+  },
+  en: {
+    noData: "No data",
+    noReportsYet: "No reports yet.",
+    reportedViews: "Reported views",
+    adminLoadedData: "Data uploaded by administration.",
+    reportedStreams: "Reported streams",
+    realReportSum: "Total from real reports received.",
+    latestReport: "Latest report",
+    reportsWillAppear: "When admin uploads reports, they will appear here.",
+    reportedRevenue: "Reported revenue",
+    revenueDeclared: "Revenue declared in reports.",
+    activeReleases: "Active releases",
+    published: (count) => `${count} published.`,
+    uploadedFiles: "Uploaded files",
+    uploadedFilesDetail: "Audio, video, cover, lyrics or document.",
+    leadingPlatform: "Leading platform",
+    playsOrViews: (count) => `${count} streams or views.`,
+    videosWithViews: "Videos with views",
+    viewsByAdmin: "Views reported by administration.",
+    latestUploadedRelease: "Latest uploaded release",
+    byArtist: (artist) => `by ${artist ?? ""}`,
+    created: "Created",
+    noReleases: "No releases submitted yet.",
+    mostListened: "Most listened",
+    song: "Song",
+    video: "Video",
+    platform: "Platform",
+    streams: (count) => `${count} streams`,
+    views: (count) => `${count} views`,
+    total: (count) => `${count} total`,
+    artistReports: "Artist reports",
+    release: "Release",
+    period: "Period",
+    metrics: "Metrics",
+    revenue: "Revenue",
+    generalReport: "General report",
+  },
+  fr: {
+    noData: "Aucune donnée",
+    noReportsYet: "Aucun rapport pour le moment.",
+    reportedViews: "Vues reportées",
+    adminLoadedData: "Données chargées par l'administration.",
+    reportedStreams: "Écoutes reportées",
+    realReportSum: "Somme des rapports réels reçus.",
+    latestReport: "Dernier rapport",
+    reportsWillAppear: "Quand l'admin chargera des rapports, ils apparaîtront ici.",
+    reportedRevenue: "Revenus reportés",
+    revenueDeclared: "Revenus déclarés dans les rapports.",
+    activeReleases: "Sorties actives",
+    published: (count) => `${count} publiées.`,
+    uploadedFiles: "Fichiers chargés",
+    uploadedFilesDetail: "Audio, vidéo, pochette, paroles ou document.",
+    leadingPlatform: "Plateforme principale",
+    playsOrViews: (count) => `${count} écoutes ou vues.`,
+    videosWithViews: "Vidéos avec vues",
+    viewsByAdmin: "Vues reportées par l'administration.",
+    latestUploadedRelease: "Dernière sortie envoyée",
+    byArtist: (artist) => `par ${artist ?? ""}`,
+    created: "Créé",
+    noReleases: "Aucune sortie envoyée pour le moment.",
+    mostListened: "Le plus écouté",
+    song: "Chanson",
+    video: "Vidéo",
+    platform: "Plateforme",
+    streams: (count) => `${count} écoutes`,
+    views: (count) => `${count} vues`,
+    total: (count) => `${count} total`,
+    artistReports: "Rapports artistiques",
+    release: "Sortie",
+    period: "Période",
+    metrics: "Métriques",
+    revenue: "Revenus",
+    generalReport: "Rapport général",
+  },
+  pt: {
+    noData: "Sem dados",
+    noReportsYet: "Ainda não há relatórios.",
+    reportedViews: "Visualizações reportadas",
+    adminLoadedData: "Dados carregados pela administração.",
+    reportedStreams: "Reproduções reportadas",
+    realReportSum: "Soma de relatórios reais recebidos.",
+    latestReport: "Último relatório",
+    reportsWillAppear: "Quando o admin carregar relatórios, eles aparecerão aqui.",
+    reportedRevenue: "Receita reportada",
+    revenueDeclared: "Receita declarada nos relatórios.",
+    activeReleases: "Lançamentos ativos",
+    published: (count) => `${count} publicados.`,
+    uploadedFiles: "Arquivos enviados",
+    uploadedFilesDetail: "Áudio, vídeo, capa, letra ou documento.",
+    leadingPlatform: "Plataforma líder",
+    playsOrViews: (count) => `${count} reproduções ou visualizações.`,
+    videosWithViews: "Vídeos com visualizações",
+    viewsByAdmin: "Visualizações reportadas pela administração.",
+    latestUploadedRelease: "Último lançamento enviado",
+    byArtist: (artist) => `por ${artist ?? ""}`,
+    created: "Criado",
+    noReleases: "Ainda não há lançamentos enviados.",
+    mostListened: "Mais ouvido",
+    song: "Música",
+    video: "Vídeo",
+    platform: "Plataforma",
+    streams: (count) => `${count} reproduções`,
+    views: (count) => `${count} visualizações`,
+    total: (count) => `${count} total`,
+    artistReports: "Relatórios artísticos",
+    release: "Lançamento",
+    period: "Período",
+    metrics: "Métricas",
+    revenue: "Receita",
+    generalReport: "Relatório geral",
+  },
+};
+
 export default async function ArtistDashboardPage() {
+  const locale = await getCurrentLocale();
+  const copy = dashboardCopyByLocale[locale] ?? dashboardCopyByLocale.ht;
   const { supabase, user } = await requireArtist();
   const [{ data: releases }, { data: files }, reportEntriesResult] =
     await Promise.all([
@@ -96,7 +327,7 @@ export default async function ArtistDashboardPage() {
   const leadingPlatform =
     artistReports.length > 0
       ? buildLeadingPlatform(artistReports)
-      : { platform: "Sin datos", plays: 0 };
+      : { platform: copy.noData, plays: 0 };
   const latestReport = artistReports[0] ?? null;
 
   return (
@@ -104,42 +335,42 @@ export default async function ArtistDashboardPage() {
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         <MetricCard
           icon={Eye}
-          label="Vistas reportadas"
+          label={copy.reportedViews}
           value={formatNumber(reportTotals.views)}
           detail={
             artistReports.length > 0
-              ? "Datos cargados por administración."
-              : "Sin reportes todavía."
+              ? copy.adminLoadedData
+              : copy.noReportsYet
           }
         />
         <MetricCard
           icon={Headphones}
-          label="Reproducciones reportadas"
+          label={copy.reportedStreams}
           value={formatNumber(reportTotals.streams)}
           detail={
             artistReports.length > 0
-              ? "Suma de reportes reales recibidos."
-              : "Sin reportes todavía."
+              ? copy.realReportSum
+              : copy.noReportsYet
           }
         />
         <MetricCard
           icon={TrendingUp}
-          label="Último reporte"
-          value={latestReport ? latestReport.platform : "Sin datos"}
+          label={copy.latestReport}
+          value={latestReport ? latestReport.platform : copy.noData}
           detail={
             latestReport
               ? formatDateTime(latestReport.created_at)
-              : "Cuando admin cargue reportes, aparecerán aquí."
+              : copy.reportsWillAppear
           }
         />
         <MetricCard
           icon={DollarSign}
-          label="Ingresos reportados"
+          label={copy.reportedRevenue}
           value={formatCurrency(reportTotals.revenue, "USD")}
           detail={
             artistReports.length > 0
-              ? "Ingresos declarados en reportes."
-              : "Sin reportes todavía."
+              ? copy.revenueDeclared
+              : copy.noReportsYet
           }
         />
       </div>
@@ -147,27 +378,27 @@ export default async function ArtistDashboardPage() {
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         <MetricCard
           icon={Music2}
-          label="Lanzamientos activos"
+          label={copy.activeReleases}
           value={formatNumber(visibleReleases.length)}
-          detail={`${formatNumber(publishedCount)} publicados.`}
+          detail={copy.published(formatNumber(publishedCount))}
         />
         <MetricCard
           icon={Radio}
-          label="Archivos subidos"
+          label={copy.uploadedFiles}
           value={formatNumber(uploadedFiles.length)}
-          detail="Audio, video, portada, letra o documento."
+          detail={copy.uploadedFilesDetail}
         />
         <MetricCard
           icon={BarChart3}
-          label="Plataforma líder"
+          label={copy.leadingPlatform}
           value={leadingPlatform.platform}
-          detail={`${formatNumber(leadingPlatform.plays)} reproducciones o vistas.`}
+          detail={copy.playsOrViews(formatNumber(leadingPlatform.plays))}
         />
         <MetricCard
           icon={Video}
-          label="Videos con vistas"
+          label={copy.videosWithViews}
           value={formatNumber(reportTotals.views)}
-          detail="Vistas reportadas por administración."
+          detail={copy.viewsByAdmin}
         />
       </div>
 
@@ -175,7 +406,7 @@ export default async function ArtistDashboardPage() {
         <Card>
           <CardHeader>
             <Music2 className="size-5 text-primary" />
-            <CardTitle>Último lanzamiento subido</CardTitle>
+            <CardTitle>{copy.latestUploadedRelease}</CardTitle>
           </CardHeader>
           <CardContent>
             {latestRelease ? (
@@ -184,21 +415,21 @@ export default async function ArtistDashboardPage() {
                   <div>
                     <p className="text-lg font-semibold">{latestRelease.title}</p>
                     <p className="text-muted-foreground">
-                      {getReleaseTypeLabel(latestRelease.release_type)} por{" "}
-                      {latestRelease.primary_artist}
+                      {getReleaseTypeLabel(latestRelease.release_type, locale)}{" "}
+                      {copy.byArtist(latestRelease.primary_artist)}
                     </p>
                   </div>
                   <Badge tone={getReleaseStatusTone(latestRelease.status)}>
-                    {getArtistReleaseStatusLabel(latestRelease.status)}
+                    {getArtistReleaseStatusLabel(latestRelease.status, locale)}
                   </Badge>
                 </div>
                 <p className="text-muted-foreground">
-                  Creado: {formatDateTime(latestRelease.created_at)}
+                  {copy.created}: {formatDateTime(latestRelease.created_at)}
                 </p>
               </div>
             ) : (
               <p className="text-sm text-muted-foreground">
-                Todavía no hay lanzamientos enviados.
+                {copy.noReleases}
               </p>
             )}
           </CardContent>
@@ -207,23 +438,23 @@ export default async function ArtistDashboardPage() {
         <Card>
           <CardHeader>
             <Headphones className="size-5 text-primary" />
-            <CardTitle>Más escuchado</CardTitle>
+            <CardTitle>{copy.mostListened}</CardTitle>
           </CardHeader>
           <CardContent className="grid gap-4 text-sm">
             <StatRow
-              label="Canción"
-              value={latestReport?.song_title ?? latestAudioRelease?.title ?? "Sin datos"}
-              metric={`${formatNumber(reportTotals.streams)} reproducciones`}
+              label={copy.song}
+              value={latestReport?.song_title ?? latestAudioRelease?.title ?? copy.noData}
+              metric={copy.streams(formatNumber(reportTotals.streams))}
             />
             <StatRow
-              label="Video"
-              value={latestVideoRelease?.title ?? "Sin datos"}
-              metric={`${formatNumber(reportTotals.views)} vistas`}
+              label={copy.video}
+              value={latestVideoRelease?.title ?? copy.noData}
+              metric={copy.views(formatNumber(reportTotals.views))}
             />
             <StatRow
-              label="Plataforma"
+              label={copy.platform}
               value={leadingPlatform.platform}
-              metric={`${formatNumber(leadingPlatform.plays)} total`}
+              metric={copy.total(formatNumber(leadingPlatform.plays))}
             />
           </CardContent>
         </Card>
@@ -232,18 +463,18 @@ export default async function ArtistDashboardPage() {
       <Card>
         <CardHeader>
           <BarChart3 className="size-5 text-primary" />
-          <CardTitle>Reportes artísticos</CardTitle>
+          <CardTitle>{copy.artistReports}</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
             <table className="w-full min-w-[820px] text-left text-sm">
               <thead className="text-xs uppercase text-muted-foreground">
                 <tr className="border-b border-border">
-                  <th className="py-3 pr-4">Lanzamiento</th>
-                  <th className="py-3 pr-4">Plataforma</th>
-                  <th className="py-3 pr-4">Periodo</th>
-                  <th className="py-3 pr-4">Métricas</th>
-                  <th className="py-3">Ingresos</th>
+                  <th className="py-3 pr-4">{copy.release}</th>
+                  <th className="py-3 pr-4">{copy.platform}</th>
+                  <th className="py-3 pr-4">{copy.period}</th>
+                  <th className="py-3 pr-4">{copy.metrics}</th>
+                  <th className="py-3">{copy.revenue}</th>
                 </tr>
               </thead>
               <tbody>
@@ -251,7 +482,7 @@ export default async function ArtistDashboardPage() {
                   <tr key={report.id} className="border-b border-border/70">
                     <td className="py-3 pr-4">
                       <p className="font-medium">
-                        {report.releases?.title ?? report.song_title ?? "Reporte general"}
+                        {report.releases?.title ?? report.song_title ?? copy.generalReport}
                       </p>
                     </td>
                     <td className="py-3 pr-4 text-muted-foreground">
@@ -262,8 +493,8 @@ export default async function ArtistDashboardPage() {
                       {report.artist_report_periods?.period_end ?? "-"}
                     </td>
                     <td className="py-3 pr-4 text-muted-foreground">
-                      <p>{formatNumber(Number(report.streams))} reproducciones</p>
-                      <p>{formatNumber(Number(report.views))} vistas</p>
+                      <p>{copy.streams(formatNumber(Number(report.streams)))}</p>
+                      <p>{copy.views(formatNumber(Number(report.views)))}</p>
                     </td>
                     <td className="py-3 font-semibold">
                       {formatCurrency(Number(report.revenue_amount), report.currency)}
@@ -273,7 +504,7 @@ export default async function ArtistDashboardPage() {
                 {artistReports.length === 0 ? (
                   <tr>
                     <td className="py-6 text-muted-foreground" colSpan={5}>
-                      Sin reportes todavía.
+                      {copy.noReportsYet}
                     </td>
                   </tr>
                 ) : null}
@@ -343,7 +574,7 @@ function buildLeadingPlatform(reports: ArtistReportEntry[]) {
 
   const [platform, plays] = [...totals.entries()].sort(
     (first, second) => second[1] - first[1],
-  )[0] ?? ["Sin datos", 0];
+  )[0] ?? ["", 0];
 
   return { platform, plays };
 }

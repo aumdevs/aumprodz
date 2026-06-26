@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 
 import { isUsableArtistAnnualSubscription } from "@/lib/artist-billing";
+import type { AppLocale } from "@/lib/i18n/config";
 
 export const releaseTypes = ["single", "ep", "album", "video"] as const;
 export type ReleaseType = (typeof releaseTypes)[number];
@@ -55,30 +56,87 @@ export type ReleaseGate = {
   hasRequiredPayment?: boolean;
 };
 
-export function getReleaseTypeLabel(type?: string | null) {
-  const labels: Record<ReleaseType, string> = {
+const releaseTypeLabelsByLocale: Record<AppLocale, Record<ReleaseType, string>> = {
+  ht: {
+    single: "Chante / Single",
+    ep: "EP",
+    album: "Albòm",
+    video: "Videyo",
+  },
+  es: {
     single: "Canción / Single",
     ep: "EP",
     album: "Álbum",
     video: "Video",
-  };
+  },
+  en: {
+    single: "Song / Single",
+    ep: "EP",
+    album: "Album",
+    video: "Video",
+  },
+  fr: {
+    single: "Chanson / Single",
+    ep: "EP",
+    album: "Album",
+    video: "Vidéo",
+  },
+  pt: {
+    single: "Música / Single",
+    ep: "EP",
+    album: "Álbum",
+    video: "Vídeo",
+  },
+};
 
-  return labels[type as ReleaseType] ?? "Lanzamiento";
-}
-
-export function getReleaseTypeBadgeLabel(type?: string | null) {
-  const labels: Record<ReleaseType, string> = {
+const releaseTypeBadgeLabelsByLocale: Record<AppLocale, Record<ReleaseType, string>> = {
+  ht: {
+    single: "Chante",
+    ep: "EP",
+    album: "Albòm",
+    video: "Videyo",
+  },
+  es: {
     single: "Canción",
     ep: "EP",
     album: "Álbum",
     video: "Video",
-  };
+  },
+  en: {
+    single: "Song",
+    ep: "EP",
+    album: "Album",
+    video: "Video",
+  },
+  fr: {
+    single: "Chanson",
+    ep: "EP",
+    album: "Album",
+    video: "Vidéo",
+  },
+  pt: {
+    single: "Música",
+    ep: "EP",
+    album: "Álbum",
+    video: "Vídeo",
+  },
+};
 
-  return labels[type as ReleaseType] ?? "Lanzamiento";
-}
-
-export function getReleaseStatusLabel(status?: string | null) {
-  const labels: Record<ReleaseStatus, string> = {
+const releaseStatusLabelsByLocale: Record<AppLocale, Record<ReleaseStatus, string>> = {
+  ht: {
+    draft: "Ap prepare",
+    submitted: "An atant revizyon",
+    under_review: "An atant revizyon",
+    needs_changes: "Bezwen chanjman",
+    approved: "Verifye",
+    ready_for_tunecore: "Verifye",
+    uploaded_to_tunecore: "Verifye",
+    scheduled: "Pwograme",
+    published: "Pibliye",
+    rejected: "Rejte",
+    cancelled: "Anile",
+  },
+  es: {
     draft: "Preparando",
     submitted: "Pendiente de revisión",
     under_review: "Pendiente de revisión",
@@ -90,13 +148,63 @@ export function getReleaseStatusLabel(status?: string | null) {
     published: "Publicado",
     rejected: "Rechazado",
     cancelled: "Cancelado",
-  };
+  },
+  en: {
+    draft: "Preparing",
+    submitted: "Pending review",
+    under_review: "Pending review",
+    needs_changes: "Needs changes",
+    approved: "Verified",
+    ready_for_tunecore: "Verified",
+    uploaded_to_tunecore: "Verified",
+    scheduled: "Scheduled",
+    published: "Published",
+    rejected: "Rejected",
+    cancelled: "Cancelled",
+  },
+  fr: {
+    draft: "En préparation",
+    submitted: "En attente de révision",
+    under_review: "En attente de révision",
+    needs_changes: "Modifications requises",
+    approved: "Vérifié",
+    ready_for_tunecore: "Vérifié",
+    uploaded_to_tunecore: "Vérifié",
+    scheduled: "Programmé",
+    published: "Publié",
+    rejected: "Rejeté",
+    cancelled: "Annulé",
+  },
+  pt: {
+    draft: "Preparando",
+    submitted: "Pendente de revisão",
+    under_review: "Pendente de revisão",
+    needs_changes: "Requer alterações",
+    approved: "Verificado",
+    ready_for_tunecore: "Verificado",
+    uploaded_to_tunecore: "Verificado",
+    scheduled: "Agendado",
+    published: "Publicado",
+    rejected: "Rejeitado",
+    cancelled: "Cancelado",
+  },
+};
 
-  return labels[status as ReleaseStatus] ?? status ?? "Sin estado";
-}
-
-export function getArtistReleaseStatusLabel(status?: string | null) {
-  const labels: Record<ReleaseStatus, string> = {
+const artistReleaseStatusLabelsByLocale: Record<AppLocale, Record<ReleaseStatus, string>> = {
+  ht: {
+    draft: "Voye",
+    submitted: "Resevwa",
+    under_review: "Resevwa",
+    needs_changes: "Bezwen chanjman",
+    approved: "An pwosesis",
+    ready_for_tunecore: "An pwosesis",
+    uploaded_to_tunecore: "An pwosesis",
+    scheduled: "Pwograme",
+    published: "Disponib sou platfòm",
+    rejected: "Pa apwouve",
+    cancelled: "Anile",
+  },
+  es: {
     draft: "Enviado",
     submitted: "Recibido",
     under_review: "Recibido",
@@ -108,9 +216,104 @@ export function getArtistReleaseStatusLabel(status?: string | null) {
     published: "Disponible en plataforma",
     rejected: "No aprobado",
     cancelled: "Cancelado",
-  };
+  },
+  en: {
+    draft: "Sent",
+    submitted: "Received",
+    under_review: "Received",
+    needs_changes: "Needs changes",
+    approved: "In process",
+    ready_for_tunecore: "In process",
+    uploaded_to_tunecore: "In process",
+    scheduled: "Scheduled",
+    published: "Available on platform",
+    rejected: "Not approved",
+    cancelled: "Cancelled",
+  },
+  fr: {
+    draft: "Envoyé",
+    submitted: "Reçu",
+    under_review: "Reçu",
+    needs_changes: "Modifications requises",
+    approved: "En cours",
+    ready_for_tunecore: "En cours",
+    uploaded_to_tunecore: "En cours",
+    scheduled: "Programmé",
+    published: "Disponible sur plateforme",
+    rejected: "Non approuvé",
+    cancelled: "Annulé",
+  },
+  pt: {
+    draft: "Enviado",
+    submitted: "Recebido",
+    under_review: "Recebido",
+    needs_changes: "Requer alterações",
+    approved: "Em processo",
+    ready_for_tunecore: "Em processo",
+    uploaded_to_tunecore: "Em processo",
+    scheduled: "Agendado",
+    published: "Disponível na plataforma",
+    rejected: "Não aprovado",
+    cancelled: "Cancelado",
+  },
+};
 
-  return labels[status as ReleaseStatus] ?? status ?? "Sin estado";
+const fallbackReleaseLabelByLocale: Record<AppLocale, string> = {
+  ht: "Lansman",
+  es: "Lanzamiento",
+  en: "Release",
+  fr: "Sortie",
+  pt: "Lançamento",
+};
+
+const noStatusLabelByLocale: Record<AppLocale, string> = {
+  ht: "San eta",
+  es: "Sin estado",
+  en: "No status",
+  fr: "Sans statut",
+  pt: "Sem status",
+};
+
+export function getReleaseTypeLabel(
+  type?: string | null,
+  locale: AppLocale = "es",
+) {
+  return (
+    releaseTypeLabelsByLocale[locale][type as ReleaseType] ??
+    fallbackReleaseLabelByLocale[locale]
+  );
+}
+
+export function getReleaseTypeBadgeLabel(
+  type?: string | null,
+  locale: AppLocale = "es",
+) {
+  return (
+    releaseTypeBadgeLabelsByLocale[locale][type as ReleaseType] ??
+    fallbackReleaseLabelByLocale[locale]
+  );
+}
+
+export function getReleaseStatusLabel(
+  status?: string | null,
+  locale: AppLocale = "es",
+) {
+  return (
+    releaseStatusLabelsByLocale[locale][status as ReleaseStatus] ??
+    status ??
+    noStatusLabelByLocale[locale]
+  );
+}
+
+export function getArtistReleaseStatusLabel(
+  status?: string | null,
+  locale: AppLocale = "es",
+) {
+  return (
+    artistReleaseStatusLabelsByLocale[locale][status as ReleaseStatus] ??
+    status ??
+    noStatusLabelByLocale[locale]
+  );
 }
 
 export function getReleaseStatusTone(

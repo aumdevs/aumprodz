@@ -1,3 +1,5 @@
+import type { AppLocale } from "@/lib/i18n/config";
+
 export const artistSmallFilesBucket = "artist-small-files";
 
 export const releaseFileTypes = [
@@ -18,6 +20,38 @@ export const releaseFileTypeLabels: Record<ReleaseFileType, string> = {
   video: "Video",
   lyrics: "Letra",
   document: "Documento",
+};
+
+const releaseFileTypeLabelsByLocale: Record<AppLocale, Record<ReleaseFileType, string>> = {
+  ht: {
+    audio: "Audio / master",
+    artwork: "Portada",
+    video: "Videyo",
+    lyrics: "Pawòl",
+    document: "Dokiman",
+  },
+  es: releaseFileTypeLabels,
+  en: {
+    audio: "Audio / master",
+    artwork: "Cover",
+    video: "Video",
+    lyrics: "Lyrics",
+    document: "Document",
+  },
+  fr: {
+    audio: "Audio / master",
+    artwork: "Pochette",
+    video: "Vidéo",
+    lyrics: "Paroles",
+    document: "Document",
+  },
+  pt: {
+    audio: "Áudio / master",
+    artwork: "Capa",
+    video: "Vídeo",
+    lyrics: "Letra",
+    document: "Documento",
+  },
 };
 
 const allowedContentTypes: Record<ReleaseFileType, string[]> = {
@@ -59,8 +93,22 @@ const maxUploadSizes: Record<ReleaseFileType, number> = {
   document: 25 * 1024 * 1024,
 };
 
-export function getReleaseFileTypeLabel(type?: string | null) {
-  return releaseFileTypeLabels[type as ReleaseFileType] ?? "Archivo";
+export function getReleaseFileTypeLabel(
+  type?: string | null,
+  locale: AppLocale = "es",
+) {
+  const fallbackByLocale: Record<AppLocale, string> = {
+    ht: "Fichye",
+    es: "Archivo",
+    en: "File",
+    fr: "Fichier",
+    pt: "Arquivo",
+  };
+
+  return (
+    releaseFileTypeLabelsByLocale[locale][type as ReleaseFileType] ??
+    fallbackByLocale[locale]
+  );
 }
 
 export function isReleaseFileType(value?: string | null): value is ReleaseFileType {
