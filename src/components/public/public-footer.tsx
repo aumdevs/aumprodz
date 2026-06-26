@@ -9,157 +9,226 @@ import { getCurrentLocale } from "@/lib/i18n/server";
 import { t } from "@/lib/i18n/dictionaries";
 import { cn } from "@/lib/utils";
 
-const footerCopyByLocale: Record<
-  AppLocale,
-  {
-    contactCta: string;
-    cta: string;
-    description: string;
-    language: string;
-    navTitle: string;
-    platformLabel: string;
-    servicesText: string;
-    small: string;
-  }
-> = {
+type FooterCopy = {
+  contactCta: string;
+  description: string;
+  language: string;
+  legal: {
+    notice: string;
+    privacy: string;
+    refunds: string;
+    terms: string;
+    title: string;
+  };
+  navTitle: string;
+  platformLabel: string;
+  rights: string;
+  small: string;
+  startCta: string;
+  supportText: string;
+};
+
+const footerCopyByLocale: Record<AppLocale, FooterCopy> = {
   ht: {
-    contactCta: "Kontakte AUM",
-    cta: "Kòmanse",
+    contactCta: "Pale ak AUM",
     description:
-      "Digital Mission Control pou kreyatè, atis, YouTuber ak biznis reyèl ki vle plis kontwòl.",
+      "Sèvis dijital, kontni, mizik, web ak zouti pratik pou kominote ayisyèn nan.",
     language: "Lang",
+    legal: {
+      notice: "Avi legal",
+      privacy: "Konfidansyalite",
+      refunds: "Ranbousman",
+      terms: "Tèm sèvis",
+      title: "Legal",
+    },
     navTitle: "Eksplore",
     platformLabel: "Platfòm",
-    servicesText: "Sèvis, mizik, kontni, web, imaj ak operasyon dijital.",
-    small: "Bati ak klète, respè ak vizyon entènasyonal.",
+    rights: "Tout dwa rezève.",
+    small: "Travay klè, dosye pwòp ak kominikasyon dirèk.",
+    startCta: "Kòmanse",
+    supportText: "Pou sèvis, kesyon, peman oswa swivi pwojè, kontakte AUM dirèkteman.",
   },
   es: {
     contactCta: "Contactar a AUM",
-    cta: "Comenzar",
     description:
-      "Digital Mission Control para creadores, artistas, YouTubers y negocios reales que quieren más control.",
+      "Servicios digitales, contenido, música, web y herramientas prácticas para la comunidad haitiana.",
     language: "Idioma",
+    legal: {
+      notice: "Aviso legal",
+      privacy: "Privacidad",
+      refunds: "Reembolsos",
+      terms: "Términos",
+      title: "Legal",
+    },
     navTitle: "Explorar",
     platformLabel: "Plataforma",
-    servicesText: "Servicios, música, contenido, web, imagen y operación digital.",
-    small: "Construido con claridad, respeto y visión internacional.",
+    rights: "Todos los derechos reservados.",
+    small: "Trabajo claro, archivos ordenados y comunicación directa.",
+    startCta: "Comenzar",
+    supportText: "Para servicios, dudas, pagos o seguimiento de proyectos, contacta a AUM directamente.",
   },
   en: {
     contactCta: "Contact AUM",
-    cta: "Start",
     description:
-      "Digital Mission Control for creators, artists, YouTubers and real businesses that want more control.",
+      "Digital services, content, music, web and practical tools for the Haitian community.",
     language: "Language",
+    legal: {
+      notice: "Legal notice",
+      privacy: "Privacy",
+      refunds: "Refunds",
+      terms: "Terms",
+      title: "Legal",
+    },
     navTitle: "Explore",
     platformLabel: "Platform",
-    servicesText: "Services, music, content, web, image and digital operations.",
-    small: "Built with clarity, respect and international vision.",
+    rights: "All rights reserved.",
+    small: "Clear work, organized files and direct communication.",
+    startCta: "Start",
+    supportText: "For services, questions, payments or project follow-up, contact AUM directly.",
   },
   fr: {
     contactCta: "Contacter AUM",
-    cta: "Commencer",
     description:
-      "Digital Mission Control pour créateurs, artistes, YouTubers et vrais business qui veulent plus de contrôle.",
+      "Services digitaux, contenu, musique, web et outils pratiques pour la communauté haïtienne.",
     language: "Langue",
+    legal: {
+      notice: "Mentions légales",
+      privacy: "Confidentialité",
+      refunds: "Remboursements",
+      terms: "Conditions",
+      title: "Legal",
+    },
     navTitle: "Explorer",
     platformLabel: "Plateforme",
-    servicesText: "Services, musique, contenu, web, image et opérations digitales.",
-    small: "Construit avec clarté, respect et vision internationale.",
+    rights: "Tous droits réservés.",
+    small: "Travail clair, fichiers organisés et communication directe.",
+    startCta: "Commencer",
+    supportText: "Pour services, questions, paiements ou suivi de projet, contactez AUM directement.",
   },
   pt: {
     contactCta: "Contactar AUM",
-    cta: "Começar",
     description:
-      "Digital Mission Control para criadores, artistas, YouTubers e negócios reais que querem mais controle.",
+      "Serviços digitais, conteúdo, música, web e ferramentas práticas para a comunidade haitiana.",
     language: "Idioma",
+    legal: {
+      notice: "Aviso legal",
+      privacy: "Privacidade",
+      refunds: "Reembolsos",
+      terms: "Termos",
+      title: "Legal",
+    },
     navTitle: "Explorar",
     platformLabel: "Plataforma",
-    servicesText: "Serviços, música, conteúdo, web, imagem e operação digital.",
-    small: "Construído com clareza, respeito e visão internacional.",
+    rights: "Todos os direitos reservados.",
+    small: "Trabalho claro, arquivos organizados e comunicação direta.",
+    startCta: "Começar",
+    supportText: "Para serviços, dúvidas, pagamentos ou acompanhamento, fale diretamente com AUM.",
   },
 };
 
 export async function PublicFooter() {
   const locale = await getCurrentLocale();
   const copy = footerCopyByLocale[locale] ?? footerCopyByLocale.ht;
+  const year = new Date().getFullYear();
+  const navLinks = [
+    { href: "/", label: t(locale, "nav.home") },
+    { href: "/servicios", label: t(locale, "nav.services") },
+    { href: "/youtube", label: t(locale, "nav.youtube") },
+    { href: "/artista", label: t(locale, "nav.artists") },
+    { href: "/contacto", label: t(locale, "nav.contact") },
+  ];
+  const legalLinks = [
+    { href: "/legal/terminos", label: copy.legal.terms },
+    { href: "/legal/privacidad", label: copy.legal.privacy },
+    { href: "/legal/reembolsos", label: copy.legal.refunds },
+    { href: "/legal/aviso", label: copy.legal.notice },
+  ];
 
   return (
     <footer className="bg-background">
-      <div className="public-shell border-t border-border py-12 sm:py-14">
-        <div className="grid gap-10 lg:grid-cols-[1.25fr_0.9fr_1fr] lg:items-start">
-          <div className="space-y-5">
-            <AumProdzLogo platformLabel={copy.platformLabel} />
-            <p className="max-w-sm text-sm leading-6 text-muted-foreground">
-              {copy.description}
-            </p>
-            <Link
-              href="/servicios"
-              className={cn(buttonVariants({ variant: "default", size: "sm" }))}
-            >
-              {copy.cta}
-              <ArrowRight className="size-4" />
-            </Link>
-          </div>
-
-          <div className="space-y-3 text-sm">
-            <p className="text-base font-black">{copy.navTitle}</p>
-            <p className="max-w-xs leading-6 text-muted-foreground">
-              {copy.servicesText}
-            </p>
-            <div className="grid gap-2 pt-1">
+      <div className="public-shell py-10 sm:py-14">
+        <div className="rounded-[2rem] border border-border bg-surface/70 p-6 shadow-soft sm:p-8 lg:p-10">
+          <div className="grid gap-9 lg:grid-cols-[1.35fr_0.75fr_0.85fr_1fr] lg:items-start">
+            <div className="space-y-5">
+              <AumProdzLogo platformLabel={copy.platformLabel} />
+              <p className="max-w-sm text-base font-medium leading-7 text-muted-foreground">
+                {copy.description}
+              </p>
               <Link
-                className="text-muted-foreground transition-colors hover:text-foreground"
                 href="/servicios"
-              >
-                {t(locale, "nav.services")}
-              </Link>
-              <Link
-                className="text-muted-foreground transition-colors hover:text-foreground"
-                href="/artista"
-              >
-                {t(locale, "nav.artists")}
-              </Link>
-              <Link
-                className="text-muted-foreground transition-colors hover:text-foreground"
-                href="/youtube"
-              >
-                {t(locale, "nav.youtube")}
-              </Link>
-              <Link
-                className="text-muted-foreground transition-colors hover:text-foreground"
-                href="/contacto"
-              >
-                {t(locale, "nav.contact")}
-              </Link>
-            </div>
-          </div>
-
-          <div className="space-y-5 text-sm">
-            <div className="flex flex-wrap gap-3">
-              <Link
-                href="/contacto"
                 className={cn(buttonVariants({ variant: "default", size: "sm" }))}
               >
-                {copy.contactCta}
+                {copy.startCta}
                 <ArrowRight className="size-4" />
               </Link>
             </div>
-            <div className="space-y-3">
-              <p className="font-semibold">{copy.language}</p>
-              <LanguageSwitcher compact currentLocale={locale} />
-              <p className="max-w-xs leading-6 text-muted-foreground">
-                {copy.small}
-              </p>
+
+            <FooterLinkGroup links={navLinks} title={copy.navTitle} />
+            <FooterLinkGroup links={legalLinks} title={copy.legal.title} />
+
+            <div className="space-y-5">
+              <div className="space-y-3">
+                <p className="text-sm font-black uppercase tracking-[0.2em] text-foreground">
+                  {t(locale, "nav.contact")}
+                </p>
+                <p className="max-w-xs text-sm leading-6 text-muted-foreground">
+                  {copy.supportText}
+                </p>
+                <Link
+                  href="/contacto"
+                  className={cn(buttonVariants({ variant: "default", size: "sm" }))}
+                >
+                  {copy.contactCta}
+                  <ArrowRight className="size-4" />
+                </Link>
+              </div>
+
+              <div className="space-y-3">
+                <p className="text-sm font-black uppercase tracking-[0.2em] text-foreground">
+                  {copy.language}
+                </p>
+                <LanguageSwitcher compact currentLocale={locale} />
+              </div>
             </div>
+          </div>
+
+          <div className="mt-9 border-t border-border pt-5 text-sm text-muted-foreground sm:flex sm:items-center sm:justify-between sm:gap-6">
+            <p>
+              Copyright {year} AUM PRODZ. {copy.rights}
+            </p>
+            <p className="mt-3 max-w-xl leading-6 sm:mt-0 sm:text-right">
+              {copy.small}
+            </p>
           </div>
         </div>
       </div>
-      <div className="public-shell pb-6">
-        <div className="border-t border-border pt-5 text-center text-xs leading-6 text-muted-foreground sm:flex sm:items-center sm:justify-between sm:gap-6 sm:text-left">
-          <span>Copyright {new Date().getFullYear()} AUM PRODZ.</span>
-          <span>{t(locale, "footer.tagline")}</span>
-        </div>
-      </div>
     </footer>
+  );
+}
+
+function FooterLinkGroup({
+  links,
+  title,
+}: {
+  links: Array<{ href: string; label: string }>;
+  title: string;
+}) {
+  return (
+    <nav className="space-y-3" aria-label={title}>
+      <p className="text-sm font-black uppercase tracking-[0.2em] text-foreground">
+        {title}
+      </p>
+      <div className="grid gap-2.5">
+        {links.map((link) => (
+          <Link
+            key={link.href}
+            className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+            href={link.href}
+          >
+            {link.label}
+          </Link>
+        ))}
+      </div>
+    </nav>
   );
 }
