@@ -3,9 +3,7 @@ import Link from "next/link";
 import { ArrowRight, Settings } from "lucide-react";
 
 import { PublicEventTracker } from "@/components/public/public-event-tracker";
-import { YoutubeVideosSection } from "@/components/public/youtube-videos-section";
 import { buttonVariants } from "@/components/ui/button";
-import { getPublicYoutubeVideos } from "@/lib/content/youtube";
 import type { AppLocale } from "@/lib/i18n/config";
 import { getCurrentLocale } from "@/lib/i18n/server";
 import { cn } from "@/lib/utils";
@@ -17,113 +15,159 @@ type HomeCopy = {
   aboutText: string;
   aboutTitle: string;
   artistCta: string;
-  artistLogin: string;
   artistText: string;
   artistTitle: string;
-  finalText: string;
-  finalTitle: string;
   heroLineOne: string;
   heroLineTwo: string;
   heroPrice: string;
   modelIntro: string;
+  servicesCta: string;
+  servicesText: string;
+  servicesTitle: string;
   startCta: string;
+  workEyebrow: string;
+  workText: string;
+  workTitle: string;
+  youtubeCta: string;
+  youtubeText: string;
+  youtubeTitle: string;
 };
 
 const copyByLocale: Record<AppLocale, HomeCopy> = {
   ht: {
-    aboutEyebrow: "Byenveni",
-    aboutTitle: "Byenveni sou paj aum",
+    aboutEyebrow: "Ki moun ki om?",
+    aboutTitle: "om se Bendjy, kreyatè ki dèyè AUM PRODZ.",
     aboutText:
-      "Mwen se om, moun ki dèyè AUM PRODZ. Isit la mwen pataje eksperyans, zouti ak direksyon pou kominote ayisyèn nan grandi ak plis konfyans nan kontni, teknoloji, mizik, YouTube ak pwojè dijital.",
-    artistCta: "Kreye kont atis",
-    artistLogin: "Mwen deja atis",
+      "Mwen kreye videyo, eksperyans dijital ak sèvis pratik pou ede kominote ayisyèn nan konprann teknoloji, kontni, YouTube, mizik ak biznis sou entènèt ak plis klè.",
+    artistCta: "AUM Artist",
     artistText:
-      "Pwofil, lansman, fichye, kontra, revizyon, pwomosyon ak sipò nan yon sèl espas pwofesyonèl.",
-    artistTitle: "Karyè mizikal ou, òganize nan yon sèl kote.",
-    finalText:
-      "Mete chanèl ou, sit ou, imaj ou, kont ou oswa karyè atistik ou nan yon pwosesis ki klè.",
-    finalTitle: "Pare pou mete pwojè dijital ou anba kontwòl?",
+      "Pou atis yo, om ap bati yon espas kote pwofil, fichye, lansman ak pwomosyon ka gen plis lòd.",
+    artistTitle: "Travay ak atis",
     heroLineOne: "Rete konekte",
     heroLineTwo: "ak aum",
     heroPrice: "pou sèlman senkant dola ameriken chak mwa",
     modelIntro: "Aprann sou",
+    servicesCta: "Gade sèvis yo",
+    servicesText:
+      "om ofri sipò pou YouTube, AdSense, sit web, imaj, videyo, kont ak pwojè dijital lè yon moun bezwen yon direksyon ki klè.",
+    servicesTitle: "Sèvis ak akonpayman",
     startCta: "Aprann plis",
+    workEyebrow: "Sa om fè",
+    workText:
+      "Home la se pou moun konprann kiyès om ye anvan yo antre nan sèvis, videyo oswa espas atis la.",
+    workTitle: "Kontni, sèvis ak zouti pou moun ki vle avanse sou entènèt.",
+    youtubeCta: "Gade YouTube",
+    youtubeText:
+      "Sou YouTube, om pataje videyo sou teknoloji, lide, kilti, kreyasyon kontni ak sijè ki ka ede moun reflechi pi byen.",
+    youtubeTitle: "Videyo ak refleksyon",
   },
   es: {
-    aboutEyebrow: "Bienvenido",
-    aboutTitle: "Bienvenido a la página de aum",
+    aboutEyebrow: "¿Quién es om?",
+    aboutTitle: "om es Bendjy, el creador detrás de AUM PRODZ.",
     aboutText:
-      "Soy om, la persona detrás de AUM PRODZ. Aquí comparto experiencia, herramientas y dirección para que la comunidad haitiana avance con más claridad en contenido, tecnología, música, YouTube y proyectos digitales.",
-    artistCta: "Crear cuenta de artista",
-    artistLogin: "Ya soy artista",
+      "Creo videos, experiencias digitales y servicios prácticos para ayudar a la comunidad haitiana a entender mejor la tecnología, el contenido, YouTube, la música y los negocios en internet.",
+    artistCta: "AUM Artist",
     artistText:
-      "Perfil, lanzamientos, archivos, contratos, revisión, promoción y soporte en un espacio profesional.",
-    artistTitle: "Tu carrera musical organizada en un solo lugar.",
-    finalText:
-      "Pon tu canal, web, imagen, cuentas o carrera artística dentro de un proceso claro.",
-    finalTitle: "¿Listo para poner tu proyecto digital bajo control?",
+      "Para artistas, om está construyendo un espacio donde perfil, archivos, lanzamientos y promoción tengan más orden.",
+    artistTitle: "Trabajo con artistas",
     heroLineOne: "Mantente al día",
     heroLineTwo: "con aum",
     heroPrice: "por tan solo 50 dólares al mes",
     modelIntro: "Aprende sobre",
+    servicesCta: "Ver servicios",
+    servicesText:
+      "om ofrece apoyo para YouTube, AdSense, páginas web, imagen, video, cuentas y proyectos digitales cuando alguien necesita una dirección clara.",
+    servicesTitle: "Servicios y acompañamiento",
     startCta: "Saber más",
+    workEyebrow: "Qué hace om",
+    workText:
+      "El home existe para que la persona entienda quién es om antes de entrar a servicios, videos o al espacio de artistas.",
+    workTitle: "Contenido, servicios y herramientas para avanzar en internet.",
+    youtubeCta: "Ver YouTube",
+    youtubeText:
+      "En YouTube, om comparte videos sobre tecnología, ideas, cultura, creación de contenido y temas que ayudan a pensar mejor.",
+    youtubeTitle: "Videos y reflexión",
   },
   en: {
-    aboutEyebrow: "Welcome",
-    aboutTitle: "Welcome to the aum page",
+    aboutEyebrow: "Who is om?",
+    aboutTitle: "om is Bendjy, the creator behind AUM PRODZ.",
     aboutText:
-      "I am om, the person behind AUM PRODZ. This space shares experience, tools and direction for the Haitian community to move forward with more clarity in content, technology, music, YouTube and digital projects.",
-    artistCta: "Create artist account",
-    artistLogin: "I am already an artist",
+      "I create videos, digital experiences and practical services to help the Haitian community understand technology, content, YouTube, music and online business with more clarity.",
+    artistCta: "AUM Artist",
     artistText:
-      "Profiles, releases, files, contracts, review, promotion and support in one professional workspace.",
-    artistTitle: "Your music career organized in one place.",
-    finalText:
-      "Bring your channel, website, image, accounts or artist career into a clear process.",
-    finalTitle: "Ready to put your digital project under control?",
+      "For artists, om is building a space where profiles, files, releases and promotion can stay more organized.",
+    artistTitle: "Work with artists",
     heroLineOne: "Stay up to date",
     heroLineTwo: "with aum",
     heroPrice: "for only 50 dollars a month",
     modelIntro: "Learn about",
+    servicesCta: "View services",
+    servicesText:
+      "om offers support for YouTube, AdSense, websites, image, video, accounts and digital projects when someone needs clear direction.",
+    servicesTitle: "Services and guidance",
     startCta: "Learn more",
+    workEyebrow: "What om does",
+    workText:
+      "The home page is here so people understand who om is before entering services, videos or the artist space.",
+    workTitle: "Content, services and tools for people moving forward online.",
+    youtubeCta: "View YouTube",
+    youtubeText:
+      "On YouTube, om shares videos about technology, ideas, culture, content creation and subjects that help people think more clearly.",
+    youtubeTitle: "Videos and reflection",
   },
   fr: {
-    aboutEyebrow: "Bienvenue",
-    aboutTitle: "Bienvenue sur la page aum",
+    aboutEyebrow: "Qui est om?",
+    aboutTitle: "om est Bendjy, le créateur derrière AUM PRODZ.",
     aboutText:
-      "Je suis om, la personne derrière AUM PRODZ. Ici, je partage de l'expérience, des outils et une direction pour aider la communauté haïtienne à avancer avec plus de clarté dans le contenu, la technologie, la musique, YouTube et les projets digitaux.",
-    artistCta: "Créer un compte artiste",
-    artistLogin: "Je suis déjà artiste",
+      "Je crée des vidéos, des expériences digitales et des services pratiques pour aider la communauté haïtienne à mieux comprendre la technologie, le contenu, YouTube, la musique et les projets en ligne.",
+    artistCta: "AUM Artist",
     artistText:
-      "Profil, sorties, fichiers, contrats, révision, promotion et support dans un espace professionnel.",
-    artistTitle: "Votre carrière musicale organisée au même endroit.",
-    finalText:
-      "Mettez votre chaîne, site, image, comptes ou carrière artistique dans un processus clair.",
-    finalTitle: "Prêt à mettre votre projet digital sous contrôle?",
+      "Pour les artistes, om construit un espace où profil, fichiers, sorties et promotion peuvent être mieux organisés.",
+    artistTitle: "Travail avec les artistes",
     heroLineOne: "Restez à jour",
     heroLineTwo: "avec aum",
     heroPrice: "pour seulement 50 dollars par mois",
     modelIntro: "Apprenez sur",
+    servicesCta: "Voir les services",
+    servicesText:
+      "om propose un accompagnement pour YouTube, AdSense, sites web, image, vidéo, comptes et projets digitaux quand une personne a besoin d'une direction claire.",
+    servicesTitle: "Services et accompagnement",
     startCta: "En savoir plus",
+    workEyebrow: "Ce que fait om",
+    workText:
+      "La page d'accueil sert à comprendre qui est om avant d'entrer dans les services, les vidéos ou l'espace artiste.",
+    workTitle: "Contenu, services et outils pour avancer en ligne.",
+    youtubeCta: "Voir YouTube",
+    youtubeText:
+      "Sur YouTube, om partage des vidéos sur la technologie, les idées, la culture, la création de contenu et des sujets qui aident à mieux réfléchir.",
+    youtubeTitle: "Vidéos et réflexion",
   },
   pt: {
-    aboutEyebrow: "Bem-vindo",
-    aboutTitle: "Bem-vindo à página da aum",
+    aboutEyebrow: "Quem é om?",
+    aboutTitle: "om é Bendjy, o criador por trás da AUM PRODZ.",
     aboutText:
-      "Eu sou om, a pessoa por trás da AUM PRODZ. Aqui compartilho experiência, ferramentas e direção para a comunidade haitiana avançar com mais clareza em conteúdo, tecnologia, música, YouTube e projetos digitais.",
-    artistCta: "Criar conta de artista",
-    artistLogin: "Já sou artista",
+      "Eu crio vídeos, experiências digitais e serviços práticos para ajudar a comunidade haitiana a entender melhor tecnologia, conteúdo, YouTube, música e projetos online.",
+    artistCta: "AUM Artist",
     artistText:
-      "Perfil, lançamentos, arquivos, contratos, revisão, promoção e suporte em um espaço profissional.",
-    artistTitle: "Sua carreira musical organizada em um só lugar.",
-    finalText:
-      "Coloque seu canal, site, imagem, contas ou carreira artística em um processo claro.",
-    finalTitle: "Pronto para colocar seu projeto digital sob controle?",
+      "Para artistas, om está construindo um espaço onde perfil, arquivos, lançamentos e promoção tenham mais organização.",
+    artistTitle: "Trabalho com artistas",
     heroLineOne: "Fique em dia",
     heroLineTwo: "com aum",
     heroPrice: "por apenas 50 dólares por mês",
     modelIntro: "Aprenda sobre",
+    servicesCta: "Ver serviços",
+    servicesText:
+      "om oferece apoio para YouTube, AdSense, sites, imagem, vídeo, contas e projetos digitais quando alguém precisa de uma direção clara.",
+    servicesTitle: "Serviços e acompanhamento",
     startCta: "Saber mais",
+    workEyebrow: "O que om faz",
+    workText:
+      "A home existe para que a pessoa entenda quem é om antes de entrar nos serviços, vídeos ou espaço de artistas.",
+    workTitle: "Conteúdo, serviços e ferramentas para avançar na internet.",
+    youtubeCta: "Ver YouTube",
+    youtubeText:
+      "No YouTube, om compartilha vídeos sobre tecnologia, ideias, cultura, criação de conteúdo e temas que ajudam as pessoas a pensar melhor.",
+    youtubeTitle: "Vídeos e reflexão",
   },
 };
 
@@ -146,7 +190,6 @@ const modelPills = [
 export default async function HomePage() {
   const locale = await getCurrentLocale();
   const copy = copyByLocale[locale] ?? copyByLocale.ht;
-  const youtubeVideos = await getPublicYoutubeVideos(3);
 
   return (
     <>
@@ -185,7 +228,7 @@ export default async function HomePage() {
             {copy.heroPrice}
           </p>
           <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row">
-            <Link href="/servicios" className={cn(buttonVariants({ size: "lg" }))}>
+            <Link href="#quien-es-om" className={cn(buttonVariants({ size: "lg" }))}>
               {copy.startCta}
               <ArrowRight className="size-5" />
             </Link>
@@ -195,14 +238,14 @@ export default async function HomePage() {
 
       <AboutAumSection copy={copy} />
 
-      <YoutubeVideosSection videos={youtubeVideos} compact />
+      <OmWorkSection copy={copy} />
     </>
   );
 }
 
 function AboutAumSection({ copy }: { copy: HomeCopy }) {
   return (
-    <section className="public-section-tight">
+    <section id="quien-es-om" className="public-section-tight scroll-mt-28">
       <div className="public-shell">
         <div className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
           <div className="max-w-2xl">
@@ -226,6 +269,70 @@ function AboutAumSection({ copy }: { copy: HomeCopy }) {
               sizes="(min-width: 1024px) 52vw, 100vw"
             />
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function OmWorkSection({ copy }: { copy: HomeCopy }) {
+  const paths = [
+    {
+      cta: copy.youtubeCta,
+      href: "/youtube",
+      text: copy.youtubeText,
+      title: copy.youtubeTitle,
+    },
+    {
+      cta: copy.servicesCta,
+      href: "/servicios",
+      text: copy.servicesText,
+      title: copy.servicesTitle,
+    },
+    {
+      cta: copy.artistCta,
+      href: "/artista",
+      text: copy.artistText,
+      title: copy.artistTitle,
+    },
+  ];
+
+  return (
+    <section className="public-section-tight pt-0">
+      <div className="public-shell">
+        <div className="mx-auto max-w-4xl text-center">
+          <p className="mb-4 text-sm font-black uppercase tracking-[0.32em] text-primary">
+            {copy.workEyebrow}
+          </p>
+          <h2 className="mammouth-title text-4xl leading-[0.98] sm:text-6xl">
+            {copy.workTitle}
+          </h2>
+          <p className="mammouth-subtitle mt-6 text-xl leading-relaxed sm:text-2xl">
+            {copy.workText}
+          </p>
+        </div>
+
+        <div className="mx-auto mt-12 grid max-w-6xl gap-5 md:grid-cols-3">
+          {paths.map((item) => (
+            <article
+              key={item.href}
+              className="flex min-h-72 flex-col rounded-[2rem] border border-border bg-surface/78 p-6 shadow-soft"
+            >
+              <h3 className="text-2xl font-black leading-tight text-foreground">
+                {item.title}
+              </h3>
+              <p className="mt-4 flex-1 text-lg font-medium leading-relaxed text-muted-foreground">
+                {item.text}
+              </p>
+              <Link
+                href={item.href}
+                className={cn(buttonVariants({ size: "lg", variant: "secondary" }), "mt-6")}
+              >
+                {item.cta}
+                <ArrowRight className="size-5" />
+              </Link>
+            </article>
+          ))}
         </div>
       </div>
     </section>
