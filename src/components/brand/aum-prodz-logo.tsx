@@ -31,11 +31,9 @@ export function AumProdzLogo({
         )}
       />
       {!compact ? (
-        <span className="leading-tight">
-          <span className="block text-sm uppercase tracking-[0.18em] text-muted-foreground">
-            AUM PRODZ
-          </span>
-          <span className="block text-base text-foreground">{platformLabel}</span>
+        <span className="min-w-0 text-sm font-black uppercase tracking-[0.16em] text-foreground sm:text-base">
+          <span>AUM PRODZ</span>
+          <span className="ml-2 text-muted-foreground">{platformLabel}</span>
         </span>
       ) : null}
     </Link>
