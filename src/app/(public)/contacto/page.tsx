@@ -1,4 +1,4 @@
-import { Mail, MessageCircle } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 
 import { PublicEventTracker } from "@/components/public/public-event-tracker";
 import { buttonVariants } from "@/components/ui/button";
@@ -16,17 +16,13 @@ export const metadata = {
   title: "Contacto",
 };
 
-const contactEmail = "admin@aumprodz.com";
-
 type ContactCopy = {
   badge: string;
-  emailButton: string;
   formDescription: string;
   formTitle: string;
   formWhatsappButton: string;
   message: string;
   title: string;
-  whatsappButton: string;
   whatsappMessage: string;
   form: ContactMessageFormCopy;
 };
@@ -34,15 +30,13 @@ type ContactCopy = {
 const contactCopyByLocale: Record<AppLocale, ContactCopy> = {
   ht: {
     badge: "Pale ak AUM",
-    emailButton: "Pa email",
     formDescription:
       "Mesaj sa a ale dirèk nan panèl admin. Apre sa, m ap reponn nan imèl ou kite a.",
     formTitle: "Voye mesaj",
     formWhatsappButton: "Kontakte sou WhatsApp",
     message:
-      "Ekri ak kontèks: chanèl YouTube, sit entènèt, miniati, videyo, mizik oswa nenpòt sèvis ou vle travay ak AUM PRODZ. Plis mesaj la klè, se plis nou ka avanse vit.",
+      "Ekri m ak plis kontèks posib: ki sèvis ou bezwen, ki pwoblèm ou genyen, lyen oswa detay pwojè a, ak ki rezilta ou vle jwenn. Mesaj la rive nan panèl admin AUM PRODZ, epi m ap reponn nan imèl ou kite a pou nou ka òganize pwochen etap la.",
     title: "Di m sa ou bezwen epi m ap ede w mete pwochen etap la an lòd.",
-    whatsappButton: "Pa WhatsApp",
     whatsappMessage:
       "Bonjou AUM, mwen soti sou paj kontak la. Mwen vle pale sou yon sèvis.",
     form: {
@@ -60,15 +54,13 @@ const contactCopyByLocale: Record<AppLocale, ContactCopy> = {
   },
   es: {
     badge: "Ponte en contacto",
-    emailButton: "Vía email",
     formDescription:
       "Este mensaje llega directo al panel admin. Después respondo al correo que dejaste.",
     formTitle: "Enviar mensaje",
     formWhatsappButton: "Contactar vía WhatsApp",
     message:
-      "Escríbeme con contexto: canal de YouTube, página web, miniatura, video, música o cualquier servicio que quieras trabajar con AUM PRODZ. Mientras más claro sea el mensaje, más rápido podemos avanzar.",
+      "Escríbeme con el mayor contexto posible: qué servicio necesitas, qué problema quieres resolver, enlaces o detalles del proyecto y qué resultado esperas. El mensaje llega directo al panel admin de AUM PRODZ y luego respondo al correo que dejaste para ordenar el próximo paso.",
     title: "Cuéntame qué necesitas y te ayudo a ordenar el próximo paso.",
-    whatsappButton: "Vía WhatsApp",
     whatsappMessage:
       "Hola Aum, vengo desde la página de contacto. Quiero hablar sobre un servicio.",
     form: {
@@ -86,15 +78,13 @@ const contactCopyByLocale: Record<AppLocale, ContactCopy> = {
   },
   en: {
     badge: "Contact AUM",
-    emailButton: "By email",
     formDescription:
       "This message goes directly to the admin panel. Then I reply to the email you left.",
     formTitle: "Send message",
     formWhatsappButton: "Contact via WhatsApp",
     message:
-      "Write with context: YouTube channel, website, thumbnail, video, music or any service you want to work on with AUM PRODZ. The clearer the message, the faster we can move.",
+      "Write with as much context as possible: the service you need, the problem you want to solve, project links or details, and the result you expect. The message goes directly to the AUM PRODZ admin panel, and I reply to the email you leave so we can organize the next step.",
     title: "Tell me what you need and I will help organize the next step.",
-    whatsappButton: "By WhatsApp",
     whatsappMessage:
       "Hi AUM, I came from the contact page. I want to talk about a service.",
     form: {
@@ -112,15 +102,13 @@ const contactCopyByLocale: Record<AppLocale, ContactCopy> = {
   },
   fr: {
     badge: "Contacter AUM",
-    emailButton: "Par email",
     formDescription:
       "Ce message arrive directement au panel admin. Ensuite, je réponds à l'email que vous avez laissé.",
     formTitle: "Envoyer un message",
     formWhatsappButton: "Contacter via WhatsApp",
     message:
-      "Écrivez avec contexte: chaîne YouTube, site web, miniature, vidéo, musique ou tout service à travailler avec AUM PRODZ. Plus le message est clair, plus nous avançons vite.",
+      "Écrivez avec le plus de contexte possible : le service dont vous avez besoin, le problème à résoudre, les liens ou détails du projet et le résultat attendu. Le message arrive directement dans le panel admin AUM PRODZ, puis je réponds à l'email laissé pour organiser la prochaine étape.",
     title: "Dites-moi ce dont vous avez besoin et je vous aide à organiser la prochaine étape.",
-    whatsappButton: "Par WhatsApp",
     whatsappMessage:
       "Bonjour AUM, je viens de la page contact. Je veux parler d'un service.",
     form: {
@@ -138,15 +126,13 @@ const contactCopyByLocale: Record<AppLocale, ContactCopy> = {
   },
   pt: {
     badge: "Fale com AUM",
-    emailButton: "Por email",
     formDescription:
       "Esta mensagem chega direto ao painel admin. Depois respondo no email que você deixou.",
     formTitle: "Enviar mensagem",
     formWhatsappButton: "Contactar pelo WhatsApp",
     message:
-      "Escreva com contexto: canal de YouTube, site, miniatura, vídeo, música ou qualquer serviço que queira trabalhar com AUM PRODZ. Quanto mais clara a mensagem, mais rápido avançamos.",
+      "Escreva com o máximo de contexto possível: qual serviço você precisa, que problema quer resolver, links ou detalhes do projeto e o resultado esperado. A mensagem chega direto ao painel admin da AUM PRODZ e depois respondo no email que você deixou para organizar o próximo passo.",
     title: "Conte o que você precisa e eu ajudo a organizar o próximo passo.",
-    whatsappButton: "Por WhatsApp",
     whatsappMessage:
       "Olá AUM, vim da página de contato. Quero falar sobre um serviço.",
     form: {
@@ -174,11 +160,6 @@ export default async function ContactPage() {
         copy.whatsappMessage,
       )
     : "#";
-  const emailHref = buildEmailHref({
-    subject: "Contacto desde AUM PRODZ",
-    body: `${copy.whatsappMessage}\n`,
-  });
-
   return (
     <section className="flex min-h-[calc(100svh-5.5rem)] py-5 lg:h-[calc(100svh-5.5rem)] lg:min-h-0 lg:overflow-hidden lg:py-4">
       <PublicEventTracker eventName="page_view" page="/contacto" source="contact" />
@@ -198,28 +179,6 @@ export default async function ContactPage() {
             </p>
           </div>
 
-          <div className="hidden gap-3 sm:grid sm:grid-cols-2">
-            <a
-              href={whatsappHref}
-              target="_blank"
-              rel="noreferrer"
-              className={cn(buttonVariants({ size: "lg" }), "w-full")}
-              aria-disabled={!whatsappNumber}
-            >
-              <MessageCircle className="size-5" />
-              {copy.whatsappButton}
-            </a>
-            <a
-              href={emailHref}
-              className={cn(
-                buttonVariants({ variant: "secondary", size: "lg" }),
-                "w-full",
-              )}
-            >
-              <Mail className="size-5" />
-              {copy.emailButton}
-            </a>
-          </div>
         </div>
 
         <Card className="mammouth-card min-h-0 overflow-hidden">
@@ -259,14 +218,4 @@ function normalizeWhatsAppNumber(value: string | undefined) {
 
 function buildWhatsappHref(number: string, message: string) {
   return `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
-}
-
-function buildEmailHref({
-  subject,
-  body,
-}: {
-  subject: string;
-  body: string;
-}) {
-  return `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
