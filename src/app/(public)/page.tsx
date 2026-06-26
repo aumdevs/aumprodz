@@ -7,7 +7,6 @@ import {
   MessageCircle,
   MonitorPlay,
   ShieldCheck,
-  UploadCloud,
   Zap,
 } from "lucide-react";
 
@@ -42,9 +41,7 @@ type HomeCopy = {
   serviceText: string;
   serviceTitle: string;
   startCta: string;
-  trustTitle: string;
   processCards: { text: string; title: string }[];
-  trustCards: { text: string; title: string }[];
   viewAll: string;
 };
 
@@ -75,12 +72,6 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
     serviceTitle: "Sèvis disponib",
     serviceCta: "Pale ak AUM",
     startCta: "Aprann plis",
-    trustTitle: "Done, aksè ak fichye yo dwe trete ak anpil swen.",
-    trustCards: [
-      { title: "Aksè kontwole", text: "Nou mande sèlman aksè ki nesesè pou sèvis la." },
-      { title: "Fichye òganize", text: "Logo, foto, videyo ak dokiman rete klè pandan travay la." },
-      { title: "Suivi senp", text: "Ou konnen sa k ap fèt, sa ki fini ak pwochen etap la." },
-    ],
     viewAll: "Gade tout",
   },
   es: {
@@ -109,12 +100,6 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
     serviceTitle: "Servicios disponibles",
     serviceCta: "Hablar con AUM",
     startCta: "Saber más",
-    trustTitle: "Datos, accesos y archivos tratados con cuidado.",
-    trustCards: [
-      { title: "Acceso controlado", text: "Solo se pide el acceso necesario para resolver el servicio." },
-      { title: "Archivos ordenados", text: "Logo, fotos, videos y documentos se mantienen claros durante el trabajo." },
-      { title: "Seguimiento simple", text: "Sabes qué se está haciendo, qué ya quedó listo y cuál es el próximo paso." },
-    ],
     viewAll: "Ver todo",
   },
   en: {
@@ -143,12 +128,6 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
     serviceTitle: "Available services",
     serviceCta: "Talk to AUM",
     startCta: "Learn more",
-    trustTitle: "Data, access and files handled with care.",
-    trustCards: [
-      { title: "Controlled access", text: "Only the access needed for the service is requested." },
-      { title: "Organized files", text: "Logos, photos, videos and documents stay clear during the work." },
-      { title: "Simple tracking", text: "You know what is being done, what is ready and what comes next." },
-    ],
     viewAll: "View all",
   },
   fr: {
@@ -177,12 +156,6 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
     serviceTitle: "Services disponibles",
     serviceCta: "Parler avec AUM",
     startCta: "En savoir plus",
-    trustTitle: "Données, accès et fichiers traités avec soin.",
-    trustCards: [
-      { title: "Accès contrôlé", text: "Nous demandons seulement l'accès nécessaire au service." },
-      { title: "Fichiers organisés", text: "Logos, photos, vidéos et documents restent clairs pendant le travail." },
-      { title: "Suivi simple", text: "Vous savez ce qui est en cours, terminé et la prochaine étape." },
-    ],
     viewAll: "Voir tout",
   },
   pt: {
@@ -211,12 +184,6 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
     serviceTitle: "Serviços disponíveis",
     serviceCta: "Falar com AUM",
     startCta: "Saber mais",
-    trustTitle: "Dados, acessos e arquivos tratados com cuidado.",
-    trustCards: [
-      { title: "Acesso controlado", text: "Só pedimos o acesso necessário para o serviço." },
-      { title: "Arquivos organizados", text: "Logo, fotos, vídeos e documentos ficam claros durante o trabalho." },
-      { title: "Acompanhamento simples", text: "Você sabe o que está em andamento, pronto e o próximo passo." },
-    ],
     viewAll: "Ver tudo",
   },
 };
@@ -238,7 +205,6 @@ const modelPills = [
 ] as const;
 
 const processIcons = [MessageCircle, ShieldCheck, Zap] as const;
-const trustIcons = [KeyRound, UploadCloud, ShieldCheck] as const;
 
 export default async function HomePage() {
   const locale = await getCurrentLocale();
@@ -329,38 +295,6 @@ export default async function HomePage() {
                   <p className="text-sm leading-6 text-muted-foreground">{text}</p>
                 </CardContent>
               </Card>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      <section className="public-section-tight">
-        <div className="public-shell">
-          <SectionHeading title="AUM Studio" text={copy.trustTitle} />
-          <div className="mx-auto mt-10 max-w-5xl overflow-hidden rounded-[2rem] border border-border bg-card shadow-soft">
-            <Image
-              src="/aum-prodz-podcast-hero.png"
-              alt="AUM PRODZ podcast recording studio with microphone and laptop"
-              width={1672}
-              height={941}
-              className="aspect-[16/9] w-full object-cover"
-            />
-          </div>
-          <div className="mx-auto mt-6 grid max-w-5xl gap-4 md:grid-cols-3">
-            {copy.trustCards.map(({ text, title }, index) => {
-              const Icon = trustIcons[index] ?? ShieldCheck;
-
-              return (
-                <div key={title} className="mammouth-card rounded-3xl p-5">
-                  <span className="mb-4 flex size-11 items-center justify-center rounded-2xl bg-muted text-primary">
-                    <Icon className="size-5" />
-                  </span>
-                  <h3 className="text-lg font-black">{title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                    {text}
-                  </p>
-                </div>
               );
             })}
           </div>
