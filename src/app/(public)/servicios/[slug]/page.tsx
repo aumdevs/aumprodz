@@ -4,7 +4,6 @@ import { notFound } from "next/navigation";
 
 import { PublicEventTracker } from "@/components/public/public-event-tracker";
 import { WhatsappCtaLink } from "@/components/public/whatsapp-cta-link";
-import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -141,9 +140,6 @@ export default async function ServiceDetailPage({
       <div className="public-shell grid gap-8 lg:grid-cols-[1fr_360px]">
         <div className="space-y-8">
           <div className="space-y-5">
-            <Badge tone="muted" className="rounded-full">
-              {service.eyebrow}
-            </Badge>
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
               <span className="flex size-14 items-center justify-center rounded-2xl bg-muted text-primary">
                 <Icon className="size-7" />
