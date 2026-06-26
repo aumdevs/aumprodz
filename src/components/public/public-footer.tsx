@@ -2,7 +2,6 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 import { AumProdzLogo } from "@/components/brand/aum-prodz-logo";
-import { LanguageSwitcher } from "@/components/language/language-switcher";
 import { buttonVariants } from "@/components/ui/button";
 import { getWhatsAppNumber } from "@/lib/env";
 import type { AppLocale } from "@/lib/i18n/config";
@@ -13,7 +12,6 @@ import { cn } from "@/lib/utils";
 type FooterCopy = {
   contactCta: string;
   description: string;
-  language: string;
   legal: {
     cookies: string;
     notice: string;
@@ -36,7 +34,6 @@ const footerCopyByLocale: Record<AppLocale, FooterCopy> = {
     contactCta: "Pale ak AUM sou WhatsApp",
     description:
       "Sèvis dijital, kontni, mizik, web ak zouti pratik pou kominote ayisyèn nan.",
-    language: "Lang",
     legal: {
       cookies: "Cookies",
       notice: "Avi legal",
@@ -57,7 +54,6 @@ const footerCopyByLocale: Record<AppLocale, FooterCopy> = {
     contactCta: "Hablar con AUM por WhatsApp",
     description:
       "Servicios digitales, contenido, música, web y herramientas prácticas para la comunidad haitiana.",
-    language: "Idioma",
     legal: {
       cookies: "Cookies",
       notice: "Aviso legal",
@@ -78,7 +74,6 @@ const footerCopyByLocale: Record<AppLocale, FooterCopy> = {
     contactCta: "Talk to AUM on WhatsApp",
     description:
       "Digital services, content, music, web and practical tools for the Haitian community.",
-    language: "Language",
     legal: {
       cookies: "Cookies",
       notice: "Legal notice",
@@ -99,7 +94,6 @@ const footerCopyByLocale: Record<AppLocale, FooterCopy> = {
     contactCta: "Parler avec AUM sur WhatsApp",
     description:
       "Services digitaux, contenu, musique, web et outils pratiques pour la communauté haïtienne.",
-    language: "Langue",
     legal: {
       cookies: "Cookies",
       notice: "Mentions légales",
@@ -120,7 +114,6 @@ const footerCopyByLocale: Record<AppLocale, FooterCopy> = {
     contactCta: "Falar com AUM pelo WhatsApp",
     description:
       "Serviços digitais, conteúdo, música, web e ferramentas práticas para a comunidade haitiana.",
-    language: "Idioma",
     legal: {
       cookies: "Cookies",
       notice: "Aviso legal",
@@ -214,12 +207,6 @@ export async function PublicFooter() {
             </p>
             <div className="flex flex-wrap items-center gap-3 sm:justify-end">
               <p className="max-w-md leading-6 sm:text-right">{copy.small}</p>
-              <div className="flex items-center gap-2">
-                <span className="text-[0.65rem] font-black uppercase tracking-[0.16em] text-foreground">
-                  {copy.language}
-                </span>
-                <LanguageSwitcher compact currentLocale={locale} />
-              </div>
             </div>
           </div>
         </div>

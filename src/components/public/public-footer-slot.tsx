@@ -8,5 +8,13 @@ export function PublicFooterSlot({ children }: { children: ReactNode }) {
   const hideFooter =
     pathname === "/servicios" || pathname.startsWith("/servicios/");
 
-  return hideFooter ? null : children;
+  if (hideFooter) {
+    return null;
+  }
+
+  if (pathname === "/youtube") {
+    return <div className="hidden sm:block">{children}</div>;
+  }
+
+  return children;
 }

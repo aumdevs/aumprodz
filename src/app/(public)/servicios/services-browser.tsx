@@ -169,7 +169,7 @@ export function ServicesBrowser({
   const ActiveIcon = icons[activeService.slug];
 
   return (
-    <div className="flex h-full min-h-0 flex-col gap-2 sm:gap-4">
+    <div className="flex min-h-full w-full flex-1 flex-col gap-2 sm:gap-4">
       <div className="shrink-0 text-center lg:text-left">
         <p className="text-[0.68rem] font-black uppercase tracking-[0.16em] text-primary sm:text-xs">
           {copy.available}
@@ -288,7 +288,10 @@ export function ServicesBrowser({
             <div className="flex items-center justify-end">
               <Link
                 href={buildWhatsappCtaHref(activeService.slug)}
-                className={cn(buttonVariants({ size: "lg" }), "shrink-0 max-sm:h-11 max-sm:px-4 max-sm:text-sm")}
+                className={cn(
+                  buttonVariants({ size: "lg" }),
+                  "whatsapp-cta-button shrink-0 max-sm:h-11 max-sm:px-4 max-sm:text-sm",
+                )}
               >
                 <MessageCircle className="size-5" />
                 {copy.ctaButton}

@@ -27,13 +27,13 @@ export default async function ServicesPage({
   const initialServiceSlug = isCanonicalServiceSlug(servicio) ? servicio : undefined;
 
   return (
-    <section className="h-full overflow-hidden py-2 sm:py-5">
+    <section className="flex min-h-[calc(100svh-5.5rem)] overflow-hidden py-2 sm:py-5">
       <PublicEventTracker
         eventName="page_view"
         page="/servicios"
         source="services"
       />
-      <div className="public-shell h-full min-h-0">
+      <div className="public-shell flex min-h-0 flex-1">
         <ServicesBrowser
           initialServiceSlug={initialServiceSlug}
           locale={locale}

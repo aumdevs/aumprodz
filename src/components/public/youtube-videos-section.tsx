@@ -89,7 +89,7 @@ export async function YoutubeVideosSection({
                     href={video.video_url}
                     target="_blank"
                     rel="noreferrer"
-                    className={cn(buttonVariants({ size: "sm" }), "w-fit")}
+                    className={cn(buttonVariants({ size: "sm" }), "mx-auto w-fit sm:mx-0")}
                   >
                     {copy.videoCta}
                     <ArrowRight className="size-4" />
