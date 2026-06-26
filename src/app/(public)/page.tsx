@@ -451,7 +451,7 @@ function ServicesAvailableBoard({
                     return (
                       <Link
                         key={`${service.slug}-${row}`}
-                        href={`/servicios/${service.slug}`}
+                        href={`/servicios?servicio=${service.slug}`}
                         className="group flex min-h-20 items-center gap-4 rounded-3xl bg-card px-4 py-3 text-left shadow-[0_14px_30px_rgba(80,27,24,0.08)] transition-transform hover:-translate-y-0.5"
                       >
                         <span className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-background text-primary">
@@ -464,7 +464,7 @@ function ServicesAvailableBoard({
                     );
                   })}
                   <Link
-                    href={`/servicios/${service.slug}`}
+                    href={`/servicios?servicio=${service.slug}`}
                     className="mt-auto flex min-h-16 items-center justify-between gap-4 rounded-3xl bg-primary px-5 py-4 text-primary-foreground shadow-glow transition-transform hover:-translate-y-0.5"
                   >
                     <span className="text-base font-black">

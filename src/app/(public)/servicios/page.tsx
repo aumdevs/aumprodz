@@ -1,5 +1,9 @@
 import { PublicEventTracker } from "@/components/public/public-event-tracker";
-import { getPublicServices, type Service } from "@/lib/content/services";
+import {
+  getPublicServices,
+  isCanonicalServiceSlug,
+  type Service,
+} from "@/lib/content/services";
 import { getCurrentLocale } from "@/lib/i18n/server";
 import {
   ServicesBrowser,
@@ -12,19 +16,29 @@ export const metadata = {
 
 export const dynamic = "force-dynamic";
 
-export default async function ServicesPage() {
+export default async function ServicesPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ servicio?: string }>;
+}) {
   const locale = await getCurrentLocale();
+  const { servicio } = await searchParams;
   const services = await getPublicServices({ locale });
+  const initialServiceSlug = isCanonicalServiceSlug(servicio) ? servicio : undefined;
 
   return (
-    <section className="public-section-tight">
+    <section className="h-full overflow-hidden py-2 sm:py-5">
       <PublicEventTracker
         eventName="page_view"
         page="/servicios"
         source="services"
       />
-      <div className="public-shell">
-        <ServicesBrowser locale={locale} services={services.map(serializeService)} />
+      <div className="public-shell h-full min-h-0">
+        <ServicesBrowser
+          initialServiceSlug={initialServiceSlug}
+          locale={locale}
+          services={services.map(serializeService)}
+        />
       </div>
     </section>
   );
