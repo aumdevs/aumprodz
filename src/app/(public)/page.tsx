@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Settings } from "lucide-react";
+import { ArrowRight, Code2, Settings } from "lucide-react";
 
 import { PublicEventTracker } from "@/components/public/public-event-tracker";
 import { buttonVariants } from "@/components/ui/button";
@@ -42,13 +42,13 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
     academyText:
       "AUM Academy se espas kote moun aprann sou teknoloji, IA, YouTube, kontni ak zouti dijital pou 50 dola ameriken chak mwa.",
     academyTitle: "AUM Academy",
-    aboutEyebrow: "Ki moun ki AUM?",
-    aboutTitle: "AUM se Bendjy, kreyatè ki dèyè AUM PRODZ.",
+    aboutEyebrow: "Ki moun ki Aum?",
+    aboutTitle: "Aum se Bendjy, kreyatè ki dèyè Aum Prodz.",
     aboutText:
       "Mwen espesyalize'm nan pwodiksyon kontni vizyèl, dijital, ak pwogramasyon aplikasyon pou android ak ios ak web.",
     artistCta: "AUM Artist",
     artistText:
-      "Pou atis yo, AUM ap bati yon espas kote pwofil, fichye, lansman ak pwomosyon ka gen plis lòd.",
+      "Pou atis yo, Aum ap bati yon espas kote pwofil, fichye, lansman ak pwomosyon ka gen plis lòd.",
     artistTitle: "Travay ak atis",
     heroLineOne: "Rete konekte",
     heroLineTwo: "ak aum",
@@ -56,16 +56,16 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
     modelIntro: "Aprann sou",
     servicesCta: "Gade sèvis yo",
     servicesText:
-      "AUM ofri sipò pou YouTube, AdSense, sit web, imaj, videyo, kont ak pwojè dijital lè yon moun bezwen yon direksyon ki klè.",
+      "Aum ofri sipò pou YouTube, AdSense, sit web, imaj, videyo, kont ak pwojè dijital lè yon moun bezwen yon direksyon ki klè.",
     servicesTitle: "Sèvis ak akonpayman",
     startCta: "Aprann plis",
-    workEyebrow: "Sa AUM fè",
+    workEyebrow: "Sa Aum fè",
     workText:
-      "Home la se pou moun konprann kiyès AUM ye anvan yo antre nan sèvis, videyo oswa espas atis la.",
-    workTitle: "Kontni, sèvis ak zouti pou moun ki vle avanse sou entènèt.",
+      "Pou kreye, aprann epi avanse sou entènèt ak plis klè.",
+    workTitle: "Kontni, sèvis ak zouti dijital.",
     youtubeCta: "Gade YouTube",
     youtubeText:
-      "Sou YouTube, AUM pataje videyo sou teknoloji, lide, kilti, kreyasyon kontni ak sijè ki ka ede moun reflechi pi byen.",
+      "Sou YouTube, Aum pataje videyo sou teknoloji, lide, kilti, kreyasyon kontni ak sijè ki ka ede moun reflechi pi byen.",
     youtubeTitle: "Videyo ak refleksyon",
   },
   es: {
@@ -73,13 +73,13 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
     academyText:
       "AUM Academy será el espacio para aprender sobre tecnología, IA, YouTube, contenido y herramientas digitales por 50 dólares al mes.",
     academyTitle: "AUM Academy",
-    aboutEyebrow: "¿Quién es AUM?",
-    aboutTitle: "AUM es Bendjy, el creador detrás de AUM PRODZ.",
+    aboutEyebrow: "¿Quién es Aum?",
+    aboutTitle: "Aum es Bendjy, el creador detrás de Aum Prodz.",
     aboutText:
       "Creo videos, experiencias digitales y servicios prácticos para ayudar a la comunidad haitiana a entender mejor la tecnología, el contenido, YouTube, la música y los negocios en internet.",
     artistCta: "AUM Artist",
     artistText:
-      "Para artistas, AUM está construyendo un espacio donde perfil, archivos, lanzamientos y promoción tengan más orden.",
+      "Para artistas, Aum está construyendo un espacio donde perfil, archivos, lanzamientos y promoción tengan más orden.",
     artistTitle: "Trabajo con artistas",
     heroLineOne: "Mantente al día",
     heroLineTwo: "con aum",
@@ -87,16 +87,16 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
     modelIntro: "Aprende sobre",
     servicesCta: "Ver servicios",
     servicesText:
-      "AUM ofrece apoyo para YouTube, AdSense, páginas web, imagen, video, cuentas y proyectos digitales cuando alguien necesita una dirección clara.",
+      "Aum ofrece apoyo para YouTube, AdSense, páginas web, imagen, video, cuentas y proyectos digitales cuando alguien necesita una dirección clara.",
     servicesTitle: "Servicios y acompañamiento",
     startCta: "Saber más",
-    workEyebrow: "Qué hace AUM",
+    workEyebrow: "Qué hace Aum",
     workText:
-      "El home existe para que la persona entienda quién es AUM antes de entrar a servicios, videos o al espacio de artistas.",
-    workTitle: "Contenido, servicios y herramientas para avanzar en internet.",
+      "Para crear, aprender y avanzar en internet con más claridad.",
+    workTitle: "Contenido, servicios y herramientas.",
     youtubeCta: "Ver YouTube",
     youtubeText:
-      "En YouTube, AUM comparte videos sobre tecnología, ideas, cultura, creación de contenido y temas que ayudan a pensar mejor.",
+      "En YouTube, Aum comparte videos sobre tecnología, ideas, cultura, creación de contenido y temas que ayudan a pensar mejor.",
     youtubeTitle: "Videos y reflexión",
   },
   en: {
@@ -104,13 +104,13 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
     academyText:
       "AUM Academy will be the space to learn about technology, AI, YouTube, content and digital tools for 50 dollars a month.",
     academyTitle: "AUM Academy",
-    aboutEyebrow: "Who is AUM?",
-    aboutTitle: "AUM is Bendjy, the creator behind AUM PRODZ.",
+    aboutEyebrow: "Who is Aum?",
+    aboutTitle: "Aum is Bendjy, the creator behind Aum Prodz.",
     aboutText:
       "I create videos, digital experiences and practical services to help the Haitian community understand technology, content, YouTube, music and online business with more clarity.",
     artistCta: "AUM Artist",
     artistText:
-      "For artists, AUM is building a space where profiles, files, releases and promotion can stay more organized.",
+      "For artists, Aum is building a space where profiles, files, releases and promotion can stay more organized.",
     artistTitle: "Work with artists",
     heroLineOne: "Stay up to date",
     heroLineTwo: "with aum",
@@ -118,16 +118,16 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
     modelIntro: "Learn about",
     servicesCta: "View services",
     servicesText:
-      "AUM offers support for YouTube, AdSense, websites, image, video, accounts and digital projects when someone needs clear direction.",
+      "Aum offers support for YouTube, AdSense, websites, image, video, accounts and digital projects when someone needs clear direction.",
     servicesTitle: "Services and guidance",
     startCta: "Learn more",
-    workEyebrow: "What AUM does",
+    workEyebrow: "What Aum does",
     workText:
-      "The home page is here so people understand who AUM is before entering services, videos or the artist space.",
-    workTitle: "Content, services and tools for people moving forward online.",
+      "To create, learn and move forward online with more clarity.",
+    workTitle: "Content, services and tools.",
     youtubeCta: "View YouTube",
     youtubeText:
-      "On YouTube, AUM shares videos about technology, ideas, culture, content creation and subjects that help people think more clearly.",
+      "On YouTube, Aum shares videos about technology, ideas, culture, content creation and subjects that help people think more clearly.",
     youtubeTitle: "Videos and reflection",
   },
   fr: {
@@ -135,13 +135,13 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
     academyText:
       "AUM Academy sera l'espace pour apprendre la technologie, l'IA, YouTube, le contenu et les outils digitaux pour 50 dollars par mois.",
     academyTitle: "AUM Academy",
-    aboutEyebrow: "Qui est AUM?",
-    aboutTitle: "AUM est Bendjy, le créateur derrière AUM PRODZ.",
+    aboutEyebrow: "Qui est Aum?",
+    aboutTitle: "Aum est Bendjy, le créateur derrière Aum Prodz.",
     aboutText:
       "Je crée des vidéos, des expériences digitales et des services pratiques pour aider la communauté haïtienne à mieux comprendre la technologie, le contenu, YouTube, la musique et les projets en ligne.",
     artistCta: "AUM Artist",
     artistText:
-      "Pour les artistes, AUM construit un espace où profil, fichiers, sorties et promotion peuvent être mieux organisés.",
+      "Pour les artistes, Aum construit un espace où profil, fichiers, sorties et promotion peuvent être mieux organisés.",
     artistTitle: "Travail avec les artistes",
     heroLineOne: "Restez à jour",
     heroLineTwo: "avec aum",
@@ -149,16 +149,16 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
     modelIntro: "Apprenez sur",
     servicesCta: "Voir les services",
     servicesText:
-      "AUM propose un accompagnement pour YouTube, AdSense, sites web, image, vidéo, comptes et projets digitaux quand une personne a besoin d'une direction claire.",
+      "Aum propose un accompagnement pour YouTube, AdSense, sites web, image, vidéo, comptes et projets digitaux quand une personne a besoin d'une direction claire.",
     servicesTitle: "Services et accompagnement",
     startCta: "En savoir plus",
-    workEyebrow: "Ce que fait AUM",
+    workEyebrow: "Ce que fait Aum",
     workText:
-      "La page d'accueil sert à comprendre qui est AUM avant d'entrer dans les services, les vidéos ou l'espace artiste.",
-    workTitle: "Contenu, services et outils pour avancer en ligne.",
+      "Pour créer, apprendre et avancer en ligne avec plus de clarté.",
+    workTitle: "Contenu, services et outils.",
     youtubeCta: "Voir YouTube",
     youtubeText:
-      "Sur YouTube, AUM partage des vidéos sur la technologie, les idées, la culture, la création de contenu et des sujets qui aident à mieux réfléchir.",
+      "Sur YouTube, Aum partage des vidéos sur la technologie, les idées, la culture, la création de contenu et des sujets qui aident à mieux réfléchir.",
     youtubeTitle: "Vidéos et réflexion",
   },
   pt: {
@@ -166,13 +166,13 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
     academyText:
       "AUM Academy será o espaço para aprender sobre tecnologia, IA, YouTube, conteúdo e ferramentas digitais por 50 dólares por mês.",
     academyTitle: "AUM Academy",
-    aboutEyebrow: "Quem é AUM?",
-    aboutTitle: "AUM é Bendjy, o criador por trás da AUM PRODZ.",
+    aboutEyebrow: "Quem é Aum?",
+    aboutTitle: "Aum é Bendjy, o criador por trás da Aum Prodz.",
     aboutText:
       "Eu crio vídeos, experiências digitais e serviços práticos para ajudar a comunidade haitiana a entender melhor tecnologia, conteúdo, YouTube, música e projetos online.",
     artistCta: "AUM Artist",
     artistText:
-      "Para artistas, AUM está construindo um espaço onde perfil, arquivos, lançamentos e promoção tenham mais organização.",
+      "Para artistas, Aum está construindo um espaço onde perfil, arquivos, lançamentos e promoção tenham mais organização.",
     artistTitle: "Trabalho com artistas",
     heroLineOne: "Fique em dia",
     heroLineTwo: "com aum",
@@ -180,23 +180,23 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
     modelIntro: "Aprenda sobre",
     servicesCta: "Ver serviços",
     servicesText:
-      "AUM oferece apoio para YouTube, AdSense, sites, imagem, vídeo, contas e projetos digitais quando alguém precisa de uma direção clara.",
+      "Aum oferece apoio para YouTube, AdSense, sites, imagem, vídeo, contas e projetos digitais quando alguém precisa de uma direção clara.",
     servicesTitle: "Serviços e acompanhamento",
     startCta: "Saber mais",
-    workEyebrow: "O que AUM faz",
+    workEyebrow: "O que Aum faz",
     workText:
-      "A home existe para que a pessoa entenda quem é AUM antes de entrar nos serviços, vídeos ou espaço de artistas.",
-    workTitle: "Conteúdo, serviços e ferramentas para avançar na internet.",
+      "Para criar, aprender e avançar na internet com mais clareza.",
+    workTitle: "Conteúdo, serviços e ferramentas.",
     youtubeCta: "Ver YouTube",
     youtubeText:
-      "No YouTube, AUM compartilha vídeos sobre tecnologia, ideias, cultura, criação de conteúdo e temas que ajudam as pessoas a pensar melhor.",
+      "No YouTube, Aum compartilha vídeos sobre tecnologia, ideias, cultura, criação de conteúdo e temas que ajudam as pessoas a pensar melhor.",
     youtubeTitle: "Vídeos e reflexão",
   },
 };
 
 const modelPills = [
   { label: "Claude", icon: ClaudeLogo },
-  { label: "GPT", icon: GptLogo },
+  { label: "Codex", icon: CodexLogo },
   { label: "Gemini", icon: GeminiLogo },
   { label: "Spotify", icon: SpotifyLogo },
   { label: "Grok", icon: GrokLogo },
@@ -369,11 +369,29 @@ function AumWorkSection({ copy }: { copy: HomeCopy }) {
 }
 
 function ClaudeLogo({ className }: { className?: string }) {
-  return <span className={cn("text-xl font-black text-[#d46d4c]", className)}>✳</span>;
+  return (
+    <span
+      className={cn(
+        "inline-flex size-5 items-center justify-center text-[1.15rem] font-black leading-none text-[#d46d4c]",
+        className,
+      )}
+    >
+      ✳
+    </span>
+  );
 }
 
 function GeminiLogo({ className }: { className?: string }) {
-  return <span className={cn("text-xl font-black text-[#3d8ef4]", className)}>✦</span>;
+  return (
+    <span
+      className={cn(
+        "inline-flex size-5 items-center justify-center text-[1.1rem] font-black leading-none text-[#3d8ef4]",
+        className,
+      )}
+    >
+      ✦
+    </span>
+  );
 }
 
 function SpotifyLogo({ className }: { className?: string }) {
@@ -400,12 +418,26 @@ function GrokLogo({ className }: { className?: string }) {
 }
 
 function DeepSeekLogo({ className }: { className?: string }) {
-  return <span className={cn("text-lg font-black text-[#4d65ff]", className)}>D</span>;
+  return (
+    <span
+      className={cn(
+        "inline-flex size-5 items-center justify-center text-base font-black leading-none text-[#4d65ff]",
+        className,
+      )}
+    >
+      D
+    </span>
+  );
 }
 
 function KimiLogo({ className }: { className?: string }) {
   return (
-    <span className={cn("inline-flex items-center justify-center text-base font-black leading-none text-[#111111]", className)}>
+    <span
+      className={cn(
+        "inline-flex size-5 items-center justify-center text-base font-black leading-none text-[#111111]",
+        className,
+      )}
+    >
       K
     </span>
   );
@@ -504,14 +536,6 @@ function TikTokLogo({ className }: { className?: string }) {
   );
 }
 
-function GptLogo({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" aria-hidden="true">
-      <g fill="none" stroke="#111" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.7">
-        <path d="M12 3.2a3.3 3.3 0 0 1 5 2.8v1.2l1 .6a3.3 3.3 0 0 1 0 5.8l-1 .6v1.2a3.3 3.3 0 0 1-5 2.8l-1-.6-1 .6a3.3 3.3 0 0 1-5-2.8v-1.2l-1-.6a3.3 3.3 0 0 1 0-5.8l1-.6V6a3.3 3.3 0 0 1 5-2.8l1 .6 1-.6Z" />
-        <path d="M8 7.4 12 5l4 2.4v4.7l-4 2.4-4-2.4V7.4Z" />
-        <path d="M8 12.1 4.8 10M16 7.4l3.2 2.1M16 16.6v-4.5M8 16.6v-4.5M12 14.5v4" />
-      </g>
-    </svg>
-  );
+function CodexLogo({ className }: { className?: string }) {
+  return <Code2 className={cn("text-[#111111]", className)} />;
 }
