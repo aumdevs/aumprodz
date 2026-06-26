@@ -194,7 +194,7 @@ export const localServices: Service[] = [
     ctas: [],
     media: [],
     whatsappMessage:
-      "Hola Om, vengo desde tu página de YouTube y AdSense. Necesito orientación sobre mi canal.",
+      "Hola AUM, vengo desde tu página de YouTube y AdSense. Necesito orientación sobre mi canal.",
   },
   {
     slug: "paginas-web",
@@ -245,7 +245,7 @@ export const localServices: Service[] = [
     ctas: [],
     media: [],
     whatsappMessage:
-      "Hola Om, vengo desde tu página web. Quiero orientación para crear una web, aplicación simple, landing o ecommerce.",
+      "Hola AUM, vengo desde tu página web. Quiero orientación para crear una web, aplicación simple, landing o ecommerce.",
   },
   {
     slug: "imagen-video",
@@ -292,7 +292,7 @@ export const localServices: Service[] = [
     ctas: [],
     media: [],
     whatsappMessage:
-      "Hola Om, vi tu servicio de imagen y video. Quiero orientación sobre miniaturas, edición o contenido visual.",
+      "Hola AUM, vi tu servicio de imagen y video. Quiero orientación sobre miniaturas, edición o contenido visual.",
   },
   {
     slug: "cuentas-digitales",
@@ -343,7 +343,7 @@ export const localServices: Service[] = [
     ctas: [],
     media: [],
     whatsappMessage:
-      "Hola Om, necesito ayuda con creación, administración o recuperación de una cuenta digital.",
+      "Hola AUM, necesito ayuda con creación, administración o recuperación de una cuenta digital.",
   },
 ];
 
@@ -411,7 +411,7 @@ const localServiceTranslations: Partial<
         },
       ],
       whatsappMessage:
-        "Bonjou Om, mwen soti sou paj YouTube ak AdSense ou a. Mwen bezwen oryantasyon pou chanèl mwen.",
+        "Bonjou AUM, mwen soti sou paj YouTube ak AdSense ou a. Mwen bezwen oryantasyon pou chanèl mwen.",
     },
     "paginas-web": {
       label: "Web ak aplikasyon",
@@ -451,7 +451,7 @@ const localServiceTranslations: Partial<
         },
       ],
       whatsappMessage:
-        "Bonjou Om, mwen vle oryantasyon pou kreye yon web, aplikasyon senp, landing page oswa ecommerce.",
+        "Bonjou AUM, mwen vle oryantasyon pou kreye yon web, aplikasyon senp, landing page oswa ecommerce.",
     },
     "imagen-video": {
       label: "Imaj ak videyo",
@@ -491,7 +491,7 @@ const localServiceTranslations: Partial<
         },
       ],
       whatsappMessage:
-        "Bonjou Om, mwen wè sèvis imaj ak videyo ou a. Mwen bezwen oryantasyon sou miniati, edit oswa kontni vizyèl.",
+        "Bonjou AUM, mwen wè sèvis imaj ak videyo ou a. Mwen bezwen oryantasyon sou miniati, edit oswa kontni vizyèl.",
     },
     "cuentas-digitales": {
       label: "Kont ak rezo",
@@ -535,7 +535,7 @@ const localServiceTranslations: Partial<
         },
       ],
       whatsappMessage:
-        "Bonjou Om, mwen bezwen èd ak kreyasyon, administrasyon oswa rekiperasyon yon kont dijital.",
+        "Bonjou AUM, mwen bezwen èd ak kreyasyon, administrasyon oswa rekiperasyon yon kont dijital.",
     },
   },
   en: {
@@ -555,7 +555,7 @@ const localServiceTranslations: Partial<
         { question: "Does this guarantee monetization?", answer: "No. The guidance helps correct and organize the process, but YouTube makes the final decision." },
         { question: "Can I ask for help if my AdSense has an issue?", answer: "Yes. The service starts with a review of the case and available documents." },
       ],
-      whatsappMessage: "Hi Om, I came from your YouTube and AdSense page. I need guidance for my channel.",
+      whatsappMessage: "Hi AUM, I came from your YouTube and AdSense page. I need guidance for my channel.",
     },
     "paginas-web": {
       label: "Web & App",
@@ -573,7 +573,7 @@ const localServiceTranslations: Partial<
         { question: "Does it include domain and hosting?", answer: "I can guide or configure it depending on the case, but the cost depends on the provider." },
         { question: "Can I request ecommerce?", answer: "Yes. Ecommerce is quoted separately depending on products, payments and operations." },
       ],
-      whatsappMessage: "Hi Om, I want guidance to create a web project, simple app, landing page or ecommerce.",
+      whatsappMessage: "Hi AUM, I want guidance to create a web project, simple app, landing page or ecommerce.",
     },
     "imagen-video": {
       label: "Image & Video",
@@ -591,7 +591,7 @@ const localServiceTranslations: Partial<
         { question: "Do I need to send materials?", answer: "Yes. The clearer the initial material, the faster the delivery." },
         { question: "Do you create content for social media?", answer: "Yes. We can prepare vertical content, promotional pieces and thumbnails." },
       ],
-      whatsappMessage: "Hi Om, I saw your image and video service. I need guidance on thumbnails, editing or visual content.",
+      whatsappMessage: "Hi AUM, I saw your image and video service. I need guidance on thumbnails, editing or visual content.",
     },
     "cuentas-digitales": {
       label: "Accounts & Social",
@@ -609,7 +609,7 @@ const localServiceTranslations: Partial<
         { question: "Is account recovery guaranteed?", answer: "No. Some platforms make the final decision. The service helps organize and present the case in the best way." },
         { question: "Can you also create or manage new accounts?", answer: "Yes. We can help create accounts, configure security, organize access and prepare the account for professional use." },
       ],
-      whatsappMessage: "Hi Om, I need help with creating, managing or recovering a digital account.",
+      whatsappMessage: "Hi AUM, I need help with creating, managing or recovering a digital account.",
     },
   },
   fr: {
@@ -628,7 +628,7 @@ const localServiceTranslations: Partial<
         { question: "Est-ce que cela garantit la monétisation?", answer: "Non. L'orientation aide à corriger et organiser, mais YouTube prend la décision finale." },
         { question: "Puis-je demander de l'aide pour AdSense?", answer: "Oui. Le service commence par une révision du cas et des documents disponibles." },
       ],
-      whatsappMessage: "Bonjour Om, je viens de votre page YouTube et AdSense. J'ai besoin d'orientation pour ma chaîne.",
+      whatsappMessage: "Bonjour AUM, je viens de votre page YouTube et AdSense. J'ai besoin d'orientation pour ma chaîne.",
     },
     "paginas-web": {
       label: "Web et application",
@@ -645,7 +645,7 @@ const localServiceTranslations: Partial<
         { question: "Le domaine et l'hébergement sont-ils inclus?", answer: "Je peux orienter ou configurer selon le cas, mais le coût dépend du fournisseur." },
         { question: "Puis-je demander un ecommerce?", answer: "Oui. L'ecommerce est chiffré séparément selon produits, paiements et opérations." },
       ],
-      whatsappMessage: "Bonjour Om, je veux une orientation pour créer un projet web, une application simple, une landing page ou un ecommerce.",
+      whatsappMessage: "Bonjour AUM, je veux une orientation pour créer un projet web, une application simple, une landing page ou un ecommerce.",
     },
     "imagen-video": {
       label: "Image et vidéo",
@@ -662,7 +662,7 @@ const localServiceTranslations: Partial<
         { question: "Dois-je envoyer des éléments?", answer: "Oui. Plus le matériel initial est clair, plus la livraison est rapide." },
         { question: "Créez-vous du contenu pour les réseaux?", answer: "Oui. Nous pouvons préparer contenu vertical, pièces promotionnelles et miniatures." },
       ],
-      whatsappMessage: "Bonjour Om, j'ai vu votre service image et vidéo. J'ai besoin d'orientation sur miniatures, montage ou contenu visuel.",
+      whatsappMessage: "Bonjour AUM, j'ai vu votre service image et vidéo. J'ai besoin d'orientation sur miniatures, montage ou contenu visuel.",
     },
     "cuentas-digitales": {
       label: "Comptes et réseaux",
@@ -679,7 +679,7 @@ const localServiceTranslations: Partial<
         { question: "La récupération est-elle garantie?", answer: "Non. Certaines plateformes prennent la décision finale. Le service aide à organiser le dossier." },
         { question: "Pouvez-vous créer ou gérer de nouveaux comptes?", answer: "Oui. Nous pouvons aider à créer, sécuriser et organiser les accès." },
       ],
-      whatsappMessage: "Bonjour Om, j'ai besoin d'aide pour créer, gérer ou récupérer un compte digital.",
+      whatsappMessage: "Bonjour AUM, j'ai besoin d'aide pour créer, gérer ou récupérer un compte digital.",
     },
   },
   pt: {
@@ -698,7 +698,7 @@ const localServiceTranslations: Partial<
         { question: "Isso garante monetização?", answer: "Não. A orientação ajuda a corrigir e organizar, mas o YouTube toma a decisão final." },
         { question: "Posso pedir ajuda se meu AdSense tem problema?", answer: "Sim. O serviço começa com revisão do caso e documentos disponíveis." },
       ],
-      whatsappMessage: "Olá Om, vim da sua página de YouTube e AdSense. Preciso de orientação para meu canal.",
+      whatsappMessage: "Olá AUM, vim da sua página de YouTube e AdSense. Preciso de orientação para meu canal.",
     },
     "paginas-web": {
       label: "Web e aplicativo",
@@ -715,7 +715,7 @@ const localServiceTranslations: Partial<
         { question: "Inclui domínio e hospedagem?", answer: "Posso orientar ou configurar conforme o caso, mas o custo depende do provedor." },
         { question: "Posso pedir ecommerce?", answer: "Sim. Ecommerce é orçado separadamente conforme produtos, pagamentos e operação." },
       ],
-      whatsappMessage: "Olá Om, quero orientação para criar um projeto web, aplicativo simples, landing page ou ecommerce.",
+      whatsappMessage: "Olá AUM, quero orientação para criar um projeto web, aplicativo simples, landing page ou ecommerce.",
     },
     "imagen-video": {
       label: "Imagem e vídeo",
@@ -732,7 +732,7 @@ const localServiceTranslations: Partial<
         { question: "Preciso enviar materiais?", answer: "Sim. Quanto mais claro o material inicial, mais rápida a entrega." },
         { question: "Vocês fazem conteúdo para redes?", answer: "Sim. Podemos preparar conteúdo vertical, peças promocionais e miniaturas." },
       ],
-      whatsappMessage: "Olá Om, vi seu serviço de imagem e vídeo. Preciso de orientação sobre miniaturas, edição ou conteúdo visual.",
+      whatsappMessage: "Olá AUM, vi seu serviço de imagem e vídeo. Preciso de orientação sobre miniaturas, edição ou conteúdo visual.",
     },
     "cuentas-digitales": {
       label: "Contas e redes",
@@ -749,7 +749,7 @@ const localServiceTranslations: Partial<
         { question: "A recuperação é garantida?", answer: "Não. Algumas plataformas tomam a decisão final. O serviço ajuda a organizar e apresentar melhor o caso." },
         { question: "Também criam ou administram contas novas?", answer: "Sim. Podemos ajudar a criar contas, configurar segurança, organizar acessos e preparar para uso profissional." },
       ],
-      whatsappMessage: "Olá Om, preciso de ajuda com criação, administração ou recuperação de uma conta digital.",
+      whatsappMessage: "Olá AUM, preciso de ajuda com criação, administração ou recuperação de uma conta digital.",
     },
   },
 };

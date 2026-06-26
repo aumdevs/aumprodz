@@ -86,7 +86,7 @@ const copyByLocale: Record<
     includes: "Sa li gen ladan",
     process: "Pwosesis",
     requirements: "Sa mwen bezwen nan men ou",
-    ctaButton: "Pale ak Om",
+    ctaButton: "Pale ak AUM",
   },
   es: {
     empty: "No hay servicios disponibles ahora.",
@@ -98,7 +98,7 @@ const copyByLocale: Record<
     includes: "Qué incluye",
     process: "Proceso",
     requirements: "Lo que necesito de ti",
-    ctaButton: "Hablar con Om",
+    ctaButton: "Hablar con AUM",
   },
   en: {
     empty: "No services are available right now.",
@@ -110,7 +110,7 @@ const copyByLocale: Record<
     includes: "What is included",
     process: "Process",
     requirements: "What I need from you",
-    ctaButton: "Talk to Om",
+    ctaButton: "Talk to AUM",
   },
   fr: {
     empty: "Aucun service disponible pour le moment.",
@@ -122,7 +122,7 @@ const copyByLocale: Record<
     includes: "Ce qui est inclus",
     process: "Processus",
     requirements: "Ce dont j'ai besoin",
-    ctaButton: "Parler avec Om",
+    ctaButton: "Parler avec AUM",
   },
   pt: {
     empty: "Nenhum serviço disponível agora.",
@@ -134,7 +134,7 @@ const copyByLocale: Record<
     includes: "O que inclui",
     process: "Processo",
     requirements: "O que preciso de você",
-    ctaButton: "Falar com Om",
+    ctaButton: "Falar com AUM",
   },
 };
 

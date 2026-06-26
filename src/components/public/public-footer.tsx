@@ -23,7 +23,7 @@ const footerCopyByLocale: Record<
   }
 > = {
   ht: {
-    contactCta: "Kontakte Om",
+    contactCta: "Kontakte AUM",
     cta: "Kòmanse",
     description:
       "Digital Mission Control pou kreyatè, atis, YouTuber ak biznis reyèl ki vle plis kontwòl.",
@@ -34,7 +34,7 @@ const footerCopyByLocale: Record<
     small: "Bati ak klète, respè ak vizyon entènasyonal.",
   },
   es: {
-    contactCta: "Contactar a Om",
+    contactCta: "Contactar a AUM",
     cta: "Comenzar",
     description:
       "Digital Mission Control para creadores, artistas, YouTubers y negocios reales que quieren más control.",
@@ -45,7 +45,7 @@ const footerCopyByLocale: Record<
     small: "Construido con claridad, respeto y visión internacional.",
   },
   en: {
-    contactCta: "Contact Om",
+    contactCta: "Contact AUM",
     cta: "Start",
     description:
       "Digital Mission Control for creators, artists, YouTubers and real businesses that want more control.",
@@ -56,7 +56,7 @@ const footerCopyByLocale: Record<
     small: "Built with clarity, respect and international vision.",
   },
   fr: {
-    contactCta: "Contacter Om",
+    contactCta: "Contacter AUM",
     cta: "Commencer",
     description:
       "Digital Mission Control pour créateurs, artistes, YouTubers et vrais business qui veulent plus de contrôle.",
@@ -67,7 +67,7 @@ const footerCopyByLocale: Record<
     small: "Construit avec clarté, respect et vision internationale.",
   },
   pt: {
-    contactCta: "Contactar Om",
+    contactCta: "Contactar AUM",
     cta: "Começar",
     description:
       "Digital Mission Control para criadores, artistas, YouTubers e negócios reais que querem mais controle.",
