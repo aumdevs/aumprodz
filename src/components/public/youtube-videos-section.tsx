@@ -69,7 +69,7 @@ export async function YoutubeVideosSection({
   const copy = copyByLocale[locale] ?? copyByLocale.ht;
 
   return (
-    <section className="public-section-tight">
+    <section className="pb-4 pt-8 sm:pb-6 sm:pt-10 lg:pb-6 lg:pt-12">
       <div className="public-shell">
         {videos.length > 0 ? (
           <div className="grid gap-5 md:grid-cols-3">
@@ -110,7 +110,7 @@ export async function YoutubeVideosSection({
           </div>
         )}
 
-        <div className="mx-auto mt-12 max-w-3xl text-center">
+        <div className="mx-auto mt-8 max-w-3xl text-center">
           <p className="mammouth-subtitle text-xl">
             {copy.channelText}
           </p>
