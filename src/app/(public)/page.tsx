@@ -303,10 +303,10 @@ function AboutAumSection({ copy }: { copy: HomeCopy }) {
           </div>
           <div className="relative overflow-hidden rounded-[2rem] border border-border bg-surface shadow-soft">
             <Image
-              src="/aum-prodz-studio-about.png"
-              alt="AUM PRODZ podcast recording studio with laptop and camera"
-              width={1536}
-              height={864}
+              src="/aum-prodz-about-recording.png"
+              alt="AUM PRODZ recording podcast with laptop and microphone"
+              width={1448}
+              height={1086}
               className="aspect-[16/10] h-full w-full object-cover"
               sizes="(min-width: 1024px) 52vw, 100vw"
             />
