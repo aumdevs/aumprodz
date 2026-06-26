@@ -46,7 +46,7 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
       "Mwen espesyalize'm nan pwodiksyon kontni vizyèl, dijital, ak pwogramasyon aplikasyon pou android ak ios ak web.",
     artistCta: "Aum Artist",
     artistText:
-      "Pou atis yo, Aum ap bati yon espas kote pwofil, fichye, lansman ak pwomosyon ka gen plis lòd.",
+      "Pou atis ki vle pibliye mizik yo sou Spotify, Apple Music, TikTok Music ak Instagram, epi mete pawòl chante yo tou.",
     artistTitle: "Travay ak atis",
     heroLineOne: "Rete konekte",
     heroLineTwo: "ak aum",
@@ -74,7 +74,7 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
       "Me especializo en la producción de contenido visual y digital, y en la programación de aplicaciones para Android, iOS y web.",
     artistCta: "Aum Artist",
     artistText:
-      "Para artistas, Aum está construyendo un espacio donde perfil, archivos, lanzamientos y promoción tengan más orden.",
+      "Para artistas que quieren publicar su música en Spotify, Apple Music, TikTok Music e Instagram, y también subir sus letras.",
     artistTitle: "Trabajo con artistas",
     heroLineOne: "Mantente al día",
     heroLineTwo: "con aum",
@@ -102,7 +102,7 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
       "I specialize in visual and digital content production, and in programming applications for Android, iOS and web.",
     artistCta: "Aum Artist",
     artistText:
-      "For artists, Aum is building a space where profiles, files, releases and promotion can stay more organized.",
+      "For artists who want to publish their music on Spotify, Apple Music, TikTok Music and Instagram, and upload their lyrics too.",
     artistTitle: "Work with artists",
     heroLineOne: "Stay up to date",
     heroLineTwo: "with aum",
@@ -130,7 +130,7 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
       "Je me spécialise dans la production de contenu visuel et digital, ainsi que dans la programmation d'applications pour Android, iOS et le web.",
     artistCta: "Aum Artist",
     artistText:
-      "Pour les artistes, Aum construit un espace où profil, fichiers, sorties et promotion peuvent être mieux organisés.",
+      "Pour les artistes qui veulent publier leur musique sur Spotify, Apple Music, TikTok Music et Instagram, et aussi ajouter leurs paroles.",
     artistTitle: "Travail avec les artistes",
     heroLineOne: "Restez à jour",
     heroLineTwo: "avec aum",
@@ -158,7 +158,7 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
       "Sou especializado na produção de conteúdo visual e digital, e na programação de aplicativos para Android, iOS e web.",
     artistCta: "Aum Artist",
     artistText:
-      "Para artistas, Aum está construindo um espaço onde perfil, arquivos, lançamentos e promoção tenham mais organização.",
+      "Para artistas que querem publicar sua música no Spotify, Apple Music, TikTok Music e Instagram, e também enviar suas letras.",
     artistTitle: "Trabalho com artistas",
     heroLineOne: "Fique em dia",
     heroLineTwo: "com aum",
