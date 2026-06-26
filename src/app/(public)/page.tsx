@@ -38,7 +38,7 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
   ht: {
     academyCta: "Gade Aum Academy",
     academyText:
-      "Aum Academy se espas kote moun aprann sou teknoloji, IA, YouTube, kontni ak zouti dijital pou 50 dola ameriken chak mwa.",
+      "Aum Academy se espas kote kominote a aprann sou teknoloji, IA, YouTube ak kontni dijital pou sèlman 50 dola ameriken chak mwa.",
     academyTitle: "Aum Academy",
     aboutEyebrow: "Ki moun ki Aum?",
     aboutTitle: "Aum se Bendjy, kreyatè ki dèyè Aum Prodz.",
@@ -66,7 +66,7 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
   es: {
     academyCta: "Ver Aum Academy",
     academyText:
-      "Aum Academy será el espacio para aprender sobre tecnología, IA, YouTube, contenido y herramientas digitales por 50 dólares al mes.",
+      "Aum Academy es el espacio donde la comunidad aprende sobre tecnología, IA, YouTube y contenido digital por tan solo 50 dólares al mes.",
     academyTitle: "Aum Academy",
     aboutEyebrow: "¿Quién es Aum?",
     aboutTitle: "Aum es Bendjy, el creador detrás de Aum Prodz.",
@@ -94,7 +94,7 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
   en: {
     academyCta: "View Aum Academy",
     academyText:
-      "Aum Academy will be the space to learn about technology, AI, YouTube, content and digital tools for 50 dollars a month.",
+      "Aum Academy is where the community learns about technology, AI, YouTube and digital content for only 50 dollars a month.",
     academyTitle: "Aum Academy",
     aboutEyebrow: "Who is Aum?",
     aboutTitle: "Aum is Bendjy, the creator behind Aum Prodz.",
@@ -122,7 +122,7 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
   fr: {
     academyCta: "Voir Aum Academy",
     academyText:
-      "Aum Academy sera l'espace pour apprendre la technologie, l'IA, YouTube, le contenu et les outils digitaux pour 50 dollars par mois.",
+      "Aum Academy est l'espace où la communauté apprend la technologie, l'IA, YouTube et le contenu digital pour seulement 50 dollars par mois.",
     academyTitle: "Aum Academy",
     aboutEyebrow: "Qui est Aum?",
     aboutTitle: "Aum est Bendjy, le créateur derrière Aum Prodz.",
@@ -150,7 +150,7 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
   pt: {
     academyCta: "Ver Aum Academy",
     academyText:
-      "Aum Academy será o espaço para aprender sobre tecnologia, IA, YouTube, conteúdo e ferramentas digitais por 50 dólares por mês.",
+      "Aum Academy é o espaço onde a comunidade aprende sobre tecnologia, IA, YouTube e conteúdo digital por apenas 50 dólares por mês.",
     academyTitle: "Aum Academy",
     aboutEyebrow: "Quem é Aum?",
     aboutTitle: "Aum é Bendjy, o criador por trás da Aum Prodz.",
