@@ -147,8 +147,8 @@ export async function PublicFooter() {
   return (
     <footer className="bg-background">
       <div className="public-shell py-10 sm:py-14">
-        <div className="rounded-[2rem] border border-border bg-surface/70 p-6 shadow-soft sm:p-8 lg:p-10">
-          <div className="grid gap-9 lg:grid-cols-[1.35fr_0.75fr_0.85fr_1fr] lg:items-start">
+        <div className="rounded-[2rem] border border-border bg-surface/70 p-5 shadow-soft sm:p-8 lg:p-10">
+          <div className="grid gap-8 lg:grid-cols-[1fr_1.65fr] lg:items-start">
             <div className="space-y-5">
               <AumProdzLogo platformLabel={copy.platformLabel} />
               <p className="max-w-sm text-base font-medium leading-7 text-muted-foreground">
@@ -163,31 +163,40 @@ export async function PublicFooter() {
               </Link>
             </div>
 
-            <FooterLinkGroup links={navLinks} title={copy.navTitle} />
-            <FooterLinkGroup links={legalLinks} title={copy.legal.title} />
-
-            <div className="space-y-5">
-              <div className="space-y-3">
-                <p className="text-sm font-black uppercase tracking-[0.2em] text-foreground">
-                  {t(locale, "nav.contact")}
-                </p>
-                <p className="max-w-xs text-sm leading-6 text-muted-foreground">
-                  {copy.supportText}
-                </p>
-                <Link
-                  href="/contacto"
-                  className={cn(buttonVariants({ variant: "default", size: "sm" }))}
-                >
-                  {copy.contactCta}
-                  <ArrowRight className="size-4" />
-                </Link>
+            <div className="space-y-7">
+              <div className="grid grid-cols-2 gap-x-5 gap-y-7 sm:gap-x-10">
+                <FooterLinkGroup links={navLinks} title={copy.navTitle} />
+                <FooterLinkGroup links={legalLinks} title={copy.legal.title} />
               </div>
 
-              <div className="space-y-3">
-                <p className="text-sm font-black uppercase tracking-[0.2em] text-foreground">
-                  {copy.language}
-                </p>
-                <LanguageSwitcher compact currentLocale={locale} />
+              <div className="grid gap-5 rounded-[1.5rem] border border-border bg-background/45 p-5 sm:grid-cols-[1fr_auto] sm:items-end">
+                <div className="space-y-3">
+                  <p className="text-sm font-black uppercase tracking-[0.2em] text-foreground">
+                    {t(locale, "nav.contact")}
+                  </p>
+                  <p className="max-w-md text-sm leading-6 text-muted-foreground">
+                    {copy.supportText}
+                  </p>
+                </div>
+
+                <div className="flex flex-col items-start gap-4 sm:items-end">
+                  <Link
+                    href="/contacto"
+                    className={cn(buttonVariants({ variant: "default", size: "sm" }))}
+                  >
+                    {copy.contactCta}
+                    <ArrowRight className="size-4" />
+                  </Link>
+
+                  <div className="space-y-3 sm:text-right">
+                    <p className="text-sm font-black uppercase tracking-[0.2em] text-foreground">
+                      {copy.language}
+                    </p>
+                    <div className="flex sm:justify-end">
+                      <LanguageSwitcher compact currentLocale={locale} />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
