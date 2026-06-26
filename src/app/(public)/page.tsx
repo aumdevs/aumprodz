@@ -283,7 +283,7 @@ export default async function HomePage() {
               </span>
             ))}
           </div>
-          <p className="mt-5 text-[clamp(1.65rem,7vw,2.35rem)] font-medium leading-tight text-muted-foreground sm:mt-7 sm:text-4xl">
+          <p className="mt-5 text-lg font-semibold leading-snug text-muted-foreground sm:mt-7 sm:text-4xl">
             {copy.heroPrice}
           </p>
           <div className="mt-6 flex flex-col items-center gap-3 sm:mt-8 sm:flex-row">
