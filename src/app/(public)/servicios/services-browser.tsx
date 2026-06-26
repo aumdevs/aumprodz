@@ -252,29 +252,27 @@ export function ServicesBrowser({
               />
             </div>
 
-            <div className="grid gap-2 sm:grid-cols-[1fr_auto] sm:items-end sm:gap-3">
-              <div className="grid gap-2 sm:grid-cols-2">
-                <div className="rounded-2xl border border-border bg-card p-2.5 sm:p-3">
-                  <p className="text-sm text-muted-foreground">{copy.priceFrom}</p>
-                  <p className="mt-1 text-lg font-black sm:text-xl">
-                    {activeService.priceFrom}
-                  </p>
-                </div>
-                <div className="rounded-2xl border border-border bg-card p-2.5 sm:p-3">
-                  <p className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Clock3 className="size-3.5" />
-                    {copy.duration}
-                  </p>
-                  <p className="mt-1 line-clamp-2 text-sm font-black sm:text-base">
-                    {activeService.duration}
-                  </p>
-                </div>
+            <div className="grid gap-2 sm:grid-cols-3 sm:items-stretch sm:gap-3">
+              <div className="rounded-2xl border border-border bg-card p-2.5 sm:p-3">
+                <p className="text-sm text-muted-foreground">{copy.priceFrom}</p>
+                <p className="mt-1 text-lg font-black sm:text-xl">
+                  {activeService.priceFrom}
+                </p>
+              </div>
+              <div className="rounded-2xl border border-border bg-card p-2.5 sm:p-3">
+                <p className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <Clock3 className="size-3.5" />
+                  {copy.duration}
+                </p>
+                <p className="mt-1 line-clamp-2 text-sm font-black sm:text-base">
+                  {activeService.duration}
+                </p>
               </div>
               <Link
                 href={buildWhatsappCtaHref(activeService.slug)}
                 className={cn(
                   buttonVariants({ size: "lg" }),
-                  "whatsapp-cta-button shrink-0 max-sm:h-11 max-sm:px-4 max-sm:text-sm",
+                  "whatsapp-cta-button h-full min-h-16 w-full justify-center px-5 max-sm:h-11 max-sm:min-h-0 max-sm:px-4 max-sm:text-sm",
                 )}
               >
                 <MessageCircle className="size-5" />
