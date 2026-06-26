@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 import { buttonVariants } from "@/components/ui/button";
 import type { PublicYoutubeVideo } from "@/lib/content/youtube";
@@ -16,6 +16,7 @@ const copyByLocale: Record<
     channelCta: string;
     channelText: string;
     empty: string;
+    homeCta: string;
     videoCta: string;
   }
 > = {
@@ -23,30 +24,35 @@ const copyByLocale: Record<
     channelCta: "Gade kanal YouTube la",
     channelText: "Dekouvri plis videyo enteresan sou kanal la.",
     empty: "Pa gen videyo pou montre kounye a.",
+    homeCta: "Retounen akèy",
     videoCta: "Gade video sa",
   },
   es: {
     channelCta: "Ver canal de YouTube completo",
     channelText: "Descubre más videos interesantes en el canal.",
     empty: "No hay videos para mostrar ahora.",
+    homeCta: "Volver a Home",
     videoCta: "Ver este video",
   },
   en: {
     channelCta: "View full YouTube channel",
     channelText: "Discover more interesting videos on the channel.",
     empty: "No videos to show right now.",
+    homeCta: "Back to Home",
     videoCta: "Watch this video",
   },
   fr: {
     channelCta: "Voir la chaîne YouTube complète",
     channelText: "Découvrez plus de vidéos intéressantes sur la chaîne.",
     empty: "Aucune vidéo à afficher pour le moment.",
+    homeCta: "Retour à l'accueil",
     videoCta: "Voir cette vidéo",
   },
   pt: {
     channelCta: "Ver canal completo no YouTube",
     channelText: "Descubra mais vídeos interessantes no canal.",
     empty: "Nenhum vídeo para mostrar agora.",
+    homeCta: "Voltar para Home",
     videoCta: "Ver este vídeo",
   },
 };
@@ -117,6 +123,18 @@ export async function YoutubeVideosSection({
             {copy.channelCta}
             <ArrowRight className="size-5" />
           </Link>
+          <div className="mt-4">
+            <Link
+              href="/"
+              className={cn(
+                buttonVariants({ variant: "secondary", size: "lg" }),
+                "bg-surface/90 shadow-soft hover:bg-surface",
+              )}
+            >
+              <ArrowLeft className="size-5" />
+              {copy.homeCta}
+            </Link>
+          </div>
         </div>
       </div>
     </section>
