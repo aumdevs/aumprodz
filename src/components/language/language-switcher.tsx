@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 
@@ -21,12 +21,42 @@ export function LanguageSwitcher({
   currentLocale,
 }: LanguageSwitcherProps) {
   const pathname = usePathname();
+  const router = useRouter();
   const searchParams = useSearchParams();
   const [open, setOpen] = useState(false);
   const [pendingLocale, setPendingLocale] = useState<AppLocale | null>(null);
-  const activeLocale = pendingLocale ?? currentLocale;
+  const activeLocale =
+    pendingLocale && pendingLocale !== currentLocale ? pendingLocale : currentLocale;
   const currentPath = `${pathname}${searchParams.size ? `?${searchParams.toString()}` : ""}`;
   const activeLabel = compact ? activeLocale.toUpperCase() : localeLabels[activeLocale];
+
+  async function changeLocale(locale: AppLocale, fallbackHref: string) {
+    setPendingLocale(locale);
+    setOpen(false);
+
+    if (locale === currentLocale) {
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `/api/language?locale=${locale}&redirect=false`,
+        {
+          cache: "no-store",
+          credentials: "same-origin",
+        },
+      );
+
+      if (!response.ok) {
+        throw new Error("Could not update language");
+      }
+
+      router.refresh();
+    } catch {
+      setPendingLocale(null);
+      window.location.assign(fallbackHref);
+    }
+  }
 
   return (
     <div
@@ -50,6 +80,7 @@ export function LanguageSwitcher({
       {supportedLocales.map((locale) => {
         const active = locale === activeLocale;
         const label = compact ? locale.toUpperCase() : localeLabels[locale];
+        const href = `/api/language?locale=${locale}&next=${encodeURIComponent(currentPath)}`;
 
         return (
           <a
@@ -60,11 +91,11 @@ export function LanguageSwitcher({
                 ? "bg-primary text-primary-foreground"
                 : "text-muted-foreground hover:bg-muted hover:text-foreground",
             )}
-            href={`/api/language?locale=${locale}&next=${encodeURIComponent(currentPath)}`}
+            href={href}
             key={locale}
-            onClick={() => {
-              setPendingLocale(locale);
-              setOpen(false);
+            onClick={(event) => {
+              event.preventDefault();
+              void changeLocale(locale, href);
             }}
           >
             {label}
