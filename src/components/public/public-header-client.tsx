@@ -88,7 +88,7 @@ export function PublicHeaderClient({
             <LanguageSwitcher compact currentLocale={currentLocale} />
             <ThemeToggle />
             <Link
-              href="/login?next=%2Fartist"
+              href="/artista"
               className={cn(buttonVariants({ variant: "secondary", size: "sm" }))}
             >
               {copy.artistCta}
@@ -106,7 +106,7 @@ export function PublicHeaderClient({
             <LanguageSwitcher compact currentLocale={currentLocale} />
             <ThemeToggle />
             <Link
-              href="/login?next=%2Fartist"
+              href="/artista"
               aria-label={copy.artistCta}
               className={cn(
                 buttonVariants({ variant: "secondary", size: "sm" }),
