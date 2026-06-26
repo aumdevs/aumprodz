@@ -3,7 +3,7 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 type BadgeProps = React.HTMLAttributes<HTMLSpanElement> & {
-  tone?: "default" | "accent" | "muted" | "danger";
+  tone?: "default" | "accent" | "muted" | "danger" | "success" | "info" | "warning";
 };
 
 const tones = {
@@ -11,6 +11,9 @@ const tones = {
   accent: "bg-accent/20 text-accent-foreground",
   muted: "bg-muted text-muted-foreground",
   danger: "bg-destructive/10 text-destructive",
+  success: "bg-success/10 text-success",
+  info: "bg-info/10 text-info",
+  warning: "bg-warning/10 text-warning",
 };
 
 export function Badge({ className, tone = "default", ...props }: BadgeProps) {

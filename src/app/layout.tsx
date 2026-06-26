@@ -55,9 +55,24 @@ export default async function RootLayout({
   return (
     <html
       lang={locale}
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} dark h-full antialiased`}
+      suppressHydrationWarning
     >
       <body className="min-h-full bg-background text-foreground">
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                const stored = localStorage.getItem("aum-theme");
+                const theme = stored === "light" || stored === "dark" ? stored : "dark";
+                document.documentElement.classList.toggle("light", theme === "light");
+                document.documentElement.classList.toggle("dark", theme !== "light");
+              } catch (_) {
+                document.documentElement.classList.add("dark");
+              }
+            `,
+          }}
+        />
         {children}
       </body>
     </html>

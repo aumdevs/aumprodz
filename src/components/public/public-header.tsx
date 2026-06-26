@@ -6,6 +6,7 @@ import { LanguageSwitcher } from "@/components/language/language-switcher";
 import { getCurrentLocale } from "@/lib/i18n/server";
 import { t } from "@/lib/i18n/dictionaries";
 import { buttonVariants } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { cn } from "@/lib/utils";
 
 const navItems = [
@@ -19,7 +20,7 @@ export async function PublicHeader() {
   const locale = await getCurrentLocale();
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border/80 bg-background/92 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-border/80 bg-background/88 backdrop-blur-xl">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-20 items-center justify-between gap-4">
           <AumProdzLogo />
@@ -36,11 +37,12 @@ export async function PublicHeader() {
           </nav>
           <div className="flex items-center gap-2">
             <LanguageSwitcher compact currentLocale={locale} />
+            <ThemeToggle />
             <Link
               href="/artista"
               className={cn(
                 buttonVariants({ variant: "default", size: "sm" }),
-                "inline-flex",
+                "hidden sm:inline-flex",
               )}
             >
               {t(locale, "nav.artists")}

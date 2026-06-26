@@ -69,6 +69,17 @@ export async function requireAdmin() {
   return { user, roles };
 }
 
+export async function requireSuperAdmin(nextPath = "/super-admin") {
+  const { user } = await requireUser(nextPath);
+  const roles = await getUserRoleKeys(user.id);
+
+  if (!roles.includes("super_admin")) {
+    redirect(`/login?reason=forbidden&next=${encodeURIComponent(nextPath)}`);
+  }
+
+  return { user, roles };
+}
+
 export async function requirePermission(permissionKey: string, nextPath = "/admin") {
   const { user, roles } = await requireAdmin();
   const permissions = await getUserPermissionKeys(user.id);

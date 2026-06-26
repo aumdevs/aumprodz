@@ -26,6 +26,7 @@ import {
 
 import type { AdminNavBadgeCounts } from "@/lib/admin/data";
 import { getAdminNotificationSectionPath } from "@/lib/admin/notification-sections";
+import { cn } from "@/lib/utils";
 
 const iconMap = {
   barChart: BarChart3,
@@ -60,11 +61,15 @@ export type AdminNavItem = {
 type AdminSidebarNavProps = {
   items: AdminNavItem[];
   initialBadgeCounts: AdminNavBadgeCounts;
+  collapsed?: boolean;
+  onNavigate?: () => void;
 };
 
 export function AdminSidebarNav({
+  collapsed = false,
   items,
   initialBadgeCounts,
+  onNavigate,
 }: AdminSidebarNavProps) {
   const pathname = usePathname();
   const [badgeCounts, setBadgeCounts] = useState(initialBadgeCounts);
@@ -127,19 +132,38 @@ export function AdminSidebarNav({
       {items.map((item) => {
         const Icon = iconMap[item.icon];
         const badgeCount = badgeCounts[item.href] ?? 0;
+        const isActive =
+          item.href === "/admin"
+            ? pathname === item.href
+            : pathname.startsWith(item.href);
 
         return (
           <Link
             key={item.href}
             href={item.href}
-            className="flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+            aria-label={collapsed ? item.label : undefined}
+            title={collapsed ? item.label : undefined}
+            onClick={onNavigate}
+            className={cn(
+              "relative flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium transition-colors",
+              "hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+              isActive
+                ? "bg-primary/12 text-primary shadow-[inset_3px_0_0_var(--primary)]"
+                : "text-muted-foreground",
+              collapsed && "justify-center px-2",
+            )}
           >
             <Icon className="size-4 shrink-0" />
-            <span className="min-w-0 flex-1 truncate">{item.label}</span>
+            {collapsed ? null : (
+              <span className="min-w-0 flex-1 truncate">{item.label}</span>
+            )}
             {badgeCount > 0 ? (
               <span
                 aria-label={`${formatBadgeCount(badgeCount)} pendientes`}
-                className="inline-flex h-5 min-w-5 shrink-0 items-center justify-center rounded-full bg-destructive px-1.5 text-[11px] font-black leading-none text-destructive-foreground ring-2 ring-card"
+                className={cn(
+                  "inline-flex h-5 min-w-5 shrink-0 items-center justify-center rounded-full bg-destructive px-1.5 text-[11px] font-black leading-none text-destructive-foreground ring-2 ring-card",
+                  collapsed && "absolute ml-7 mt-[-18px]",
+                )}
                 title={`${badgeCount} elementos sin revisar`}
               >
                 {formatBadgeCount(badgeCount)}

@@ -1,5 +1,6 @@
 import {
   BarChart3,
+  CheckCircle2,
   DollarSign,
   Eye,
   Headphones,
@@ -8,7 +9,9 @@ import {
   TrendingUp,
   Video,
 } from "lucide-react";
+import type React from "react";
 
+import { ReleaseStatusStepper } from "@/components/artist/release-status-stepper";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -81,6 +84,11 @@ const dashboardCopyByLocale: Record<
     metrics: string;
     revenue: string;
     generalReport: string;
+    careerTitle: string;
+    careerText: string;
+    latestFlow: string;
+    checklistTitle: string;
+    checklistItems: string[];
   }
 > = {
   ht: {
@@ -119,6 +127,16 @@ const dashboardCopyByLocale: Record<
     metrics: "Metrik",
     revenue: "Revni",
     generalReport: "Rapò jeneral",
+    careerTitle: "Sistèm operasyon karyè atis ou.",
+    careerText:
+      "Swiv lansman, dosye, kontra, rapò ak pwochen etap ou yo nan yon sèl espas pwofesyonèl.",
+    latestFlow: "Pwogrè dènye lansman",
+    checklistTitle: "Sa ki pi enpòtan kounye a",
+    checklistItems: [
+      "Pwofil atis mete ajou",
+      "Dosye lansman yo chaje",
+      "Kontra ak verifikasyon klè",
+    ],
   },
   es: {
     noData: "Sin datos",
@@ -156,6 +174,16 @@ const dashboardCopyByLocale: Record<
     metrics: "Métricas",
     revenue: "Ingresos",
     generalReport: "Reporte general",
+    careerTitle: "Tu sistema operativo de carrera artística.",
+    careerText:
+      "Sigue lanzamientos, archivos, contratos, reportes y próximos pasos desde un espacio profesional.",
+    latestFlow: "Progreso del último lanzamiento",
+    checklistTitle: "Lo más importante ahora",
+    checklistItems: [
+      "Perfil artístico actualizado",
+      "Archivos de lanzamiento subidos",
+      "Contrato y verificación en regla",
+    ],
   },
   en: {
     noData: "No data",
@@ -193,6 +221,16 @@ const dashboardCopyByLocale: Record<
     metrics: "Metrics",
     revenue: "Revenue",
     generalReport: "General report",
+    careerTitle: "Your artist career operating system.",
+    careerText:
+      "Track releases, files, contracts, reports and next steps from one professional workspace.",
+    latestFlow: "Latest release progress",
+    checklistTitle: "Most important right now",
+    checklistItems: [
+      "Artist profile updated",
+      "Release files uploaded",
+      "Contract and verification in order",
+    ],
   },
   fr: {
     noData: "Aucune donnée",
@@ -230,6 +268,16 @@ const dashboardCopyByLocale: Record<
     metrics: "Métriques",
     revenue: "Revenus",
     generalReport: "Rapport général",
+    careerTitle: "Votre système d'exploitation de carrière artistique.",
+    careerText:
+      "Suivez sorties, fichiers, contrats, rapports et prochaines étapes dans un espace professionnel.",
+    latestFlow: "Progression de la dernière sortie",
+    checklistTitle: "Le plus important maintenant",
+    checklistItems: [
+      "Profil artistique à jour",
+      "Fichiers de sortie chargés",
+      "Contrat et vérification en ordre",
+    ],
   },
   pt: {
     noData: "Sem dados",
@@ -267,6 +315,16 @@ const dashboardCopyByLocale: Record<
     metrics: "Métricas",
     revenue: "Receita",
     generalReport: "Relatório geral",
+    careerTitle: "Seu sistema operacional de carreira artística.",
+    careerText:
+      "Acompanhe lançamentos, arquivos, contratos, relatórios e próximos passos em um espaço profissional.",
+    latestFlow: "Progresso do último lançamento",
+    checklistTitle: "Mais importante agora",
+    checklistItems: [
+      "Perfil artístico atualizado",
+      "Arquivos do lançamento enviados",
+      "Contrato e verificação em ordem",
+    ],
   },
 };
 
@@ -329,9 +387,61 @@ export default async function ArtistDashboardPage() {
       ? buildLeadingPlatform(artistReports)
       : { platform: copy.noData, plays: 0 };
   const latestReport = artistReports[0] ?? null;
+  const releaseStatusOrder = [
+    "draft",
+    "submitted",
+    "under_review",
+    "needs_changes",
+    "approved",
+    "published",
+  ];
+  const currentStatusIndex = Math.max(
+    0,
+    releaseStatusOrder.indexOf(latestRelease?.status ?? "draft"),
+  );
+  const stepperItems = releaseStatusOrder.map((status, index) => ({
+    label: getArtistReleaseStatusLabel(status, locale),
+    state:
+      index < currentStatusIndex
+        ? "done"
+        : index === currentStatusIndex
+          ? "current"
+          : "pending",
+  })) as React.ComponentProps<typeof ReleaseStatusStepper>["items"];
 
   return (
     <div className="space-y-8">
+      <section className="grid gap-5 xl:grid-cols-[1.08fr_0.92fr]">
+        <div className="glass-panel rounded-xl p-6 sm:p-8">
+          <Badge tone="info">Artist Career OS</Badge>
+          <h1 className="mt-4 max-w-3xl text-3xl font-black tracking-normal sm:text-5xl">
+            {copy.careerTitle}
+          </h1>
+          <p className="mt-4 max-w-2xl text-base leading-8 text-muted-foreground sm:text-lg">
+            {copy.careerText}
+          </p>
+          <div className="mt-6 grid gap-3 sm:grid-cols-3">
+            {copy.checklistItems.map((item) => (
+              <div
+                className="flex items-center gap-2 rounded-md border border-border bg-background/70 p-3 text-sm font-semibold"
+                key={item}
+              >
+                <CheckCircle2 className="size-4 text-success" />
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+        <Card>
+          <CardHeader>
+            <CardTitle>{copy.latestFlow}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ReleaseStatusStepper items={stepperItems} />
+          </CardContent>
+        </Card>
+      </section>
+
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         <MetricCard
           icon={Eye}
@@ -529,9 +639,12 @@ function MetricCard({
   detail: string;
 }) {
   return (
-    <Card>
+    <Card className="overflow-hidden">
+      <div className="h-1 bg-gradient-to-r from-primary via-accent to-[var(--haiti-blue)]" />
       <CardHeader>
-        <Icon className="size-5 text-primary" />
+        <span className="flex size-11 items-center justify-center rounded-md bg-primary/12 text-primary">
+          <Icon className="size-5" />
+        </span>
         <CardTitle className="text-base">{label}</CardTitle>
       </CardHeader>
       <CardContent>
