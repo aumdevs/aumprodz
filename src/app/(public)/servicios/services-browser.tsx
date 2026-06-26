@@ -166,8 +166,6 @@ export function ServicesBrowser({
     );
   }
 
-  const ActiveIcon = icons[activeService.slug];
-
   return (
     <div className="flex h-full min-h-0 w-full flex-1 flex-col gap-2 sm:gap-3">
       <div className="shrink-0 text-center">
@@ -232,39 +230,16 @@ export function ServicesBrowser({
 
         <section className="min-h-0 overflow-hidden rounded-3xl border border-border bg-surface/80 shadow-soft">
           <div className="grid h-full min-h-0 grid-rows-[auto_1fr_auto] gap-2 p-3 sm:gap-3 sm:p-4 lg:p-4">
-            <div className="grid gap-2 sm:gap-3 lg:grid-cols-[1fr_270px] lg:items-start">
-              <div className="flex items-center gap-3">
-                <span className="flex size-10 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary sm:size-12">
-                  <ActiveIcon className="size-5 sm:size-6" />
-                </span>
-                <div className="min-w-0">
-                  <h2 className="mammouth-title text-2xl leading-tight sm:text-3xl">
-                    {activeService.title}
-                  </h2>
-                  <p className="mt-1 line-clamp-2 max-w-3xl text-sm leading-6 text-muted-foreground sm:mt-2 sm:text-base sm:leading-7">
-                    {activeService.description}
-                  </p>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-2 lg:grid-cols-1">
-                <div className="rounded-2xl border border-border bg-card p-2 sm:p-3">
-                  <p className="text-sm text-muted-foreground">{copy.priceFrom}</p>
-                  <p className="mt-1 text-lg font-black sm:text-xl">
-                    {activeService.priceFrom}
-                  </p>
-                </div>
-                <div className="rounded-2xl border border-border bg-card p-2 sm:p-3">
-                  <p className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Clock3 className="size-3.5" />
-                    {copy.duration}
-                  </p>
-                  <p className="mt-1 line-clamp-2 text-sm font-black sm:text-base">{activeService.duration}</p>
-                </div>
-              </div>
+            <div>
+              <h2 className="mammouth-title text-2xl leading-tight sm:text-3xl">
+                {activeService.title}
+              </h2>
+              <p className="mt-1 max-w-5xl text-sm leading-6 text-muted-foreground sm:mt-2 sm:text-base sm:leading-7">
+                {activeService.description}
+              </p>
             </div>
 
-            <div className="grid min-h-0 grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-3">
+            <div className="grid min-h-0 grid-cols-2 gap-2 sm:gap-3">
               <CompactDetailList
                 title={copy.includes}
                 items={activeService.deliverables}
@@ -275,15 +250,26 @@ export function ServicesBrowser({
                 items={activeService.modules}
                 numbered
               />
-              <CompactDetailList
-                title={copy.requirements}
-                items={activeService.requirements}
-                numbered={false}
-                className="hidden lg:block"
-              />
             </div>
 
-            <div className="flex items-center justify-end">
+            <div className="grid gap-2 sm:grid-cols-[1fr_auto] sm:items-end sm:gap-3">
+              <div className="grid gap-2 sm:grid-cols-2">
+                <div className="rounded-2xl border border-border bg-card p-2.5 sm:p-3">
+                  <p className="text-sm text-muted-foreground">{copy.priceFrom}</p>
+                  <p className="mt-1 text-lg font-black sm:text-xl">
+                    {activeService.priceFrom}
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-border bg-card p-2.5 sm:p-3">
+                  <p className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <Clock3 className="size-3.5" />
+                    {copy.duration}
+                  </p>
+                  <p className="mt-1 line-clamp-2 text-sm font-black sm:text-base">
+                    {activeService.duration}
+                  </p>
+                </div>
+              </div>
               <Link
                 href={buildWhatsappCtaHref(activeService.slug)}
                 className={cn(
