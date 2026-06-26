@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import {
-  ArrowDown,
   ArrowRight,
   Brush,
   FileSignature,
@@ -42,8 +41,7 @@ type HomeCopy = {
   modelIntro: string;
   processText: string;
   processTitle: string;
-  planPrice: string;
-  planTag: string;
+  serviceCta: string;
   serviceText: string;
   serviceTitle: string;
   startCta: string;
@@ -68,19 +66,18 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
     heroPrice: "nan yon sèl kote pou sèlman 50 US$/mwa",
     modelIntro: "Aprann sou",
     processText:
-      "Ou peye plan mwa a, ou mande sèvis ou bezwen pandan mwa sa a, epi AUM ede w bay priyorite travay la.",
-    processTitle: "Kijan plan AUM lan mache.",
-    planPrice: "Tout bagay pou 50 US$/mwa",
-    planTag: "Ladan nan plan an",
+      "Nou pale sou objektif la, nou verifye reyalite a, epi nou mete sèvis la nan etap ki klè.",
+    processTitle: "Kijan travay la fèt.",
     processCards: [
       { title: "Ou mande", text: "Ou ekri AUM epi ou eksplike sa ou bezwen pou pwojè a." },
       { title: "Nou bay priyorite", text: "Nou chwazi sa ki pi enpòtan pou mwa a selon objektif ou." },
       { title: "Nou egzekite", text: "Nou travay sou sèvis yo epi nou fè suivi ak livrezon klè." },
     ],
     serviceText:
-      "YouTube, AdSense, imaj, videyo, web, kont dijital ak sipò òganize nan yon sèl plan mwa.",
+      "Chak sèvis gen pwòp pri ak pwòp etap li. Chwazi sa ou bezwen epi pale ak AUM pou kòmanse.",
     serviceTitle: "Sèvis disponib",
-    startCta: "Pale ak AUM",
+    serviceCta: "Pale ak AUM",
+    startCta: "Aprann plis",
     trustTitle: "Done, aksè ak fichye yo dwe trete ak anpil swen.",
     trustCards: [
       { title: "Aksè kontwole", text: "Nou mande sèlman aksè ki nesesè pou sèvis la." },
@@ -98,24 +95,23 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
     finalText:
       "Pon tu canal, web, imagen, cuentas o carrera artística dentro de un proceso claro.",
     finalTitle: "¿Listo para poner tu proyecto digital bajo control?",
-    heroLineOne: "Mantente al dia",
+    heroLineOne: "Mantente al día",
     heroLineTwo: "con AUM",
     heroPrice: "en un solo lugar por tan solo 50 US$/mes",
     modelIntro: "Aprende sobre",
     processText:
-      "Pagas el plan mensual, pides lo que necesitas durante ese mes y AUM te ayuda a priorizar lo que más mueve tu proyecto.",
-    processTitle: "Cómo funciona el plan AUM.",
-    planPrice: "Todo por 50 US$/mes",
-    planTag: "Incluido en el plan",
+      "Hablamos del objetivo, revisamos la realidad y convertimos el servicio en pasos claros.",
+    processTitle: "Cómo funciona el trabajo.",
     processCards: [
       { title: "Pides", text: "Hablas con AUM y explicas qué necesitas para tu proyecto." },
       { title: "Priorizamos", text: "Ordenamos lo más importante del mes según tu objetivo." },
       { title: "Ejecutamos", text: "Trabajamos los servicios y damos seguimiento con entregas claras." },
     ],
     serviceText:
-      "YouTube, AdSense, imagen, video, web, cuentas digitales y soporte en una sola membresía mensual.",
+      "Cada servicio mantiene su precio normal y su propio alcance. Elige lo que necesitas y habla con AUM para empezar.",
     serviceTitle: "Servicios disponibles",
-    startCta: "Habla con AUM",
+    serviceCta: "Hablar con AUM",
+    startCta: "Saber más",
     trustTitle: "Datos, accesos y archivos tratados con cuidado.",
     trustCards: [
       { title: "Acceso controlado", text: "Solo se pide el acceso necesario para resolver el servicio." },
@@ -138,19 +134,18 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
     heroPrice: "in one place for only 50 US$/month",
     modelIntro: "Learn about",
     processText:
-      "You pay the monthly plan, request what you need during that month and AUM helps prioritize the work that moves your project.",
-    processTitle: "How the AUM plan works.",
-    planPrice: "Everything for 50 US$/month",
-    planTag: "Included in the plan",
+      "We talk about the goal, review the real situation and turn the service into clear steps.",
+    processTitle: "How the work happens.",
     processCards: [
       { title: "Request", text: "You talk to AUM and explain what your project needs." },
       { title: "Prioritize", text: "We organize the most important work for the month." },
       { title: "Execute", text: "We work on the services and follow up with clear delivery." },
     ],
     serviceText:
-      "YouTube, AdSense, image, video, web, digital accounts and support in one monthly membership.",
+      "Each service keeps its own price and scope. Choose what you need and talk to AUM to start.",
     serviceTitle: "Available services",
-    startCta: "Talk to AUM",
+    serviceCta: "Talk to AUM",
+    startCta: "Learn more",
     trustTitle: "Data, access and files handled with care.",
     trustCards: [
       { title: "Controlled access", text: "Only the access needed for the service is requested." },
@@ -173,19 +168,18 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
     heroPrice: "au même endroit pour seulement 50 US$/mois",
     modelIntro: "Apprenez sur",
     processText:
-      "Vous payez le plan mensuel, demandez ce dont vous avez besoin pendant le mois et AUM aide à prioriser le travail.",
-    processTitle: "Comment fonctionne le plan AUM.",
-    planPrice: "Tout pour 50 US$/mois",
-    planTag: "Inclus dans le plan",
+      "Nous parlons de l'objectif, vérifions la réalité et transformons le service en étapes claires.",
+    processTitle: "Comment le travail se fait.",
     processCards: [
       { title: "Demandez", text: "Vous parlez avec AUM et expliquez le besoin du projet." },
       { title: "Priorisez", text: "Nous organisons le plus important pour le mois." },
       { title: "Exécutez", text: "Nous travaillons les services avec un suivi clair." },
     ],
     serviceText:
-      "YouTube, AdSense, image, vidéo, web, comptes digitaux et support dans un seul abonnement mensuel.",
+      "Chaque service garde son propre prix et son propre périmètre. Choisissez ce dont vous avez besoin et parlez avec AUM.",
     serviceTitle: "Services disponibles",
-    startCta: "Parler avec AUM",
+    serviceCta: "Parler avec AUM",
+    startCta: "En savoir plus",
     trustTitle: "Données, accès et fichiers traités avec soin.",
     trustCards: [
       { title: "Accès contrôlé", text: "Nous demandons seulement l'accès nécessaire au service." },
@@ -208,19 +202,18 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
     heroPrice: "em um só lugar por apenas 50 US$/mes",
     modelIntro: "Aprenda sobre",
     processText:
-      "Você paga o plano mensal, pede o que precisa durante o mês e AUM ajuda a priorizar o que move seu projeto.",
-    processTitle: "Como funciona o plano AUM.",
-    planPrice: "Tudo por 50 US$/mes",
-    planTag: "Incluído no plano",
+      "Falamos sobre o objetivo, revisamos a realidade e transformamos o serviço em passos claros.",
+    processTitle: "Como o trabalho acontece.",
     processCards: [
       { title: "Pede", text: "Você fala com AUM e explica o que o projeto precisa." },
       { title: "Priorizamos", text: "Organizamos o mais importante do mês conforme seu objetivo." },
       { title: "Executamos", text: "Trabalhamos os serviços com acompanhamento e entregas claras." },
     ],
     serviceText:
-      "YouTube, AdSense, imagem, vídeo, web, contas digitais e suporte em uma única assinatura mensal.",
+      "Cada serviço mantém seu preço normal e seu próprio escopo. Escolha o que precisa e fale com AUM para começar.",
     serviceTitle: "Serviços disponíveis",
-    startCta: "Falar com AUM",
+    serviceCta: "Falar com AUM",
+    startCta: "Saber mais",
     trustTitle: "Dados, acessos e arquivos tratados com cuidado.",
     trustCards: [
       { title: "Acesso controlado", text: "Só pedimos o acesso necessário para o serviço." },
@@ -269,11 +262,11 @@ export default async function HomePage() {
     <>
       <PublicEventTracker eventName="page_view" page="/" source="home" />
 
-      <section className="public-section min-h-[calc(100svh-5rem)]">
-        <div className="public-shell flex min-h-[calc(100svh-10rem)] flex-col items-center justify-center text-center">
-          <div className="mb-7 flex size-24 items-center justify-center overflow-hidden bg-transparent">
+      <section className="pb-20 pt-[3.5rem] sm:pt-[4.5rem] lg:pt-20">
+        <div className="public-shell flex flex-col items-center text-center">
+          <div className="mb-7 flex size-[5.5rem] items-center justify-center overflow-hidden bg-transparent sm:size-24">
             <Image
-              src="/aum-prodz-logo.png"
+              src="/aum-prodz-logo-transparent.png"
               alt=""
               width={112}
               height={112}
@@ -302,14 +295,10 @@ export default async function HomePage() {
             {copy.heroPrice}
           </p>
           <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row">
-            <WhatsappCtaLink
-              service="youtube-adsense"
-              source="home"
-              placement="hero_whatsapp"
-              page="/"
-              label={copy.startCta}
-              size="lg"
-            />
+            <Link href="/servicios" className={cn(buttonVariants({ size: "lg" }))}>
+              {copy.startCta}
+              <ArrowRight className="size-5" />
+            </Link>
           </div>
         </div>
       </section>
@@ -317,15 +306,16 @@ export default async function HomePage() {
       <section className="public-section-tight">
         <div className="public-shell">
           <SectionHeading title={copy.serviceTitle} text={copy.serviceText} />
-          <ServicesAvailableBoard copy={copy} services={services} />
+          <ServicesAvailableBoard locale={locale} services={services} />
           <div className="mt-8 text-center">
-            <Link
-              href="/servicios"
-              className={cn(buttonVariants({ variant: "secondary", size: "lg" }))}
-            >
-              {copy.viewAll}
-              <ArrowRight className="size-5" />
-            </Link>
+            <WhatsappCtaLink
+              service="youtube-adsense"
+              source="home"
+              placement="services_whatsapp"
+              page="/"
+              label={copy.serviceCta}
+              size="lg"
+            />
           </div>
         </div>
       </section>
@@ -478,10 +468,10 @@ function SectionHeading({ text, title }: { text: string; title: string }) {
 }
 
 function ServicesAvailableBoard({
-  copy,
+  locale,
   services,
 }: {
-  copy: HomeCopy;
+  locale: AppLocale;
   services: Awaited<ReturnType<typeof getPublicServices>>;
 }) {
   const columns = [
@@ -508,56 +498,72 @@ function ServicesAvailableBoard({
   ] as const;
 
   return (
-    <div className="mx-auto mt-12 max-w-5xl">
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+    <div className="mx-auto mt-12 max-w-6xl">
+      <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
         {columns.map(({ icon: ColumnIcon, slugs, title }) => {
           const columnServices = services.filter((service) =>
             (slugs as readonly ServiceSlug[]).includes(service.slug),
           );
           const service = columnServices[0];
+          const rows = service ? getServiceRows(service) : [];
 
           return (
-            <div key={title} className="mammouth-card rounded-3xl p-5">
-              <div className="mb-4 flex items-center gap-3">
-                <span className="flex size-11 items-center justify-center rounded-2xl bg-muted text-primary">
-                  <ColumnIcon className="size-5" />
-                </span>
-                <h3 className="text-sm font-black uppercase text-muted-foreground">
-                  {title}
-                </h3>
-              </div>
+            <div
+              key={title}
+              className="rounded-[2rem] border border-border bg-surface/70 p-5 shadow-soft"
+            >
+              <h3 className="mb-5 text-center text-xl font-black uppercase text-muted-foreground">
+                {title}
+              </h3>
               {service ? (
-                <Link
-                  href={`/servicios/${service.slug}`}
-                  className="group block text-left"
-                >
-                  <p className="text-xl font-black text-foreground">
-                    {service.title}
-                  </p>
-                  <p className="mt-3 min-h-20 text-sm leading-6 text-muted-foreground">
-                    {service.summary}
-                  </p>
-                  <span className="mt-5 inline-flex rounded-full bg-primary/10 px-3 py-1.5 text-xs font-black text-primary">
-                    {copy.planTag}
-                  </span>
-                </Link>
+                <div className="grid gap-3">
+                  {rows.map((row) => (
+                    <Link
+                      key={`${service.slug}-${row}`}
+                      href={`/servicios/${service.slug}`}
+                      className="group flex min-h-20 items-center gap-4 rounded-3xl bg-card px-4 py-3 text-left shadow-[0_14px_30px_rgba(80,27,24,0.08)] transition-transform hover:-translate-y-0.5"
+                    >
+                      <span className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-background text-primary">
+                        <ColumnIcon className="size-5" />
+                      </span>
+                      <span className="text-base font-black leading-tight text-foreground">
+                        {row}
+                      </span>
+                    </Link>
+                  ))}
+                  <Link
+                    href={`/servicios/${service.slug}`}
+                    className="mt-1 flex min-h-20 items-center justify-between gap-4 rounded-3xl bg-primary px-5 py-4 text-primary-foreground shadow-glow transition-transform hover:-translate-y-0.5"
+                  >
+                    <span>
+                      <span className="block text-sm font-black uppercase">
+                        {t(locale, "common.from")}
+                      </span>
+                      <span className="mt-1 block text-2xl font-black">
+                        {service.priceFrom}
+                      </span>
+                    </span>
+                    <ArrowRight className="size-5" />
+                  </Link>
+                </div>
               ) : null}
             </div>
           );
         })}
       </div>
-      <div className="mx-auto mt-6 flex max-w-xl flex-col items-center">
-        <div className="h-12 w-px bg-border" />
-        <div className="flex size-10 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-glow">
-          <ArrowDown className="size-5" />
-        </div>
-      </div>
-      <div className="mx-auto mt-4 w-fit rounded-3xl border border-border bg-card px-8 py-5 text-center shadow-soft">
-        <p className="text-sm font-black uppercase tracking-[0.18em] text-primary">
-          AUM PRODZ
-        </p>
-        <p className="mt-2 text-3xl font-black text-foreground">{copy.planPrice}</p>
-      </div>
     </div>
   );
+}
+
+function getServiceRows(
+  service: Awaited<ReturnType<typeof getPublicServices>>[number],
+) {
+  const rows = [
+    service.eyebrow,
+    ...service.modules,
+    ...service.deliverables,
+    ...service.outcomes,
+  ].filter(Boolean);
+
+  return Array.from(new Set(rows)).slice(0, 5);
 }

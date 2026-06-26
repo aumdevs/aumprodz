@@ -16,7 +16,7 @@ export function AumProdzLogo({ compact = false, className }: AumProdzLogoProps) 
       aria-label="AUM PRODZ Platform"
     >
       <Image
-        src="/aum-prodz-logo.png"
+        src="/aum-prodz-logo-transparent.png"
         alt=""
         width={96}
         height={96}

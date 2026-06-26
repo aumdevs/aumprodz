@@ -155,7 +155,7 @@ export const localServices: Service[] = [
       "Orientación para canales, monetización, personalización y problemas con AdSense.",
     description:
       "Un servicio para ordenar el estado del canal, detectar bloqueos reales y salir con un plan de acción claro antes de seguir perdiendo tiempo.",
-    priceFrom: "$50/mes",
+    priceFrom: "$50",
     duration: "1 a 3 sesiones o diagnóstico puntual",
     icon: MonitorPlay,
     outcomes: [
@@ -206,7 +206,7 @@ export const localServices: Service[] = [
       "Landing, web profesional, ecommerce y páginas de servicio para vender con claridad.",
     description:
       "Una web pensada para explicar la oferta, dar confianza y convertir visitas en conversaciones o ventas, sin quedarse en una plantilla bonita.",
-    priceFrom: "$50/mes",
+    priceFrom: "$250",
     duration: "7 a 21 días según alcance",
     icon: Globe2,
     outcomes: [
@@ -257,7 +257,7 @@ export const localServices: Service[] = [
       "Miniaturas, flyers, branding, edición de videos, reels y contenido visual.",
     description:
       "Piezas visuales para lanzar, anunciar o mejorar presencia digital con entregables claros y formato correcto para cada canal.",
-    priceFrom: "$50/mes",
+    priceFrom: "$25 / $50",
     duration: "24 a 72 horas para piezas simples",
     icon: Brush,
     outcomes: [
@@ -304,7 +304,7 @@ export const localServices: Service[] = [
       "Creación, administración y recuperación de cuentas bloqueadas o perdidas.",
     description:
       "Un servicio para ayudarte a crear, ordenar, proteger o recuperar cuentas digitales como Instagram, Facebook, Google, YouTube y otras plataformas. Revisamos el caso, vemos qué opciones reales existen y armamos el próximo paso sin prometer resultados imposibles.",
-    priceFrom: "$50/mes",
+    priceFrom: "$50",
     duration: "Diagnóstico inicial y acompañamiento según el caso",
     icon: KeyRound,
     outcomes: [
