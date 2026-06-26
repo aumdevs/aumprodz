@@ -65,7 +65,7 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
       "Mete chanèl ou, sit ou, imaj ou, kont ou oswa karyè atistik ou nan yon pwosesis ki klè.",
     finalTitle: "Pare pou mete pwojè dijital ou anba kontwòl?",
     heroLineOne: "Rete konekte",
-    heroLineTwo: "ak AUM",
+    heroLineTwo: "ak aum",
     heroPrice: "pou sèlman 50 dola ameriken chak mwa",
     modelIntro: "Aprann sou",
     serviceText:
