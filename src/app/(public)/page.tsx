@@ -64,9 +64,9 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
     finalText:
       "Mete chanèl ou, sit ou, imaj ou, kont ou oswa karyè atistik ou nan yon pwosesis ki klè.",
     finalTitle: "Pare pou mete pwojè dijital ou anba kontwòl?",
-    heroLineOne: "Rete ajou",
+    heroLineOne: "Rete konekte",
     heroLineTwo: "ak AUM",
-    heroPrice: "pou sèlman 50 US$/mwa",
+    heroPrice: "pou sèlman 50 dola ameriken chak mwa",
     modelIntro: "Aprann sou",
     serviceText:
       "Chak sèvis gen pwòp pri ak pwòp etap li. Chwazi sa ou bezwen epi pale ak AUM pou kòmanse.",
@@ -86,7 +86,7 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
     finalTitle: "¿Listo para poner tu proyecto digital bajo control?",
     heroLineOne: "Mantente al día",
     heroLineTwo: "con AUM",
-    heroPrice: "por tan solo 50 US$/mes",
+    heroPrice: "por tan solo 50 dolares al mes",
     modelIntro: "Aprende sobre",
     serviceText:
       "Cada servicio mantiene su precio normal y su propio alcance. Elige lo que necesitas y habla con AUM para empezar.",
@@ -106,7 +106,7 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
     finalTitle: "Ready to put your digital project under control?",
     heroLineOne: "Stay up to date",
     heroLineTwo: "with AUM",
-    heroPrice: "for only 50 US$/month",
+    heroPrice: "for only 50 dollars per month",
     modelIntro: "Learn about",
     serviceText:
       "Each service keeps its own price and scope. Choose what you need and talk to AUM to start.",
@@ -126,7 +126,7 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
     finalTitle: "Prêt à mettre votre projet digital sous contrôle?",
     heroLineOne: "Restez à jour",
     heroLineTwo: "avec AUM",
-    heroPrice: "pour seulement 50 US$/mois",
+    heroPrice: "pour seulement 50 dollars par mois",
     modelIntro: "Apprenez sur",
     serviceText:
       "Chaque service garde son propre prix et son propre périmètre. Choisissez ce dont vous avez besoin et parlez avec AUM.",
@@ -146,7 +146,7 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
     finalTitle: "Pronto para colocar seu projeto digital sob controle?",
     heroLineOne: "Fique em dia",
     heroLineTwo: "com AUM",
-    heroPrice: "por apenas 50 US$/mes",
+    heroPrice: "por apenas 50 dolares por mês",
     modelIntro: "Aprenda sobre",
     serviceText:
       "Cada serviço mantém seu preço normal e seu próprio escopo. Escolha o que precisa e fale com AUM para começar.",
@@ -161,11 +161,11 @@ const modelPills = [
   { label: "Claude", icon: ClaudeLogo },
   { label: "GPT", icon: GptLogo },
   { label: "Gemini", icon: GeminiLogo },
-  { label: "Mistral", icon: MistralLogo },
+  { label: "Spotify", icon: SpotifyLogo },
   { label: "Grok", icon: GrokLogo },
   { label: "DeepSeek", icon: DeepSeekLogo },
   { label: "Kimi", icon: KimiLogo },
-  { label: "Perplexity", icon: PerplexityLogo },
+  { label: "Apple Music", icon: AppleMusicLogo },
   { label: "YouTube", icon: YouTubeLogo },
   { label: "Instagram", icon: InstagramLogo },
   { label: "TikTok", icon: TikTokLogo },
@@ -185,7 +185,7 @@ export default async function HomePage() {
     <>
       <PublicEventTracker eventName="page_view" page="/" source="home" />
 
-      <section className="pb-20 pt-[3.5rem] sm:pt-[4.5rem] lg:pt-20">
+      <section className="flex min-h-[calc(100svh-5.5rem)] items-center pb-16 pt-8 sm:pb-20 sm:pt-10 lg:pb-24 lg:pt-12">
         <div className="public-shell flex flex-col items-center text-center">
           <div className="mb-7 flex size-[5.5rem] items-center justify-center overflow-hidden bg-transparent sm:size-24">
             <Image
@@ -207,7 +207,9 @@ export default async function HomePage() {
                 key={item.label}
                 className="mammouth-pill inline-flex items-center gap-2 rounded-xl px-4 py-2 text-base font-bold text-foreground"
               >
-                <item.icon className="size-5" />
+                <span className="inline-flex size-5 shrink-0 items-center justify-center">
+                  <item.icon className="size-5" />
+                </span>
                 {item.label}
               </span>
             ))}
@@ -263,12 +265,27 @@ function GeminiLogo({ className }: { className?: string }) {
   return <span className={cn("text-xl font-black text-[#3d8ef4]", className)}>✦</span>;
 }
 
-function MistralLogo({ className }: { className?: string }) {
-  return <span className={cn("text-lg font-black text-[#e9572f]", className)}>M</span>;
+function SpotifyLogo({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="10" fill="#1db954" />
+      <path
+        fill="none"
+        stroke="#fff"
+        strokeLinecap="round"
+        strokeWidth="1.8"
+        d="M7.2 9.4c3.4-1 7.1-.7 9.8.9M8 12.1c2.8-.8 5.5-.5 7.7.8M8.8 14.7c2-.5 4-.3 5.6.5"
+      />
+    </svg>
+  );
 }
 
 function GrokLogo({ className }: { className?: string }) {
-  return <span className={cn("text-lg font-black text-[#111111]", className)}>G</span>;
+  return (
+    <span className={cn("inline-flex items-center justify-center text-base font-black leading-none text-[#111111]", className)}>
+      G
+    </span>
+  );
 }
 
 function DeepSeekLogo({ className }: { className?: string }) {
@@ -276,11 +293,29 @@ function DeepSeekLogo({ className }: { className?: string }) {
 }
 
 function KimiLogo({ className }: { className?: string }) {
-  return <span className={cn("text-lg font-black text-[#111111]", className)}>K</span>;
+  return (
+    <span className={cn("inline-flex items-center justify-center text-base font-black leading-none text-[#111111]", className)}>
+      K
+    </span>
+  );
 }
 
-function PerplexityLogo({ className }: { className?: string }) {
-  return <span className={cn("text-lg font-black text-[#10a7b5]", className)}>P</span>;
+function AppleMusicLogo({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" aria-hidden="true">
+      <defs>
+        <linearGradient id="apple-music-gradient" x1="4" x2="20" y1="20" y2="4">
+          <stop stopColor="#ff2d55" />
+          <stop offset="1" stopColor="#fa57c1" />
+        </linearGradient>
+      </defs>
+      <rect width="18" height="18" x="3" y="3" rx="4.5" fill="url(#apple-music-gradient)" />
+      <path
+        fill="#fff"
+        d="M15.7 6.7v8.1a2.3 2.3 0 1 1-1.1-2V9.5l-5.2 1v5.1a2.3 2.3 0 1 1-1.1-2V8.7l7.4-1.4Z"
+      />
+    </svg>
+  );
 }
 
 function TechnologyLogo({ className }: { className?: string }) {
