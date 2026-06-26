@@ -169,7 +169,7 @@ export function ServicesBrowser({
   const ActiveIcon = icons[activeService.slug];
 
   return (
-    <div className="flex min-h-full w-full flex-1 flex-col gap-2 sm:gap-4">
+    <div className="flex h-full min-h-0 w-full flex-1 flex-col gap-2 sm:gap-3">
       <div className="shrink-0 text-center lg:text-left">
         <p className="text-[0.68rem] font-black uppercase tracking-[0.16em] text-primary sm:text-xs">
           {copy.available}
@@ -182,7 +182,7 @@ export function ServicesBrowser({
         </p>
       </div>
 
-      <div className="grid min-h-0 flex-1 grid-rows-[auto_1fr] gap-2 sm:gap-4 lg:grid-cols-[320px_1fr] lg:grid-rows-1">
+      <div className="grid min-h-0 flex-1 grid-rows-[auto_1fr] gap-2 sm:gap-3 lg:grid-cols-[320px_1fr] lg:grid-rows-1">
         <aside className="min-h-0">
           <div className="grid h-full grid-cols-2 gap-2 rounded-3xl border border-border bg-surface/70 p-2 shadow-soft sm:p-3 lg:grid-cols-1">
             {services.map((service) => {
@@ -233,8 +233,8 @@ export function ServicesBrowser({
         </aside>
 
         <section className="min-h-0 overflow-hidden rounded-3xl border border-border bg-surface/80 shadow-soft">
-          <div className="grid h-full min-h-0 grid-rows-[auto_1fr_auto] gap-2 p-3 sm:gap-4 sm:p-4 lg:p-5">
-            <div className="grid gap-2 sm:gap-4 lg:grid-cols-[1fr_270px] lg:items-start">
+          <div className="grid h-full min-h-0 grid-rows-[auto_1fr_auto] gap-2 p-3 sm:gap-3 sm:p-4 lg:p-4">
+            <div className="grid gap-2 sm:gap-3 lg:grid-cols-[1fr_270px] lg:items-start">
               <div className="flex items-center gap-3">
                 <span className="flex size-10 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary sm:size-12">
                   <ActiveIcon className="size-5 sm:size-6" />
