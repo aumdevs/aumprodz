@@ -151,7 +151,7 @@ export function PublicHeaderClient({
                 href={whatsappHref}
                 className={cn(
                   buttonVariants({ variant: "default" }),
-                  "w-full bg-[#25d366] text-white shadow-[0_18px_42px_rgba(37,211,102,0.24)] hover:bg-[#1fbd5a]",
+                  "whatsapp-cta-button w-full",
                 )}
                 onClick={() => setMobileOpen(false)}
               >

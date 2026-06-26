@@ -57,7 +57,7 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
       "Aum ofri sipò pou YouTube, AdSense, sit web, imaj, videyo, kont ak pwojè dijital lè yon moun bezwen yon direksyon ki klè.",
     servicesTitle: "Sèvis ak akonpayman",
     startCta: "Aprann plis",
-    workTitle: "Sa Aum Prodz fè nan kominote ayisyèn nan.",
+    workTitle: "Kisa Aum Prodz fè nan kominote ayisyèn nan?",
     youtubeCta: "Gade YouTube",
     youtubeText:
       "Sou YouTube, Aum pataje videyo sou teknoloji, lide, kilti, kreyasyon kontni ak sijè ki ka ede moun reflechi pi byen.",
@@ -85,7 +85,7 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
       "Aum ofrece apoyo para YouTube, AdSense, páginas web, imagen, video, cuentas y proyectos digitales cuando alguien necesita una dirección clara.",
     servicesTitle: "Servicios y acompañamiento",
     startCta: "Saber más",
-    workTitle: "Qué hace Aum Prodz en la comunidad haitiana.",
+    workTitle: "¿Qué hace Aum Prodz en la comunidad haitiana?",
     youtubeCta: "Ver YouTube",
     youtubeText:
       "En YouTube, Aum comparte videos sobre tecnología, ideas, cultura, creación de contenido y temas que ayudan a pensar mejor.",
@@ -113,7 +113,7 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
       "Aum offers support for YouTube, AdSense, websites, image, video, accounts and digital projects when someone needs clear direction.",
     servicesTitle: "Services and guidance",
     startCta: "Learn more",
-    workTitle: "What Aum Prodz does in the Haitian community.",
+    workTitle: "What does Aum Prodz do in the Haitian community?",
     youtubeCta: "View YouTube",
     youtubeText:
       "On YouTube, Aum shares videos about technology, ideas, culture, content creation and subjects that help people think more clearly.",
@@ -141,7 +141,7 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
       "Aum propose un accompagnement pour YouTube, AdSense, sites web, image, vidéo, comptes et projets digitaux quand une personne a besoin d'une direction claire.",
     servicesTitle: "Services et accompagnement",
     startCta: "En savoir plus",
-    workTitle: "Ce que fait Aum Prodz dans la communauté haïtienne.",
+    workTitle: "Que fait Aum Prodz dans la communauté haïtienne?",
     youtubeCta: "Voir YouTube",
     youtubeText:
       "Sur YouTube, Aum partage des vidéos sur la technologie, les idées, la culture, la création de contenu et des sujets qui aident à mieux réfléchir.",
@@ -169,7 +169,7 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
       "Aum oferece apoio para YouTube, AdSense, sites, imagem, vídeo, contas e projetos digitais quando alguém precisa de uma direção clara.",
     servicesTitle: "Serviços e acompanhamento",
     startCta: "Saber mais",
-    workTitle: "O que Aum Prodz faz na comunidade haitiana.",
+    workTitle: "O que Aum Prodz faz na comunidade haitiana?",
     youtubeCta: "Ver YouTube",
     youtubeText:
       "No YouTube, Aum compartilha vídeos sobre tecnologia, ideias, cultura, criação de conteúdo e temas que ajudam as pessoas a pensar melhor.",
@@ -348,7 +348,10 @@ function AumWorkSection({ copy }: { copy: HomeCopy }) {
   return (
     <section className="public-section-tight pt-0">
       <div className="public-shell">
-        <div className="mx-auto max-w-4xl text-center">
+        <div className="aum-question-panel mx-auto max-w-4xl text-center">
+          <span aria-hidden="true" className="aum-question-mark">
+            ?
+          </span>
           <h2 className="mammouth-title text-4xl leading-[0.98] sm:text-6xl">
             {copy.workTitle}
           </h2>
@@ -358,9 +361,9 @@ function AumWorkSection({ copy }: { copy: HomeCopy }) {
           {paths.map((item) => (
             <article
               key={item.href}
-              className="flex min-h-72 flex-col items-center rounded-[2rem] border border-border bg-surface/78 p-6 text-center shadow-soft"
+              className="aum-offer-card flex min-h-72 flex-col items-center rounded-[2rem] border border-border bg-surface/78 p-6 text-center shadow-soft"
             >
-              <h3 className="text-2xl font-black leading-tight text-foreground">
+              <h3 className="aum-offer-title text-2xl font-black leading-tight text-foreground">
                 {item.title}
               </h3>
               <p className="mt-4 flex-1 text-lg font-medium leading-relaxed text-muted-foreground">
@@ -368,7 +371,10 @@ function AumWorkSection({ copy }: { copy: HomeCopy }) {
               </p>
               <Link
                 href={item.href}
-                className={cn(buttonVariants({ size: "lg", variant: "secondary" }), "mt-6")}
+                className={cn(
+                  buttonVariants({ size: "lg", variant: "secondary" }),
+                  "aum-offer-button mt-6",
+                )}
               >
                 {item.cta}
                 <ArrowRight className="size-5" />

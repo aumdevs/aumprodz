@@ -198,7 +198,7 @@ export async function PublicFooter() {
                   href={whatsappHref}
                   className={cn(
                     buttonVariants({ variant: "default", size: "sm" }),
-                    "w-fit shrink-0 bg-[#25d366] text-white shadow-[0_18px_42px_rgba(37,211,102,0.24)] hover:bg-[#1fbd5a]",
+                    "whatsapp-cta-button w-fit shrink-0",
                   )}
                 >
                   {copy.contactCta}
