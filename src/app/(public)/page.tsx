@@ -226,7 +226,7 @@ export default async function HomePage() {
               className="hero-logo-image h-full w-full object-contain"
             />
           </div>
-          <h1 className="mammouth-title max-w-full whitespace-nowrap text-[clamp(1.7rem,5.2vw,4.4rem)]">
+          <h1 className="mammouth-title max-w-full whitespace-nowrap text-[clamp(1.55rem,4.4vw,3.7rem)]">
             {copy.heroLineOne} {copy.heroLineTwo}
           </h1>
 
@@ -252,7 +252,7 @@ export default async function HomePage() {
             </div>
           </div>
 
-          <div className="mt-8 hidden max-w-5xl flex-wrap items-center justify-center gap-x-3 gap-y-3 text-2xl font-medium text-muted-foreground sm:flex sm:text-4xl">
+          <div className="mt-8 hidden max-w-5xl flex-wrap items-center justify-center gap-x-3 gap-y-3 text-2xl font-medium text-muted-foreground sm:flex sm:text-3xl">
             <span>{copy.modelIntro}</span>
             {modelPills.map((item) => (
               <span
@@ -266,7 +266,7 @@ export default async function HomePage() {
               </span>
             ))}
           </div>
-          <p className="mt-5 text-lg font-semibold leading-snug text-muted-foreground sm:mt-7 sm:text-4xl">
+          <p className="mt-5 text-lg font-semibold leading-snug text-muted-foreground sm:mt-7 sm:text-2xl">
             {copy.heroPrice}
           </p>
           <div className="mt-6 flex flex-col items-center gap-3 sm:mt-8 sm:flex-row">
@@ -294,10 +294,10 @@ function AboutAumSection({ copy }: { copy: HomeCopy }) {
             <p className="mb-4 text-sm font-black uppercase tracking-[0.32em] text-primary">
               {copy.aboutEyebrow}
             </p>
-            <h2 className="mammouth-title text-4xl leading-[0.98] sm:text-6xl">
+            <h2 className="mammouth-title text-3xl leading-[1.02] sm:text-5xl">
               {copy.aboutTitle}
             </h2>
-            <p className="mammouth-subtitle mt-6 text-xl leading-relaxed sm:text-2xl">
+            <p className="mammouth-subtitle mt-5 text-lg leading-relaxed sm:text-xl">
               {copy.aboutText}
             </p>
           </div>
@@ -352,7 +352,7 @@ function AumWorkSection({ copy }: { copy: HomeCopy }) {
           <span aria-hidden="true" className="aum-question-mark">
             ?
           </span>
-          <h2 className="mammouth-title text-4xl leading-[0.98] sm:text-6xl">
+          <h2 className="mammouth-title text-3xl leading-[1.02] sm:text-5xl">
             {copy.workTitle}
           </h2>
         </div>
@@ -363,10 +363,10 @@ function AumWorkSection({ copy }: { copy: HomeCopy }) {
               key={item.href}
               className="aum-offer-card flex min-h-72 flex-col items-center rounded-[2rem] border border-border bg-surface/78 p-6 text-center shadow-soft"
             >
-              <h3 className="aum-offer-title text-2xl font-black leading-tight text-foreground">
+              <h3 className="aum-offer-title text-xl font-black leading-tight text-foreground">
                 {item.title}
               </h3>
-              <p className="mt-4 flex-1 text-lg font-medium leading-relaxed text-muted-foreground">
+              <p className="mt-4 flex-1 text-base font-medium leading-relaxed text-muted-foreground">
                 {item.text}
               </p>
               <Link
