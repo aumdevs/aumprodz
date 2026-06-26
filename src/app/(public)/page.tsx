@@ -45,7 +45,7 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
     artistTitle: "Travay ak atis",
     heroLineOne: "Rete konekte",
     heroLineTwo: "ak aum",
-    heroPrice: "pou sèlman senkant dola ameriken chak mwa",
+    heroPrice: "pou sèlman 50 dola ameriken chak mwa",
     modelIntro: "Aprann sou",
     servicesCta: "Gade sèvis yo",
     servicesText:
