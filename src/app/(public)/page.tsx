@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Code2, Settings } from "lucide-react";
+import { ArrowRight, Settings } from "lucide-react";
 
 import { PublicEventTracker } from "@/components/public/public-event-tracker";
 import { buttonVariants } from "@/components/ui/button";
@@ -194,16 +194,16 @@ const modelPills = [
 ] as const;
 
 const mobileModelPills = [
-  { label: "Codex", icon: CodexLogo, className: "col-span-3" },
-  { label: "YouTube", icon: YouTubeLogo, className: "col-span-3" },
-  { label: "Instagram", icon: InstagramLogo, className: "col-span-3" },
-  { label: "TikTok", icon: TikTokLogo, className: "col-span-3" },
-  { label: "Spotify", icon: SpotifyLogo, className: "col-span-3" },
-  { label: "Claude", icon: ClaudeLogo, className: "col-span-3" },
-  { label: "Tecnología", icon: TechnologyLogo, className: "col-span-3" },
-  { label: "Gemini", icon: GeminiLogo, className: "col-span-2" },
-  { label: "Kimi", icon: KimiLogo, className: "col-span-2" },
-  { label: "Facebook", icon: FacebookLogo, className: "col-span-2" },
+  { label: "Codex", icon: CodexLogo, className: "w-[9.4rem]" },
+  { label: "YouTube", icon: YouTubeLogo, className: "w-[10.5rem]" },
+  { label: "Instagram", icon: InstagramLogo, className: "w-[11.1rem]" },
+  { label: "TikTok", icon: TikTokLogo, className: "w-[8.9rem]" },
+  { label: "Spotify", icon: SpotifyLogo, className: "w-[9.6rem]" },
+  { label: "Claude", icon: ClaudeLogo, className: "w-[9rem]" },
+  { label: "Tecnología", icon: TechnologyLogo, className: "w-[11rem]" },
+  { label: "Gemini", icon: GeminiLogo, className: "w-[8.4rem]" },
+  { label: "Kimi", icon: KimiLogo, className: "w-[7.2rem]" },
+  { label: "Facebook", icon: FacebookLogo, className: "w-[9.8rem]" },
 ] as const;
 
 export default async function HomePage() {
@@ -234,12 +234,12 @@ export default async function HomePage() {
             <p className="text-lg font-semibold text-muted-foreground">
               {copy.modelIntro}
             </p>
-            <div className="mx-auto mt-2 grid max-w-[22rem] grid-cols-6 gap-2">
+            <div className="mx-auto mt-3 flex max-w-[22rem] flex-wrap items-center justify-center gap-2.5">
               {mobileModelPills.map((item) => (
                 <span
                   key={item.label}
                   className={cn(
-                    "mammouth-pill flex h-14 min-w-0 items-center justify-center gap-2 rounded-2xl px-2.5 text-[0.76rem] font-black leading-tight text-foreground",
+                    "mammouth-pill flex h-12 min-w-0 items-center justify-center gap-2 rounded-full px-3 text-[0.8rem] font-black leading-tight text-foreground shadow-sm",
                     item.className,
                   )}
                 >
@@ -557,5 +557,29 @@ function TikTokLogo({ className }: { className?: string }) {
 }
 
 function CodexLogo({ className }: { className?: string }) {
-  return <Code2 className={cn("dark-visible-logo text-[#111111]", className)} />;
+  return (
+    <svg
+      className={cn("dark-visible-logo text-[#111111]", className)}
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+      <g
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.85"
+      >
+        <path d="M12 3.5c1.9 0 3.2 1.1 3.9 2.8" />
+        <path d="M15.9 6.3c1.7-.2 3.2.6 4 2.1.9 1.6.6 3.2-.5 4.5" />
+        <path d="M19.4 12.9c.8 1.6.5 3.3-.8 4.5-1.3 1.2-3 1.3-4.5.5" />
+        <path d="M14.1 17.9c-.8 1.5-2.2 2.4-4 2.2-1.8-.2-3-1.3-3.6-3" />
+        <path d="M6.5 17.1c-1.7.1-3.1-.8-3.9-2.4-.7-1.6-.3-3.2.9-4.4" />
+        <path d="M3.5 10.3C2.8 8.7 3.2 7.1 4.6 6c1.4-1.1 3.1-1 4.5-.1" />
+        <path d="M9.1 5.9 15 9.3v5.4l-5.9 3.4L4.2 15.3v-6l4.9-3.4Z" />
+        <path d="M9.1 5.9v6.7L15 9.3" />
+        <path d="M15 14.7 9.1 12.6v5.5" />
+      </g>
+    </svg>
+  );
 }
