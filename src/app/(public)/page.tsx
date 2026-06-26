@@ -45,7 +45,7 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
     aboutEyebrow: "Ki moun ki AUM?",
     aboutTitle: "AUM se Bendjy, kreyatè ki dèyè AUM PRODZ.",
     aboutText:
-      "Mwen kreye videyo, eksperyans dijital ak sèvis pratik pou ede kominote ayisyèn nan konprann teknoloji, kontni, YouTube, mizik ak biznis sou entènèt ak plis klè.",
+      "Mwen se yon kreyatè kontni ki gen plizyè ane eksperyans nan kominote ayisyèn nan, mwen mete tout eksperyans ak kapasite mwen a dispozisyon kominote ayisyèn nan.",
     artistCta: "AUM Artist",
     artistText:
       "Pou atis yo, AUM ap bati yon espas kote pwofil, fichye, lansman ak pwomosyon ka gen plis lòd.",
