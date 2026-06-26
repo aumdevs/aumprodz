@@ -167,11 +167,6 @@ export async function PublicFooter() {
       icon: TikTokLogo,
       label: "TikTok",
     },
-    {
-      href: "https://www.facebook.com/aumprodz",
-      icon: FacebookLogo,
-      label: "Facebook",
-    },
   ];
 
   return (
@@ -352,18 +347,6 @@ function TikTokLogo({ className }: { className?: string }) {
         data-dark-visible-fill
         fill="#111"
         d="M15.1 3.5c.4 2.3 1.8 3.7 4.2 3.9v3a7 7 0 0 1-4.1-1.3v5.8c0 3-2 5.2-5.1 5.2a4.9 4.9 0 0 1-5-4.9c0-3 2.3-5 5.4-5 .4 0 .7 0 1 .1v3.3a2.4 2.4 0 0 0-1.1-.2 1.8 1.8 0 1 0 1.8 1.8V3.5h2.9Z"
-      />
-    </svg>
-  );
-}
-
-function FacebookLogo({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" aria-hidden="true">
-      <circle cx="12" cy="12" r="10" fill="#1877f2" />
-      <path
-        fill="#fff"
-        d="M14.5 13h-1.8v6h-2.5v-6H8.9v-2.2h1.3V9.4c0-1 .3-1.8.9-2.4.6-.6 1.5-.9 2.6-.9.8 0 1.4.1 1.7.2v2h-1.2c-.5 0-.9.1-1.1.3-.2.2-.3.6-.3 1v1.2h2.4L14.5 13Z"
       />
     </svg>
   );
