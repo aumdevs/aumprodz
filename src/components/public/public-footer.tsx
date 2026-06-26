@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { AumProdzLogo } from "@/components/brand/aum-prodz-logo";
 import { LanguageSwitcher } from "@/components/language/language-switcher";
 import { buttonVariants } from "@/components/ui/button";
+import { getWhatsAppNumber } from "@/lib/env";
 import type { AppLocale } from "@/lib/i18n/config";
 import { getCurrentLocale } from "@/lib/i18n/server";
 import { t } from "@/lib/i18n/dictionaries";
@@ -27,11 +28,12 @@ type FooterCopy = {
   small: string;
   startCta: string;
   supportText: string;
+  whatsappMessage: string;
 };
 
 const footerCopyByLocale: Record<AppLocale, FooterCopy> = {
   ht: {
-    contactCta: "Pale ak AUM",
+    contactCta: "Pale ak AUM sou WhatsApp",
     description:
       "Sèvis dijital, kontni, mizik, web ak zouti pratik pou kominote ayisyèn nan.",
     language: "Lang",
@@ -48,10 +50,11 @@ const footerCopyByLocale: Record<AppLocale, FooterCopy> = {
     rights: "Tout dwa rezève.",
     small: "Travay klè, dosye pwòp ak kominikasyon dirèk.",
     startCta: "Kòmanse",
-    supportText: "Pou sèvis, kesyon, peman oswa swivi pwojè, kontakte AUM dirèkteman.",
+    supportText: "Pou sèvis, kesyon, peman oswa swivi pwojè, pale ak AUM sou WhatsApp.",
+    whatsappMessage: "Bonjou AUM, mwen vle pale ak ou sou WhatsApp.",
   },
   es: {
-    contactCta: "Contactar a AUM",
+    contactCta: "Hablar con AUM por WhatsApp",
     description:
       "Servicios digitales, contenido, música, web y herramientas prácticas para la comunidad haitiana.",
     language: "Idioma",
@@ -68,10 +71,11 @@ const footerCopyByLocale: Record<AppLocale, FooterCopy> = {
     rights: "Todos los derechos reservados.",
     small: "Trabajo claro, archivos ordenados y comunicación directa.",
     startCta: "Comenzar",
-    supportText: "Para servicios, dudas, pagos o seguimiento de proyectos, contacta a AUM directamente.",
+    supportText: "Para servicios, dudas, pagos o seguimiento, habla con AUM por WhatsApp.",
+    whatsappMessage: "Hola AUM, quiero hablar contigo por WhatsApp.",
   },
   en: {
-    contactCta: "Contact AUM",
+    contactCta: "Talk to AUM on WhatsApp",
     description:
       "Digital services, content, music, web and practical tools for the Haitian community.",
     language: "Language",
@@ -88,10 +92,11 @@ const footerCopyByLocale: Record<AppLocale, FooterCopy> = {
     rights: "All rights reserved.",
     small: "Clear work, organized files and direct communication.",
     startCta: "Start",
-    supportText: "For services, questions, payments or project follow-up, contact AUM directly.",
+    supportText: "For services, questions, payments or project follow-up, talk to AUM on WhatsApp.",
+    whatsappMessage: "Hi AUM, I want to talk to you on WhatsApp.",
   },
   fr: {
-    contactCta: "Contacter AUM",
+    contactCta: "Parler avec AUM sur WhatsApp",
     description:
       "Services digitaux, contenu, musique, web et outils pratiques pour la communauté haïtienne.",
     language: "Langue",
@@ -108,10 +113,11 @@ const footerCopyByLocale: Record<AppLocale, FooterCopy> = {
     rights: "Tous droits réservés.",
     small: "Travail clair, fichiers organisés et communication directe.",
     startCta: "Commencer",
-    supportText: "Pour services, questions, paiements ou suivi de projet, contactez AUM directement.",
+    supportText: "Pour les services, questions, paiements ou suivis, parlez avec AUM sur WhatsApp.",
+    whatsappMessage: "Bonjour AUM, je veux parler avec vous sur WhatsApp.",
   },
   pt: {
-    contactCta: "Contactar AUM",
+    contactCta: "Falar com AUM pelo WhatsApp",
     description:
       "Serviços digitais, conteúdo, música, web e ferramentas práticas para a comunidade haitiana.",
     language: "Idioma",
@@ -128,7 +134,8 @@ const footerCopyByLocale: Record<AppLocale, FooterCopy> = {
     rights: "Todos os direitos reservados.",
     small: "Trabalho claro, arquivos organizados e comunicação direta.",
     startCta: "Começar",
-    supportText: "Para serviços, dúvidas, pagamentos ou acompanhamento, fale diretamente com AUM.",
+    supportText: "Para serviços, dúvidas, pagamentos ou acompanhamento, fale com AUM pelo WhatsApp.",
+    whatsappMessage: "Olá AUM, quero falar com você pelo WhatsApp.",
   },
 };
 
@@ -136,6 +143,7 @@ export async function PublicFooter() {
   const locale = await getCurrentLocale();
   const copy = footerCopyByLocale[locale] ?? footerCopyByLocale.ht;
   const year = new Date().getFullYear();
+  const whatsappHref = buildWhatsappHref(copy.whatsappMessage);
   const navLinks = [
     { href: "/", label: t(locale, "nav.home") },
     { href: "/servicios", label: t(locale, "nav.services") },
@@ -187,10 +195,10 @@ export async function PublicFooter() {
                 </div>
 
                 <Link
-                  href="/contacto"
+                  href={whatsappHref}
                   className={cn(
                     buttonVariants({ variant: "default", size: "sm" }),
-                    "w-fit shrink-0",
+                    "w-fit shrink-0 bg-[#25d366] text-white shadow-[0_18px_42px_rgba(37,211,102,0.24)] hover:bg-[#1fbd5a]",
                   )}
                 >
                   {copy.contactCta}
@@ -218,6 +226,16 @@ export async function PublicFooter() {
       </div>
     </footer>
   );
+}
+
+function buildWhatsappHref(message: string) {
+  const number = getWhatsAppNumber()?.replace(/\D/g, "");
+
+  if (!number || number.length < 8) {
+    return "/contacto";
+  }
+
+  return `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
 }
 
 function FooterLinkGroup({

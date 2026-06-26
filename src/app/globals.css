@@ -229,25 +229,26 @@ textarea {
 
   .dark .public-site {
     color-scheme: dark;
-    --background: #120f10;
-    --foreground: #fff8f3;
-    --card: #1b1717;
-    --card-foreground: #fff8f3;
-    --muted: #282222;
-    --muted-foreground: #c9bab3;
-    --border: #3d3330;
+    --background: #100d0d;
+    --foreground: #fff8f1;
+    --card: #1a1414;
+    --card-foreground: #fff8f1;
+    --muted: #241d1b;
+    --muted-foreground: #d2c4bc;
+    --border: #3b302d;
     --primary: #ff1f2d;
-    --primary-foreground: #fff8f3;
-    --accent: #c96753;
-    --accent-foreground: #fff8f3;
-    --surface: #191313;
-    --surface-strong: #241c1b;
-    --glass: rgba(27, 23, 23, 0.84);
-    --ring: rgba(255, 31, 45, 0.32);
-    --shadow-soft: 0 20px 60px rgba(0, 0, 0, 0.38);
-    --shadow-glow: 0 18px 46px rgba(255, 31, 45, 0.16);
+    --primary-foreground: #fff8f1;
+    --accent: #d45f4b;
+    --accent-foreground: #fff8f1;
+    --surface: #171211;
+    --surface-strong: #211817;
+    --glass: rgba(26, 20, 20, 0.88);
+    --ring: rgba(255, 31, 45, 0.34);
+    --shadow-soft: 0 22px 64px rgba(0, 0, 0, 0.44);
+    --shadow-glow: 0 20px 52px rgba(255, 31, 45, 0.2);
     background:
-      radial-gradient(circle at 50% 5%, rgba(255, 31, 45, 0.08), transparent 24rem),
+      radial-gradient(circle at 50% 0%, rgba(255, 31, 45, 0.12), transparent 24rem),
+      radial-gradient(circle at 12% 78%, rgba(212, 95, 75, 0.08), transparent 22rem),
       var(--background);
     color: var(--foreground);
   }
@@ -307,6 +308,24 @@ textarea {
     border: 1px solid rgba(229, 222, 214, 0.86);
     background: rgba(255, 253, 249, 0.96);
     box-shadow: 0 10px 24px rgba(70, 49, 38, 0.08);
+  }
+
+  .dark .public-site .mammouth-card {
+    border-color: rgba(255, 248, 241, 0.1);
+    background: linear-gradient(180deg, rgba(31, 24, 23, 0.96), rgba(22, 17, 16, 0.96));
+    box-shadow: 0 20px 46px rgba(0, 0, 0, 0.36);
+  }
+
+  .dark .public-site .mammouth-pill {
+    border-color: rgba(255, 248, 241, 0.12);
+    background: linear-gradient(180deg, rgba(35, 28, 27, 0.96), rgba(22, 17, 16, 0.98));
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.34);
+  }
+
+  .dark .public-site .mission-surface {
+    background:
+      linear-gradient(180deg, rgba(31, 24, 23, 0.94), rgba(18, 14, 13, 0.96)),
+      radial-gradient(circle at 50% 0%, rgba(255, 31, 45, 0.16), transparent 44%);
   }
 
   .mammouth-title {

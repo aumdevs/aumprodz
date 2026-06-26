@@ -24,16 +24,19 @@ type PublicHeaderCopy = {
   menu: string;
   platformLabel: string;
   projectCta: string;
+  whatsappCta: string;
 };
 
 export function PublicHeaderClient({
   copy,
   currentLocale,
   navItems,
+  whatsappHref,
 }: {
   copy: PublicHeaderCopy;
   currentLocale: AppLocale;
   navItems: PublicNavItem[];
+  whatsappHref: string;
 }) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -143,22 +146,16 @@ export function PublicHeaderClient({
               ))}
             </nav>
 
-            <div className="mt-4 grid gap-3 rounded-2xl border border-border bg-background p-3">
-              <div className="flex items-center justify-between gap-3">
-                <Image
-                  src="/aum-prodz-logo-transparent.png"
-                  alt=""
-                  width={64}
-                  height={64}
-                  className="size-10 rounded-full object-contain"
-                />
-              </div>
+            <div className="mt-4 rounded-2xl border border-border bg-background p-3">
               <Link
-                href="/servicios"
-                className={cn(buttonVariants({ variant: "accent" }), "w-full")}
+                href={whatsappHref}
+                className={cn(
+                  buttonVariants({ variant: "default" }),
+                  "w-full bg-[#25d366] text-white shadow-[0_18px_42px_rgba(37,211,102,0.24)] hover:bg-[#1fbd5a]",
+                )}
                 onClick={() => setMobileOpen(false)}
               >
-                {copy.projectCta}
+                {copy.whatsappCta}
                 <ArrowRight className="size-4" />
               </Link>
             </div>

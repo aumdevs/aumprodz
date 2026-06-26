@@ -231,7 +231,7 @@ export default async function HomePage() {
     <>
       <PublicEventTracker eventName="page_view" page="/" source="home" />
 
-      <section className="flex min-h-[calc(100svh-5.5rem)] items-start pb-10 pt-10 sm:items-center sm:pb-20 sm:pt-10 lg:pb-24 lg:pt-12">
+      <section className="flex min-h-[calc(100svh-5.5rem)] items-center py-6 sm:pb-20 sm:pt-10 lg:pb-24 lg:pt-12">
         <div className="public-shell flex flex-col items-center text-center">
           <div className="mb-4 flex size-20 items-center justify-center overflow-hidden bg-transparent sm:mb-7 sm:size-24">
             <Image
