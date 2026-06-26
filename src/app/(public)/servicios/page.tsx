@@ -17,13 +17,15 @@ export default async function ServicesPage() {
   const services = await getPublicServices({ locale });
 
   return (
-    <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <section className="public-section-tight">
       <PublicEventTracker
         eventName="page_view"
         page="/servicios"
         source="services"
       />
-      <ServicesBrowser locale={locale} services={services.map(serializeService)} />
+      <div className="public-shell">
+        <ServicesBrowser locale={locale} services={services.map(serializeService)} />
+      </div>
     </section>
   );
 }
@@ -43,7 +45,6 @@ function serializeService(service: Service): ServiceBrowserItem {
     deliverables: service.deliverables,
     modules: service.modules,
     requirements: service.requirements,
-    faqs: service.faqs,
     packages: service.packages,
     ctas: service.ctas,
     media: service.media,

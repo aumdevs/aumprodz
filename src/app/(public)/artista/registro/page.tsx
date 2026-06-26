@@ -120,29 +120,32 @@ export default async function ArtistRegisterPage() {
   const copy = pageCopyByLocale[locale] ?? pageCopyByLocale.ht;
 
   return (
-    <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+    <section className="public-section-tight">
       <PublicEventTracker
         eventName="artist_pricing_view"
         page="/artista/registro"
         service="artista"
         source="artist_signup"
       />
-      <Link
-        href="/artista"
-        className="inline-flex items-center gap-2 text-sm font-semibold text-primary"
-      >
-        <ArrowLeft className="size-4" />
-        {copy.back}
-      </Link>
+      <div className="public-shell">
+        <Link
+          href="/artista"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-primary"
+        >
+          <ArrowLeft className="size-4" />
+          {copy.back}
+        </Link>
 
       <div className="mt-8 grid gap-8 lg:grid-cols-[0.75fr_1.25fr]">
         <div className="space-y-6">
-          <Badge tone="accent">{copy.badge}</Badge>
+          <Badge tone="muted" className="rounded-full">
+            {copy.badge}
+          </Badge>
           <div className="space-y-4">
-            <h1 className="text-4xl font-black tracking-normal sm:text-5xl">
+            <h1 className="mammouth-title text-4xl sm:text-5xl">
               {copy.title}
             </h1>
-            <p className="max-w-2xl text-lg leading-8 text-muted-foreground">
+            <p className="mammouth-subtitle max-w-2xl text-xl">
               {copy.description}
             </p>
           </div>
@@ -151,7 +154,7 @@ export default async function ArtistRegisterPage() {
             {copy.checklist.map((item) => (
               <div
                 key={item}
-                className="flex gap-3 rounded-md border border-border bg-card p-4 text-sm text-muted-foreground"
+                className="mammouth-pill flex gap-3 rounded-2xl p-4 text-sm text-muted-foreground"
               >
                 <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" />
                 {item}
@@ -168,7 +171,7 @@ export default async function ArtistRegisterPage() {
           </p>
         </div>
 
-        <Card className="self-start">
+        <Card className="mammouth-card self-start">
           <CardHeader>
             <CardTitle>{copy.cardTitle}</CardTitle>
           </CardHeader>
@@ -176,6 +179,7 @@ export default async function ArtistRegisterPage() {
             <ArtistRegisterForm locale={locale} />
           </CardContent>
         </Card>
+      </div>
       </div>
     </section>
   );

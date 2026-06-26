@@ -174,20 +174,20 @@ export default async function ContactPage() {
   });
 
   return (
-    <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8">
+    <section className="public-section-tight">
       <PublicEventTracker eventName="page_view" page="/contacto" source="contact" />
 
-      <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+      <div className="public-shell grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
         <div className="space-y-7">
           <div className="space-y-4">
-            <div className="inline-flex items-center gap-2 rounded-md bg-primary/10 px-3 py-2 text-sm font-bold text-primary">
+            <div className="mammouth-pill inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-bold text-primary">
               <MessageCircle className="size-4" />
               {copy.badge}
             </div>
-            <h1 className="text-4xl font-black tracking-normal sm:text-5xl">
+            <h1 className="mammouth-title text-4xl sm:text-6xl">
               {copy.title}
             </h1>
-            <p className="max-w-2xl text-lg leading-8 text-muted-foreground">
+            <p className="mammouth-subtitle max-w-2xl text-xl">
               {copy.message}
             </p>
           </div>
@@ -216,7 +216,7 @@ export default async function ContactPage() {
           </div>
         </div>
 
-        <Card>
+        <Card className="mammouth-card">
           <CardHeader>
             <CardTitle>{copy.formTitle}</CardTitle>
             <p className="text-sm leading-6 text-muted-foreground">

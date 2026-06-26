@@ -38,12 +38,12 @@ export function ContactMessageForm({
   return (
     <form action={formAction} className="grid gap-5">
       {state.error ? (
-        <div className="rounded-md border border-destructive/30 bg-destructive/10 p-3 text-sm text-destructive">
+        <div className="rounded-2xl border border-destructive/30 bg-destructive/10 p-3 text-sm text-destructive">
           {state.error}
         </div>
       ) : null}
       {state.success ? (
-        <div className="flex gap-3 rounded-md border border-primary/30 bg-primary/10 p-3 text-sm text-primary">
+        <div className="flex gap-3 rounded-2xl border border-primary/30 bg-primary/10 p-3 text-sm text-primary">
           <CheckCircle2 className="mt-0.5 size-4 shrink-0" />
           {state.success}
         </div>
@@ -81,8 +81,8 @@ export function ContactMessageForm({
           placeholder={copy.messagePlaceholder}
           className={
             state.fieldErrors?.message
-              ? "min-h-40 rounded-md border border-destructive bg-card px-3 py-3 text-sm outline-none transition-colors placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-destructive/20"
-              : "min-h-40 rounded-md border border-border bg-card px-3 py-3 text-sm outline-none transition-colors placeholder:text-muted-foreground focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20"
+              ? "min-h-40 rounded-2xl border border-destructive bg-card px-3 py-3 text-sm outline-none transition-colors placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-destructive/20"
+              : "min-h-40 rounded-2xl border border-border bg-card px-3 py-3 text-sm outline-none transition-colors placeholder:text-muted-foreground focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20"
           }
         />
         {state.fieldErrors?.message ? (

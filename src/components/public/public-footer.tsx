@@ -13,7 +13,7 @@ const footerCopyByLocale: Record<
   AppLocale,
   {
     admin: string;
-    artistDashboard: string;
+    artistCta: string;
     cta: string;
     description: string;
     language: string;
@@ -25,8 +25,8 @@ const footerCopyByLocale: Record<
 > = {
   ht: {
     admin: "Admin Panel",
-    artistDashboard: "Dashboard atis",
-    cta: "Kòmanse yon pwojè",
+    artistCta: "AUM Artist",
+    cta: "Kòmanse",
     description:
       "Digital Mission Control pou kreyatè, atis, YouTuber ak biznis reyèl ki vle plis kontwòl.",
     language: "Lang",
@@ -37,8 +37,8 @@ const footerCopyByLocale: Record<
   },
   es: {
     admin: "Panel Admin",
-    artistDashboard: "Dashboard artista",
-    cta: "Comenzar proyecto",
+    artistCta: "AUM Artist",
+    cta: "Comenzar",
     description:
       "Digital Mission Control para creadores, artistas, YouTubers y negocios reales que quieren más control.",
     language: "Idioma",
@@ -49,8 +49,8 @@ const footerCopyByLocale: Record<
   },
   en: {
     admin: "Admin Panel",
-    artistDashboard: "Artist Dashboard",
-    cta: "Start a project",
+    artistCta: "AUM Artist",
+    cta: "Start",
     description:
       "Digital Mission Control for creators, artists, YouTubers and real businesses that want more control.",
     language: "Language",
@@ -61,8 +61,8 @@ const footerCopyByLocale: Record<
   },
   fr: {
     admin: "Panel Admin",
-    artistDashboard: "Dashboard artiste",
-    cta: "Commencer un projet",
+    artistCta: "AUM Artist",
+    cta: "Commencer",
     description:
       "Digital Mission Control pour créateurs, artistes, YouTubers et vrais business qui veulent plus de contrôle.",
     language: "Langue",
@@ -73,8 +73,8 @@ const footerCopyByLocale: Record<
   },
   pt: {
     admin: "Painel Admin",
-    artistDashboard: "Dashboard artista",
-    cta: "Começar projeto",
+    artistCta: "AUM Artist",
+    cta: "Começar",
     description:
       "Digital Mission Control para criadores, artistas, YouTubers e negócios reais que querem mais controle.",
     language: "Idioma",
@@ -90,8 +90,8 @@ export async function PublicFooter() {
   const copy = footerCopyByLocale[locale] ?? footerCopyByLocale.ht;
 
   return (
-    <footer className="premium-grid border-t border-border bg-background">
-      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:px-6 lg:grid-cols-[1.25fr_0.9fr_0.9fr_0.9fr] lg:px-8">
+    <footer className="bg-background">
+      <div className="public-shell grid gap-8 border-t border-border py-14 lg:grid-cols-[1.25fr_0.9fr_0.9fr_0.9fr]">
         <div className="space-y-5">
           <AumProdzLogo />
           <p className="max-w-sm text-sm leading-6 text-muted-foreground">
@@ -99,7 +99,7 @@ export async function PublicFooter() {
           </p>
           <Link
             href="/servicios"
-            className={cn(buttonVariants({ variant: "accent", size: "sm" }))}
+            className={cn(buttonVariants({ variant: "default", size: "sm" }))}
           >
             {copy.cta}
             <ArrowRight className="size-4" />
@@ -134,7 +134,7 @@ export async function PublicFooter() {
           </Link>
           <Link className="block text-muted-foreground hover:text-foreground" href="/login?next=%2Fartist">
             <LockKeyhole className="mr-2 inline size-3.5" />
-            {copy.artistDashboard}
+            {copy.artistCta}
           </Link>
         </div>
         <div className="space-y-3 text-sm">
@@ -143,7 +143,7 @@ export async function PublicFooter() {
           <p className="max-w-xs text-muted-foreground">{copy.small}</p>
         </div>
       </div>
-      <div className="border-t border-border px-4 py-4 text-center text-xs text-muted-foreground">
+      <div className="border-t border-border px-4 py-5 text-center text-xs text-muted-foreground">
         Copyright {new Date().getFullYear()} AUM PRODZ.{" "}
         {t(locale, "footer.tagline")}
       </div>

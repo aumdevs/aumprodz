@@ -28,7 +28,6 @@ const detailCopyByLocale: Record<
     includes: string;
     process: string;
     requirements: string;
-    faqs: string;
     summary: string;
     priceFrom: string;
     duration: string;
@@ -42,7 +41,6 @@ const detailCopyByLocale: Record<
     includes: "Sa li gen ladan",
     process: "Pwosesis",
     requirements: "Sa mwen bezwen",
-    faqs: "Kesyon moun poze souvan",
     summary: "Rezime",
     priceFrom: "Pri apati",
     duration: "Dire",
@@ -56,7 +54,6 @@ const detailCopyByLocale: Record<
     includes: "Qué incluye",
     process: "Proceso",
     requirements: "Requisitos",
-    faqs: "Preguntas frecuentes",
     summary: "Resumen",
     priceFrom: "Precio desde",
     duration: "Duración",
@@ -70,7 +67,6 @@ const detailCopyByLocale: Record<
     includes: "What is included",
     process: "Process",
     requirements: "Requirements",
-    faqs: "Frequently asked questions",
     summary: "Summary",
     priceFrom: "Starting at",
     duration: "Duration",
@@ -84,7 +80,6 @@ const detailCopyByLocale: Record<
     includes: "Ce qui est inclus",
     process: "Processus",
     requirements: "Conditions",
-    faqs: "Questions fréquentes",
     summary: "Résumé",
     priceFrom: "À partir de",
     duration: "Durée",
@@ -98,7 +93,6 @@ const detailCopyByLocale: Record<
     includes: "O que inclui",
     process: "Processo",
     requirements: "Requisitos",
-    faqs: "Perguntas frequentes",
     summary: "Resumo",
     priceFrom: "Preço a partir de",
     duration: "Duração",
@@ -142,24 +136,24 @@ export default async function ServiceDetailPage({
   const pagePath = `/servicios/${service.slug}`;
 
   return (
-    <article className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+    <article className="public-section-tight">
       <PublicEventTracker
         eventName="service_detail_view"
         page={pagePath}
         service={service.slug}
         source="service_detail"
       />
-      <div className="grid gap-8 lg:grid-cols-[1fr_360px]">
+      <div className="public-shell grid gap-8 lg:grid-cols-[1fr_360px]">
         <div className="space-y-8">
           <div className="space-y-5">
-            <Badge tone="default">
+            <Badge tone="muted" className="rounded-full">
               {service.eyebrow}
             </Badge>
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-              <span className="flex size-14 items-center justify-center rounded-lg bg-primary/10 text-primary">
+              <span className="flex size-14 items-center justify-center rounded-2xl bg-muted text-primary">
                 <Icon className="size-7" />
               </span>
-              <h1 className="text-4xl font-black tracking-normal sm:text-5xl">
+              <h1 className="mammouth-title text-4xl sm:text-5xl">
                 {service.title}
               </h1>
             </div>
@@ -170,7 +164,7 @@ export default async function ServiceDetailPage({
 
           <section className="grid gap-5 md:grid-cols-3">
             {service.outcomes.map((outcome) => (
-              <Card key={outcome}>
+              <Card key={outcome} className="mammouth-card">
                 <CardHeader>
                   <Sparkles className="size-5 text-primary" />
                   <CardTitle className="text-base">{copy.result}</CardTitle>
@@ -185,7 +179,7 @@ export default async function ServiceDetailPage({
           </section>
 
           <section className="grid gap-5 md:grid-cols-2">
-            <Card>
+            <Card className="mammouth-card">
               <CardHeader>
                 <CardTitle>{copy.includes}</CardTitle>
               </CardHeader>
@@ -198,7 +192,7 @@ export default async function ServiceDetailPage({
                 ))}
               </CardContent>
             </Card>
-            <Card>
+            <Card className="mammouth-card">
               <CardHeader>
                 <CardTitle>{copy.process}</CardTitle>
               </CardHeader>
@@ -215,8 +209,8 @@ export default async function ServiceDetailPage({
             </Card>
           </section>
 
-          <section className="grid gap-5 md:grid-cols-[0.9fr_1.1fr]">
-            <Card>
+          <section className="grid gap-5">
+            <Card className="mammouth-card">
               <CardHeader>
                 <ClipboardCheck className="size-6 text-primary" />
                 <CardTitle>{copy.requirements}</CardTitle>
@@ -229,34 +223,21 @@ export default async function ServiceDetailPage({
                 ))}
               </CardContent>
             </Card>
-            <div className="rounded-lg border border-border bg-card p-6">
-              <h2 className="text-2xl font-bold">{copy.faqs}</h2>
-              <div className="mt-5 grid gap-4">
-                {service.faqs.map((faq) => (
-                  <div key={faq.question} className="border-t border-border pt-4 first:border-t-0 first:pt-0">
-                    <h3 className="font-semibold">{faq.question}</h3>
-                    <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                      {faq.answer}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
           </section>
         </div>
 
         <aside className="lg:sticky lg:top-32 lg:self-start">
-          <Card>
+          <Card className="mammouth-card">
             <CardHeader>
               <CardTitle>{copy.summary}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-5">
               <div className="grid grid-cols-2 gap-3 text-sm">
-                <div className="rounded-md border border-border bg-background p-3">
+                <div className="mammouth-pill rounded-2xl p-3">
                   <p className="text-muted-foreground">{copy.priceFrom}</p>
                   <p className="mt-1 font-bold">{service.priceFrom}</p>
                 </div>
-                <div className="rounded-md border border-border bg-background p-3">
+                <div className="mammouth-pill rounded-2xl p-3">
                   <p className="text-muted-foreground">{copy.duration}</p>
                   <p className="mt-1 font-bold">{service.duration}</p>
                 </div>

@@ -14,47 +14,41 @@ const navItems = [
 const headerCopyByLocale: Record<
   AppLocale,
   {
-    artistDashboard: string;
+    artistCta: string;
     close: string;
     menu: string;
-    privateAccess: string;
     projectCta: string;
   }
 > = {
   ht: {
-    artistDashboard: "Dashboard atis",
+    artistCta: "AUM Artist",
     close: "Fèmen meni",
     menu: "Louvri meni",
-    privateAccess: "Aksè prive",
-    projectCta: "Kòmanse yon pwojè",
+    projectCta: "Kòmanse",
   },
   es: {
-    artistDashboard: "Dashboard artista",
+    artistCta: "AUM Artist",
     close: "Cerrar menú",
     menu: "Abrir menú",
-    privateAccess: "Acceso privado",
-    projectCta: "Comenzar proyecto",
+    projectCta: "Comenzar",
   },
   en: {
-    artistDashboard: "Artist Dashboard",
+    artistCta: "AUM Artist",
     close: "Close menu",
     menu: "Open menu",
-    privateAccess: "Private access",
-    projectCta: "Start a project",
+    projectCta: "Start",
   },
   fr: {
-    artistDashboard: "Dashboard artiste",
+    artistCta: "AUM Artist",
     close: "Fermer le menu",
     menu: "Ouvrir le menu",
-    privateAccess: "Accès privé",
-    projectCta: "Commencer un projet",
+    projectCta: "Commencer",
   },
   pt: {
-    artistDashboard: "Dashboard artista",
+    artistCta: "AUM Artist",
     close: "Fechar menu",
     menu: "Abrir menu",
-    privateAccess: "Acesso privado",
-    projectCta: "Começar projeto",
+    projectCta: "Começar",
   },
 };
 

@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
+import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 
 import {
@@ -22,36 +22,57 @@ export function LanguageSwitcher({
 }: LanguageSwitcherProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const [open, setOpen] = useState(false);
   const [pendingLocale, setPendingLocale] = useState<AppLocale | null>(null);
   const activeLocale = pendingLocale ?? currentLocale;
   const currentPath = `${pathname}${searchParams.size ? `?${searchParams.toString()}` : ""}`;
+  const activeLabel = compact ? activeLocale.toUpperCase() : localeLabels[activeLocale];
 
   return (
     <div
       aria-label={activeLocale === "ht" ? "Chanje lang" : "Cambiar idioma"}
-      className="inline-flex rounded-md border border-border bg-card p-1"
+      className="relative inline-flex"
     >
+      <button
+        aria-expanded={open}
+        className="inline-flex h-10 items-center justify-center gap-2 rounded-full border border-border bg-card px-3 text-xs font-black text-foreground shadow-sm transition-colors hover:bg-muted"
+        type="button"
+        onClick={() => setOpen((current) => !current)}
+      >
+        {activeLabel}
+        <ChevronDown
+          className={cn("size-3.5 transition-transform", open && "rotate-180")}
+        />
+      </button>
+
+      {open ? (
+        <div className="absolute right-0 top-[calc(100%+0.5rem)] z-50 grid min-w-36 gap-1 rounded-2xl border border-border bg-card p-2 shadow-soft">
       {supportedLocales.map((locale) => {
         const active = locale === activeLocale;
         const label = compact ? locale.toUpperCase() : localeLabels[locale];
 
         return (
-          <Link
+          <a
             aria-current={active ? "true" : undefined}
             className={cn(
-              "rounded px-2.5 py-1.5 text-xs font-bold transition-colors",
+              "rounded-xl px-3 py-2 text-xs font-bold transition-colors",
               active
                 ? "bg-primary text-primary-foreground"
                 : "text-muted-foreground hover:bg-muted hover:text-foreground",
             )}
             href={`/api/language?locale=${locale}&next=${encodeURIComponent(currentPath)}`}
             key={locale}
-            onClick={() => setPendingLocale(locale)}
+            onClick={() => {
+              setPendingLocale(locale);
+              setOpen(false);
+            }}
           >
             {label}
-          </Link>
+          </a>
         );
       })}
+        </div>
+      ) : null}
     </div>
   );
 }

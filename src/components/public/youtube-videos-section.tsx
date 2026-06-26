@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import type { PublicYoutubeVideo } from "@/lib/content/youtube";
 import { t } from "@/lib/i18n/dictionaries";
@@ -21,25 +20,27 @@ export async function YoutubeVideosSection({
   const TitleTag = compact ? "h2" : "h1";
 
   return (
-    <section className={compact ? "border-y border-border bg-card/72" : ""}>
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
-          <div>
-            <Badge tone="accent">{t(locale, "youtube.badge")}</Badge>
-            <TitleTag className="mt-3 text-3xl font-bold">
+    <section className={compact ? "public-section-tight" : "public-section-tight"}>
+      <div className="public-shell">
+        <div className="mx-auto mb-10 max-w-4xl text-center">
+          <p className="text-sm font-black uppercase tracking-[0.18em] text-primary">
+            {t(locale, "youtube.badge")}
+          </p>
+          <TitleTag className="mammouth-title mt-3 text-4xl sm:text-6xl">
               {t(locale, "youtube.title")}
             </TitleTag>
-            <p className="mt-3 max-w-2xl text-muted-foreground">
+          <p className="mammouth-subtitle mt-4 text-xl">
               {t(locale, "youtube.description")}
             </p>
-          </div>
+          {!compact ? (
           <Link
             href="/youtube"
-            className={cn(buttonVariants({ variant: "secondary" }))}
+              className={cn(buttonVariants({ variant: "secondary" }), "mt-6")}
           >
             {t(locale, "common.view")}
             <ArrowRight className="size-4" />
           </Link>
+          ) : null}
         </div>
 
         {videos.length > 0 ? (
@@ -47,7 +48,7 @@ export async function YoutubeVideosSection({
             {videos.map((video) => (
               <article
                 key={video.id}
-                className="glow-card group overflow-hidden rounded-lg transition-all duration-200 hover:-translate-y-1 hover:border-primary/40"
+                className="mammouth-card group overflow-hidden rounded-3xl transition-all duration-200 hover:-translate-y-1"
               >
                 <div className="relative aspect-video overflow-hidden bg-muted">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -57,10 +58,9 @@ export async function YoutubeVideosSection({
                     loading="lazy"
                     className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/72 via-transparent to-transparent" />
                 </div>
                 <div className="grid gap-5 p-5">
-                  <h3 className="line-clamp-3 text-xl font-black leading-tight sm:text-2xl">
+                  <h3 className="line-clamp-3 text-xl font-black leading-tight">
                     {video.title}
                   </h3>
                   <a

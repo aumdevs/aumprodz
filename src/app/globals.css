@@ -197,4 +197,103 @@ textarea {
   .shadow-glow {
     box-shadow: var(--shadow-glow);
   }
+
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+
+  .public-site {
+    color-scheme: light;
+    --background: #fbf8f4;
+    --foreground: #321d1d;
+    --card: #fffdf9;
+    --card-foreground: #321d1d;
+    --muted: #f2ede7;
+    --muted-foreground: #68615c;
+    --border: #e5ded6;
+    --primary: #e30613;
+    --primary-foreground: #fffaf5;
+    --accent: #a24a38;
+    --accent-foreground: #fffaf5;
+    --surface: #f6f0ea;
+    --surface-strong: #eee6de;
+    --glass: rgba(255, 253, 249, 0.84);
+    --ring: rgba(227, 6, 19, 0.28);
+    --shadow-soft: 0 20px 50px rgba(80, 27, 24, 0.12);
+    --shadow-glow: 0 18px 46px rgba(227, 6, 19, 0.18);
+    background:
+      radial-gradient(circle at 50% 5%, rgba(227, 6, 19, 0.06), transparent 24rem),
+      var(--background);
+    color: var(--foreground);
+  }
+
+  .public-site .premium-grid {
+    background-image: none;
+  }
+
+  .public-site .glass-panel,
+  .public-site .mission-surface,
+  .public-site .glow-card {
+    border: 1px solid var(--border);
+    background: color-mix(in srgb, var(--card) 92%, transparent);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .public-site .mission-surface {
+    background:
+      linear-gradient(180deg, rgba(255, 253, 249, 0.96), rgba(246, 240, 234, 0.92)),
+      radial-gradient(circle at 50% 0%, rgba(227, 6, 19, 0.1), transparent 42%);
+  }
+
+  .public-site .glow-card::before {
+    background: linear-gradient(180deg, rgba(227, 6, 19, 0.08), transparent 60%);
+  }
+
+  .public-site .rounded-md,
+  .public-site .rounded-lg,
+  .public-site .rounded-xl {
+    border-radius: 1rem;
+  }
+
+  .public-site .rounded-full {
+    border-radius: 999px;
+  }
+
+  .public-shell {
+    width: min(100% - 2rem, 76rem);
+    margin-inline: auto;
+  }
+
+  .public-section {
+    padding-block: clamp(5.5rem, 9vw, 10rem);
+  }
+
+  .public-section-tight {
+    padding-block: clamp(3.5rem, 6vw, 6.5rem);
+  }
+
+  .mammouth-card {
+    border: 1px solid var(--border);
+    background: rgba(255, 253, 249, 0.9);
+    box-shadow: 0 18px 38px rgba(70, 49, 38, 0.08);
+  }
+
+  .mammouth-pill {
+    border: 1px solid rgba(229, 222, 214, 0.86);
+    background: rgba(255, 253, 249, 0.96);
+    box-shadow: 0 10px 24px rgba(70, 49, 38, 0.08);
+  }
+
+  .mammouth-title {
+    color: var(--foreground);
+    font-weight: 900;
+    letter-spacing: 0;
+    line-height: 0.95;
+  }
+
+  .mammouth-subtitle {
+    color: var(--muted-foreground);
+    font-weight: 500;
+    line-height: 1.35;
+  }
 }

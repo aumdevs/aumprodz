@@ -195,21 +195,23 @@ export default async function ArtistLandingPage() {
   const copy = artistPageCopyByLocale[locale] ?? artistPageCopyByLocale.ht;
 
   return (
-    <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+    <section className="public-section-tight">
       <PublicEventTracker
         eventName="artist_pricing_view"
         page="/artista"
         service="artista"
         source="artist_page"
       />
-      <div className="grid gap-10 lg:grid-cols-[1fr_420px]">
+      <div className="public-shell grid gap-10 lg:grid-cols-[1fr_420px]">
         <div className="space-y-8">
-          <Badge tone="accent">{t(locale, "artistLanding.badge")}</Badge>
+          <Badge tone="muted" className="rounded-full">
+            {t(locale, "artistLanding.badge")}
+          </Badge>
           <div className="space-y-5">
-            <h1 className="text-4xl font-black tracking-normal sm:text-6xl">
+            <h1 className="mammouth-title text-4xl sm:text-6xl">
               {t(locale, "artistLanding.title")}
             </h1>
-            <p className="max-w-3xl text-lg leading-8 text-muted-foreground">
+            <p className="mammouth-subtitle max-w-3xl text-xl">
               {t(locale, "artistLanding.description")}
             </p>
           </div>
@@ -241,21 +243,23 @@ export default async function ArtistLandingPage() {
           </div>
           <div className="grid gap-5 md:grid-cols-2">
             {copy.valueCards.map(({ description, icon: Icon, title }) => (
-              <Card key={title}>
-              <CardHeader>
-                  <Icon className="size-6 text-primary" />
+              <Card key={title} className="mammouth-card">
+                <CardHeader>
+                  <span className="flex size-14 items-center justify-center rounded-full bg-[#2f2f31] text-white">
+                    <Icon className="size-6" />
+                  </span>
                   <CardTitle>{title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm leading-6 text-muted-foreground">
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm leading-6 text-muted-foreground">
                     {description}
-                </p>
-              </CardContent>
-            </Card>
+                  </p>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
-        <Card className="self-start">
+        <Card className="mammouth-card self-start">
           <CardHeader>
             <CardTitle>{copy.accessTitle}</CardTitle>
           </CardHeader>
@@ -270,14 +274,14 @@ export default async function ArtistLandingPage() {
               {copy.reviewItems.map(({ icon: Icon, label }) => (
                 <div
                   key={label}
-                  className="flex items-center gap-3 rounded-md border border-border bg-background p-3 text-sm font-semibold"
+                  className="mammouth-pill flex items-center gap-3 rounded-2xl p-3 text-sm font-semibold"
                 >
                   <Icon className="size-4 text-primary" />
                   {label}
                 </div>
               ))}
             </div>
-            <div className="rounded-md border border-border bg-muted p-4 text-sm leading-6 text-muted-foreground">
+            <div className="rounded-2xl border border-border bg-muted p-4 text-sm leading-6 text-muted-foreground">
               {copy.infoBox}
             </div>
           </CardContent>

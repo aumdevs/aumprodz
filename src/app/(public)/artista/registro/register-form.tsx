@@ -210,7 +210,7 @@ export function ArtistRegisterForm({ locale }: { locale: AppLocale }) {
       <form action={formAction} className="grid gap-5">
         <input type="hidden" name="locale" value={locale} />
         {state.error ? (
-          <div className="rounded-md border border-destructive/30 bg-destructive/10 p-3 text-sm text-destructive">
+          <div className="rounded-2xl border border-destructive/30 bg-destructive/10 p-3 text-sm text-destructive">
             {state.error}
           </div>
         ) : null}
@@ -252,7 +252,7 @@ export function ArtistRegisterForm({ locale }: { locale: AppLocale }) {
             <select
               name="country"
               defaultValue={values.country ?? "Haití"}
-              className="h-12 rounded-md border border-border bg-background px-3 text-sm"
+              className="h-12 rounded-2xl border border-border bg-background px-3 text-sm"
             >
               {haitianDiasporaCountryOptions.map((country) => (
                 <option key={country} value={country}>
@@ -267,7 +267,7 @@ export function ArtistRegisterForm({ locale }: { locale: AppLocale }) {
               <select
                 name="phone_country_code"
                 defaultValue={values.phone_country_code ?? "+509"}
-                className="h-12 rounded-md border border-border bg-background px-3 text-sm"
+                className="h-12 rounded-2xl border border-border bg-background px-3 text-sm"
               >
                 {phoneCountryCodeOptions.map((option) => (
                   <option
@@ -300,7 +300,7 @@ export function ArtistRegisterForm({ locale }: { locale: AppLocale }) {
             <select
               name="genre"
               defaultValue={values.genre ?? "Rap"}
-              className="h-12 rounded-md border border-border bg-background px-3 text-sm"
+              className="h-12 rounded-2xl border border-border bg-background px-3 text-sm"
             >
               {musicGenreOptions.map((genre) => (
                 <option key={genre} value={genre}>
@@ -317,11 +317,11 @@ export function ArtistRegisterForm({ locale }: { locale: AppLocale }) {
             name="bio"
             defaultValue={values.bio ?? ""}
             placeholder={copy.bioPlaceholder}
-            className="min-h-28 rounded-md border border-border bg-background px-3 py-2 text-sm"
+            className="min-h-28 rounded-2xl border border-border bg-background px-3 py-2 text-sm"
           />
         </label>
 
-        <div className="rounded-md border border-border bg-muted p-4 text-sm leading-6 text-muted-foreground">
+        <div className="rounded-2xl border border-border bg-muted p-4 text-sm leading-6 text-muted-foreground">
           <div className="flex items-start gap-3">
             <LockKeyhole className="mt-0.5 size-4 shrink-0 text-primary" />
             <p>{copy.note}</p>

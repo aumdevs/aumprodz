@@ -34,7 +34,6 @@ export type ServiceBrowserItem = {
   deliverables: string[];
   modules: string[];
   requirements: string[];
-  faqs: { question: string; answer: string }[];
   packages: {
     title: string;
     description: string;
@@ -76,7 +75,6 @@ const copyByLocale: Record<
     process: string;
     packages: string;
     requirements: string;
-    faqs: string;
     ctaTitle: string;
     ctaText: (serviceTitle: string) => string;
     ctaButton: string;
@@ -93,7 +91,6 @@ const copyByLocale: Record<
     process: "Pwosesis",
     packages: "Pakè disponib",
     requirements: "Sa mwen bezwen nan men ou",
-    faqs: "Kesyon moun poze souvan",
     ctaTitle: "Ou vle travay sèvis sa a?",
     ctaText: (serviceTitle) =>
       `Louvri WhatsApp ak mesaj la pare pou ${serviceTitle}.`,
@@ -110,7 +107,6 @@ const copyByLocale: Record<
     process: "Proceso",
     packages: "Paquetes disponibles",
     requirements: "Lo que necesito de ti",
-    faqs: "Preguntas comunes",
     ctaTitle: "¿Quieres trabajar este servicio?",
     ctaText: (serviceTitle) =>
       `Abre WhatsApp con el mensaje preparado para ${serviceTitle}.`,
@@ -127,7 +123,6 @@ const copyByLocale: Record<
     process: "Process",
     packages: "Available packages",
     requirements: "What I need from you",
-    faqs: "Common questions",
     ctaTitle: "Want to work on this service?",
     ctaText: (serviceTitle) =>
       `Open WhatsApp with a prepared message for ${serviceTitle}.`,
@@ -144,7 +139,6 @@ const copyByLocale: Record<
     process: "Processus",
     packages: "Forfaits disponibles",
     requirements: "Ce dont j'ai besoin",
-    faqs: "Questions fréquentes",
     ctaTitle: "Vous voulez travailler ce service?",
     ctaText: (serviceTitle) =>
       `Ouvrez WhatsApp avec un message préparé pour ${serviceTitle}.`,
@@ -161,7 +155,6 @@ const copyByLocale: Record<
     process: "Processo",
     packages: "Pacotes disponíveis",
     requirements: "O que preciso de você",
-    faqs: "Perguntas comuns",
     ctaTitle: "Quer trabalhar este serviço?",
     ctaText: (serviceTitle) =>
       `Abra o WhatsApp com a mensagem preparada para ${serviceTitle}.`,
@@ -189,7 +182,7 @@ export function ServicesBrowser({
 
   if (!activeService) {
     return (
-      <div className="rounded-md border border-border bg-muted p-6 text-sm text-muted-foreground">
+      <div className="mammouth-card rounded-3xl p-6 text-sm text-muted-foreground">
         {copy.empty}
       </div>
     );
@@ -200,11 +193,11 @@ export function ServicesBrowser({
   return (
     <div className="grid gap-6 lg:grid-cols-[340px_1fr]">
       <aside className="lg:sticky lg:top-28 lg:self-start">
-        <div className="rounded-lg border border-border bg-card p-4">
+        <div className="mammouth-card rounded-3xl p-4">
           <p className="text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">
             {copy.available}
           </p>
-          <h2 className="mt-2 text-2xl font-black tracking-normal">
+          <h2 className="mammouth-title mt-2 text-3xl">
             {copy.title}
           </h2>
           <p className="mt-3 text-sm leading-6 text-muted-foreground">
@@ -226,7 +219,7 @@ export function ServicesBrowser({
                   className={cn(
                     "group flex w-full items-center gap-3 rounded-md border p-4 text-left transition-colors",
                     active
-                      ? "border-primary bg-primary text-primary-foreground"
+                      ? "border-primary bg-primary text-primary-foreground shadow-glow"
                       : "border-border bg-background hover:border-primary/40 hover:bg-muted",
                   )}
                 >
@@ -260,8 +253,8 @@ export function ServicesBrowser({
         </div>
       </aside>
 
-      <section className="rounded-lg border border-border bg-card">
-        <div className="grid gap-7 p-5 sm:p-7 lg:max-h-[calc(100svh-8.5rem)] lg:overflow-y-auto">
+      <section className="mammouth-card rounded-3xl">
+        <div className="grid gap-7 p-5 sm:p-7">
           <div className="grid gap-5 lg:grid-cols-[1fr_260px] lg:items-start">
             <div>
               <div className="flex items-center gap-3">
@@ -272,7 +265,7 @@ export function ServicesBrowser({
                   <p className="text-sm font-bold text-primary">
                     {activeService.eyebrow}
                   </p>
-                  <h1 className="mt-1 text-4xl font-black tracking-normal">
+                  <h1 className="mammouth-title mt-1 text-4xl">
                     {activeService.title}
                   </h1>
                 </div>
@@ -283,13 +276,13 @@ export function ServicesBrowser({
             </div>
 
             <div className="grid gap-3">
-              <div className="rounded-md border border-border bg-background p-4">
+              <div className="mammouth-pill rounded-2xl p-4">
                 <p className="text-sm text-muted-foreground">{copy.priceFrom}</p>
                 <p className="mt-1 text-2xl font-black">
                   {activeService.priceFrom}
                 </p>
               </div>
-              <div className="rounded-md border border-border bg-background p-4">
+              <div className="mammouth-pill rounded-2xl p-4">
                 <p className="flex items-center gap-2 text-sm text-muted-foreground">
                   <Clock3 className="size-4" />
                   {copy.duration}
@@ -303,7 +296,7 @@ export function ServicesBrowser({
             {activeService.outcomes.map((outcome) => (
               <div
                 key={outcome}
-                className="rounded-md border border-border bg-background p-4"
+                className="mammouth-pill rounded-2xl p-4"
               >
                 <Sparkles className="mb-3 size-5 text-primary" />
                 <p className="text-sm leading-6">{outcome}</p>
@@ -325,13 +318,13 @@ export function ServicesBrowser({
           </div>
 
           {activeService.packages.length > 0 ? (
-            <div className="rounded-md border border-border bg-background p-5">
+            <div className="mammouth-pill rounded-3xl p-5">
               <h3 className="text-xl font-bold">{copy.packages}</h3>
               <div className="mt-4 grid gap-4 md:grid-cols-2">
                 {activeService.packages.map((item) => (
                   <div
                     key={`${item.title}-${item.priceLabel}`}
-                    className="rounded-md border border-border bg-card p-4"
+                    className="rounded-2xl border border-border bg-card p-4"
                   >
                     <p className="font-bold">{item.title}</p>
                     <p className="mt-1 text-sm text-muted-foreground">
@@ -367,7 +360,7 @@ export function ServicesBrowser({
               {activeService.media.map((item) => (
                 <figure
                   key={item.url}
-                  className="overflow-hidden rounded-md border border-border bg-background"
+                  className="overflow-hidden rounded-3xl border border-border bg-background"
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
@@ -385,31 +378,15 @@ export function ServicesBrowser({
             </div>
           ) : null}
 
-          <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
+          <div className="grid gap-5">
             <DetailList
               title={copy.requirements}
               items={activeService.requirements}
               numbered={false}
             />
-            <div className="rounded-md border border-border bg-background p-5">
-              <h3 className="text-xl font-bold">{copy.faqs}</h3>
-              <div className="mt-4 grid gap-4">
-                {activeService.faqs.map((faq) => (
-                  <div
-                    key={faq.question}
-                    className="border-t border-border pt-4 first:border-t-0 first:pt-0"
-                  >
-                    <p className="font-semibold">{faq.question}</p>
-                    <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                      {faq.answer}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
 
-          <div className="flex flex-col gap-4 rounded-lg border border-primary/20 bg-primary/10 p-5 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col gap-4 rounded-3xl border border-primary/20 bg-primary/10 p-5 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="text-lg font-black">{copy.ctaTitle}</p>
               <p className="mt-1 text-sm leading-6 text-muted-foreground">
@@ -441,7 +418,7 @@ function DetailList({
   numbered: boolean;
 }) {
   return (
-    <div className="rounded-md border border-border bg-background p-5">
+    <div className="mammouth-pill rounded-3xl p-5">
       <h3 className="text-xl font-bold">{title}</h3>
       <div className="mt-4 grid gap-3">
         {items.map((item, index) => (
