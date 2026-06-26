@@ -430,7 +430,7 @@ function SpotifyLogo({ className }: { className?: string }) {
 
 function GrokLogo({ className }: { className?: string }) {
   return (
-    <span className={cn("inline-flex items-center justify-center text-base font-black leading-none text-[#111111]", className)}>
+    <span className={cn("dark-visible-logo inline-flex items-center justify-center text-base font-black leading-none text-[#111111]", className)}>
       G
     </span>
   );
@@ -453,7 +453,7 @@ function KimiLogo({ className }: { className?: string }) {
   return (
     <span
       className={cn(
-        "inline-flex size-5 items-center justify-center text-base font-black leading-none text-[#111111]",
+        "dark-visible-logo inline-flex size-5 items-center justify-center text-base font-black leading-none text-[#111111]",
         className,
       )}
     >
@@ -536,7 +536,7 @@ function InstagramLogo({ className }: { className?: string }) {
 
 function TikTokLogo({ className }: { className?: string }) {
   return (
-    <svg className={className} viewBox="0 0 24 24" aria-hidden="true">
+    <svg className={cn("dark-visible-logo", className)} viewBox="0 0 24 24" aria-hidden="true">
       <path
         fill="#25f4ee"
         d="M14.7 3.5c.4 2.3 1.8 3.7 4.2 3.9v3a7 7 0 0 1-4.1-1.3v5.8c0 3-2 5.2-5.1 5.2a4.9 4.9 0 0 1-5-4.9c0-3 2.3-5 5.4-5 .4 0 .7 0 1 .1v3.3a2.4 2.4 0 0 0-1.1-.2 1.8 1.8 0 1 0 1.8 1.8V3.5h2.9Z"
@@ -548,6 +548,7 @@ function TikTokLogo({ className }: { className?: string }) {
         opacity=".85"
       />
       <path
+        data-dark-visible-fill
         fill="#111"
         d="M15.1 3.5c.4 2.3 1.8 3.7 4.2 3.9v3a7 7 0 0 1-4.1-1.3v5.8c0 3-2 5.2-5.1 5.2a4.9 4.9 0 0 1-5-4.9c0-3 2.3-5 5.4-5 .4 0 .7 0 1 .1v3.3a2.4 2.4 0 0 0-1.1-.2 1.8 1.8 0 1 0 1.8 1.8V3.5h2.9Z"
       />
@@ -556,5 +557,5 @@ function TikTokLogo({ className }: { className?: string }) {
 }
 
 function CodexLogo({ className }: { className?: string }) {
-  return <Code2 className={cn("text-[#111111]", className)} />;
+  return <Code2 className={cn("dark-visible-logo text-[#111111]", className)} />;
 }
