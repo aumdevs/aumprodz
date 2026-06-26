@@ -3,12 +3,9 @@ import Link from "next/link";
 import {
   ArrowRight,
   Brush,
-  FileSignature,
   KeyRound,
-  Megaphone,
   MessageCircle,
   MonitorPlay,
-  Music2,
   ShieldCheck,
   UploadCloud,
   Zap,
@@ -243,13 +240,6 @@ const modelPills = [
 const processIcons = [MessageCircle, ShieldCheck, Zap] as const;
 const trustIcons = [KeyRound, UploadCloud, ShieldCheck] as const;
 
-const artistItems = [
-  { icon: Music2, label: "Perfil", detail: "Datos, contacto e identidad." },
-  { icon: UploadCloud, label: "Archivos", detail: "Audio, portada, letras y documentos." },
-  { icon: FileSignature, label: "Contrato", detail: "Autorización y firma con claridad." },
-  { icon: Megaphone, label: "Promoción", detail: "Lanzamiento con dirección." },
-] as const;
-
 export default async function HomePage() {
   const locale = await getCurrentLocale();
   const copy = copyByLocale[locale] ?? copyByLocale.ht;
@@ -341,54 +331,6 @@ export default async function HomePage() {
               </Card>
               );
             })}
-          </div>
-        </div>
-      </section>
-
-      <section className="public-section-tight">
-        <div className="public-shell grid gap-10 lg:grid-cols-[0.86fr_1.14fr] lg:items-center">
-          <div className="space-y-6">
-            <p className="text-sm font-black uppercase tracking-[0.18em] text-primary">
-              Artist OS
-            </p>
-            <h2 className="mammouth-title text-4xl sm:text-6xl">
-              {copy.artistTitle}
-            </h2>
-            <p className="mammouth-subtitle text-xl">{copy.artistText}</p>
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/artista/registro"
-                className={cn(buttonVariants({ size: "lg" }))}
-              >
-                {copy.artistCta}
-                <ArrowRight className="size-5" />
-              </Link>
-              <Link
-                href="/login?next=%2Fartist"
-                className={cn(buttonVariants({ variant: "secondary", size: "lg" }))}
-              >
-                {copy.artistLogin}
-              </Link>
-            </div>
-          </div>
-          <div className="mammouth-card rounded-3xl p-4 sm:p-6">
-            <div className="grid gap-3">
-              {artistItems.map(({ detail, icon: Icon, label }, index) => (
-                <div
-                  key={label}
-                  className="grid gap-3 rounded-2xl border border-border bg-background p-4 sm:grid-cols-[52px_1fr_auto] sm:items-center"
-                >
-                  <span className="flex size-12 items-center justify-center rounded-2xl bg-muted text-primary">
-                    <Icon className="size-5" />
-                  </span>
-                  <div>
-                    <p className="font-black">{label}</p>
-                    <p className="mt-1 text-sm text-muted-foreground">{detail}</p>
-                  </div>
-                  <span className="text-sm font-black text-primary">0{index + 1}</span>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
