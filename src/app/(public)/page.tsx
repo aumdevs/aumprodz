@@ -30,7 +30,6 @@ import { buttonVariants } from "@/components/ui/button";
 import { getPublicServices, type ServiceSlug } from "@/lib/content/services";
 import { getPublicYoutubeVideos } from "@/lib/content/youtube";
 import type { AppLocale } from "@/lib/i18n/config";
-import { t } from "@/lib/i18n/dictionaries";
 import { getCurrentLocale } from "@/lib/i18n/server";
 import { cn } from "@/lib/utils";
 
@@ -48,6 +47,7 @@ type HomeCopy = {
   heroPrice: string;
   modelIntro: string;
   serviceCta: string;
+  serviceDetailCta: string;
   serviceText: string;
   serviceTitle: string;
   startCta: string;
@@ -66,12 +66,13 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
     finalTitle: "Pare pou mete pwojè dijital ou anba kontwòl?",
     heroLineOne: "Rete konekte",
     heroLineTwo: "ak aum",
-    heroPrice: "pou sèlman 50 dola ameriken chak mwa",
+    heroPrice: "pou sèlman senkant dola ameriken chak mwa",
     modelIntro: "Aprann sou",
     serviceText:
-      "Chak sèvis gen pwòp pri ak pwòp etap li. Chwazi sa ou bezwen epi pale ak AUM pou kòmanse.",
+      "Om mete sèvis sa yo disponib pou kominote ayisyèn nan ki bezwen sipò dijital klè.",
     serviceTitle: "Sèvis disponib",
-    serviceCta: "Pale ak AUM",
+    serviceCta: "Pale ak Om",
+    serviceDetailCta: "Gade detay",
     startCta: "Aprann plis",
     viewAll: "Gade tout",
   },
@@ -85,13 +86,14 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
       "Pon tu canal, web, imagen, cuentas o carrera artística dentro de un proceso claro.",
     finalTitle: "¿Listo para poner tu proyecto digital bajo control?",
     heroLineOne: "Mantente al día",
-    heroLineTwo: "con AUM",
-    heroPrice: "por tan solo 50 dolares al mes",
+    heroLineTwo: "con aum",
+    heroPrice: "por tan solo 50 dólares al mes",
     modelIntro: "Aprende sobre",
     serviceText:
-      "Cada servicio mantiene su precio normal y su propio alcance. Elige lo que necesitas y habla con AUM para empezar.",
+      "Om pone estos servicios a disposición de la comunidad haitiana que necesita apoyo digital claro.",
     serviceTitle: "Servicios disponibles",
-    serviceCta: "Hablar con AUM",
+    serviceCta: "Hablar con Om",
+    serviceDetailCta: "Ver detalle",
     startCta: "Saber más",
     viewAll: "Ver todo",
   },
@@ -105,13 +107,14 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
       "Bring your channel, website, image, accounts or artist career into a clear process.",
     finalTitle: "Ready to put your digital project under control?",
     heroLineOne: "Stay up to date",
-    heroLineTwo: "with AUM",
-    heroPrice: "for only 50 dollars per month",
+    heroLineTwo: "with aum",
+    heroPrice: "for only 50 dollars a month",
     modelIntro: "Learn about",
     serviceText:
-      "Each service keeps its own price and scope. Choose what you need and talk to AUM to start.",
+      "Om makes these services available for the Haitian community that needs clear digital support.",
     serviceTitle: "Available services",
-    serviceCta: "Talk to AUM",
+    serviceCta: "Talk to Om",
+    serviceDetailCta: "View details",
     startCta: "Learn more",
     viewAll: "View all",
   },
@@ -125,13 +128,14 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
       "Mettez votre chaîne, site, image, comptes ou carrière artistique dans un processus clair.",
     finalTitle: "Prêt à mettre votre projet digital sous contrôle?",
     heroLineOne: "Restez à jour",
-    heroLineTwo: "avec AUM",
+    heroLineTwo: "avec aum",
     heroPrice: "pour seulement 50 dollars par mois",
     modelIntro: "Apprenez sur",
     serviceText:
-      "Chaque service garde son propre prix et son propre périmètre. Choisissez ce dont vous avez besoin et parlez avec AUM.",
+      "Om met ces services à disposition de la communauté haïtienne qui a besoin d'un soutien digital clair.",
     serviceTitle: "Services disponibles",
-    serviceCta: "Parler avec AUM",
+    serviceCta: "Parler avec Om",
+    serviceDetailCta: "Voir le détail",
     startCta: "En savoir plus",
     viewAll: "Voir tout",
   },
@@ -145,13 +149,14 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
       "Coloque seu canal, site, imagem, contas ou carreira artística em um processo claro.",
     finalTitle: "Pronto para colocar seu projeto digital sob controle?",
     heroLineOne: "Fique em dia",
-    heroLineTwo: "com AUM",
-    heroPrice: "por apenas 50 dolares por mês",
+    heroLineTwo: "com aum",
+    heroPrice: "por apenas 50 dólares por mês",
     modelIntro: "Aprenda sobre",
     serviceText:
-      "Cada serviço mantém seu preço normal e seu próprio escopo. Escolha o que precisa e fale com AUM para começar.",
+      "Om disponibiliza estes serviços para a comunidade haitiana que precisa de apoio digital claro.",
     serviceTitle: "Serviços disponíveis",
-    serviceCta: "Falar com AUM",
+    serviceCta: "Falar com Om",
+    serviceDetailCta: "Ver detalhes",
     startCta: "Saber mais",
     viewAll: "Ver tudo",
   },
@@ -229,7 +234,11 @@ export default async function HomePage() {
       <section className="public-section-tight">
         <div className="public-shell">
           <SectionHeading title={copy.serviceTitle} text={copy.serviceText} />
-          <ServicesAvailableBoard locale={locale} services={services} />
+          <ServicesAvailableBoard
+            detailLabel={copy.serviceDetailCta}
+            locale={locale}
+            services={services}
+          />
           <div className="mt-8 text-center">
             <WhatsappCtaLink
               service="youtube-adsense"
@@ -406,34 +415,15 @@ function GptLogo({ className }: { className?: string }) {
 }
 
 function ServicesAvailableBoard({
+  detailLabel,
   locale,
   services,
 }: {
+  detailLabel: string;
   locale: AppLocale;
   services: Awaited<ReturnType<typeof getPublicServices>>;
 }) {
-  const columns = [
-    {
-      title: "YouTube & AdSense",
-      slugs: ["youtube-adsense"],
-      icon: MonitorPlay,
-    },
-    {
-      title: "Texto / Web",
-      slugs: ["paginas-web"],
-      icon: MessageCircle,
-    },
-    {
-      title: "Imagen & Video",
-      slugs: ["imagen-video"],
-      icon: Brush,
-    },
-    {
-      title: "Cuentas & Redes",
-      slugs: ["cuentas-digitales"],
-      icon: KeyRound,
-    },
-  ] as const;
+  const columns = getHomeServiceColumns(locale);
 
   return (
     <div className="mx-auto mt-12 max-w-6xl">
@@ -448,14 +438,14 @@ function ServicesAvailableBoard({
           return (
             <div
               key={title}
-              className="rounded-[2rem] border border-border bg-surface/70 p-5 shadow-soft"
+              className="flex h-full flex-col rounded-[2rem] border border-border bg-surface/70 p-5 shadow-soft"
             >
-              <h3 className="mb-5 text-center text-xl font-black uppercase text-muted-foreground">
+              <h3 className="mb-5 min-h-14 text-center text-xl font-black uppercase leading-tight text-muted-foreground">
                 {title}
               </h3>
               {service ? (
-                <div className="grid gap-3">
-                  {rows.map((row) => {
+                <div className="flex flex-1 flex-col gap-3">
+                  {getHomeServiceRows(locale, service.slug, rows).map((row) => {
                     const RowIcon = getServiceRowIcon(row, ColumnIcon);
 
                     return (
@@ -475,15 +465,10 @@ function ServicesAvailableBoard({
                   })}
                   <Link
                     href={`/servicios/${service.slug}`}
-                    className="mt-1 flex min-h-20 items-center justify-between gap-4 rounded-3xl bg-primary px-5 py-4 text-primary-foreground shadow-glow transition-transform hover:-translate-y-0.5"
+                    className="mt-auto flex min-h-16 items-center justify-between gap-4 rounded-3xl bg-primary px-5 py-4 text-primary-foreground shadow-glow transition-transform hover:-translate-y-0.5"
                   >
-                    <span>
-                      <span className="block text-sm font-black uppercase">
-                        {t(locale, "common.from")}
-                      </span>
-                      <span className="mt-1 block text-2xl font-black">
-                        {service.priceFrom}
-                      </span>
+                    <span className="text-base font-black">
+                      {detailLabel}
                     </span>
                     <ArrowRight className="size-5" />
                   </Link>
@@ -495,6 +480,106 @@ function ServicesAvailableBoard({
       </div>
     </div>
   );
+}
+
+function getHomeServiceColumns(locale: AppLocale) {
+  const titles: Record<AppLocale, Record<ServiceSlug, string>> = {
+    ht: {
+      "youtube-adsense": "YouTube ak AdSense",
+      "paginas-web": "Web ak aplikasyon",
+      "imagen-video": "Imaj ak videyo",
+      "cuentas-digitales": "Kont ak rezo",
+    },
+    es: {
+      "youtube-adsense": "YouTube & AdSense",
+      "paginas-web": "Web y aplicación",
+      "imagen-video": "Imagen & Video",
+      "cuentas-digitales": "Cuentas & Redes",
+    },
+    en: {
+      "youtube-adsense": "YouTube & AdSense",
+      "paginas-web": "Web & App",
+      "imagen-video": "Image & Video",
+      "cuentas-digitales": "Accounts & Social",
+    },
+    fr: {
+      "youtube-adsense": "YouTube et AdSense",
+      "paginas-web": "Web et application",
+      "imagen-video": "Image et vidéo",
+      "cuentas-digitales": "Comptes et réseaux",
+    },
+    pt: {
+      "youtube-adsense": "YouTube e AdSense",
+      "paginas-web": "Web e aplicativo",
+      "imagen-video": "Imagem e vídeo",
+      "cuentas-digitales": "Contas e redes",
+    },
+  };
+  const copy = titles[locale] ?? titles.ht;
+
+  return [
+    {
+      title: copy["youtube-adsense"],
+      slugs: ["youtube-adsense"],
+      icon: MonitorPlay,
+    },
+    {
+      title: copy["paginas-web"],
+      slugs: ["paginas-web"],
+      icon: MessageCircle,
+    },
+    {
+      title: copy["imagen-video"],
+      slugs: ["imagen-video"],
+      icon: Brush,
+    },
+    {
+      title: copy["cuentas-digitales"],
+      slugs: ["cuentas-digitales"],
+      icon: KeyRound,
+    },
+  ] as const;
+}
+
+function getHomeServiceRows(
+  locale: AppLocale,
+  slug: ServiceSlug,
+  fallbackRows: string[],
+) {
+  const rows: Record<AppLocale, Record<ServiceSlug, string[]>> = {
+    ht: {
+      "youtube-adsense": ["Oryantasyon", "Monetizasyon", "AdSense", "Revizyon chanèl"],
+      "paginas-web": ["Web pwofesyonèl", "Aplikasyon senp", "Landing page", "Konvèsyon"],
+      "imagen-video": ["Miniati", "Edit videyo", "Flyer", "Branding"],
+      "cuentas-digitales": ["Kreyasyon kont", "Rekiperasyon", "Sekirite", "Rezo sosyal"],
+    },
+    es: {
+      "youtube-adsense": ["Orientación", "Monetización", "AdSense", "Revisión de canal"],
+      "paginas-web": ["Web profesional", "Aplicación simple", "Landing page", "Conversión"],
+      "imagen-video": ["Miniatura", "Edición de video", "Flyer", "Branding"],
+      "cuentas-digitales": ["Creación de cuentas", "Recuperación", "Seguridad", "Redes sociales"],
+    },
+    en: {
+      "youtube-adsense": ["Guidance", "Monetization", "AdSense", "Channel review"],
+      "paginas-web": ["Professional web", "Simple app", "Landing page", "Conversion"],
+      "imagen-video": ["Thumbnail", "Video editing", "Flyer", "Branding"],
+      "cuentas-digitales": ["Account setup", "Recovery", "Security", "Social platforms"],
+    },
+    fr: {
+      "youtube-adsense": ["Orientation", "Monétisation", "AdSense", "Révision chaîne"],
+      "paginas-web": ["Web professionnel", "Application simple", "Landing page", "Conversion"],
+      "imagen-video": ["Miniature", "Montage vidéo", "Flyer", "Branding"],
+      "cuentas-digitales": ["Création de comptes", "Récupération", "Sécurité", "Réseaux sociaux"],
+    },
+    pt: {
+      "youtube-adsense": ["Orientação", "Monetização", "AdSense", "Revisão do canal"],
+      "paginas-web": ["Web profissional", "Aplicativo simples", "Landing page", "Conversão"],
+      "imagen-video": ["Miniatura", "Edição de vídeo", "Flyer", "Branding"],
+      "cuentas-digitales": ["Criação de contas", "Recuperação", "Segurança", "Redes sociais"],
+    },
+  };
+
+  return rows[locale]?.[slug] ?? fallbackRows.slice(0, 4);
 }
 
 function getServiceRows(

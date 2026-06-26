@@ -65,9 +65,9 @@ export type ServiceMedia = {
 
 export const serviceCategories = [
   { key: "youtube-adsense", label: "YouTube & AdSense" },
-  { key: "paginas-web", label: "Páginas web" },
+  { key: "paginas-web", label: "Web y aplicación" },
   { key: "imagen-video", label: "Imagen & video" },
-  { key: "cuentas-digitales", label: "Tecnología & cuentas" },
+  { key: "cuentas-digitales", label: "Cuentas & redes" },
 ] as const;
 
 export const canonicalServiceSlugs = [
@@ -194,30 +194,30 @@ export const localServices: Service[] = [
     ctas: [],
     media: [],
     whatsappMessage:
-      "Hola AUM, vengo desde tu página de YouTube y AdSense. Necesito orientación sobre mi canal.",
+      "Hola Om, vengo desde tu página de YouTube y AdSense. Necesito orientación sobre mi canal.",
   },
   {
     slug: "paginas-web",
     category: "paginas-web",
-    label: "Páginas web",
-    title: "Páginas web",
-    eyebrow: "Web profesional y conversión",
+    label: "Web y aplicación",
+    title: "Web y aplicación",
+    eyebrow: "Web, aplicación y conversión",
     summary:
-      "Landing, web profesional, ecommerce y páginas de servicio para vender con claridad.",
+      "Landing, web profesional, aplicación simple y páginas de servicio para vender con claridad.",
     description:
-      "Una web pensada para explicar la oferta, dar confianza y convertir visitas en conversaciones o ventas, sin quedarse en una plantilla bonita.",
+      "Una solución web pensada para explicar la oferta, dar confianza y convertir visitas en conversaciones o ventas, sin quedarse en una plantilla bonita.",
     priceFrom: "$250",
     duration: "7 a 21 días según alcance",
     icon: Globe2,
     outcomes: [
       "Presentar servicios con estructura profesional.",
-      "Guiar al visitante hacia WhatsApp o formulario.",
+      "Guiar al visitante hacia contacto o formulario.",
       "Quedar listo para escalar a ecommerce o panel privado.",
     ],
     deliverables: [
       "Arquitectura de página y copy inicial",
       "Diseño responsive",
-      "Formulario o CTA de conversión",
+      "Formulario, CTA o flujo básico de aplicación",
     ],
     modules: [
       "Estrategia y estructura",
@@ -245,7 +245,7 @@ export const localServices: Service[] = [
     ctas: [],
     media: [],
     whatsappMessage:
-      "Hola AUM, vengo desde tu página web. Quiero orientación para crear una página web, landing o ecommerce.",
+      "Hola Om, vengo desde tu página web. Quiero orientación para crear una web, aplicación simple, landing o ecommerce.",
   },
   {
     slug: "imagen-video",
@@ -292,13 +292,13 @@ export const localServices: Service[] = [
     ctas: [],
     media: [],
     whatsappMessage:
-      "Hola AUM, vi tu servicio de imagen y video. Quiero orientación sobre miniaturas, edición o contenido visual.",
+      "Hola Om, vi tu servicio de imagen y video. Quiero orientación sobre miniaturas, edición o contenido visual.",
   },
   {
     slug: "cuentas-digitales",
     category: "cuentas-digitales",
-    label: "Tecnología & cuentas",
-    title: "Tecnología & cuentas",
+    label: "Cuentas & redes",
+    title: "Cuentas & redes",
     eyebrow: "Cuentas, acceso y recuperación",
     summary:
       "Creación, administración y recuperación de cuentas bloqueadas o perdidas.",
@@ -343,7 +343,7 @@ export const localServices: Service[] = [
     ctas: [],
     media: [],
     whatsappMessage:
-      "Hola AUM, necesito ayuda con creación, administración o recuperación de una cuenta digital.",
+      "Hola Om, necesito ayuda con creación, administración o recuperación de una cuenta digital.",
   },
 ];
 
@@ -411,26 +411,26 @@ const localServiceTranslations: Partial<
         },
       ],
       whatsappMessage:
-        "Bonjou AUM, mwen soti sou paj YouTube ak AdSense ou a. Mwen bezwen oryantasyon pou chanèl mwen.",
+        "Bonjou Om, mwen soti sou paj YouTube ak AdSense ou a. Mwen bezwen oryantasyon pou chanèl mwen.",
     },
     "paginas-web": {
-      label: "Sit entènèt",
-      title: "Sit entènèt",
-      eyebrow: "Sit pwofesyonèl ak konvèsyon",
+      label: "Web ak aplikasyon",
+      title: "Web ak aplikasyon",
+      eyebrow: "Web, aplikasyon ak konvèsyon",
       summary:
-        "Landing page, sit pwofesyonèl, ecommerce ak paj sèvis pou vann ak klète.",
+        "Landing page, sit pwofesyonèl, aplikasyon senp ak paj sèvis pou vann ak klète.",
       description:
-        "Yon sit ki fèt pou esplike òf ou, bay konfyans epi fè vizitè yo vin kliyan oswa kontakte w.",
+        "Yon solisyon web ki fèt pou esplike òf ou, bay konfyans epi fè vizitè yo vin kliyan oswa kontakte w.",
       duration: "7 a 21 jou selon travay la",
       outcomes: [
         "Prezante sèvis ou yo ak estrikti pwofesyonèl.",
-        "Gide vizitè a sou WhatsApp oswa fòm kontak.",
+        "Gide vizitè a sou kontak oswa fòm.",
         "Prepare baz la pou ecommerce oswa panèl prive.",
       ],
       deliverables: [
         "Estrikti paj la ak premye tèks yo",
         "Dizayn ki mache sou telefòn ak òdinatè",
-        "Fòm oswa bouton pou konvèsyon",
+        "Fòm, bouton oswa ti koule aplikasyon",
       ],
       modules: ["Estrateji ak estrikti", "Dizayn ak devlopman", "Revizyon final ak piblikasyon"],
       requirements: [
@@ -451,7 +451,7 @@ const localServiceTranslations: Partial<
         },
       ],
       whatsappMessage:
-        "Bonjou AUM, mwen vle oryantasyon pou kreye yon sit entènèt, landing page oswa ecommerce.",
+        "Bonjou Om, mwen vle oryantasyon pou kreye yon web, aplikasyon senp, landing page oswa ecommerce.",
     },
     "imagen-video": {
       label: "Imaj ak videyo",
@@ -491,11 +491,11 @@ const localServiceTranslations: Partial<
         },
       ],
       whatsappMessage:
-        "Bonjou AUM, mwen wè sèvis imaj ak videyo ou a. Mwen bezwen oryantasyon sou miniati, edit oswa kontni vizyèl.",
+        "Bonjou Om, mwen wè sèvis imaj ak videyo ou a. Mwen bezwen oryantasyon sou miniati, edit oswa kontni vizyèl.",
     },
     "cuentas-digitales": {
-      label: "Kont dijital",
-      title: "Kont dijital",
+      label: "Kont ak rezo",
+      title: "Kont ak rezo",
       eyebrow: "Kont, aksè ak rekiperasyon",
       summary:
         "Kreyasyon, administrasyon ak rekiperasyon kont ki bloke oswa pèdi.",
@@ -535,7 +535,7 @@ const localServiceTranslations: Partial<
         },
       ],
       whatsappMessage:
-        "Bonjou AUM, mwen bezwen èd ak kreyasyon, administrasyon oswa rekiperasyon yon kont dijital.",
+        "Bonjou Om, mwen bezwen èd ak kreyasyon, administrasyon oswa rekiperasyon yon kont dijital.",
     },
   },
   en: {
@@ -555,25 +555,25 @@ const localServiceTranslations: Partial<
         { question: "Does this guarantee monetization?", answer: "No. The guidance helps correct and organize the process, but YouTube makes the final decision." },
         { question: "Can I ask for help if my AdSense has an issue?", answer: "Yes. The service starts with a review of the case and available documents." },
       ],
-      whatsappMessage: "Hi AUM, I came from your YouTube and AdSense page. I need guidance for my channel.",
+      whatsappMessage: "Hi Om, I came from your YouTube and AdSense page. I need guidance for my channel.",
     },
     "paginas-web": {
-      label: "Websites",
-      title: "Websites",
-      eyebrow: "Professional web and conversion",
-      summary: "Landing pages, professional websites, ecommerce and service pages built to sell clearly.",
+      label: "Web & App",
+      title: "Web & App",
+      eyebrow: "Web, app and conversion",
+      summary: "Landing pages, professional websites, simple apps and service pages built to sell clearly.",
       description:
-        "A website designed to explain your offer, build trust and turn visitors into conversations or sales.",
+        "A web solution designed to explain your offer, build trust and turn visitors into conversations or sales.",
       duration: "7 to 21 days depending on scope",
-      outcomes: ["Present services with a professional structure.", "Guide visitors to WhatsApp or a form.", "Prepare the base for ecommerce or a private panel."],
-      deliverables: ["Page architecture and initial copy", "Responsive design", "Conversion form or CTA"],
+      outcomes: ["Present services with a professional structure.", "Guide visitors to contact or a form.", "Prepare the base for ecommerce or a private panel."],
+      deliverables: ["Page architecture and initial copy", "Responsive design", "Form, CTA or basic app flow"],
       modules: ["Strategy and structure", "Design and development", "Final review and publishing"],
       requirements: ["Main goal of the page", "Logo, colors or brand references", "Text, photos or services that must appear"],
       faqs: [
         { question: "Does it include domain and hosting?", answer: "I can guide or configure it depending on the case, but the cost depends on the provider." },
         { question: "Can I request ecommerce?", answer: "Yes. Ecommerce is quoted separately depending on products, payments and operations." },
       ],
-      whatsappMessage: "Hi AUM, I want guidance to create a website, landing page or ecommerce.",
+      whatsappMessage: "Hi Om, I want guidance to create a web project, simple app, landing page or ecommerce.",
     },
     "imagen-video": {
       label: "Image & Video",
@@ -591,11 +591,11 @@ const localServiceTranslations: Partial<
         { question: "Do I need to send materials?", answer: "Yes. The clearer the initial material, the faster the delivery." },
         { question: "Do you create content for social media?", answer: "Yes. We can prepare vertical content, promotional pieces and thumbnails." },
       ],
-      whatsappMessage: "Hi AUM, I saw your image and video service. I need guidance on thumbnails, editing or visual content.",
+      whatsappMessage: "Hi Om, I saw your image and video service. I need guidance on thumbnails, editing or visual content.",
     },
     "cuentas-digitales": {
-      label: "Digital accounts",
-      title: "Digital accounts",
+      label: "Accounts & Social",
+      title: "Accounts & Social",
       eyebrow: "Accounts, access and recovery",
       summary: "Creation, management and recovery of blocked or lost accounts.",
       description:
@@ -609,7 +609,7 @@ const localServiceTranslations: Partial<
         { question: "Is account recovery guaranteed?", answer: "No. Some platforms make the final decision. The service helps organize and present the case in the best way." },
         { question: "Can you also create or manage new accounts?", answer: "Yes. We can help create accounts, configure security, organize access and prepare the account for professional use." },
       ],
-      whatsappMessage: "Hi AUM, I need help with creating, managing or recovering a digital account.",
+      whatsappMessage: "Hi Om, I need help with creating, managing or recovering a digital account.",
     },
   },
   fr: {
@@ -628,24 +628,24 @@ const localServiceTranslations: Partial<
         { question: "Est-ce que cela garantit la monétisation?", answer: "Non. L'orientation aide à corriger et organiser, mais YouTube prend la décision finale." },
         { question: "Puis-je demander de l'aide pour AdSense?", answer: "Oui. Le service commence par une révision du cas et des documents disponibles." },
       ],
-      whatsappMessage: "Bonjour AUM, je viens de votre page YouTube et AdSense. J'ai besoin d'orientation pour ma chaîne.",
+      whatsappMessage: "Bonjour Om, je viens de votre page YouTube et AdSense. J'ai besoin d'orientation pour ma chaîne.",
     },
     "paginas-web": {
-      label: "Sites web",
-      title: "Sites web",
-      eyebrow: "Web professionnel et conversion",
-      summary: "Landing pages, sites professionnels, ecommerce et pages de service pour vendre clairement.",
-      description: "Un site pensé pour expliquer votre offre, donner confiance et transformer les visites en conversations ou ventes.",
+      label: "Web et application",
+      title: "Web et application",
+      eyebrow: "Web, application et conversion",
+      summary: "Landing pages, sites professionnels, applications simples et pages de service pour vendre clairement.",
+      description: "Une solution web pensée pour expliquer votre offre, donner confiance et transformer les visites en conversations ou ventes.",
       duration: "7 à 21 jours selon le périmètre",
-      outcomes: ["Présenter les services avec une structure professionnelle.", "Guider le visiteur vers WhatsApp ou un formulaire.", "Préparer la base pour ecommerce ou espace privé."],
-      deliverables: ["Architecture de page et premiers textes", "Design responsive", "Formulaire ou CTA de conversion"],
+      outcomes: ["Présenter les services avec une structure professionnelle.", "Guider le visiteur vers le contact ou un formulaire.", "Préparer la base pour ecommerce ou espace privé."],
+      deliverables: ["Architecture de page et premiers textes", "Design responsive", "Formulaire, CTA ou flux d'application simple"],
       modules: ["Stratégie et structure", "Design et développement", "Révision finale et publication"],
       requirements: ["Objectif principal de la page", "Logo, couleurs ou références de marque", "Textes, photos ou services à afficher"],
       faqs: [
         { question: "Le domaine et l'hébergement sont-ils inclus?", answer: "Je peux orienter ou configurer selon le cas, mais le coût dépend du fournisseur." },
         { question: "Puis-je demander un ecommerce?", answer: "Oui. L'ecommerce est chiffré séparément selon produits, paiements et opérations." },
       ],
-      whatsappMessage: "Bonjour AUM, je veux une orientation pour créer un site web, une landing page ou un ecommerce.",
+      whatsappMessage: "Bonjour Om, je veux une orientation pour créer un projet web, une application simple, une landing page ou un ecommerce.",
     },
     "imagen-video": {
       label: "Image et vidéo",
@@ -662,11 +662,11 @@ const localServiceTranslations: Partial<
         { question: "Dois-je envoyer des éléments?", answer: "Oui. Plus le matériel initial est clair, plus la livraison est rapide." },
         { question: "Créez-vous du contenu pour les réseaux?", answer: "Oui. Nous pouvons préparer contenu vertical, pièces promotionnelles et miniatures." },
       ],
-      whatsappMessage: "Bonjour AUM, j'ai vu votre service image et vidéo. J'ai besoin d'orientation sur miniatures, montage ou contenu visuel.",
+      whatsappMessage: "Bonjour Om, j'ai vu votre service image et vidéo. J'ai besoin d'orientation sur miniatures, montage ou contenu visuel.",
     },
     "cuentas-digitales": {
-      label: "Comptes digitaux",
-      title: "Comptes digitaux",
+      label: "Comptes et réseaux",
+      title: "Comptes et réseaux",
       eyebrow: "Comptes, accès et récupération",
       summary: "Création, gestion et récupération de comptes bloqués ou perdus.",
       description: "Un service pour créer, organiser, protéger ou récupérer des comptes comme Instagram, Facebook, Google, YouTube et autres plateformes.",
@@ -679,7 +679,7 @@ const localServiceTranslations: Partial<
         { question: "La récupération est-elle garantie?", answer: "Non. Certaines plateformes prennent la décision finale. Le service aide à organiser le dossier." },
         { question: "Pouvez-vous créer ou gérer de nouveaux comptes?", answer: "Oui. Nous pouvons aider à créer, sécuriser et organiser les accès." },
       ],
-      whatsappMessage: "Bonjour AUM, j'ai besoin d'aide pour créer, gérer ou récupérer un compte digital.",
+      whatsappMessage: "Bonjour Om, j'ai besoin d'aide pour créer, gérer ou récupérer un compte digital.",
     },
   },
   pt: {
@@ -698,24 +698,24 @@ const localServiceTranslations: Partial<
         { question: "Isso garante monetização?", answer: "Não. A orientação ajuda a corrigir e organizar, mas o YouTube toma a decisão final." },
         { question: "Posso pedir ajuda se meu AdSense tem problema?", answer: "Sim. O serviço começa com revisão do caso e documentos disponíveis." },
       ],
-      whatsappMessage: "Olá AUM, vim da sua página de YouTube e AdSense. Preciso de orientação para meu canal.",
+      whatsappMessage: "Olá Om, vim da sua página de YouTube e AdSense. Preciso de orientação para meu canal.",
     },
     "paginas-web": {
-      label: "Sites",
-      title: "Sites",
-      eyebrow: "Web profissional e conversão",
-      summary: "Landing pages, sites profissionais, ecommerce e páginas de serviço para vender com clareza.",
-      description: "Um site pensado para explicar sua oferta, gerar confiança e transformar visitas em conversas ou vendas.",
+      label: "Web e aplicativo",
+      title: "Web e aplicativo",
+      eyebrow: "Web, aplicativo e conversão",
+      summary: "Landing pages, sites profissionais, aplicativos simples e páginas de serviço para vender com clareza.",
+      description: "Uma solução web pensada para explicar sua oferta, gerar confiança e transformar visitas em conversas ou vendas.",
       duration: "7 a 21 dias conforme o escopo",
-      outcomes: ["Apresentar serviços com estrutura profissional.", "Guiar o visitante ao WhatsApp ou formulário.", "Preparar a base para ecommerce ou painel privado."],
-      deliverables: ["Arquitetura da página e textos iniciais", "Design responsivo", "Formulário ou CTA de conversão"],
+      outcomes: ["Apresentar serviços com estrutura profissional.", "Guiar o visitante ao contato ou formulário.", "Preparar a base para ecommerce ou painel privado."],
+      deliverables: ["Arquitetura da página e textos iniciais", "Design responsivo", "Formulário, CTA ou fluxo básico de aplicativo"],
       modules: ["Estratégia e estrutura", "Design e desenvolvimento", "Revisão final e publicação"],
       requirements: ["Objetivo principal da página", "Logo, cores ou referências de marca", "Textos, fotos ou serviços que devem aparecer"],
       faqs: [
         { question: "Inclui domínio e hospedagem?", answer: "Posso orientar ou configurar conforme o caso, mas o custo depende do provedor." },
         { question: "Posso pedir ecommerce?", answer: "Sim. Ecommerce é orçado separadamente conforme produtos, pagamentos e operação." },
       ],
-      whatsappMessage: "Olá AUM, quero orientação para criar um site, landing page ou ecommerce.",
+      whatsappMessage: "Olá Om, quero orientação para criar um projeto web, aplicativo simples, landing page ou ecommerce.",
     },
     "imagen-video": {
       label: "Imagem e vídeo",
@@ -732,11 +732,11 @@ const localServiceTranslations: Partial<
         { question: "Preciso enviar materiais?", answer: "Sim. Quanto mais claro o material inicial, mais rápida a entrega." },
         { question: "Vocês fazem conteúdo para redes?", answer: "Sim. Podemos preparar conteúdo vertical, peças promocionais e miniaturas." },
       ],
-      whatsappMessage: "Olá AUM, vi seu serviço de imagem e vídeo. Preciso de orientação sobre miniaturas, edição ou conteúdo visual.",
+      whatsappMessage: "Olá Om, vi seu serviço de imagem e vídeo. Preciso de orientação sobre miniaturas, edição ou conteúdo visual.",
     },
     "cuentas-digitales": {
-      label: "Contas digitais",
-      title: "Contas digitais",
+      label: "Contas e redes",
+      title: "Contas e redes",
       eyebrow: "Contas, acesso e recuperação",
       summary: "Criação, administração e recuperação de contas bloqueadas ou perdidas.",
       description: "Um serviço para criar, organizar, proteger ou recuperar contas digitais como Instagram, Facebook, Google, YouTube e outras plataformas.",
@@ -749,7 +749,7 @@ const localServiceTranslations: Partial<
         { question: "A recuperação é garantida?", answer: "Não. Algumas plataformas tomam a decisão final. O serviço ajuda a organizar e apresentar melhor o caso." },
         { question: "Também criam ou administram contas novas?", answer: "Sim. Podemos ajudar a criar contas, configurar segurança, organizar acessos e preparar para uso profissional." },
       ],
-      whatsappMessage: "Olá AUM, preciso de ajuda com criação, administração ou recuperação de uma conta digital.",
+      whatsappMessage: "Olá Om, preciso de ajuda com criação, administração ou recuperação de uma conta digital.",
     },
   },
 };
@@ -836,20 +836,30 @@ export async function getPublicServices({
     locale,
   });
 
+  const localCopyBySlug = new Map(
+    baseServices.map((service) => [service.slug, service]),
+  );
+
   return baseServices
     .map((service) => {
       const row = rowsBySlug.get(service.slug);
 
       if (!row) {
-        return service;
+        return applyPublicServiceTextOverrides({
+          localCopy: localCopyBySlug.get(service.slug),
+          service,
+        });
       }
 
-      return mergeServiceWithSupabaseRow({
-        service,
-        row,
-        related,
-        translations,
-        locale,
+      return applyPublicServiceTextOverrides({
+        localCopy: localCopyBySlug.get(service.slug),
+        service: mergeServiceWithSupabaseRow({
+          service,
+          row,
+          related,
+          translations,
+          locale,
+        }),
       });
     })
     .filter((service) => {
@@ -860,6 +870,32 @@ export async function getPublicServices({
       const row = rowsBySlug.get(service.slug);
       return row ? row.is_active : true;
     });
+}
+
+function applyPublicServiceTextOverrides({
+  localCopy,
+  service,
+}: {
+  localCopy: Service | undefined;
+  service: Service;
+}) {
+  if (!localCopy) {
+    return service;
+  }
+
+  return {
+    ...service,
+    label: localCopy.label,
+    title: localCopy.title,
+    eyebrow: localCopy.eyebrow,
+    summary: localCopy.summary,
+    description: localCopy.description,
+    outcomes: localCopy.outcomes,
+    deliverables: localCopy.deliverables,
+    modules: localCopy.modules,
+    requirements: localCopy.requirements,
+    whatsappMessage: localCopy.whatsappMessage,
+  };
 }
 
 export async function getPublicServiceBySlug(

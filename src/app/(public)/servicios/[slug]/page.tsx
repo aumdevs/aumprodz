@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, ClipboardCheck, Sparkles } from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCircle2, ClipboardCheck, Sparkles } from "lucide-react";
 import { notFound } from "next/navigation";
 
 import { PublicEventTracker } from "@/components/public/public-event-tracker";
@@ -32,8 +32,8 @@ const detailCopyByLocale: Record<
     priceFrom: string;
     duration: string;
     whatsapp: string;
-    trackingNote: string;
     allServices: string;
+    backHome: string;
   }
 > = {
   ht: {
@@ -42,12 +42,11 @@ const detailCopyByLocale: Record<
     process: "Pwosesis",
     requirements: "Sa mwen bezwen",
     summary: "Rezime",
-    priceFrom: "Pri apati",
-    duration: "Dire",
-    whatsapp: "Mande sou WhatsApp",
-    trackingNote:
-      "Klik la anrejistre anvan nan AUM PRODZ Platform epi apre sa li ouvri WhatsApp ak yon mesaj pare pou sèvis sa a.",
+    priceFrom: "Pri a kòmanse apati",
+    duration: "Dire a kòmanse apati",
+    whatsapp: "Pale ak Om",
     allServices: "Gade tout sèvis yo",
+    backHome: "Retounen",
   },
   es: {
     result: "Resultado",
@@ -55,12 +54,11 @@ const detailCopyByLocale: Record<
     process: "Proceso",
     requirements: "Requisitos",
     summary: "Resumen",
-    priceFrom: "Precio desde",
-    duration: "Duración",
-    whatsapp: "Consultar por WhatsApp",
-    trackingNote:
-      "El clic se registra primero en AUM PRODZ Platform y luego abre WhatsApp con un mensaje preparado para este servicio.",
+    priceFrom: "Precio a partir de",
+    duration: "Duración a partir de",
+    whatsapp: "Hablar con Om",
     allServices: "Ver todos los servicios",
+    backHome: "Volver",
   },
   en: {
     result: "Result",
@@ -68,12 +66,11 @@ const detailCopyByLocale: Record<
     process: "Process",
     requirements: "Requirements",
     summary: "Summary",
-    priceFrom: "Starting at",
-    duration: "Duration",
-    whatsapp: "Ask on WhatsApp",
-    trackingNote:
-      "The click is recorded first in AUM PRODZ Platform and then opens WhatsApp with a prepared message for this service.",
+    priceFrom: "Starting price",
+    duration: "Estimated duration from",
+    whatsapp: "Talk to Om",
     allServices: "View all services",
+    backHome: "Back",
   },
   fr: {
     result: "Résultat",
@@ -81,12 +78,11 @@ const detailCopyByLocale: Record<
     process: "Processus",
     requirements: "Conditions",
     summary: "Résumé",
-    priceFrom: "À partir de",
-    duration: "Durée",
-    whatsapp: "Demander sur WhatsApp",
-    trackingNote:
-      "Le clic est d'abord enregistré dans AUM PRODZ Platform, puis WhatsApp s'ouvre avec un message préparé pour ce service.",
+    priceFrom: "Prix à partir de",
+    duration: "Durée à partir de",
+    whatsapp: "Parler avec Om",
     allServices: "Voir tous les services",
+    backHome: "Retour",
   },
   pt: {
     result: "Resultado",
@@ -95,11 +91,10 @@ const detailCopyByLocale: Record<
     requirements: "Requisitos",
     summary: "Resumo",
     priceFrom: "Preço a partir de",
-    duration: "Duração",
-    whatsapp: "Consultar pelo WhatsApp",
-    trackingNote:
-      "O clique é registrado primeiro na AUM PRODZ Platform e depois abre o WhatsApp com uma mensagem preparada para este serviço.",
+    duration: "Duração a partir de",
+    whatsapp: "Falar com Om",
     allServices: "Ver todos os serviços",
+    backHome: "Voltar",
   },
 };
 
@@ -251,9 +246,6 @@ export default async function ServiceDetailPage({
                 size="lg"
                 className="w-full"
               />
-              <p className="text-xs leading-5 text-muted-foreground">
-                {copy.trackingNote}
-              </p>
               <Link
                 href="/servicios"
                 className={cn(
@@ -263,6 +255,16 @@ export default async function ServiceDetailPage({
               >
                 {copy.allServices}
                 <ArrowRight className="size-4" />
+              </Link>
+              <Link
+                href="/"
+                className={cn(
+                  buttonVariants({ variant: "ghost" }),
+                  "w-full justify-center",
+                )}
+              >
+                <ArrowLeft className="size-4" />
+                {copy.backHome}
               </Link>
             </CardContent>
           </Card>
