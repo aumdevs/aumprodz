@@ -3,9 +3,53 @@ import { ArrowRight } from "lucide-react";
 
 import { buttonVariants } from "@/components/ui/button";
 import type { PublicYoutubeVideo } from "@/lib/content/youtube";
-import { t } from "@/lib/i18n/dictionaries";
+import type { AppLocale } from "@/lib/i18n/config";
 import { getCurrentLocale } from "@/lib/i18n/server";
 import { cn } from "@/lib/utils";
+
+const youtubeChannelUrl =
+  "https://www.youtube.com/@aumprodz7298/videos";
+
+const copyByLocale: Record<
+  AppLocale,
+  {
+    channelCta: string;
+    channelText: string;
+    empty: string;
+    videoCta: string;
+  }
+> = {
+  ht: {
+    channelCta: "Gade kanal YouTube la",
+    channelText: "Dekouvri plis videyo enteresan sou kanal la.",
+    empty: "Pa gen videyo pou montre kounye a.",
+    videoCta: "Gade video sa",
+  },
+  es: {
+    channelCta: "Ver canal de YouTube completo",
+    channelText: "Descubre más videos interesantes en el canal.",
+    empty: "No hay videos para mostrar ahora.",
+    videoCta: "Ver este video",
+  },
+  en: {
+    channelCta: "View full YouTube channel",
+    channelText: "Discover more interesting videos on the channel.",
+    empty: "No videos to show right now.",
+    videoCta: "Watch this video",
+  },
+  fr: {
+    channelCta: "Voir la chaîne YouTube complète",
+    channelText: "Découvrez plus de vidéos intéressantes sur la chaîne.",
+    empty: "Aucune vidéo à afficher pour le moment.",
+    videoCta: "Voir cette vidéo",
+  },
+  pt: {
+    channelCta: "Ver canal completo no YouTube",
+    channelText: "Descubra mais vídeos interessantes no canal.",
+    empty: "Nenhum vídeo para mostrar agora.",
+    videoCta: "Ver este vídeo",
+  },
+};
 
 type YoutubeVideosSectionProps = {
   videos: PublicYoutubeVideo[];
@@ -14,35 +58,13 @@ type YoutubeVideosSectionProps = {
 
 export async function YoutubeVideosSection({
   videos,
-  compact = false,
 }: YoutubeVideosSectionProps) {
   const locale = await getCurrentLocale();
-  const TitleTag = compact ? "h2" : "h1";
+  const copy = copyByLocale[locale] ?? copyByLocale.ht;
 
   return (
-    <section className={compact ? "public-section-tight" : "public-section-tight"}>
+    <section className="public-section-tight">
       <div className="public-shell">
-        <div className="mx-auto mb-10 max-w-4xl text-center">
-          <p className="text-sm font-black uppercase tracking-[0.18em] text-primary">
-            {t(locale, "youtube.badge")}
-          </p>
-          <TitleTag className="mammouth-title mt-3 text-4xl sm:text-6xl">
-              {t(locale, "youtube.title")}
-            </TitleTag>
-          <p className="mammouth-subtitle mt-4 text-xl">
-              {t(locale, "youtube.description")}
-            </p>
-          {!compact ? (
-          <Link
-            href="/youtube"
-              className={cn(buttonVariants({ variant: "secondary" }), "mt-6")}
-          >
-            {t(locale, "common.view")}
-            <ArrowRight className="size-4" />
-          </Link>
-          ) : null}
-        </div>
-
         {videos.length > 0 ? (
           <div className="grid gap-5 md:grid-cols-3">
             {videos.map((video) => (
@@ -69,7 +91,7 @@ export async function YoutubeVideosSection({
                     rel="noreferrer"
                     className={cn(buttonVariants({ size: "sm" }), "w-fit")}
                   >
-                    {t(locale, "common.view")}
+                    {copy.videoCta}
                     <ArrowRight className="size-4" />
                   </a>
                 </div>
@@ -78,9 +100,24 @@ export async function YoutubeVideosSection({
           </div>
         ) : (
           <div className="rounded-md border border-border bg-muted p-6 text-sm text-muted-foreground">
-            {t(locale, "empty.reports")}
+            {copy.empty}
           </div>
         )}
+
+        <div className="mx-auto mt-12 max-w-3xl text-center">
+          <p className="mammouth-subtitle text-xl">
+            {copy.channelText}
+          </p>
+          <Link
+            href={youtubeChannelUrl}
+            target="_blank"
+            rel="noreferrer"
+            className={cn(buttonVariants({ size: "lg" }), "mt-5")}
+          >
+            {copy.channelCta}
+            <ArrowRight className="size-5" />
+          </Link>
+        </div>
       </div>
     </section>
   );
