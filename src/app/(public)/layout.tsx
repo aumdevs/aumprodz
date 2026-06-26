@@ -9,7 +9,10 @@ export default async function PublicLayout({
   children: React.ReactNode;
 }) {
   const pathname = await getRequestPathname();
-  const hideFooter = pathname === "/servicios" || pathname.startsWith("/servicios/");
+  const hideFooter =
+    pathname === "/contacto" ||
+    pathname === "/servicios" ||
+    pathname.startsWith("/servicios/");
 
   return (
     <div className="public-site flex min-h-screen flex-col">
