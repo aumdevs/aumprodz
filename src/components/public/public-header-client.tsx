@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowRight, Menu, X } from "lucide-react";
@@ -48,16 +47,15 @@ export function PublicHeaderClient({
           <div className="min-w-0 shrink-0">
             <Link
               href="/"
-              className="inline-flex min-w-0 items-center font-black sm:hidden"
+              className="inline-flex min-w-0 flex-col items-start leading-none sm:hidden"
               aria-label="AUM PRODZ"
             >
-              <Image
-                src="/aum-prodz-logo-transparent.png"
-                alt=""
-                width={80}
-                height={80}
-                className="size-10 shrink-0 rounded-full object-contain"
-              />
+              <span className="block text-base font-black uppercase tracking-[0.18em] text-foreground">
+                AUM PRODZ
+              </span>
+              <span className="mt-1 block text-xs font-bold uppercase tracking-[0.22em] text-muted-foreground">
+                {copy.platformLabel}
+              </span>
             </Link>
             <AumProdzLogo
               className="hidden sm:inline-flex"
