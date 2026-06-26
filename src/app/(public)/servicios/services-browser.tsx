@@ -243,7 +243,7 @@ export function ServicesBrowser({
                   <h2 className="mammouth-title text-2xl leading-tight sm:text-3xl">
                     {activeService.title}
                   </h2>
-                  <p className="mt-1 line-clamp-2 max-w-3xl text-xs leading-5 text-muted-foreground sm:mt-2 sm:text-sm sm:leading-6">
+                  <p className="mt-1 line-clamp-2 max-w-3xl text-sm leading-6 text-muted-foreground sm:mt-2 sm:text-base sm:leading-7">
                     {activeService.description}
                   </p>
                 </div>
@@ -251,17 +251,17 @@ export function ServicesBrowser({
 
               <div className="grid grid-cols-2 gap-2 lg:grid-cols-1">
                 <div className="rounded-2xl border border-border bg-card p-2 sm:p-3">
-                  <p className="text-xs text-muted-foreground">{copy.priceFrom}</p>
+                  <p className="text-sm text-muted-foreground">{copy.priceFrom}</p>
                   <p className="mt-1 text-lg font-black sm:text-xl">
                     {activeService.priceFrom}
                   </p>
                 </div>
                 <div className="rounded-2xl border border-border bg-card p-2 sm:p-3">
-                  <p className="flex items-center gap-2 text-xs text-muted-foreground">
+                  <p className="flex items-center gap-2 text-sm text-muted-foreground">
                     <Clock3 className="size-3.5" />
                     {copy.duration}
                   </p>
-                  <p className="mt-1 line-clamp-2 text-xs font-black sm:text-sm">{activeService.duration}</p>
+                  <p className="mt-1 line-clamp-2 text-sm font-black sm:text-base">{activeService.duration}</p>
                 </div>
               </div>
             </div>
@@ -321,13 +321,13 @@ function CompactDetailList({
       <h3 className="text-sm font-black sm:text-base">{title}</h3>
       <div className="mt-2 grid gap-1.5 sm:mt-3 sm:gap-2">
         {items.map((item, index) => (
-          <p key={item} className="flex gap-2 text-xs leading-4 text-muted-foreground sm:text-sm sm:leading-5">
+          <p key={item} className="flex gap-2 text-sm leading-5 text-muted-foreground sm:text-[0.95rem] sm:leading-6">
             {numbered ? (
-              <span className="flex size-4 shrink-0 items-center justify-center rounded-md bg-muted text-[0.65rem] font-bold text-foreground sm:size-5 sm:text-xs">
+              <span className="flex size-5 shrink-0 items-center justify-center rounded-md bg-muted text-xs font-bold text-foreground">
                 {index + 1}
               </span>
             ) : (
-              <CheckCircle2 className="mt-0.5 size-3 shrink-0 text-primary sm:size-3.5" />
+              <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" />
             )}
             <span>{item}</span>
           </p>

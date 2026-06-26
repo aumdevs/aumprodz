@@ -754,17 +754,257 @@ const localServiceTranslations: Partial<
   },
 };
 
+const serviceListAdditionsByLocale: Record<
+  AppLocale,
+  Record<ServiceSlug, Pick<Service, "deliverables" | "modules">>
+> = {
+  ht: {
+    "youtube-adsense": {
+      deliverables: [
+        "Revizyon paj YouTube Studio yo",
+        "Rekòmandasyon klè pou pwochen aksyon yo",
+      ],
+      modules: [
+        "Verifikasyon blokaj oswa avètisman yo",
+        "Rezime final ak lòd priyorite",
+      ],
+    },
+    "paginas-web": {
+      deliverables: [
+        "Seksyon prensipal yo pare pou prezante òf la",
+        "Koneksyon ak kontak oswa WhatsApp",
+      ],
+      modules: [
+        "Preparasyon kontni ak materyèl",
+        "Tès sou telefòn ak òdinatè",
+      ],
+    },
+    "imagen-video": {
+      deliverables: [
+        "Fichye final nan fòma ki kòrèk",
+        "Rekòmandasyon pou itilize pyes la",
+      ],
+      modules: [
+        "Direksyon stil ak referans",
+        "Revizyon avan livrezon final",
+      ],
+    },
+    "cuentas-digitales": {
+      deliverables: [
+        "Òganizasyon aksè prensipal yo",
+        "Lis mezi pou evite menm pwoblèm nan ankò",
+      ],
+      modules: [
+        "Verifikasyon sekirite ak aksè",
+        "Swivi apre premye rekòmandasyon yo",
+      ],
+    },
+  },
+  es: {
+    "youtube-adsense": {
+      deliverables: [
+        "Revisión de YouTube Studio y señales visibles",
+        "Recomendaciones claras para el próximo movimiento",
+      ],
+      modules: [
+        "Verificación de bloqueos o advertencias",
+        "Resumen final con prioridades",
+      ],
+    },
+    "paginas-web": {
+      deliverables: [
+        "Secciones principales listas para presentar la oferta",
+        "Conexión con contacto, formulario o WhatsApp",
+      ],
+      modules: [
+        "Preparación de contenido y materiales",
+        "Prueba en móvil y escritorio",
+      ],
+    },
+    "imagen-video": {
+      deliverables: [
+        "Archivo final en el formato correcto",
+        "Recomendación de uso para publicar mejor",
+      ],
+      modules: [
+        "Dirección visual y referencias",
+        "Revisión antes de la entrega final",
+      ],
+    },
+    "cuentas-digitales": {
+      deliverables: [
+        "Orden de accesos principales",
+        "Lista de medidas para evitar repetir el problema",
+      ],
+      modules: [
+        "Verificación de seguridad y acceso",
+        "Seguimiento después de las primeras acciones",
+      ],
+    },
+  },
+  en: {
+    "youtube-adsense": {
+      deliverables: [
+        "YouTube Studio and visible signals review",
+        "Clear recommendations for the next move",
+      ],
+      modules: [
+        "Blocker or warning verification",
+        "Final summary with priorities",
+      ],
+    },
+    "paginas-web": {
+      deliverables: [
+        "Main sections ready to present the offer",
+        "Connection to contact, form or WhatsApp",
+      ],
+      modules: [
+        "Content and material preparation",
+        "Mobile and desktop testing",
+      ],
+    },
+    "imagen-video": {
+      deliverables: [
+        "Final file in the correct format",
+        "Publishing recommendation for better use",
+      ],
+      modules: [
+        "Visual direction and references",
+        "Review before final delivery",
+      ],
+    },
+    "cuentas-digitales": {
+      deliverables: [
+        "Main access organization",
+        "List of measures to avoid repeating the issue",
+      ],
+      modules: [
+        "Security and access verification",
+        "Follow-up after the first actions",
+      ],
+    },
+  },
+  fr: {
+    "youtube-adsense": {
+      deliverables: [
+        "Révision de YouTube Studio et des signaux visibles",
+        "Recommandations claires pour la prochaine action",
+      ],
+      modules: [
+        "Vérification des blocages ou avertissements",
+        "Résumé final avec priorités",
+      ],
+    },
+    "paginas-web": {
+      deliverables: [
+        "Sections principales prêtes à présenter l'offre",
+        "Connexion au contact, formulaire ou WhatsApp",
+      ],
+      modules: [
+        "Préparation du contenu et des éléments",
+        "Test mobile et ordinateur",
+      ],
+    },
+    "imagen-video": {
+      deliverables: [
+        "Fichier final au bon format",
+        "Recommandation d'utilisation pour publier mieux",
+      ],
+      modules: [
+        "Direction visuelle et références",
+        "Révision avant la livraison finale",
+      ],
+    },
+    "cuentas-digitales": {
+      deliverables: [
+        "Organisation des accès principaux",
+        "Liste de mesures pour éviter de répéter le problème",
+      ],
+      modules: [
+        "Vérification de la sécurité et des accès",
+        "Suivi après les premières actions",
+      ],
+    },
+  },
+  pt: {
+    "youtube-adsense": {
+      deliverables: [
+        "Revisão do YouTube Studio e sinais visíveis",
+        "Recomendações claras para o próximo movimento",
+      ],
+      modules: [
+        "Verificação de bloqueios ou avisos",
+        "Resumo final com prioridades",
+      ],
+    },
+    "paginas-web": {
+      deliverables: [
+        "Seções principais prontas para apresentar a oferta",
+        "Conexão com contato, formulário ou WhatsApp",
+      ],
+      modules: [
+        "Preparação de conteúdo e materiais",
+        "Teste em celular e computador",
+      ],
+    },
+    "imagen-video": {
+      deliverables: [
+        "Arquivo final no formato correto",
+        "Recomendação de uso para publicar melhor",
+      ],
+      modules: [
+        "Direção visual e referências",
+        "Revisão antes da entrega final",
+      ],
+    },
+    "cuentas-digitales": {
+      deliverables: [
+        "Organização dos acessos principais",
+        "Lista de medidas para evitar repetir o problema",
+      ],
+      modules: [
+        "Verificação de segurança e acesso",
+        "Acompanhamento após as primeiras ações",
+      ],
+    },
+  },
+};
+
 function getLocalizedLocalServices(locale: AppLocale = "ht") {
   const translations = localServiceTranslations[locale];
 
-  if (!translations) {
-    return localServices;
-  }
-
-  return localServices.map((service) => ({
+  const localizedServices = translations ? localServices.map((service) => ({
     ...service,
     ...(translations[service.slug] ?? {}),
-  }));
+  })) : localServices;
+
+  return localizedServices.map((service) => {
+    const additions = serviceListAdditionsByLocale[locale]?.[service.slug];
+
+    if (!additions) {
+      return service;
+    }
+
+    return {
+      ...service,
+      deliverables: mergeDetailItems(service.deliverables, additions.deliverables),
+      modules: mergeDetailItems(service.modules, additions.modules),
+    };
+  });
+}
+
+function mergeDetailItems(baseItems: string[], extraItems: string[]) {
+  const seen = new Set(baseItems);
+  const merged = [...baseItems];
+
+  for (const item of extraItems) {
+    if (!seen.has(item)) {
+      merged.push(item);
+      seen.add(item);
+    }
+  }
+
+  return merged;
 }
 
 export function normalizeServiceSlug(slug: string | null | undefined) {
