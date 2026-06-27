@@ -161,20 +161,20 @@ export default async function ContactPage() {
       )
     : "#";
   return (
-    <section className="flex min-h-[calc(100svh-5.5rem)] py-5 lg:h-[calc(100svh-5.5rem)] lg:min-h-0 lg:overflow-hidden lg:py-4">
+    <section className="flex min-h-[calc(100svh-5.5rem)] px-4 py-5 lg:h-[calc(100svh-5.5rem)] lg:min-h-0 lg:overflow-hidden lg:px-8 lg:py-4">
       <PublicEventTracker eventName="page_view" page="/contacto" source="contact" />
 
-      <div className="public-shell grid min-h-0 flex-1 gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-        <div className="space-y-5">
+      <div className="mx-auto grid min-h-0 w-full max-w-6xl flex-1 gap-8 lg:grid-cols-[0.86fr_1fr] lg:items-center xl:max-w-[72rem]">
+        <div className="mx-auto max-w-xl space-y-5 lg:mx-0">
           <div className="space-y-3">
             <div className="mammouth-pill inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-bold text-primary">
               <MessageCircle className="size-4" />
               {copy.badge}
             </div>
-            <h1 className="mammouth-title text-4xl sm:text-5xl">
+            <h1 className="mammouth-title text-3xl leading-[1.04] sm:text-4xl xl:text-[2.7rem]">
               {copy.title}
             </h1>
-            <p className="mammouth-subtitle hidden max-w-2xl text-lg leading-8 sm:block">
+            <p className="mammouth-subtitle hidden text-base leading-7 sm:block xl:text-lg xl:leading-8">
               {copy.message}
             </p>
           </div>
