@@ -194,16 +194,16 @@ const modelPills = [
 ] as const;
 
 const mobileModelPills = [
-  { label: "Codex", icon: CodexLogo, className: "w-[9.4rem]" },
-  { label: "YouTube", icon: YouTubeLogo, className: "w-[10.5rem]" },
-  { label: "Instagram", icon: InstagramLogo, className: "w-[11.1rem]" },
-  { label: "TikTok", icon: TikTokLogo, className: "w-[8.9rem]" },
-  { label: "Spotify", icon: SpotifyLogo, className: "w-[9.6rem]" },
-  { label: "Claude", icon: ClaudeLogo, className: "w-[9rem]" },
-  { label: "Tecnología", icon: TechnologyLogo, className: "w-[11rem]" },
-  { label: "Gemini", icon: GeminiLogo, className: "w-[8.4rem]" },
-  { label: "Kimi", icon: KimiLogo, className: "w-[7.2rem]" },
-  { label: "Facebook", icon: FacebookLogo, className: "w-[9.8rem]" },
+  { label: "Codex", icon: CodexLogo, className: "col-span-3" },
+  { label: "YouTube", icon: YouTubeLogo, className: "col-span-3" },
+  { label: "TikTok", icon: TikTokLogo, className: "col-span-2" },
+  { label: "Spotify", icon: SpotifyLogo, className: "col-span-2" },
+  { label: "Claude", icon: ClaudeLogo, className: "col-span-2" },
+  { label: "Instagram", icon: InstagramLogo, className: "col-span-3" },
+  { label: "Tecnología", icon: TechnologyLogo, className: "col-span-3" },
+  { label: "Gemini", icon: GeminiLogo, className: "col-span-2" },
+  { label: "Kimi", icon: KimiLogo, className: "col-span-2" },
+  { label: "Facebook", icon: FacebookLogo, className: "col-span-2" },
 ] as const;
 
 export default async function HomePage() {
@@ -234,17 +234,17 @@ export default async function HomePage() {
             <p className="text-lg font-semibold text-muted-foreground">
               {copy.modelIntro}
             </p>
-            <div className="mx-auto mt-3 flex max-w-[22rem] flex-wrap items-center justify-center gap-2.5">
+            <div className="mx-auto mt-3 grid max-w-[22rem] grid-cols-6 gap-2.5">
               {mobileModelPills.map((item) => (
                 <span
                   key={item.label}
                   className={cn(
-                    "mammouth-pill flex h-12 min-w-0 items-center justify-center gap-2 rounded-full px-3 text-[0.8rem] font-black leading-tight text-foreground shadow-sm",
+                    "mammouth-pill flex h-12 min-w-0 items-center justify-center gap-1.5 rounded-full px-2 text-[0.7rem] font-black leading-tight text-foreground shadow-sm min-[390px]:gap-2 min-[390px]:text-[0.76rem]",
                     item.className,
                   )}
                 >
-                  <span className="inline-flex size-5 shrink-0 items-center justify-center">
-                    <item.icon className="size-5" />
+                  <span className="inline-flex size-[1.05rem] shrink-0 items-center justify-center min-[390px]:size-5">
+                    <item.icon className="size-[1.05rem] min-[390px]:size-5" />
                   </span>
                   <span className="min-w-0 whitespace-nowrap">{item.label}</span>
                 </span>
