@@ -36,10 +36,10 @@ type HomeCopy = {
 
 const copyByLocale: Record<AppLocale, HomeCopy> = {
   ht: {
-    academyCta: "Gade Aum Academy",
+    academyCta: "Gade Aum Akademi",
     academyText:
-      "Aum Academy se espas kote kominote a aprann sou teknoloji, IA, YouTube ak kontni dijital pou sèlman 50 dola ameriken chak mwa.",
-    academyTitle: "Aum Academy",
+      "Aum Akademi se espas kote kominote a aprann sou teknoloji, IA, YouTube ak kontni dijital pou sèlman 50 dola ameriken chak mwa.",
+    academyTitle: "Aum Akademi",
     aboutEyebrow: "Ki moun ki Aum?",
     aboutTitle: "Aum se Bendjy, kreyatè ki dèyè Aum Prodz.",
     aboutText:
@@ -64,10 +64,10 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
     youtubeTitle: "Videyo ak refleksyon",
   },
   es: {
-    academyCta: "Ver Aum Academy",
+    academyCta: "Ver Aum Akademi",
     academyText:
-      "Aum Academy es el espacio donde la comunidad aprende sobre tecnología, IA, YouTube y contenido digital por tan solo 50 dólares al mes.",
-    academyTitle: "Aum Academy",
+      "Aum Akademi es el espacio donde la comunidad aprende sobre tecnología, IA, YouTube y contenido digital por tan solo 50 dólares al mes.",
+    academyTitle: "Aum Akademi",
     aboutEyebrow: "¿Quién es Aum?",
     aboutTitle: "Aum es Bendjy, el creador detrás de Aum Prodz.",
     aboutText:
@@ -92,10 +92,10 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
     youtubeTitle: "Videos y reflexión",
   },
   en: {
-    academyCta: "View Aum Academy",
+    academyCta: "View Aum Akademi",
     academyText:
-      "Aum Academy is where the community learns about technology, AI, YouTube and digital content for only 50 dollars a month.",
-    academyTitle: "Aum Academy",
+      "Aum Akademi is where the community learns about technology, AI, YouTube and digital content for only 50 dollars a month.",
+    academyTitle: "Aum Akademi",
     aboutEyebrow: "Who is Aum?",
     aboutTitle: "Aum is Bendjy, the creator behind Aum Prodz.",
     aboutText:
@@ -120,10 +120,10 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
     youtubeTitle: "Videos and reflection",
   },
   fr: {
-    academyCta: "Voir Aum Academy",
+    academyCta: "Voir Aum Akademi",
     academyText:
-      "Aum Academy est l'espace où la communauté apprend la technologie, l'IA, YouTube et le contenu digital pour seulement 50 dollars par mois.",
-    academyTitle: "Aum Academy",
+      "Aum Akademi est l'espace où la communauté apprend la technologie, l'IA, YouTube et le contenu digital pour seulement 50 dollars par mois.",
+    academyTitle: "Aum Akademi",
     aboutEyebrow: "Qui est Aum?",
     aboutTitle: "Aum est Bendjy, le créateur derrière Aum Prodz.",
     aboutText:
@@ -148,10 +148,10 @@ const copyByLocale: Record<AppLocale, HomeCopy> = {
     youtubeTitle: "Vidéos et réflexion",
   },
   pt: {
-    academyCta: "Ver Aum Academy",
+    academyCta: "Ver Aum Akademi",
     academyText:
-      "Aum Academy é o espaço onde a comunidade aprende sobre tecnologia, IA, YouTube e conteúdo digital por apenas 50 dólares por mês.",
-    academyTitle: "Aum Academy",
+      "Aum Akademi é o espaço onde a comunidade aprende sobre tecnologia, IA, YouTube e conteúdo digital por apenas 50 dólares por mês.",
+    academyTitle: "Aum Akademi",
     aboutEyebrow: "Quem é Aum?",
     aboutTitle: "Aum é Bendjy, o criador por trás da Aum Prodz.",
     aboutText:
@@ -270,7 +270,7 @@ export default async function HomePage() {
             {copy.heroPrice}
           </p>
           <div className="mt-6 flex flex-col items-center gap-3 sm:mt-8 sm:flex-row">
-            <Link href="#quien-es-aum" className={cn(buttonVariants({ size: "lg" }))}>
+            <Link href="/aum-akademi" className={cn(buttonVariants({ size: "lg" }))}>
               {copy.startCta}
               <ArrowRight className="size-5" />
             </Link>
@@ -339,7 +339,7 @@ function AumWorkSection({ copy }: { copy: HomeCopy }) {
     },
     {
       cta: copy.academyCta,
-      href: "/contacto",
+      href: "/aum-akademi",
       text: copy.academyText,
       title: copy.academyTitle,
     },
