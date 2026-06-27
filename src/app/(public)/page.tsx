@@ -559,27 +559,29 @@ function TikTokLogo({ className }: { className?: string }) {
 function CodexLogo({ className }: { className?: string }) {
   return (
     <svg
-      className={cn("dark-visible-logo text-[#111111]", className)}
+      className={className}
       viewBox="0 0 24 24"
       aria-hidden="true"
     >
-      <g
+      <defs>
+        <linearGradient id="codex-cloud-gradient" x1="12" x2="12" y1="2.5" y2="21.5">
+          <stop stopColor="#aa98ff" />
+          <stop offset=".48" stopColor="#6f93ff" />
+          <stop offset="1" stopColor="#3848ff" />
+        </linearGradient>
+      </defs>
+      <path
+        fill="url(#codex-cloud-gradient)"
+        d="M17.8 9.8a4.6 4.6 0 0 0-6.1-5.5 5.5 5.5 0 0 0-8.5 3.2 4.7 4.7 0 0 0-1.4 8.1 5.5 5.5 0 0 0 7.1 4.9 5.6 5.6 0 0 0 8.2-2.1 4.7 4.7 0 0 0 .7-8.6Z"
+      />
+      <path
         fill="none"
-        stroke="currentColor"
+        stroke="#fff"
         strokeLinecap="round"
         strokeLinejoin="round"
-        strokeWidth="1.85"
-      >
-        <path d="M12 3.5c1.9 0 3.2 1.1 3.9 2.8" />
-        <path d="M15.9 6.3c1.7-.2 3.2.6 4 2.1.9 1.6.6 3.2-.5 4.5" />
-        <path d="M19.4 12.9c.8 1.6.5 3.3-.8 4.5-1.3 1.2-3 1.3-4.5.5" />
-        <path d="M14.1 17.9c-.8 1.5-2.2 2.4-4 2.2-1.8-.2-3-1.3-3.6-3" />
-        <path d="M6.5 17.1c-1.7.1-3.1-.8-3.9-2.4-.7-1.6-.3-3.2.9-4.4" />
-        <path d="M3.5 10.3C2.8 8.7 3.2 7.1 4.6 6c1.4-1.1 3.1-1 4.5-.1" />
-        <path d="M9.1 5.9 15 9.3v5.4l-5.9 3.4L4.2 15.3v-6l4.9-3.4Z" />
-        <path d="M9.1 5.9v6.7L15 9.3" />
-        <path d="M15 14.7 9.1 12.6v5.5" />
-      </g>
+        strokeWidth="2.45"
+        d="m8 8.6 2.3 3.4L8 15.4M13.2 14h4.2"
+      />
     </svg>
   );
 }
